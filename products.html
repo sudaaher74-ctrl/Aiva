@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Export Product Catalog — AIVA Enterprises</title>
+  <meta name="description" content="Browse our complete international export catalog of Aseptic Fruit Pulps, Concentrates, and IQF Frozen fruits & vegetables. Custom Brix, acidity, packaging, and shelf-life details.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23123524'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='800' font-size='18' fill='%23B08D57'>A</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Premium Detail Modal Styling */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 31, 21, 0.4);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--duration-base) var(--ease-smooth);
+    }
+    
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    
+    .modal-container {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      width: 90%;
+      max-width: 900px;
+      max-height: 90vh;
+      overflow-y: auto;
+      border: 1px solid rgba(18, 53, 36, 0.1);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      transform: scale(0.95) translateY(20px);
+      transition: transform var(--duration-slow) var(--ease-smooth);
+    }
+    
+    .modal-overlay.active .modal-container {
+      transform: scale(1) translateY(0);
+    }
+    
+    .modal-close-btn {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      background: var(--natural-beige);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--deep-green);
+      transition: all var(--duration-base);
+      z-index: 10;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .modal-close-btn:hover {
+      background: var(--deep-green);
+      color: var(--white);
+      transform: rotate(90deg);
+    }
+    
+    .modal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      min-height: 500px;
+    }
+    
+    .modal-image-panel {
+      position: relative;
+      background: var(--forest-depth);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 40px;
+    }
+    
+    .modal-image-panel img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.7;
+    }
+    
+    .modal-image-panel::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10, 31, 21, 0.95) 0%, rgba(18, 53, 36, 0.4) 60%, transparent 100%);
+      z-index: 1;
+    }
+    
+    .modal-image-content {
+      position: relative;
+      z-index: 2;
+      color: var(--white);
+    }
+    
+    .modal-details-panel {
+      padding: 48px;
+      background: var(--white);
+    }
+    
+    .modal-title {
+      font-family: var(--font-headline);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--deep-green);
+      margin-bottom: 8px;
+    }
+    
+    .modal-category {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold-leaf);
+      margin-bottom: 24px;
+    }
+    
+    .modal-desc {
+      font-size: 0.95rem;
+      color: var(--charcoal);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 32px;
+    }
+    
+    .spec-table th, .spec-table td {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--outline-variant);
+      text-align: left;
+      font-size: 0.875rem;
+    }
+    
+    .spec-table th {
+      color: var(--deep-green);
+      font-weight: 700;
+      width: 40%;
+    }
+    
+    .spec-table td {
+      color: var(--charcoal);
+    }
+    
+    @media (max-width: 768px) {
+      .modal-grid {
+        grid-template-columns: 1fr;
+      }
+      .modal-image-panel {
+        height: 250px;
+        padding: 24px;
+      }
+      .modal-details-panel {
+        padding: 32px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <nav class="nav scrolled" id="main-nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">A</div>
+        <div class="nav-logo-text">
+          AIVA
+          <span>Enterprises</span>
+        </div>
+      </a>
+
+      <div class="nav-links" id="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="products.html" class="nav-link active">Products</a>
+        <a href="index.html#process" class="nav-link">Processing</a>
+        <a href="index.html#global" class="nav-link">Global Reach</a>
+        <a href="index.html#contact" class="nav-cta">Get a Quote</a>
+      </div>
+
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Overlay -->
+    <div class="nav-mobile-overlay" id="nav-mobile-overlay">
+      <a href="index.html" class="nav-link" data-mobile-link>Home</a>
+      <a href="about.html" class="nav-link" data-mobile-link>About Us</a>
+      <a href="products.html" class="nav-link" data-mobile-link>Products</a>
+      <a href="index.html#process" class="nav-link" data-mobile-link>Processing</a>
+      <a href="index.html#global" class="nav-link" data-mobile-link>Global Reach</a>
+      <a href="index.html#contact" class="nav-link" data-mobile-link>Contact</a>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       INNER HERO SECTION
+       ============================================================ -->
+  <header style="background: linear-gradient(135deg, var(--forest-depth) 0%, var(--deep-green) 100%); padding: 160px 0 100px; color: var(--white); text-align: center; position: relative; overflow: hidden;">
+    <div class="container" style="position: relative; z-index: 2;">
+      <div class="section-eyebrow" style="color: var(--gold-leaf); justify-content: center; margin-bottom: 16px;">Export Sourcing Range</div>
+      <h1 class="headline-lg" style="margin-bottom: 20px;">Premium Ingredients & Visual Specifications</h1>
+      <p class="body-lg" style="max-width: 700px; margin: 0 auto; color: rgba(255, 255, 255, 0.75);">
+        Explore customizable technical benchmarks, aseptic bag-in-drum parameters, shelf lives, and storage standards below.
+      </p>
+    </div>
+    <div style="position: absolute; inset: 0; background: radial-gradient(circle, rgba(176, 141, 87, 0.08) 0%, transparent 80%); z-index: 1;"></div>
+  </header>
+
+  <!-- ============================================================
+       DYNAMIC CATALOG SECTION
+       ============================================================ -->
+  <section class="products" style="padding: 80px 0; background: var(--natural-beige);">
+    <div class="container">
+      
+      <!-- Product Tabs -->
+      <div class="product-tabs reveal" id="product-tabs" style="margin-bottom: 48px;">
+        <button class="product-tab active" data-tab="aseptic">Aseptic Products</button>
+        <button class="product-tab" data-tab="concentrates">Concentrates</button>
+        <button class="product-tab" data-tab="iqf">IQF Frozen</button>
+      </div>
+
+      <!-- Product groups are rendered from the shared product database in js/main.js. -->
+      <div class="product-category-group active" id="tab-aseptic"></div>
+      <div class="product-category-group" id="tab-concentrates"></div>
+      <div class="product-category-group" id="tab-iqf"></div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MODAL OVERLAY (DYNAMIC DETAILED PRESENTATION)
+       ============================================================ -->
+  <div class="modal-overlay" id="product-detail-modal">
+    <div class="modal-container">
+      <button class="modal-close-btn" id="modal-close-trigger" aria-label="Close specification details">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      
+      <div class="modal-grid">
+        <!-- Left Side: Cinematic Focus Panel -->
+        <div class="modal-image-panel">
+          <img src="" id="modal-bg-image" alt="Product detail focus image">
+          <div class="modal-image-content">
+            <span class="section-eyebrow" style="color: var(--gold-leaf); margin-bottom: 8px;">AIVA Quality Spec Sheet</span>
+            <h3 id="modal-heading-name" style="font-family: var(--font-headline); font-size: 1.5rem; font-weight: 700; margin-bottom: 12px;">Product Details</h3>
+            <p id="modal-spec-desc-short" style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.7); line-height: 1.5;">Processed under sterile aseptic techniques.</p>
+          </div>
+        </div>
+
+        <!-- Right Side: Structured Specifications -->
+        <div class="modal-details-panel">
+          <span id="modal-heading-category" class="modal-category">Aseptic Pulp</span>
+          <h2 id="modal-heading-title" class="modal-title">Product Name</h2>
+          <p id="modal-description-text" class="modal-desc">Detailed industrial narrative description goes here.</p>
+          
+          <h4 style="font-family: var(--font-headline); font-size: 1rem; color: var(--deep-green); margin-bottom: 16px; font-weight: 700; border-left: 3px solid var(--gold-leaf); padding-left: 10px;">Technical Benchmarks</h4>
+          <table class="spec-table">
+            <tbody>
+              <tr>
+                <th>Brix (Soluble Solids)</th>
+                <td id="spec-brix">-</td>
+              </tr>
+              <tr>
+                <th>Acidity (as Citric Acid)</th>
+                <td id="spec-acidity">-</td>
+              </tr>
+              <tr>
+                <th>pH Value</th>
+                <td id="spec-ph">-</td>
+              </tr>
+              <tr>
+                <th>Packaging Details</th>
+                <td id="spec-packaging">-</td>
+              </tr>
+              <tr>
+                <th>Shelf Life</th>
+                <td id="spec-shelflife">-</td>
+              </tr>
+              <tr>
+                <th>Storage Requirements</th>
+                <td id="spec-storage">-</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="display: flex; gap: 16px; margin-top: 24px;">
+            <a href="index.html#contact" class="btn btn-primary" style="flex: 1; justify-content: center; padding: 14px 20px;" id="modal-inquiry-cta">
+              Inquire For Quote
+              <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12M12 4l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo" style="margin-bottom: 8px;">
+            <div class="nav-logo-icon">A</div>
+            <div class="nav-logo-text" style="color: #fff;">
+              AIVA
+              <span>Enterprises</span>
+            </div>
+          </a>
+          <p class="footer-brand-text">
+            A global sourcing and export company specializing in premium fruit pulps, concentrates, aseptic products, and IQF frozen fruits & vegetables for international food industries.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Products</h5>
+          <a href="products.html">Aseptic Fruit Pulps</a>
+          <a href="products.html">Concentrates</a>
+          <a href="products.html">IQF Frozen Fruits</a>
+          <a href="products.html">IQF Vegetables</a>
+          <a href="products.html">Tomato Paste</a>
+        </div>
+
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html">About Us</a>
+          <a href="index.html#process">Our Process</a>
+          <a href="index.html#certifications">Certifications</a>
+          <a href="index.html#global">Global Reach</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+
+        <div class="footer-col">
+          <h5>Export</h5>
+          <a href="index.html#contact">Request a Quote</a>
+          <a href="index.html#contact">Sample Request</a>
+          <a href="index.html#global">Logistics</a>
+          <a href="index.html#certifications">Quality Standards</a>
+          <a href="index.html#contact">Partnerships</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2024 AIVA Enterprises. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Export Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
