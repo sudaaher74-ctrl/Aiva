@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inquiry Management | AIVA Export OS</title>
+  <title>Customers | AIVA Export OS</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23123524'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='800' font-size='18' fill='%23B08D57'>A</text></svg>">
   <link rel="stylesheet" href="../css/admin.css">
 </head>
@@ -29,7 +29,7 @@
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
         Leads
       </a>
-      <a href="inquiries.html" class="sidebar-link active">
+      <a href="inquiries.html" class="sidebar-link">
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
         Inquiries
       </a>
@@ -37,7 +37,7 @@
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
         Products
       </a>
-      <a href="customers.html" class="sidebar-link">
+      <a href="customers.html" class="sidebar-link active">
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
         Customers
       </a>
@@ -68,7 +68,7 @@
     <header class="admin-header">
       <div class="header-search">
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-        <input type="text" placeholder="Search inquiries, clients, or products...">
+        <input type="text" placeholder="Search enterprise clients...">
       </div>
       <div class="header-actions">
         <button class="header-icon-btn">
@@ -79,8 +79,8 @@
         </button>
         <div class="user-profile">
           <div class="user-info">
-            <span class="user-name">Admin User</span>
-            <span class="user-role" style="color: var(--accent-gold);">DIRECTOR</span>
+            <span class="user-name">Alex Thorne</span>
+            <span class="user-role">Global Ops Director</span>
           </div>
           <div class="user-avatar" style="border: 1px solid var(--border-subtle);">
             <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt="Avatar">
@@ -91,79 +91,65 @@
 
     <div class="admin-content" style="padding-top: 32px;">
       
-      <div class="page-header" style="align-items: center; margin-bottom: 32px;">
-        <div>
-          <h1 class="page-title">Inquiry Management</h1>
-          <p class="page-subtitle">Oversee and respond to global trade requests in real-time.</p>
-        </div>
-        <div class="page-actions">
-          <button class="btn btn-outline" style="border-radius: 20px;">
-            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-            Export Report
-          </button>
-          <button class="btn btn-success" style="border-radius: 20px; background: rgba(16,185,129,0.1); color: var(--status-success); border: 1px solid rgba(16,185,129,0.3);">
-            + Manual Inquiry
-          </button>
-        </div>
-      </div>
-
       <!-- Top KPIs -->
-      <div class="kpi-row" style="margin-bottom: 40px;">
-        <div class="kpi-card" style="border: 1px solid var(--accent-gold); position:relative;">
-          <div style="position:absolute; top:0; left:0; right:0; height:2px; background:var(--accent-gold); border-radius:10px 10px 0 0;"></div>
+      <div class="kpi-row">
+        <div class="kpi-card" style="border-top: 2px solid var(--accent-gold);">
           <div class="kpi-header">
-            <h4 class="kpi-title">Total Inquiries</h4>
+            <h4 class="kpi-title">Total Active Clients</h4>
+            <div class="kpi-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg></div>
           </div>
-          <div style="display:flex; justify-content:space-between; align-items:flex-end;">
-            <div class="kpi-value" style="color:var(--accent-gold);">1,248</div>
-            <span class="kpi-trend trend-up">+12% <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width:12px;height:12px;"><path d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg></span>
-          </div>
+          <div class="kpi-value">1,284</div>
+          <span class="kpi-subtext"><span class="trend-up">+12.5%</span> this quarter</span>
         </div>
         
         <div class="kpi-card">
           <div class="kpi-header">
-            <h4 class="kpi-title">New Requests</h4>
+            <h4 class="kpi-title">Global Reach</h4>
           </div>
-          <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+          <div style="display:flex; align-items:baseline; gap: 8px;">
             <div class="kpi-value">42</div>
-            <span style="font-size: 0.65rem; color:var(--status-success); background:rgba(16,185,129,0.1); padding:2px 6px; border-radius:4px; font-weight:700;">URGENT</span>
+            <span style="color:var(--text-secondary); font-weight: 500;">Countries</span>
           </div>
+          <div style="width: 100%; height: 2px; background: var(--bg-input); margin-top: 16px; border-radius: 2px;"><div style="width: 42%; height: 100%; background: var(--accent-gold); border-radius: 2px;"></div></div>
         </div>
 
         <div class="kpi-card">
           <div class="kpi-header">
-            <h4 class="kpi-title">Pending Review</h4>
+            <h4 class="kpi-title">Total Revenue (LTV)</h4>
           </div>
-          <div class="kpi-value">186</div>
-          <span class="kpi-subtext" style="color: var(--text-secondary);">Avg 4h response</span>
+          <div class="kpi-value">$14.2M</div>
+          <span class="kpi-subtext" style="color: var(--text-secondary);">@ Avg. $11k / client</span>
         </div>
 
-        <div class="kpi-card">
+        <div class="kpi-card" style="border: 1px solid rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.05);">
           <div class="kpi-header">
-            <h4 class="kpi-title">Resolved</h4>
+            <h4 class="kpi-title" style="color: var(--status-success);">New Inquiries</h4>
           </div>
-          <div style="display:flex; align-items:baseline; gap:8px;">
-            <div class="kpi-value">1,020</div>
-            <div style="display:flex;flex-direction:column;">
-              <span style="color:var(--status-success);font-weight:700;font-size:0.75rem;">82%</span>
-              <span style="color:var(--text-secondary);font-size:0.65rem;line-height:1;">conversion</span>
-            </div>
-          </div>
+          <div class="kpi-value" style="color: var(--status-success);">18</div>
+          <a href="inquiries.html" style="font-size: 0.75rem; color: var(--status-success); text-decoration: none; margin-top: 8px; display: inline-flex; align-items: center; gap: 4px;">
+            Review Pipeline <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width:12px;height:12px;"><path d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+          </a>
         </div>
       </div>
 
-      <!-- Main Panel / Table list -->
-      <div>
+      <!-- Main Panel -->
+      <div class="panel">
         <div class="page-header" style="margin-bottom: 24px;">
           <div class="pill-tabs">
-            <button class="pill-tab active-gold">All</button>
-            <button class="pill-tab">New</button>
-            <button class="pill-tab">Pending</button>
-            <button class="pill-tab">Resolved</button>
+            <button class="pill-tab active">All Customers</button>
+            <button class="pill-tab">Premium Accounts</button>
+            <button class="pill-tab">Pending Review</button>
+            <button class="pill-tab">Archived</button>
           </div>
-          <div class="page-actions" style="align-items:center; gap:16px;">
-            <div style="font-size: 0.8125rem; color: var(--text-secondary);">Sort by: Newest First <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width:12px;height:12px;display:inline;"><path d="M19 9l-7 7-7-7"></path></svg></div>
-            <button class="header-icon-btn" style="background:var(--bg-panel); padding:8px; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg></button>
+          <div class="page-actions">
+            <button class="btn btn-outline" style="border-radius: 20px;">
+              Advanced Filters
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <button class="btn btn-primary" style="border-radius: 20px;">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
+              New Customer
+            </button>
           </div>
         </div>
 
@@ -171,11 +157,11 @@
           <table class="data-table">
             <thead>
               <tr>
-                <th>Customer & Company</th>
-                <th>Product Interest</th>
+                <th>Company Name</th>
                 <th>Region</th>
-                <th>Details</th>
-                <th>Source</th>
+                <th>Contact Person</th>
+                <th>Total Orders</th>
+                <th>Revenue (LTV)</th>
                 <th>Status</th>
                 <th></th>
               </tr>
@@ -185,28 +171,30 @@
               <tr>
                 <td>
                   <div class="cell-company">
-                    <div class="company-logo" style="background:rgba(212,175,55,0.1);">AE</div>
+                    <div class="company-logo">G</div>
                     <div class="cell-company-info">
-                      <span class="cell-company-name">Ahmed El-Sayed</span>
-                      <span class="cell-company-id">Nile Valley Exports</span>
+                      <span class="cell-company-name">GreenLeaf Agri-Exports</span>
+                      <span class="cell-company-id">ID: AIV-4921</span>
                     </div>
-                  </div>
-                </td>
-                <td>
-                  <div style="display:flex; flex-direction:column;">
-                    <span style="font-size:0.875rem;font-weight:600;">Organic Medjool Dates</span>
-                    <span style="font-size:0.75rem;color:var(--accent-gold);font-weight:600;">15,000 kg / Month</span>
                   </div>
                 </td>
                 <td>
                   <div style="display: flex; align-items: center; gap: 6px; font-size: 0.875rem;">
                     <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width:14px;height:14px;color:var(--text-tertiary)"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    Cairo, Egypt
+                    Netherlands
                   </div>
                 </td>
-                <td style="color:var(--text-secondary);font-size:0.875rem;">"Looking for bulk ..."</td>
-                <td><span style="font-size:0.65rem;padding:2px 6px;background:#1A2E26;color:#34D399;border-radius:4px;font-weight:700;">WHATSAPP</span></td>
-                <td><span style="color:var(--status-success);font-size:0.8125rem;font-weight:600;display:flex;align-items:center;gap:6px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-success);"></span> New</span></td>
+                <td>
+                  <div class="cell-person">
+                    <div class="person-avatar"></div>
+                    <span style="font-size: 0.875rem;">Marten de Klerk</span>
+                  </div>
+                </td>
+                <td style="font-size: 0.875rem;">142</td>
+                <td class="cell-value-gold">$1.2M</td>
+                <td>
+                  <span class="status-badge status-active"><span class="status-dot"></span> Active</span>
+                </td>
                 <td>
                   <button class="header-icon-btn"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg></button>
                 </td>
@@ -216,28 +204,30 @@
               <tr>
                 <td>
                   <div class="cell-company">
-                    <div class="company-logo" style="background:#242424;color:var(--text-secondary);">JS</div>
+                    <div class="company-logo" style="color: #60A5FA;">T</div>
                     <div class="cell-company-info">
-                      <span class="cell-company-name">John Smith</span>
-                      <span class="cell-company-id">Global Foods Inc.</span>
+                      <span class="cell-company-name">TerraNova Bulk Ltd</span>
+                      <span class="cell-company-id">ID: AIV-3302</span>
                     </div>
-                  </div>
-                </td>
-                <td>
-                  <div style="display:flex; flex-direction:column;">
-                    <span style="font-size:0.875rem;font-weight:600;">Premium Arabica Beans</span>
-                    <span style="font-size:0.75rem;color:var(--accent-gold);font-weight:600;">5,000 kg</span>
                   </div>
                 </td>
                 <td>
                   <div style="display: flex; align-items: center; gap: 6px; font-size: 0.875rem;">
                     <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width:14px;height:14px;color:var(--text-tertiary)"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    London, UK
+                    Brazil
                   </div>
                 </td>
-                <td style="color:var(--text-secondary);font-size:0.875rem;">"Quote requested..."</td>
-                <td><span style="font-size:0.65rem;padding:2px 6px;background:#242424;color:var(--text-secondary);border-radius:4px;font-weight:700;">WEBSITE</span></td>
-                <td><span style="color:var(--status-warning);font-size:0.8125rem;font-weight:600;display:flex;align-items:center;gap:6px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--status-warning);"></span> Pending</span></td>
+                <td>
+                  <div class="cell-person">
+                    <div class="person-avatar" style="background:#555;"></div>
+                    <span style="font-size: 0.875rem;">Sofia Fernandes</span>
+                  </div>
+                </td>
+                <td style="font-size: 0.875rem;">88</td>
+                <td class="cell-value-gold">$740k</td>
+                <td>
+                  <span class="status-badge status-active"><span class="status-dot"></span> Active</span>
+                </td>
                 <td>
                   <button class="header-icon-btn"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg></button>
                 </td>
@@ -247,28 +237,63 @@
               <tr>
                 <td>
                   <div class="cell-company">
-                    <div class="company-logo" style="background:rgba(16,185,129,0.1);color:#10B981;">ML</div>
+                    <div class="company-logo" style="color: #A78BFA;">A</div>
                     <div class="cell-company-info">
-                      <span class="cell-company-name">Maria Lopez</span>
-                      <span class="cell-company-id">Vera Cruz Gourmet</span>
+                      <span class="cell-company-name">Atlas Supply Co.</span>
+                      <span class="cell-company-id">ID: AIV-1192</span>
                     </div>
-                  </div>
-                </td>
-                <td>
-                  <div style="display:flex; flex-direction:column;">
-                    <span style="font-size:0.875rem;font-weight:600;">Saffron Threads (AAA)</span>
-                    <span style="font-size:0.75rem;color:var(--accent-gold);font-weight:600;">10 kg</span>
                   </div>
                 </td>
                 <td>
                   <div style="display: flex; align-items: center; gap: 6px; font-size: 0.875rem;">
                     <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width:14px;height:14px;color:var(--text-tertiary)"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    Madrid, Spain
+                    Germany
                   </div>
                 </td>
-                <td style="color:var(--text-secondary);font-size:0.875rem;">"Sent tracking nu..."</td>
-                <td><span style="font-size:0.65rem;padding:2px 6px;background:#1E293B;color:#60A5FA;border-radius:4px;font-weight:700;">DIRECT</span></td>
-                <td><span style="color:var(--text-tertiary);font-size:0.8125rem;font-weight:600;display:flex;align-items:center;gap:6px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--text-tertiary);"></span> Resolved</span></td>
+                <td>
+                  <div class="cell-person">
+                    <div class="person-avatar" style="background:#777;"></div>
+                    <span style="font-size: 0.875rem;">Hans Schmidt</span>
+                  </div>
+                </td>
+                <td style="font-size: 0.875rem;">41</td>
+                <td class="cell-value-gold">$420k</td>
+                <td>
+                  <span class="status-badge status-hold"><span class="status-dot"></span> Credit Hold</span>
+                </td>
+                <td>
+                  <button class="header-icon-btn"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg></button>
+                </td>
+              </tr>
+
+              <!-- Row 4 -->
+              <tr>
+                <td>
+                  <div class="cell-company">
+                    <div class="company-logo" style="color: #34D399;">O</div>
+                    <div class="cell-company-info">
+                      <span class="cell-company-name">Oriental Spice Traders</span>
+                      <span class="cell-company-id">ID: AIV-8821</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div style="display: flex; align-items: center; gap: 6px; font-size: 0.875rem;">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width:14px;height:14px;color:var(--text-tertiary)"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    Singapore
+                  </div>
+                </td>
+                <td>
+                  <div class="cell-person">
+                    <div class="person-avatar" style="background:#444;"></div>
+                    <span style="font-size: 0.875rem;">Li Wei</span>
+                  </div>
+                </td>
+                <td style="font-size: 0.875rem;">215</td>
+                <td class="cell-value-gold">$2.8M</td>
+                <td>
+                  <span class="status-badge status-active"><span class="status-dot"></span> Active</span>
+                </td>
                 <td>
                   <button class="header-icon-btn"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg></button>
                 </td>
