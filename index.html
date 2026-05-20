@@ -26,7 +26,7 @@
        ============================================================ -->
   <nav class="nav" id="main-nav">
     <div class="container nav-inner">
-      <a href="#" class="nav-logo">
+      <a href="index.html" class="nav-logo">
         <div class="nav-logo-icon">A</div>
         <div class="nav-logo-text">
           AIVA
@@ -35,12 +35,11 @@
       </a>
 
       <div class="nav-links" id="nav-links">
-        <a href="#about" class="nav-link">About</a>
-        <a href="#products" class="nav-link">Products</a>
-        <a href="#process" class="nav-link">Processing</a>
-        <a href="#global" class="nav-link">Global Reach</a>
-        <a href="#certifications" class="nav-link">Certifications</a>
-        <a href="#contact" class="nav-cta">Get a Quote</a>
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="contact.html" class="nav-cta">Get a Quote</a>
       </div>
 
       <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation menu">
@@ -52,12 +51,10 @@
 
     <!-- Mobile Overlay -->
     <div class="nav-mobile-overlay" id="nav-mobile-overlay">
-      <a href="#about" class="nav-link" data-mobile-link>About</a>
-      <a href="#products" class="nav-link" data-mobile-link>Products</a>
-      <a href="#process" class="nav-link" data-mobile-link>Processing</a>
-      <a href="#global" class="nav-link" data-mobile-link>Global Reach</a>
-      <a href="#certifications" class="nav-link" data-mobile-link>Certifications</a>
-      <a href="#contact" class="nav-link" data-mobile-link>Contact</a>
+      <a href="index.html" class="nav-link" data-mobile-link>Home</a>
+      <a href="products.html" class="nav-link" data-mobile-link>Products</a>
+      <a href="about.html" class="nav-link" data-mobile-link>About Us</a>
+      <a href="contact.html" class="nav-link" data-mobile-link>Contact</a>
     </div>
   </nav>
 
@@ -67,7 +64,7 @@
   <section class="hero" id="hero">
     <div class="hero-bg">
       <img src="assets/images/hero-bg.png"
-        alt="AIVA Enterprises — Premium fruit processing facility and export operations at golden hour" loading="eager">
+        alt="AIVA Enterprises — Premium fruit processing facility and export operations at golden hour" loading="eager" onerror="this.src='https://images.unsplash.com/photo-1596704017254-9b121068fb31?w=1600&q=80'">
     </div>
     <canvas id="hero-particles"></canvas>
 
@@ -84,13 +81,13 @@
         brands, and distributors worldwide.
       </p>
       <div class="hero-actions">
-        <a href="#products" class="btn btn-primary">
+        <a href="products.html" class="btn btn-primary">
           Explore Products
           <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M4 10h12M12 4l6 6-6 6" />
           </svg>
         </a>
-        <a href="#contact" class="btn btn-secondary">
+        <a href="contact.html" class="btn btn-secondary">
           Global Inquiry
           <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M4 10h12M12 4l6 6-6 6" />
@@ -142,7 +139,7 @@
 
       <div class="about-grid">
         <div class="about-image-wrapper reveal-left">
-          <img src="assets/images/about-section.png" alt="Quality control laboratory and global export logistics">
+          <img src="assets/images/about-section.png" alt="Quality control laboratory and global export logistics" onerror="this.src='https://images.unsplash.com/photo-1582719471384-894fbb16f461?w=800&q=80'">
           <div class="about-image-accent"></div>
         </div>
         <div class="about-text reveal-right">
@@ -156,68 +153,12 @@
             Our commitment to food safety, traceability, and consistency has made us a trusted partner for leading food
             manufacturers, beverage companies, and HoReCa brands across five continents.
           </p>
-
-          <div class="about-features stagger-children">
-            <div class="about-feature reveal">
-              <div class="about-feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M9 12l2 2 4-4" />
-                  <circle cx="12" cy="12" r="10" />
-                </svg>
-              </div>
-              <span>HACCP Certified</span>
-            </div>
-            <div class="about-feature reveal">
-              <div class="about-feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                </svg>
-              </div>
-              <span>Integrated Supply Chain</span>
-            </div>
-            <div class="about-feature reveal">
-              <div class="about-feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20" />
-                </svg>
-              </div>
-              <span>Global Distribution</span>
-            </div>
-            <div class="about-feature reveal">
-              <div class="about-feature-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path
-                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z" />
-                </svg>
-              </div>
-              <span>100% Natural Products</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Counters Row -->
-      <div class="counters-row stagger-children">
-        <div class="counter-item reveal">
-          <div class="counter-value"><span class="counter" data-target="25">0</span><span
-              class="counter-suffix">+</span></div>
-          <div class="counter-label">Export Destinations</div>
-        </div>
-        <div class="counter-item reveal">
-          <div class="counter-value"><span class="counter" data-target="50000">0</span><span class="counter-suffix">
-              MT</span></div>
-          <div class="counter-label">Annual Processing Capacity</div>
-        </div>
-        <div class="counter-item reveal">
-          <div class="counter-value"><span class="counter" data-target="500">0</span><span
-              class="counter-suffix">+</span></div>
-          <div class="counter-label">Global B2B Clients</div>
-        </div>
-        <div class="counter-item reveal">
-          <div class="counter-value"><span class="counter" data-target="99">0</span><span
-              class="counter-suffix">.8%</span></div>
-          <div class="counter-label">Quality Compliance Rate</div>
+          <a href="about.html" class="btn btn-outline-dark" style="margin-top: 16px;">
+            Discover Our Story
+            <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 10h12M12 4l6 6-6 6" />
+            </svg>
+          </a>
         </div>
       </div>
     </div>
@@ -239,12 +180,12 @@
   </div>
 
   <!-- ============================================================
-       PRODUCTS SECTION
+       PRODUCTS SECTION (CATEGORIES OVERVIEW)
        ============================================================ -->
   <section class="products" id="products">
     <div class="container">
       <div class="products-header reveal">
-        <div class="section-eyebrow">Our Product Range</div>
+        <div class="section-eyebrow">Our Product Categories</div>
         <h2 class="headline-lg">Premium Ingredients for<br>Global Food Industries</h2>
         <p class="body-lg">
           From aseptic fruit pulps to IQF frozen products — every item in our portfolio meets the exacting standards of
@@ -252,373 +193,50 @@
         </p>
       </div>
 
-      <!-- Product Tabs -->
-      <div class="product-tabs reveal" id="product-tabs">
-        <button class="product-tab active" data-tab="aseptic">Aseptic Products</button>
-        <button class="product-tab" data-tab="concentrates">Concentrates</button>
-        <button class="product-tab" data-tab="iqf">IQF Frozen</button>
-      </div>
-
-      <!-- Aseptic Products -->
-      <div class="product-category-group active" id="tab-aseptic">
-        <div class="product-card reveal">
-          <div class="product-card-image">
-            <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?w=600&q=80" alt="Alphonso Mango Pulp">
-            <div class="product-card-overlay">
-              <div class="product-card-overlay-cta">
-                View Details
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 10h12M12 4l6 6-6 6" />
-                </svg>
+      <div class="product-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        
+        <!-- Category 1 -->
+        <div class="product-card reveal" style="border: none; background: transparent; box-shadow: none;">
+          <div class="product-card-image" style="border-radius: var(--radius-lg); height: 320px;">
+            <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?w=800&q=80" alt="Aseptic Products">
+            <div class="product-card-overlay" style="opacity: 1; background: linear-gradient(to top, rgba(10,31,21,0.9), transparent);">
+              <div style="color: var(--white); width: 100%;">
+                <h3 style="font-family: var(--font-headline); font-size: 1.5rem; margin-bottom: 8px;">Aseptic Pulps & Pastes</h3>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); margin-bottom: 16px;">Sterile processing for mango, guava, papaya and tomato.</p>
+                <a href="products.html" class="btn btn-gold" style="padding: 10px 20px; font-size: 0.8rem; width: 100%; justify-content: center;">View Catalog</a>
               </div>
-            </div>
-          </div>
-          <div class="product-card-body">
-            <div class="product-card-category">Aseptic Pulp</div>
-            <h3 class="product-card-title">Alphonso Mango Pulp</h3>
-            <p class="product-card-desc">Premium Alphonso variety — the gold standard for international mango-based
-              products.</p>
-            <div class="product-card-specs">
-              <span class="product-spec-tag">Brix: 15–17°</span>
-              <span class="product-spec-tag">Aseptic Bag</span>
-              <span class="product-spec-tag">24 mo. Shelf</span>
             </div>
           </div>
         </div>
 
-        <div class="product-card reveal">
-          <div class="product-card-image">
-            <img src="https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?w=600&q=80"
-              alt="Totapuri Mango Pulp">
-            <div class="product-card-overlay">
-              <div class="product-card-overlay-cta">
-                View Details
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 10h12M12 4l6 6-6 6" />
-                </svg>
+        <!-- Category 2 -->
+        <div class="product-card reveal" style="border: none; background: transparent; box-shadow: none; transition-delay: 100ms;">
+          <div class="product-card-image" style="border-radius: var(--radius-lg); height: 320px;">
+            <img src="https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=800&q=80" alt="Concentrates">
+            <div class="product-card-overlay" style="opacity: 1; background: linear-gradient(to top, rgba(10,31,21,0.9), transparent);">
+              <div style="color: var(--white); width: 100%;">
+                <h3 style="font-family: var(--font-headline); font-size: 1.5rem; margin-bottom: 8px;">Fruit Concentrates</h3>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); margin-bottom: 16px;">High-brix evaporated concentrates for beverage industries.</p>
+                <a href="products.html" class="btn btn-gold" style="padding: 10px 20px; font-size: 0.8rem; width: 100%; justify-content: center;">View Catalog</a>
               </div>
-            </div>
-          </div>
-          <div class="product-card-body">
-            <div class="product-card-category">Aseptic Pulp</div>
-            <h3 class="product-card-title">Totapuri Mango Pulp</h3>
-            <p class="product-card-desc">Industry-grade Totapuri pulp ideal for beverages, nectars, and large-scale food
-              manufacturing.</p>
-            <div class="product-card-specs">
-              <span class="product-spec-tag">Brix: 14–16°</span>
-              <span class="product-spec-tag">215 Kg Drum</span>
-              <span class="product-spec-tag">pH: 3.5–4.5</span>
             </div>
           </div>
         </div>
 
-        <div class="product-card reveal">
-          <div class="product-card-image">
-            <img src="https://images.unsplash.com/photo-1519096845289-95806ee03a1a?w=600&q=80" alt="Kesar Mango Pulp">
-            <div class="product-card-overlay">
-              <div class="product-card-overlay-cta">
-                View Details
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 10h12M12 4l6 6-6 6" />
-                </svg>
+        <!-- Category 3 -->
+        <div class="product-card reveal" style="border: none; background: transparent; box-shadow: none; transition-delay: 200ms;">
+          <div class="product-card-image" style="border-radius: var(--radius-lg); height: 320px;">
+            <img src="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=800&q=80" alt="IQF Frozen">
+            <div class="product-card-overlay" style="opacity: 1; background: linear-gradient(to top, rgba(10,31,21,0.9), transparent);">
+              <div style="color: var(--white); width: 100%;">
+                <h3 style="font-family: var(--font-headline); font-size: 1.5rem; margin-bottom: 8px;">IQF Frozen Range</h3>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); margin-bottom: 16px;">Individually quick frozen fruits and vegetables.</p>
+                <a href="products.html" class="btn btn-gold" style="padding: 10px 20px; font-size: 0.8rem; width: 100%; justify-content: center;">View Catalog</a>
               </div>
-            </div>
-          </div>
-          <div class="product-card-body">
-            <div class="product-card-category">Aseptic Pulp</div>
-            <h3 class="product-card-title">Kesar Mango Pulp</h3>
-            <p class="product-card-desc">Aromatic Kesar variety with rich saffron hue — premium grade for desserts and
-              dairy applications.</p>
-            <div class="product-card-specs">
-              <span class="product-spec-tag">Brix: 16–18°</span>
-              <span class="product-spec-tag">Aseptic Pack</span>
-              <span class="product-spec-tag">Natural Color</span>
             </div>
           </div>
         </div>
 
-        <div class="product-card reveal">
-          <div class="product-card-image">
-            <img src="https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=600&q=80" alt="Tomato Paste">
-            <div class="product-card-overlay">
-              <div class="product-card-overlay-cta">
-                View Details
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 10h12M12 4l6 6-6 6" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="product-card-body">
-            <div class="product-card-category">Aseptic Paste</div>
-            <h3 class="product-card-title">Tomato Paste</h3>
-            <p class="product-card-desc">Cold-break and hot-break variants — consistently high lycopene content for
-              sauces and ketchup.</p>
-            <div class="product-card-specs">
-              <span class="product-spec-tag">Brix: 28–30°</span>
-              <span class="product-spec-tag">Hot Break</span>
-              <span class="product-spec-tag">Export Grade</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card reveal">
-          <div class="product-card-image">
-            <img src="https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=600&q=80" alt="Guava Pulp">
-            <div class="product-card-overlay">
-              <div class="product-card-overlay-cta">
-                View Details
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 10h12M12 4l6 6-6 6" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="product-card-body">
-            <div class="product-card-category">Aseptic Pulp</div>
-            <h3 class="product-card-title">Guava Pulp</h3>
-            <p class="product-card-desc">White and pink guava variants — rich in Vitamin C, ideal for juices and
-              tropical blends.</p>
-            <div class="product-card-specs">
-              <span class="product-spec-tag">Brix: 9–11°</span>
-              <span class="product-spec-tag">Pink/White</span>
-              <span class="product-spec-tag">Seedless</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card reveal">
-          <div class="product-card-image">
-            <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=600&q=80"
-              alt="Papaya & Banana Pulp">
-            <div class="product-card-overlay">
-              <div class="product-card-overlay-cta">
-                View Details
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 10h12M12 4l6 6-6 6" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="product-card-body">
-            <div class="product-card-category">Aseptic Pulp</div>
-            <h3 class="product-card-title">Papaya & Banana Pulp</h3>
-            <p class="product-card-desc">Tropical aseptic pulps — versatile base ingredients for baby food, smoothies,
-              and bakery.</p>
-            <div class="product-card-specs">
-              <span class="product-spec-tag">Brix: 10–22°</span>
-              <span class="product-spec-tag">No Additives</span>
-              <span class="product-spec-tag">Aseptic</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Concentrates -->
-      <div class="product-category-group" id="tab-concentrates">
-        <div class="product-card reveal">
-          <div class="product-card-image">
-            <img src="assets/images/aseptic-products.png" alt="Mango Concentrate">
-            <div class="product-card-overlay">
-              <div class="product-card-overlay-cta">
-                View Details
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 10h12M12 4l6 6-6 6" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="product-card-body">
-            <div class="product-card-category">Concentrate</div>
-            <h3 class="product-card-title">Mango Concentrate</h3>
-            <p class="product-card-desc">High-brix mango concentrate — perfect for reconstituted juices, nectars, and
-              flavoring.</p>
-            <div class="product-card-specs">
-              <span class="product-spec-tag">Brix: 28–32°</span>
-              <span class="product-spec-tag">Drum Pack</span>
-              <span class="product-spec-tag">Clarified</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card reveal">
-          <div class="product-card-image">
-            <img src="https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=600&q=80" alt="Guava Concentrate">
-            <div class="product-card-overlay">
-              <div class="product-card-overlay-cta">
-                View Details
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 10h12M12 4l6 6-6 6" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="product-card-body">
-            <div class="product-card-category">Concentrate</div>
-            <h3 class="product-card-title">Guava Concentrate</h3>
-            <p class="product-card-desc">Naturally filtered guava concentrate with consistent color, flavor, and acidity
-              profile.</p>
-            <div class="product-card-specs">
-              <span class="product-spec-tag">Brix: 20–24°</span>
-              <span class="product-spec-tag">Aseptic Bag</span>
-              <span class="product-spec-tag">Clear/Cloudy</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card reveal">
-          <div class="product-card-image">
-            <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=600&q=80" alt="Banana Concentrate">
-            <div class="product-card-overlay">
-              <div class="product-card-overlay-cta">
-                View Details
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 10h12M12 4l6 6-6 6" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="product-card-body">
-            <div class="product-card-category">Concentrate</div>
-            <h3 class="product-card-title">Banana Concentrate</h3>
-            <p class="product-card-desc">Rich Cavendish banana concentrate — ideal for baby food, dairy, and
-              confectionery industries.</p>
-            <div class="product-card-specs">
-              <span class="product-spec-tag">Brix: 68–70°</span>
-              <span class="product-spec-tag">Evaporated</span>
-              <span class="product-spec-tag">No Sugar</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- IQF Frozen -->
-      <div class="product-category-group" id="tab-iqf">
-        <div class="product-card reveal">
-          <div class="product-card-image">
-            <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?w=600&q=80" alt="IQF Mango Dices">
-            <div class="product-card-overlay">
-              <div class="product-card-overlay-cta">
-                View Details
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 10h12M12 4l6 6-6 6" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="product-card-body">
-            <div class="product-card-category">IQF Frozen</div>
-            <h3 class="product-card-title">Mango Dices</h3>
-            <p class="product-card-desc">Individually quick frozen Totapuri and Alphonso dices — free-flowing, no
-              clumping.</p>
-            <div class="product-card-specs">
-              <span class="product-spec-tag">10mm / 15mm</span>
-              <span class="product-spec-tag">−18°C</span>
-              <span class="product-spec-tag">1 Kg / 10 Kg</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card reveal">
-          <div class="product-card-image">
-            <img src="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=600&q=80"
-              alt="IQF Strawberry Range">
-            <div class="product-card-overlay">
-              <div class="product-card-overlay-cta">
-                View Details
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 10h12M12 4l6 6-6 6" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="product-card-body">
-            <div class="product-card-category">IQF Frozen</div>
-            <h3 class="product-card-title">Strawberry Range</h3>
-            <p class="product-card-desc">Whole, sliced, and diced strawberries — flash frozen at peak ripeness for
-              maximum flavor.</p>
-            <div class="product-card-specs">
-              <span class="product-spec-tag">Whole/Sliced</span>
-              <span class="product-spec-tag">−18°C</span>
-              <span class="product-spec-tag">Class A</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card reveal">
-          <div class="product-card-image">
-            <img src="https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=600&q=80" alt="IQF Sweet Corn">
-            <div class="product-card-overlay">
-              <div class="product-card-overlay-cta">
-                View Details
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 10h12M12 4l6 6-6 6" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="product-card-body">
-            <div class="product-card-category">IQF Frozen</div>
-            <h3 class="product-card-title">Sweet Corn Kernels</h3>
-            <p class="product-card-desc">Premium IQF sweet corn — blanched and frozen within hours of harvest for
-              optimal sweetness.</p>
-            <div class="product-card-specs">
-              <span class="product-spec-tag">Non-GMO</span>
-              <span class="product-spec-tag">−18°C</span>
-              <span class="product-spec-tag">Retail/Bulk</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card reveal">
-          <div class="product-card-image">
-            <img src="https://images.unsplash.com/photo-1519096845289-95806ee03a1a?w=600&q=80" alt="IQF Papaya Dices">
-            <div class="product-card-overlay">
-              <div class="product-card-overlay-cta">
-                View Details
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 10h12M12 4l6 6-6 6" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="product-card-body">
-            <div class="product-card-category">IQF Frozen</div>
-            <h3 class="product-card-title">Papaya & Guava Dices</h3>
-            <p class="product-card-desc">Tropical IQF fruit dices — calibrated cuts, consistent color, and zero waste
-              for industrial use.</p>
-            <div class="product-card-specs">
-              <span class="product-spec-tag">10×10 mm</span>
-              <span class="product-spec-tag">−18°C</span>
-              <span class="product-spec-tag">HACCP</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card reveal">
-          <div class="product-card-image">
-            <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=600&q=80" alt="IQF Banana Slices">
-            <div class="product-card-overlay">
-              <div class="product-card-overlay-cta">
-                View Details
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 10h12M12 4l6 6-6 6" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="product-card-body">
-            <div class="product-card-category">IQF Frozen</div>
-            <h3 class="product-card-title">Banana Slices</h3>
-            <p class="product-card-desc">Uniformly sliced Cavendish bananas — treated to prevent browning, perfect for
-              smoothie packs.</p>
-            <div class="product-card-specs">
-              <span class="product-spec-tag">8mm Slices</span>
-              <span class="product-spec-tag">Anti-Browning</span>
-              <span class="product-spec-tag">Free-Flow</span>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -681,7 +299,7 @@
               aseptic bags, and retail packs under sterile conditions.</p>
           </div>
           <div class="timeline-image">
-            <img src="assets/images/aseptic-products.png" alt="Aseptic processing line">
+            <img src="https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=600&q=80" alt="Aseptic processing line">
           </div>
         </div>
 
@@ -937,134 +555,25 @@
   </section>
 
   <!-- ============================================================
-       CONTACT SECTION
+       CTA BANNER SECTION
        ============================================================ -->
-  <section class="contact" id="contact">
+  <section style="padding: 120px 0; background: var(--natural-beige);">
     <div class="container">
-      <div class="contact-grid">
-        <!-- Info Column -->
-        <div class="contact-info reveal-left">
-          <div class="section-eyebrow">Get in Touch</div>
-          <h2 class="headline-lg">Let's Build Your<br>Supply Chain</h2>
-          <p class="body-lg">
-            Whether you need a single container or a year-round supply agreement, our export team is ready to discuss
-            your requirements, pricing, and logistics.
+      <div style="background: var(--forest-depth); border-radius: var(--radius-xl); padding: 80px 40px; text-align: center; position: relative; overflow: hidden; box-shadow: var(--shadow-lg);" class="reveal">
+        <div style="position: absolute; top: -50%; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(176,141,87,0.15) 0%, transparent 70%); border-radius: 50%;"></div>
+        <div style="position: absolute; bottom: -50%; right: -10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(176,141,87,0.1) 0%, transparent 70%); border-radius: 50%;"></div>
+        
+        <div style="position: relative; z-index: 2;">
+          <h2 class="headline-lg" style="color: var(--white); margin-bottom: 24px;">Ready to Elevate Your Supply Chain?</h2>
+          <p class="body-lg" style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 40px;">
+            Partner with AIVA Enterprises for consistent, premium-grade food ingredients. Contact our export team for tailored specifications and FOB/CIF pricing.
           </p>
-
-          <div class="contact-details">
-            <div class="contact-detail">
-              <div class="contact-detail-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
-              </div>
-              <div class="contact-detail-text">
-                <h5>Head Office</h5>
-                <p>Mumbai, Maharashtra, India</p>
-              </div>
-            </div>
-
-            <div class="contact-detail">
-              <div class="contact-detail-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                  <path d="M22 6l-10 7L2 6" />
-                </svg>
-              </div>
-              <div class="contact-detail-text">
-                <h5>Email</h5>
-                <p>exports@aivaenterprises.com</p>
-              </div>
-            </div>
-
-            <div class="contact-detail">
-              <div class="contact-detail-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path
-                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
-                </svg>
-              </div>
-              <div class="contact-detail-text">
-                <h5>Phone</h5>
-                <p>+91 22 XXXX XXXX</p>
-              </div>
-            </div>
-
-            <div class="contact-detail">
-              <div class="contact-detail-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M12 6v6l4 2" />
-                </svg>
-              </div>
-              <div class="contact-detail-text">
-                <h5>Business Hours</h5>
-                <p>Mon – Sat: 9:00 AM – 6:00 PM IST</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Form Column -->
-        <div class="contact-form-wrapper reveal-right">
-          <h3 class="contact-form-title">Export Inquiry Form</h3>
-          <form id="contact-form" novalidate>
-            <div class="form-row">
-              <div class="form-group">
-                <input type="text" class="form-input" id="form-name" placeholder=" " required>
-                <label for="form-name" class="form-label">Full Name *</label>
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-input" id="form-company" placeholder=" " required>
-                <label for="form-company" class="form-label">Company Name *</label>
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <input type="email" class="form-input" id="form-email" placeholder=" " required>
-                <label for="form-email" class="form-label">Business Email *</label>
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-input" id="form-country" placeholder=" " required>
-                <label for="form-country" class="form-label">Country *</label>
-              </div>
-            </div>
-
-            <div class="form-group full-width">
-              <select class="form-select" id="form-product" required>
-                <option value="" disabled selected>Select Product Interest</option>
-                <option value="alphonso-pulp">Alphonso Mango Pulp</option>
-                <option value="totapuri-pulp">Totapuri Mango Pulp</option>
-                <option value="kesar-pulp">Kesar Mango Pulp</option>
-                <option value="tomato-paste">Tomato Paste</option>
-                <option value="guava-pulp">Guava Pulp</option>
-                <option value="papaya-pulp">Papaya Pulp</option>
-                <option value="banana-pulp">Banana Pulp</option>
-                <option value="mango-concentrate">Mango Concentrate</option>
-                <option value="guava-concentrate">Guava Concentrate</option>
-                <option value="banana-concentrate">Banana Concentrate</option>
-                <option value="iqf-mango">IQF Mango Dices</option>
-                <option value="iqf-strawberry">IQF Strawberry</option>
-                <option value="iqf-corn">IQF Sweet Corn</option>
-                <option value="multiple">Multiple Products</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-
-            <div class="form-group full-width">
-              <textarea class="form-textarea" id="form-message" placeholder=" " rows="4"></textarea>
-              <label for="form-message" class="form-label">Your Requirements (Volume, Packaging, Specs...)</label>
-            </div>
-
-            <button type="submit" class="btn btn-primary form-submit">
-              Submit Inquiry
-              <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 10h12M12 4l6 6-6 6" />
-              </svg>
-            </button>
-          </form>
+          <a href="contact.html" class="btn btn-primary" style="background: var(--gold-leaf); border-color: var(--gold-leaf); color: var(--white);">
+            Request a Quote
+            <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 10h12M12 4l6 6-6 6" />
+            </svg>
+          </a>
         </div>
       </div>
     </div>
@@ -1077,7 +586,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="#" class="nav-logo" style="margin-bottom: 8px;">
+          <a href="index.html" class="nav-logo" style="margin-bottom: 8px;">
             <div class="nav-logo-icon">A</div>
             <div class="nav-logo-text" style="color: #fff;">
               AIVA
@@ -1092,29 +601,29 @@
 
         <div class="footer-col">
           <h5>Products</h5>
-          <a href="#products">Aseptic Fruit Pulps</a>
-          <a href="#products">Concentrates</a>
-          <a href="#products">IQF Frozen Fruits</a>
-          <a href="#products">IQF Vegetables</a>
-          <a href="#products">Tomato Paste</a>
+          <a href="products.html">Aseptic Fruit Pulps</a>
+          <a href="products.html">Concentrates</a>
+          <a href="products.html">IQF Frozen Fruits</a>
+          <a href="products.html">IQF Vegetables</a>
+          <a href="products.html">Tomato Paste</a>
         </div>
 
         <div class="footer-col">
           <h5>Company</h5>
-          <a href="#about">About Us</a>
-          <a href="#process">Our Process</a>
-          <a href="#certifications">Certifications</a>
-          <a href="#global">Global Reach</a>
-          <a href="#contact">Contact</a>
+          <a href="about.html">About Us</a>
+          <a href="index.html#process">Our Process</a>
+          <a href="index.html#certifications">Certifications</a>
+          <a href="index.html#global">Global Reach</a>
+          <a href="contact.html">Contact</a>
         </div>
 
         <div class="footer-col">
           <h5>Export</h5>
-          <a href="#contact">Request a Quote</a>
-          <a href="#contact">Sample Request</a>
-          <a href="#global">Logistics</a>
-          <a href="#certifications">Quality Standards</a>
-          <a href="#contact">Partnerships</a>
+          <a href="contact.html">Request a Quote</a>
+          <a href="contact.html">Sample Request</a>
+          <a href="index.html#global">Logistics</a>
+          <a href="index.html#certifications">Quality Standards</a>
+          <a href="contact.html">Partnerships</a>
         </div>
       </div>
 
@@ -1132,7 +641,7 @@
   <!-- ============================================================
        WHATSAPP FLOATING BUTTON
        ============================================================ -->
-  <a href="https://wa.me/91XXXXXXXXXX?text=Hello%2C%20I%27m%20interested%20in%20your%20export%20products."
+  <a href="https://wa.me/919876543210?text=Hello%2C%20I%27m%20interested%20in%20your%20export%20products."
     class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp"
     id="whatsapp-btn">
     <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
