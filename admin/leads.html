@@ -3,57 +3,134 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leads CRM — AIVA Admin</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <title>Leads | AIVA Export OS</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23123524'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='800' font-size='18' fill='%23B08D57'>A</text></svg>">
   <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
-
-  <!-- Sidebar -->
   <aside class="admin-sidebar">
     <div class="sidebar-header">
       <a href="dashboard.html" class="sidebar-logo">
-        <div class="sidebar-logo-icon">A</div>
-        AIVA Admin
+        <div class="sidebar-logo-text">
+          <span>AIVA</span>
+          <span>Export OS</span>
+        </div>
       </a>
     </div>
-    
+
     <nav class="sidebar-nav">
       <a href="dashboard.html" class="sidebar-link">
-        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"></path></svg>
         Dashboard
       </a>
       <a href="leads.html" class="sidebar-link active">
-        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-        Leads & CRM
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"></path></svg>
+        Leads
+      </a>
+      <a href="inquiries.html" class="sidebar-link">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"></path></svg>
+        Inquiries
+      </a>
+      <a href="products.html" class="sidebar-link">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"></path><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"></path></svg>
+        Products
+      </a>
+      <a href="customers.html" class="sidebar-link">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"></path></svg>
+        Customers
+      </a>
+      <a href="quotations.html" class="sidebar-link">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"></path></svg>
+        Quotations
       </a>
       <a href="analytics.html" class="sidebar-link">
-        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3v18h18"></path><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"></path></svg>
         Analytics
       </a>
     </nav>
-    
+
     <div class="sidebar-footer">
-      <a href="../index.html" class="btn btn-outline" style="width: 100%; justify-content: center;">Back to Site</a>
+      <a href="settings.html" class="sidebar-link">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.6 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.6a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09A1.65 1.65 0 0015 4.6a1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9c.14.31.23.65.23 1H21a2 2 0 012 2 2 2 0 01-2 2h-1.37c0 .35-.09.69-.23 1z"></path></svg>
+        Settings
+      </a>
+      <a href="../index.html" class="sidebar-link logout-link">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"></path><path d="M16 17l5-5-5-5M21 12H9"></path></svg>
+        Logout
+      </a>
     </div>
   </aside>
 
-  <!-- Main Content -->
   <main class="admin-main">
     <header class="admin-header">
-      <h1 class="admin-header-title">Leads & Inquiries</h1>
-    </header>
-
-    <div class="admin-content">
-      <div class="panel">
-        <div class="panel-header">
-          <h2 class="panel-title">All Customer Inquiries</h2>
-          <div style="display: flex; gap: 12px;">
-            <button class="btn btn-sm btn-outline">Export CSV</button>
+      <div class="header-search">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        <input type="text" placeholder="Search leads, buyers, or regions...">
+      </div>
+      <div class="header-actions">
+        <button class="header-icon-btn">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 01-3.46 0"></path></svg>
+        </button>
+        <div class="user-profile">
+          <div class="user-info">
+            <span class="user-name">Admin User</span>
+            <span class="user-role">Sales Ops</span>
+          </div>
+          <div class="user-avatar">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&amp;q=80" alt="Avatar">
           </div>
         </div>
-        <div class="table-wrapper">
-          <table class="admin-table">
+      </div>
+    </header>
+
+    <div class="admin-content dashboard-content">
+      <div class="page-header">
+        <div>
+          <span class="eyebrow">Lead Pipeline</span>
+          <h1 class="page-title dashboard-title">Buyer Qualification Center</h1>
+          <p class="page-subtitle">Track inbound prospects from first contact to quoted opportunity.</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-dark">Import Leads</button>
+          <button class="btn btn-primary">New Lead</button>
+        </div>
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-title">Qualified Leads</div>
+          <div class="kpi-value">1,240</div>
+          <span class="kpi-subtext">+18% this month</span>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">High Intent</div>
+          <div class="kpi-value">312</div>
+          <span class="kpi-subtext">Ready for quotation</span>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Avg Response</div>
+          <div class="kpi-value">3.8h</div>
+          <span class="kpi-subtext">Inside SLA</span>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Won Accounts</div>
+          <div class="kpi-value">86</div>
+          <span class="kpi-subtext">+9 active buyers</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="page-header" style="margin-bottom: 20px;">
+          <div class="pill-tabs">
+            <button class="pill-tab active-gold">All Leads</button>
+            <button class="pill-tab">Qualified</button>
+            <button class="pill-tab">Needs Quote</button>
+            <button class="pill-tab">Dormant</button>
+          </div>
+          <button class="btn btn-outline">Export CSV</button>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
             <thead>
               <tr>
                 <th>ID</th>
@@ -64,9 +141,7 @@
                 <th>Actions</th>
               </tr>
             </thead>
-            <tbody id="recent-inquiries-body">
-              <!-- Data populated by admin.js -->
-            </tbody>
+            <tbody id="recent-inquiries-body"></tbody>
           </table>
         </div>
       </div>
