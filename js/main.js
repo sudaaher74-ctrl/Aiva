@@ -99,6 +99,21 @@ document.addEventListener('DOMContentLoaded', () => {
     counterObserver.observe(statsSection);
   }
 
+  const productImages = {
+    sapotaPulp: "assets/images/A4EDA861-BCAE-48B4-97AD-9DD77AC70E6F.png",
+    jamunPulp: "assets/images/C4691FDB-EBB3-4704-AF4C-5380C5753FC6.png",
+    sweetCornKernels: "assets/images/E59376D7-F7CC-4615-8B02-FCA1AC6F2E05.png",
+    cornCobCuts: "assets/images/bacb0bfcb965bf1c19ab235f14e1162bd70b292c46041eba500fd6c85a65e5db.png",
+    pineappleDices: "assets/images/52980acb3f8746be5010fafc89796da76b58847f1a04fc8b799f54f34bc09450.png",
+    strawberryWholeDices: "assets/images/3f4e978001d5cbd462686fdf6ceeacd10d5a4d94325cfeb0fdd51224f44c9925.png",
+    pomegranateArils: "assets/images/dc95e677b46e62ea5198d21cd0026e1c094f917d6501ec0c1ff1bde18eb1bdc4.png",
+    papayaDices: "assets/images/dd97056c1d617a567791ab45547cb903b7ad53d81d5cf45c8b55c38fddc83481.png",
+    okraCuts: "assets/images/016986398bb165b0172495d629de2315932e7a9c8be29a3b90b6d2c066c30a9f.png",
+    cauliflowerFlorets: "assets/images/256097bc57dd57767442b67db6cf8757e386a8b53dab89c997437fef5c5c7424.png",
+    beetrootDices: "assets/images/41a91c913767b4fb4124a5a8ecc9c049ba8751085fb34d3f07ad427faaa6aed0.png",
+    mixedVegetables: "assets/images/4EF38E46-5DD9-4B1D-99B7-54BE4FE3B8FC.png"
+  };
+
   // Define Product Database
   const defaultProducts = [
     {
@@ -246,6 +261,42 @@ document.addEventListener('DOMContentLoaded', () => {
       applications: ["Juices", "Nectars", "Candies"]
     },
     {
+      id: "sapota-pulp",
+      tab: "aseptic",
+      category: "Aseptic Pulps & Pastes",
+      name: "Sapota Pulp",
+      desc: "Smooth aseptic sapota pulp with natural caramel sweetness and a rich tropical profile for beverages, desserts, and dairy blends.",
+      image: productImages.sapotaPulp,
+      appearance: "Light brown, smooth puree",
+      flavour: "Naturally sweet sapota flavor",
+      brix: "18° Min",
+      acidity: "Natural",
+      ph: "4.2 - 4.8",
+      colour: "Golden Brown",
+      packaging: "215kg Aseptic Bag in MS Drum",
+      shelflife: "18 Months",
+      storage: "Ambient temperature.",
+      applications: ["Milkshakes", "Smoothies", "Ice Creams", "Desserts"]
+    },
+    {
+      id: "jamun-pulp",
+      tab: "aseptic",
+      category: "Aseptic Pulps & Pastes",
+      name: "Jamun Pulp",
+      desc: "Deep purple jamun pulp with a bold sweet-tart taste and distinctive berry notes for premium beverage and dessert applications.",
+      image: productImages.jamunPulp,
+      appearance: "Deep purple, smooth puree",
+      flavour: "Characteristic sweet-tart jamun",
+      brix: "12° Min",
+      acidity: "Natural",
+      ph: "3.2 - 3.8",
+      colour: "Deep Purple",
+      packaging: "215kg Aseptic Bag in MS Drum",
+      shelflife: "18 Months",
+      storage: "Ambient temperature.",
+      applications: ["Juices", "Sorbet", "Yogurt", "Functional Beverages"]
+    },
+    {
       id: "iqf-mango-dices",
       tab: "iqf",
       category: "IQF Frozen Range",
@@ -269,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
       category: "IQF Frozen Range",
       name: "IQF Sweet Corn Kernels",
       desc: "Tender, sweet corn kernels blanched and instantly frozen to lock in sweetness and texture.",
-      image: "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=800&q=80",
+      image: productImages.sweetCornKernels,
       appearance: "Individual yellow kernels",
       flavour: "Sweet, characteristic corn",
       brix: "Natural",
@@ -280,16 +331,212 @@ document.addEventListener('DOMContentLoaded', () => {
       shelflife: "24 Months at -18°C",
       storage: "-18°C or below",
       applications: ["Ready Meals", "Soups", "Retail Frozen Aisles"]
+    },
+    {
+      id: "iqf-corn-cob-cuts",
+      tab: "iqf",
+      category: "IQF Frozen Range",
+      name: "IQF Corn Cob Cuts",
+      desc: "Sweet corn cob portions frozen quickly for foodservice, retail packs, and ready-to-cook meal formats.",
+      image: productImages.cornCobCuts,
+      appearance: "Golden yellow cob pieces",
+      flavour: "Sweet, characteristic corn",
+      brix: "Natural",
+      acidity: "N/A",
+      ph: "N/A",
+      colour: "Bright Golden Yellow",
+      packaging: "10kg Bulk Carton or retail packs",
+      shelflife: "24 Months at -18°C",
+      storage: "-18°C or below",
+      applications: ["Foodservice", "Ready Meals", "Retail Frozen Aisles"]
+    },
+    {
+      id: "iqf-pineapple-dices",
+      tab: "iqf",
+      category: "IQF Frozen Range",
+      name: "IQF Pineapple Dices",
+      desc: "Bright pineapple dices frozen at peak ripeness to preserve juicy texture, aroma, and tropical sweetness.",
+      image: productImages.pineappleDices,
+      appearance: "Uniform yellow pineapple dices",
+      flavour: "Sweet tropical pineapple",
+      brix: "Natural",
+      acidity: "Natural",
+      ph: "Natural",
+      colour: "Golden Yellow",
+      packaging: "10kg Bulk Carton with PE liner",
+      shelflife: "24 Months at -18°C",
+      storage: "-18°C or below",
+      applications: ["Smoothies", "Fruit Preparations", "Bakery", "Desserts"]
+    },
+    {
+      id: "iqf-strawberry-whole-dices",
+      tab: "iqf",
+      category: "IQF Frozen Range",
+      name: "IQF Strawberry Whole & Dices",
+      desc: "Whole strawberries and diced strawberries processed for consistent color, flavor, and shape across dessert and beverage applications.",
+      image: productImages.strawberryWholeDices,
+      appearance: "Whole and diced red strawberries",
+      flavour: "Sweet-tart strawberry",
+      brix: "Natural",
+      acidity: "Natural",
+      ph: "Natural",
+      colour: "Bright Red",
+      packaging: "10kg Bulk Carton with PE liner",
+      shelflife: "24 Months at -18°C",
+      storage: "-18°C or below",
+      applications: ["Smoothies", "Bakery Fillings", "Ice Cream", "Fruit Toppings"]
+    },
+    {
+      id: "iqf-pomegranate-arils",
+      tab: "iqf",
+      category: "IQF Frozen Range",
+      name: "IQF Pomegranate Arils",
+      desc: "Ruby pomegranate arils individually frozen to retain vibrant color, juicy bite, and natural sweet-tart flavor.",
+      image: productImages.pomegranateArils,
+      appearance: "Individual ruby red arils",
+      flavour: "Sweet-tart pomegranate",
+      brix: "Natural",
+      acidity: "Natural",
+      ph: "Natural",
+      colour: "Ruby Red",
+      packaging: "10kg Bulk Carton with PE liner",
+      shelflife: "24 Months at -18°C",
+      storage: "-18°C or below",
+      applications: ["Salads", "Desserts", "Smoothie Bowls", "Beverage Garnishes"]
+    },
+    {
+      id: "iqf-papaya-dices",
+      tab: "iqf",
+      category: "IQF Frozen Range",
+      name: "IQF Papaya Dices",
+      desc: "Orange papaya dices frozen for clean tropical flavor, soft bite, and dependable performance in fruit blends.",
+      image: productImages.papayaDices,
+      appearance: "Uniform orange papaya dices",
+      flavour: "Sweet ripe papaya",
+      brix: "Natural",
+      acidity: "Natural",
+      ph: "Natural",
+      colour: "Orange",
+      packaging: "10kg Bulk Carton with PE liner",
+      shelflife: "24 Months at -18°C",
+      storage: "-18°C or below",
+      applications: ["Fruit Cups", "Smoothies", "Desserts", "Bakery"]
+    },
+    {
+      id: "iqf-okra-cuts",
+      tab: "iqf",
+      category: "IQF Frozen Range",
+      name: "IQF Okra Cuts",
+      desc: "Clean-cut okra frozen quickly for reliable color, shape, and texture in ready meals and foodservice preparations.",
+      image: productImages.okraCuts,
+      appearance: "Individual green okra cuts",
+      flavour: "Typical fresh okra",
+      brix: "Natural",
+      acidity: "N/A",
+      ph: "N/A",
+      colour: "Bright Green",
+      packaging: "10kg Bulk Carton with PE liner",
+      shelflife: "24 Months at -18°C",
+      storage: "-18°C or below",
+      applications: ["Ready Meals", "Curries", "Foodservice", "Retail Frozen Packs"]
+    },
+    {
+      id: "iqf-cauliflower-florets",
+      tab: "iqf",
+      category: "IQF Frozen Range",
+      name: "IQF Cauliflower Florets",
+      desc: "Cauliflower florets blanched and individually frozen for clean color, tender bite, and consistent sizing.",
+      image: productImages.cauliflowerFlorets,
+      appearance: "Creamy white florets",
+      flavour: "Mild cauliflower flavor",
+      brix: "Natural",
+      acidity: "N/A",
+      ph: "N/A",
+      colour: "Creamy White",
+      packaging: "10kg Bulk Carton with PE liner",
+      shelflife: "24 Months at -18°C",
+      storage: "-18°C or below",
+      applications: ["Ready Meals", "Soups", "Foodservice", "Retail Frozen Packs"]
+    },
+    {
+      id: "iqf-beetroot-dices",
+      tab: "iqf",
+      category: "IQF Frozen Range",
+      name: "IQF Beetroot Dices",
+      desc: "Deep red beetroot dices frozen for vibrant color, earthy sweetness, and easy handling in industrial kitchens.",
+      image: productImages.beetrootDices,
+      appearance: "Uniform deep red dices",
+      flavour: "Earthy sweet beetroot",
+      brix: "Natural",
+      acidity: "N/A",
+      ph: "N/A",
+      colour: "Deep Red",
+      packaging: "10kg Bulk Carton with PE liner",
+      shelflife: "24 Months at -18°C",
+      storage: "-18°C or below",
+      applications: ["Salads", "Ready Meals", "Soups", "Foodservice"]
+    },
+    {
+      id: "iqf-mixed-vegetables",
+      tab: "iqf",
+      category: "IQF Frozen Range",
+      name: "IQF Mixed Vegetables",
+      desc: "Balanced mixed vegetables with peas, corn, carrots, beans, and potato dices for ready meals and retail packs.",
+      image: productImages.mixedVegetables,
+      appearance: "Colorful mixed vegetable pieces",
+      flavour: "Fresh mixed vegetable profile",
+      brix: "Natural",
+      acidity: "N/A",
+      ph: "N/A",
+      colour: "Green, yellow, orange, and white",
+      packaging: "10kg Bulk Carton or retail packs",
+      shelflife: "24 Months at -18°C",
+      storage: "-18°C or below",
+      applications: ["Ready Meals", "Soups", "Fried Rice", "Retail Frozen Packs"]
     }
   ];
+
+  const syncDefaultProducts = () => {
+    const stored = localStorage.getItem('aiva_products');
+    if (!stored) {
+      localStorage.setItem('aiva_products', JSON.stringify(defaultProducts));
+      return defaultProducts;
+    }
+
+    try {
+      const savedProducts = JSON.parse(stored);
+      const savedById = new Map(savedProducts.map(product => [product.id, product]));
+      let changed = false;
+
+      defaultProducts.forEach(defaultProduct => {
+        const savedProduct = savedById.get(defaultProduct.id);
+        if (!savedProduct) {
+          savedProducts.push(defaultProduct);
+          changed = true;
+          return;
+        }
+
+        if (savedProduct.image !== defaultProduct.image && defaultProduct.image.startsWith('assets/images/')) {
+          savedProduct.image = defaultProduct.image;
+          changed = true;
+        }
+      });
+
+      if (changed) {
+        localStorage.setItem('aiva_products', JSON.stringify(savedProducts));
+      }
+
+      return savedProducts;
+    } catch (error) {
+      localStorage.setItem('aiva_products', JSON.stringify(defaultProducts));
+      return defaultProducts;
+    }
+  };
 
   // Global System Object
   window.aivaProductSystem = {
     getProducts: function() {
-      const stored = localStorage.getItem('aiva_products');
-      if (stored) return JSON.parse(stored);
-      localStorage.setItem('aiva_products', JSON.stringify(defaultProducts));
-      return defaultProducts;
+      return syncDefaultProducts();
     },
     getProductById: function(id) {
       return this.getProducts().find(p => p.id === id);
