@@ -1558,3 +1558,124 @@ body {
     justify-content: center;
   }
 }
+
+@media (max-width: 640px) {
+  :root {
+    --header-height: auto;
+  }
+
+  .sidebar-header {
+    height: auto;
+    padding: 18px;
+  }
+
+  .sidebar-nav {
+    gap: 8px;
+    scrollbar-width: none;
+  }
+
+  .sidebar-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sidebar-link {
+    min-height: 42px;
+    padding: 10px 12px;
+    font-size: 0.8125rem;
+    white-space: nowrap;
+  }
+
+  .header-search {
+    max-width: none;
+  }
+
+  .header-actions {
+    gap: 14px;
+    justify-content: space-between;
+  }
+
+  .user-info {
+    align-items: flex-start;
+  }
+
+  .page-actions,
+  .tabs-container,
+  .pill-tabs {
+    width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+  }
+
+  .page-actions::-webkit-scrollbar,
+  .tabs-container::-webkit-scrollbar,
+  .pill-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .page-actions .btn,
+  .tab,
+  .pill-tab {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .kpi-card,
+  .panel,
+  .chart-panel,
+  .form-section,
+  .summary-panel {
+    padding: 18px;
+  }
+
+  .kpi-value {
+    font-size: 1.45rem;
+  }
+
+  .revenue-card {
+    min-height: 220px;
+    padding: 20px;
+  }
+
+  .revenue-card strong {
+    font-size: 2rem;
+  }
+
+  .money-mark {
+    width: 72px;
+    height: 72px;
+    right: 18px;
+    top: 54px;
+  }
+
+  .line-chart,
+  .line-chart svg {
+    min-height: 220px;
+  }
+
+  .donut-chart {
+    width: min(190px, 84%);
+  }
+
+  .table-container {
+    margin-inline: -18px;
+    padding-inline: 18px;
+  }
+
+  .data-table {
+    min-width: 720px;
+  }
+
+  .quote-layout {
+    gap: 18px;
+  }
+
+  .summary-panel {
+    position: static;
+  }
+
+  .product-img-wrapper {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+}
