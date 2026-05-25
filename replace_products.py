@@ -1,121 +1,10 @@
-/**
- * AIVA Enterprises — Main Script
- */
+import re
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Navigation Scroll Effect
-  const nav = document.getElementById('main-nav');
-  if (nav) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
-    });
-  }
+with open('/Users/milquu/Documents/Aiva 2/js/main.js', 'r') as f:
+    content = f.read()
 
-  // Mobile Menu Toggle
-  const hamburger = document.getElementById('nav-hamburger');
-  const mobileOverlay = document.getElementById('nav-mobile-overlay');
-  const mobileLinks = document.querySelectorAll('[data-mobile-link]');
-
-  if (hamburger && mobileOverlay) {
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      mobileOverlay.classList.toggle('active');
-      document.body.style.overflow = mobileOverlay.classList.contains('active') ? 'hidden' : '';
-    });
-
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        mobileOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    });
-  }
-
-  // Scroll Reveal Animations
-  const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
-  
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
-        // If element is a stagger container, add revealed to children with delay
-        if (entry.target.classList.contains('stagger-children')) {
-          const children = entry.target.children;
-          Array.from(children).forEach((child, index) => {
-            setTimeout(() => {
-              child.classList.add('revealed');
-            }, index * 100);
-          });
-        }
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-  });
-
-  revealElements.forEach(el => revealObserver.observe(el));
-
-  // Animated Counters
-  const counters = document.querySelectorAll('.counter');
-  let hasCounted = false;
-
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !hasCounted) {
-        counters.forEach(counter => {
-          const target = +counter.getAttribute('data-target');
-          const duration = 2000;
-          const increment = target / (duration / 16); 
-          let current = 0;
-
-          const updateCounter = () => {
-            current += increment;
-            if (current < target) {
-              counter.innerText = Math.ceil(current);
-              requestAnimationFrame(updateCounter);
-            } else {
-              counter.innerText = target;
-            }
-          };
-
-          updateCounter();
-        });
-        hasCounted = true;
-        counterObserver.disconnect();
-      }
-    });
-  }, { threshold: 0.5 });
-
-  const statsSection = document.querySelector('.hero-stats');
-  if (statsSection) {
-    counterObserver.observe(statsSection);
-  }
-
-  const productImages = {
-    sapotaPulp: "assets/images/products/sapota-pulp.webp",
-    jamunPulp: "assets/images/products/jamun-pulp.webp",
-    sweetCornKernels: "assets/images/products/sweet-corn-kernels.webp",
-    cornCobCuts: "assets/images/products/corn-cob-cuts.webp",
-    pineappleDices: "assets/images/products/pineapple-dices.webp",
-    strawberryWholeDices: "assets/images/products/strawberry-whole-dices.webp",
-    pomegranateArils: "assets/images/products/pomegranate-arils.webp",
-    papayaDices: "assets/images/products/papaya-dices.webp",
-    okraCuts: "assets/images/products/okra-cuts.webp",
-    cauliflowerFlorets: "assets/images/products/cauliflower-florets.webp",
-    beetrootDices: "assets/images/products/beetroot-dices.webp",
-    mixedVegetables: "assets/images/products/mixed-vegetables.webp"
-  };
-
-  // Define Product Database
-      const defaultProducts = [
+# Replace the defaultProducts array
+products_array = """  const defaultProducts = [
     {
       id: "alphonso-mango-pulp",
       tab: "aseptic",
@@ -284,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
       category: "Aseptic Pulps & Pastes",
       name: "Sapota Pulp",
       desc: "Smooth aseptic sapota pulp with natural caramel sweetness.",
-      image: productImages.sapotaPulp || 'https://images.unsplash.com/photo-1590004953392-5aba2e72269a?w=800&q=80',
+      image: "productImages.sapotaPulp || 'https://images.unsplash.com/photo-1590004953392-5aba2e72269a?w=800&q=80'",
       appearance: "Light brown puree",
       flavour: "Naturally sweet sapota",
       brix: "Min. 17",
@@ -320,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
       category: "Aseptic Pulps & Pastes",
       name: "Jamun Pulp",
       desc: "Deep purple jamun pulp with a bold sweet-tart taste.",
-      image: productImages.jamunPulp || 'https://images.unsplash.com/photo-1595180579979-3c825a0a38ad?w=800&q=80',
+      image: "productImages.jamunPulp || 'https://images.unsplash.com/photo-1595180579979-3c825a0a38ad?w=800&q=80'",
       appearance: "Smooth puree",
       flavour: "Characteristic sweet-tart jamun",
       brix: "Min. 9",
@@ -428,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
       category: "IQF Frozen Range",
       name: "Okra (Cut)",
       desc: "Clean-cut okra frozen quickly for reliable color and texture.",
-      image: productImages.okraCuts || 'https://images.unsplash.com/photo-1582046187979-994fccf540c9?w=800&q=80',
+      image: "productImages.okraCuts || 'https://images.unsplash.com/photo-1582046187979-994fccf540c9?w=800&q=80'",
       appearance: "Cut okra (25-30 mm)",
       flavour: "Fresh okra",
       brix: "Natural",
@@ -464,7 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
       category: "IQF Frozen Range",
       name: "Mix Vegetable",
       desc: "Blend of Green Peas, Carrot & Green Beans.",
-      image: productImages.mixedVegetables || 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80',
+      image: "productImages.mixedVegetables || 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80'",
       appearance: "Mixed cut vegetables",
       flavour: "Fresh mixed vegetables",
       brix: "Natural",
@@ -482,7 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
       category: "IQF Frozen Range",
       name: "Corn on Cobs",
       desc: "Sweet corn cob portions frozen quickly.",
-      image: productImages.cornCobCuts || 'https://images.unsplash.com/photo-1582294119335-517bdfb738c8?w=800&q=80',
+      image: "productImages.cornCobCuts || 'https://images.unsplash.com/photo-1582294119335-517bdfb738c8?w=800&q=80'",
       appearance: "Whole corn cobs",
       flavour: "Sweet corn",
       brix: "Min. 9",
@@ -500,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
       category: "IQF Frozen Range",
       name: "Sweet Corn",
       desc: "Tender, sweet corn kernels.",
-      image: productImages.sweetCornKernels || 'https://images.unsplash.com/photo-1582294119335-517bdfb738c8?w=800&q=80',
+      image: "productImages.sweetCornKernels || 'https://images.unsplash.com/photo-1582294119335-517bdfb738c8?w=800&q=80'",
       appearance: "Individual kernels",
       flavour: "Sweet corn",
       brix: "Natural",
@@ -548,113 +437,42 @@ document.addEventListener('DOMContentLoaded', () => {
       storage: "-18°C or below",
       applications: ["Ready Meals", "Stir-fries", "Retail"]
     }
-  ];
+  ];"""
 
-  const syncDefaultProducts = () => {
+# Find the start and end of defaultProducts definition
+start_str = "const defaultProducts = ["
+end_str = "];"
+start_idx = content.find(start_str)
+end_idx = content.find(end_str, start_idx) + len(end_str)
+
+new_content = content[:start_idx] + products_array + content[end_idx:]
+
+# Skip localStorage on every load so updates are visible without clearing cache
+sync_func_old = """const syncDefaultProducts = () => {
     const stored = localStorage.getItem('aiva_products');
     if (!stored) {
       localStorage.setItem('aiva_products', JSON.stringify(defaultProducts));
       return defaultProducts;
-    }
-    const products = JSON.parse(stored);
-    let updated = [...products];
-    defaultProducts.forEach(def => {
-      if (!updated.some(p => p.id === def.id)) {
-        updated.push(def);
-      }
-    });
-    localStorage.setItem('aiva_products', JSON.stringify(updated));
-    return updated;
-  };
+    }"""
+sync_func_new = """const syncDefaultProducts = () => {
+    // Return defaultProducts directly to force updates
+    localStorage.setItem('aiva_products', JSON.stringify(defaultProducts));
+    return defaultProducts;"""
 
-  // Global System Object
-  window.aivaProductSystem = {
-    getProducts: function() {
-      return syncDefaultProducts();
-    },
-    getProductById: function(id) {
-      return this.getProducts().find(p => p.id === id);
-    },
-    saveProducts: function(products) {
-      localStorage.setItem('aiva_products', JSON.stringify(products));
-      return products;
-    },
-    addProduct: function(product) {
-      const products = this.getProducts();
-      products.push(product);
-      this.saveProducts(products);
-      return product;
-    },
-    addInquiry: async function(inquiry) {
-      try {
-        const response = await fetch('http://localhost:5001/api/inquiries', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(inquiry)
-        });
-        const result = await response.json();
-        return result;
-      } catch (error) {
-        // Fallback to localStorage if server is down
-        const inquiries = JSON.parse(localStorage.getItem('aiva_inquiries') || '[]');
-        inquiry.id = 'INQ-' + Math.random().toString(36).substr(2, 9).toUpperCase();
-        inquiry.date = new Date().toISOString();
-        inquiry.status = 'New';
-        inquiries.push(inquiry);
-        localStorage.setItem('aiva_inquiries', JSON.stringify(inquiries));
-        console.warn('Server unavailable, saved to localStorage');
-        return { success: true, data: inquiry };
-      }
-    }
-  };
+# For the rest of the syncDefaultProducts func, since I'm rewriting it to just return defaultProducts, I can just replace the whole function.
+sync_whole_old_pattern = re.compile(r"const syncDefaultProducts = \(\) => \{.*?\};\n", re.DOTALL)
+sync_whole_new = """const syncDefaultProducts = () => {
+    localStorage.setItem('aiva_products', JSON.stringify(defaultProducts));
+    return defaultProducts;
+  };\n"""
 
-  // Ensure products exist in localStorage
-  window.aivaProductSystem.getProducts();
+new_content = sync_whole_old_pattern.sub(sync_whole_new, new_content)
 
-  // Products Page Logic (products.html)
-  const productTabs = document.querySelectorAll('.product-tab');
-  const mainProductsGrid = document.getElementById('main-products-grid');
+# We also need to fix string replacements where productImages object is used, but we used literal string "productImages.xxx" which is not valid JSON string in JS unless concatenated. Let's fix that.
+# Replace `"productImages.xxx || 'url'"` with `productImages.xxx || 'url'` (remove quotes)
+new_content = re.sub(r'"(productImages\.[a-zA-Z]+ \|\| \'[^\']+\')"', r'\1', new_content)
 
-  if (mainProductsGrid) {
-    const renderProducts = (tabId) => {
-      const products = window.aivaProductSystem.getProducts().filter(p => p.tab === tabId);
-      mainProductsGrid.innerHTML = '';
-      
-      products.forEach((product, index) => {
-        const card = document.createElement('div');
-        card.className = `product-card reveal revealed`;
-        card.style.animationDelay = `${index * 100}ms`;
-        card.innerHTML = `
-          <div class="product-card-image">
-            <img src="${product.image}" alt="${product.name}" loading="lazy">
-            <div class="product-card-overlay">
-              <a href="contact.html" class="product-card-overlay-cta" style="text-decoration: none;">
-                Inquire Now
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 10h12M12 4l6 6-6 6" />
-                </svg>
-              </a>
-            </div>
-          </div>
-          <div class="product-card-body">
-            <div class="product-card-category">${product.category}</div>
-            <h3 class="product-card-title">${product.name}</h3>
-            <p class="product-card-desc" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${product.desc}</p>
-          </div>
-        `;
-        mainProductsGrid.appendChild(card);
-      });
-    };
-
-    // Initialize with first tab
-    renderProducts('aseptic');
-
-    productTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        productTabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        renderProducts(tab.dataset.tab);
-      });
-    });
-  }
-});
+with open('/Users/milquu/Documents/Aiva 2/js/main.js', 'w') as f:
+    f.write(new_content)
+    
+print("Updated js/main.js")

@@ -1,30 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AIVA Enterprises — Premium Fruit Pulps, Concentrates & IQF Products for Global Food Industries</title>
-  <meta name="description"
-    content="AIVA Enterprises is a global sourcing and export company specializing in premium fruit pulps, concentrates, aseptic products, and IQF frozen fruits & vegetables for international food manufacturers and B2B clients.">
-  <meta name="keywords"
-    content="mango pulp export, fruit concentrate supplier, IQF frozen fruits, aseptic food products, global food ingredients, B2B food export, AIVA Enterprises">
-  <meta name="robots" content="index, follow">
-  <meta property="og:title" content="AIVA Enterprises — Global Premium Food Export">
-  <meta property="og:description"
-    content="Premium Fruit Pulps, Concentrates & IQF Products for Global Food Industries.">
-  <meta property="og:type" content="website">
-  <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23000000'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='800' font-size='18' fill='%23B08D57'>A</text></svg>">
-  <link rel="stylesheet" href="style.css">
+  <title>Products — AIVA Enterprises</title>
+  <meta name="description" content="Explore AIVA Enterprises' premium range of aseptic fruit pulps, concentrates, and IQF frozen products.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23000000'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='800' font-size='18' fill='%23B08D57'>A</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body>
 
   <!-- ============================================================
        NAVIGATION
        ============================================================ -->
-  <nav class="nav" id="main-nav">
+  <nav class="nav scrolled" id="main-nav">
     <div class="container nav-inner">
       <a href="index.html" class="nav-logo">
         <div class="nav-logo-icon">A</div>
@@ -52,103 +41,68 @@
     <!-- Mobile Overlay -->
     <div class="nav-mobile-overlay" id="nav-mobile-overlay">
       <a href="index.html" class="nav-link" data-mobile-link>Home</a>
-      <a href="products.html" class="nav-link active" data-mobile-link>Products</a>
+      <a href="products.html" class="nav-link" data-mobile-link>Products</a>
       <a href="about.html" class="nav-link" data-mobile-link>About Us</a>
       <a href="contact.html" class="nav-link" data-mobile-link>Contact</a>
     </div>
   </nav>
 
   <!-- ============================================================
-       PRODUCTS SECTION (CATEGORIES OVERVIEW)
+       INNER HERO SECTION
        ============================================================ -->
-  <section class="products" id="products">
+  <header style="background: linear-gradient(135deg, var(--forest-depth) 0%, var(--deep-green) 100%); padding: 160px 0 100px; color: var(--white); text-align: center; position: relative; overflow: hidden;">
+    <div class="container" style="position: relative; z-index: 2;">
+      <div class="section-eyebrow" style="color: var(--gold-leaf); justify-content: center; margin-bottom: 16px;">Product Portfolio</div>
+      <h1 class="headline-lg" style="margin-bottom: 20px;">Premium Ingredients for Global Brands</h1>
+      <p class="body-lg" style="max-width: 700px; margin: 0 auto; color: rgba(255, 255, 255, 0.75);">
+        Explore our complete catalog of aseptic fruit pulps, high-brix concentrates, and individually quick-frozen products. All processed in BRC & ISO certified facilities.
+      </p>
+    </div>
+    <div style="position: absolute; inset: 0; background: radial-gradient(circle, rgba(176, 141, 87, 0.08) 0%, transparent 80%); z-index: 1;"></div>
+  </header>
+
+  <!-- ============================================================
+       PRODUCTS CATALOG SECTION
+       ============================================================ -->
+  <section class="products" id="catalog" style="padding: 100px 0; background: var(--white); min-height: 800px;">
     <div class="container">
-      <div class="products-header reveal">
-        <div class="section-eyebrow">Our Product Categories</div>
-        <h2 class="headline-lg">Premium Ingredients for<br>Global Food Industries</h2>
-        <p class="body-lg">
-          From aseptic fruit pulps to IQF frozen products — every item in our portfolio meets the exacting standards of
-          international food manufacturers.
-        </p>
+      
+      <!-- Category Tabs -->
+      <div class="product-tabs reveal" id="product-tabs" style="justify-content: center; margin-bottom: 60px;">
+        <button class="product-tab active" data-tab="aseptic">Aseptic Pulps & Pastes</button>
+        <button class="product-tab" data-tab="concentrates">Fruit Concentrates</button>
+        <button class="product-tab" data-tab="iqf">IQF Frozen Range</button>
       </div>
 
-      <div class="product-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-
-        <!-- Category 1 -->
-        <div class="product-card reveal" style="border: none; background: transparent; box-shadow: none;">
-          <div class="product-card-image" style="border-radius: var(--radius-lg); height: 320px;">
-            <img src="https://images.unsplash.com/photo-1553279768-865429fa0078?w=800&q=80" alt="Aseptic Products">
-            <div class="product-card-overlay"
-              style="opacity: 1; background: linear-gradient(to top, rgba(10,31,21,0.9), transparent);">
-              <div style="color: var(--white); width: 100%;">
-                <h3 style="font-family: var(--font-headline); font-size: 1.5rem; margin-bottom: 8px;">Aseptic Pulps &
-                  Pastes</h3>
-                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); margin-bottom: 16px;">Sterile processing for
-                  mango, guava, papaya and tomato.</p>
-                <a href="products.html#all-products" class="btn btn-gold"
-                  style="padding: 10px 20px; font-size: 0.8rem; width: 100%; justify-content: center;">View Catalog</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Category 2 -->
-        <div class="product-card reveal"
-          style="border: none; background: transparent; box-shadow: none; transition-delay: 100ms;">
-          <div class="product-card-image" style="border-radius: var(--radius-lg); height: 320px;">
-            <img src="https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=800&q=80" alt="Concentrates">
-            <div class="product-card-overlay"
-              style="opacity: 1; background: linear-gradient(to top, rgba(10,31,21,0.9), transparent);">
-              <div style="color: var(--white); width: 100%;">
-                <h3 style="font-family: var(--font-headline); font-size: 1.5rem; margin-bottom: 8px;">Fruit Concentrates
-                </h3>
-                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); margin-bottom: 16px;">High-brix evaporated
-                  concentrates for beverage industries.</p>
-                <a href="products.html#all-products" class="btn btn-gold"
-                  style="padding: 10px 20px; font-size: 0.8rem; width: 100%; justify-content: center;">View Catalog</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Category 3 -->
-        <div class="product-card reveal"
-          style="border: none; background: transparent; box-shadow: none; transition-delay: 200ms;">
-          <div class="product-card-image" style="border-radius: var(--radius-lg); height: 320px;">
-            <img src="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=800&q=80" alt="IQF Frozen">
-            <div class="product-card-overlay"
-              style="opacity: 1; background: linear-gradient(to top, rgba(10,31,21,0.9), transparent);">
-              <div style="color: var(--white); width: 100%;">
-                <h3 style="font-family: var(--font-headline); font-size: 1.5rem; margin-bottom: 8px;">IQF Frozen Range
-                </h3>
-                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); margin-bottom: 16px;">Individually quick
-                  frozen fruits and vegetables.</p>
-                <a href="products.html#all-products" class="btn btn-gold"
-                  style="padding: 10px 20px; font-size: 0.8rem; width: 100%; justify-content: center;">View Catalog</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
+      <!-- Dynamic Product Grid -->
+      <div class="product-grid" id="main-products-grid">
+        <!-- Products will be injected here by main.js -->
       </div>
+      
     </div>
   </section>
 
   <!-- ============================================================
-       ALL PRODUCTS SECTION
+       CTA BANNER SECTION
        ============================================================ -->
-  <section class="all-products" id="all-products" style="padding: 80px 0; background: var(--white);">
+  <section style="padding: 120px 0; background: var(--natural-beige);">
     <div class="container">
-      <div class="section-eyebrow" style="text-align: center; margin-bottom: 16px;">Our Full Catalog</div>
-      <h2 class="headline-lg" style="text-align: center; margin-bottom: 40px;">Explore All Products</h2>
-      
-      <div class="product-tabs" style="display: flex; justify-content: center; gap: 16px; margin-bottom: 40px; flex-wrap: wrap;">
-        <button class="product-tab active btn btn-outline-dark" data-tab="aseptic">Aseptic Pulps & Pastes</button>
-        <button class="product-tab btn btn-outline-dark" data-tab="iqf">IQF Frozen Range</button>
-      </div>
-
-      <div class="product-grid" id="main-products-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
-        <!-- Products injected by JS -->
+      <div style="background: var(--forest-depth); border-radius: var(--radius-xl); padding: 80px 40px; text-align: center; position: relative; overflow: hidden; box-shadow: var(--shadow-lg);" class="reveal">
+        <div style="position: absolute; top: -50%; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(176,141,87,0.15) 0%, transparent 70%); border-radius: 50%;"></div>
+        <div style="position: absolute; bottom: -50%; right: -10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(176,141,87,0.1) 0%, transparent 70%); border-radius: 50%;"></div>
+        
+        <div style="position: relative; z-index: 2;">
+          <h2 class="headline-lg" style="color: var(--white); margin-bottom: 24px;">Need Custom Specifications?</h2>
+          <p class="body-lg" style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 40px;">
+            We offer bespoke processing parameters to match your exact manufacturing requirements. Contact us to discuss your specific needs.
+          </p>
+          <a href="contact.html" class="btn btn-primary" style="background: var(--gold-leaf); border-color: var(--gold-leaf); color: var(--white);">
+            Contact Technical Sales
+            <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 10h12M12 4l6 6-6 6" />
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -168,36 +122,35 @@
             </div>
           </a>
           <p class="footer-brand-text">
-            A global sourcing and export company specializing in premium fruit pulps, concentrates, aseptic products,
-            and IQF frozen fruits & vegetables for international food industries.
+            A global sourcing and export company specializing in premium fruit pulps, concentrates, aseptic products, and IQF frozen fruits & vegetables for international food industries.
           </p>
         </div>
 
         <div class="footer-col">
           <h5>Products</h5>
-          <a href="#">Aseptic Fruit Pulps</a>
-          <a href="#">Concentrates</a>
-          <a href="#">IQF Frozen Fruits</a>
-          <a href="#">IQF Vegetables</a>
-          <a href="#">Tomato Paste</a>
+          <a href="products.html">Aseptic Fruit Pulps</a>
+          <a href="products.html">Concentrates</a>
+          <a href="products.html">IQF Frozen Fruits</a>
+          <a href="products.html">IQF Vegetables</a>
+          <a href="products.html">Tomato Paste</a>
         </div>
 
         <div class="footer-col">
           <h5>Company</h5>
           <a href="about.html">About Us</a>
-          <a href="about.html#process">Our Process</a>
-          <a href="about.html#certifications">Certifications</a>
-          <a href="about.html#global">Global Reach</a>
+          <a href="index.html#process">Our Process</a>
+          <a href="index.html#certifications">Certifications</a>
+          <a href="index.html#global">Global Reach</a>
           <a href="contact.html">Contact</a>
         </div>
 
         <div class="footer-col">
           <h5>Export</h5>
-          <a href="#">Request a Quote</a>
-          <a href="#">Sample Request</a>
-          <a href="about.html#global">Logistics</a>
-          <a href="about.html#certifications">Quality Standards</a>
-          <a href="#">Partnerships</a>
+          <a href="contact.html">Request a Quote</a>
+          <a href="contact.html">Sample Request</a>
+          <a href="index.html#global">Logistics</a>
+          <a href="index.html#certifications">Quality Standards</a>
+          <a href="contact.html">Partnerships</a>
         </div>
       </div>
 
@@ -212,19 +165,6 @@
     </div>
   </footer>
 
-  <!-- ============================================================
-       WHATSAPP FLOATING BUTTON
-       ============================================================ -->
-  <a href="https://wa.me/918767067884?text=Hello%20Sudarshan%20Aher%2C%20I'm%20interested%20in%20your%20export%20products."
-    class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp"
-    id="whatsapp-btn">
-    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M16.004 0h-.008C7.174 0 0 7.176 0 16c0 3.5 1.128 6.744 3.046 9.378L1.052 31.22l6.012-1.93A15.89 15.89 0 0016.004 32C24.826 32 32 24.822 32 16S24.826 0 16.004 0zm9.342 22.616c-.39 1.1-1.932 2.014-3.17 2.28-.848.18-1.956.324-5.684-1.222-4.772-1.978-7.838-6.81-8.076-7.126-.228-.316-1.916-2.55-1.916-4.862 0-2.312 1.212-3.45 1.642-3.922.39-.428 1.028-.624 1.636-.624.198 0 .376.01.536.018.47.02.706.048 1.016.788.39.928 1.34 3.268 1.456 3.506.118.238.236.556.078.872-.148.326-.278.47-.516.742-.238.272-.464.48-.702.774-.218.256-.464.53-.198.998.266.46 1.182 1.948 2.538 3.156 1.742 1.55 3.21 2.03 3.668 2.256.39.192.696.158.96-.098.332-.326.746-.868 1.166-1.404.298-.382.676-.43 1.104-.258.434.166 2.746 1.296 3.216 1.532.47.236.782.354.898.55.118.192.118 1.124-.272 2.224z" />
-    </svg>
-  </a>
-
-  <script src="script.js"></script>
+  <script src="js/main.js"></script>
 </body>
-
 </html>

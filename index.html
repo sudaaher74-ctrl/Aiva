@@ -16,7 +16,7 @@
   <meta property="og:type" content="website">
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23000000'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='800' font-size='18' fill='%23B08D57'>A</text></svg>">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
@@ -51,7 +51,7 @@
 
     <!-- Mobile Overlay -->
     <div class="nav-mobile-overlay" id="nav-mobile-overlay">
-      <a href="index.html" class="nav-link active" data-mobile-link>Home</a>
+      <a href="index.html" class="nav-link" data-mobile-link>Home</a>
       <a href="products.html" class="nav-link" data-mobile-link>Products</a>
       <a href="about.html" class="nav-link" data-mobile-link>About Us</a>
       <a href="contact.html" class="nav-link" data-mobile-link>Contact</a>
@@ -82,13 +82,13 @@
         brands, and distributors worldwide.
       </p>
       <div class="hero-actions">
-        <a href="#" class="btn btn-primary">
+        <a href="products.html" class="btn btn-primary">
           Explore Products
           <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M4 10h12M12 4l6 6-6 6" />
           </svg>
         </a>
-        <a href="#" class="btn btn-secondary">
+        <a href="contact.html" class="btn btn-secondary">
           Global Inquiry
           <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M4 10h12M12 4l6 6-6 6" />
@@ -125,6 +125,63 @@
   </section>
 
   <!-- ============================================================
+       ABOUT SECTION
+       ============================================================ -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-header reveal">
+        <div class="section-eyebrow">About AIVA Enterprises</div>
+        <h2 class="headline-lg">A Global Ecosystem<br>of Trust</h2>
+        <p class="body-lg">
+          We bridge the gap between India's finest agricultural produce and the world's most demanding food
+          manufacturers through consistent quality, precision processing, and reliable global logistics.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-image-wrapper reveal-left">
+          <img src="assets/images/about-section.png" alt="Quality control laboratory and global export logistics"
+            onerror="this.src='https://images.unsplash.com/photo-1582719471384-894fbb16f461?w=800&q=80'">
+          <div class="about-image-accent"></div>
+        </div>
+        <div class="about-text reveal-right">
+          <h3>From Farm Gate to<br>Global Freight</h3>
+          <p>
+            AIVA Enterprises operates a fully integrated supply chain — from sourcing raw materials directly from
+            certified farms to processing in our state-of-the-art HACCP-compliant facilities, to delivering finished
+            goods through our cold chain logistics network to ports worldwide.
+          </p>
+          <p>
+            Our commitment to food safety, traceability, and consistency has made us a trusted partner for leading food
+            manufacturers, beverage companies, and HoReCa brands across five continents.
+          </p>
+          <a href="about.html" class="btn btn-outline-dark" style="margin-top: 16px;">
+            Discover Our Story
+            <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 10h12M12 4l6 6-6 6" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PARALLAX BAND — TRANSITION
+       ============================================================ -->
+  <div class="parallax-band">
+    <img src="https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?w=1600&q=80"
+      alt="Fresh mangoes being harvested" id="parallax-img-1">
+    <div class="parallax-band-overlay">
+      <div class="parallax-band-content reveal">
+        <h2>Nature's Finest. Processed with Precision.</h2>
+        <p>Every product begins at the source — sun-ripened fruits, hand-selected for quality, processed within hours of
+          harvest to lock in freshness, flavor, and nutritional integrity.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
        PRODUCTS SECTION (CATEGORIES OVERVIEW)
        ============================================================ -->
   <section class="products" id="products">
@@ -151,7 +208,7 @@
                   Pastes</h3>
                 <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); margin-bottom: 16px;">Sterile processing for
                   mango, guava, papaya and tomato.</p>
-                <a href="products.html#all-products" class="btn btn-gold"
+                <a href="products.html" class="btn btn-gold"
                   style="padding: 10px 20px; font-size: 0.8rem; width: 100%; justify-content: center;">View Catalog</a>
               </div>
             </div>
@@ -170,7 +227,7 @@
                 </h3>
                 <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); margin-bottom: 16px;">High-brix evaporated
                   concentrates for beverage industries.</p>
-                <a href="products.html#all-products" class="btn btn-gold"
+                <a href="products.html" class="btn btn-gold"
                   style="padding: 10px 20px; font-size: 0.8rem; width: 100%; justify-content: center;">View Catalog</a>
               </div>
             </div>
@@ -189,7 +246,7 @@
                 </h3>
                 <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); margin-bottom: 16px;">Individually quick
                   frozen fruits and vegetables.</p>
-                <a href="products.html#all-products" class="btn btn-gold"
+                <a href="products.html" class="btn btn-gold"
                   style="padding: 10px 20px; font-size: 0.8rem; width: 100%; justify-content: center;">View Catalog</a>
               </div>
             </div>
@@ -201,9 +258,319 @@
   </section>
 
   <!-- ============================================================
+       MANUFACTURING & PROCESSING SECTION
+       ============================================================ -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="process-header reveal">
+        <div class="section-eyebrow" style="color: var(--gold-leaf);">Our Process</div>
+        <h2 class="headline-lg">From Orchard to<br>Ocean Freight</h2>
+        <p class="body-lg">
+          A vertically integrated process ensuring every batch meets the strictest international quality and food safety
+          standards.
+        </p>
+      </div>
+
+      <div class="process-timeline">
+        <!-- Step 1 -->
+        <div class="timeline-item reveal-left">
+          <div class="timeline-node">
+            <span class="timeline-node-number">01</span>
+          </div>
+          <div class="timeline-content">
+            <h4>Farm Sourcing</h4>
+            <p>Direct procurement from GAP-certified farms across India's premier growing regions. Seasonal planning
+              ensures peak-ripeness sourcing for maximum Brix and flavor.</p>
+          </div>
+          <div class="timeline-image">
+            <img src="assets/images/products/process-1-sourcing.webp" alt="Farm sourcing operations">
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="timeline-item reveal-right">
+          <div class="timeline-node">
+            <span class="timeline-node-number">02</span>
+          </div>
+          <div class="timeline-content">
+            <h4>Quality Inspection</h4>
+            <p>Multi-point quality checks — Brix, acidity, pH, color grading, and microbial testing — before any raw
+              material enters the processing line.</p>
+          </div>
+          <div class="timeline-image">
+            <img src="assets/images/products/process-2-inspection.webp" alt="Quality inspection laboratory">
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="timeline-item reveal-left">
+          <div class="timeline-node">
+            <span class="timeline-node-number">03</span>
+          </div>
+          <div class="timeline-content">
+            <h4>Processing & Packaging</h4>
+            <p>State-of-the-art aseptic processing, evaporation, and IQF freezing lines. Automated filling into drums,
+              aseptic bags, and retail packs under sterile conditions.</p>
+          </div>
+          <div class="timeline-image">
+            <img src="assets/images/products/process-3-processing.webp" alt="Aseptic processing line">
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="timeline-item reveal-right">
+          <div class="timeline-node">
+            <span class="timeline-node-number">04</span>
+          </div>
+          <div class="timeline-content">
+            <h4>Cold Chain & Export</h4>
+            <p>Temperature-controlled warehousing and reefer container logistics to major ports. Full documentation —
+              phytosanitary certificates, COA, Bill of Lading — handled in-house.</p>
+          </div>
+          <div class="timeline-image">
+            <img src="assets/images/products/process-4-export.webp" alt="Export container logistics">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GLOBAL EXPORT SECTION
+       ============================================================ -->
+  <section class="global-export" id="global">
+    <div class="container">
+      <div class="global-header reveal">
+        <div class="section-eyebrow">Global Reach</div>
+        <h2 class="headline-lg">Supplying Worldwide</h2>
+        <p class="body-lg">
+          Our logistics network spans five continents — delivering premium Indian food ingredients to manufacturers,
+          importers, and distributors in over 25 countries.
+        </p>
+      </div>
+
+      <!-- World Map SVG -->
+      <div class="global-map-container reveal-scale">
+        <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg" id="world-map">
+          <!-- Simplified world map paths -->
+          <g fill="none" stroke="#c1c8c1" stroke-width="0.5" opacity="0.4">
+            <!-- North America -->
+            <path
+              d="M150,120 Q180,80 220,90 Q260,70 280,100 Q300,80 290,120 Q310,140 280,160 Q260,180 240,170 Q220,190 200,180 Q180,170 160,180 Q140,160 150,140 Z" />
+            <!-- South America -->
+            <path
+              d="M230,240 Q250,220 270,230 Q280,260 290,280 Q280,320 270,350 Q260,380 240,390 Q220,370 220,340 Q210,310 220,280 Q215,260 230,240 Z" />
+            <!-- Europe -->
+            <path d="M440,100 Q460,80 490,85 Q510,90 520,110 Q510,130 490,135 Q470,140 450,130 Q435,120 440,100 Z" />
+            <!-- Africa -->
+            <path
+              d="M450,170 Q470,150 500,160 Q520,180 530,210 Q530,250 520,280 Q500,310 480,300 Q460,280 450,250 Q440,220 445,190 Z" />
+            <!-- Asia -->
+            <path
+              d="M550,80 Q600,60 660,70 Q720,65 760,90 Q780,110 770,140 Q750,160 720,170 Q680,180 640,170 Q600,175 570,160 Q540,140 540,110 Z" />
+            <!-- India Highlighted -->
+            <path d="M620,150 Q640,135 660,145 Q670,165 665,190 Q650,210 635,200 Q620,185 615,170 Z"
+              fill="rgba(176,141,87,0.15)" stroke="#B08D57" stroke-width="1.5" />
+            <!-- Australia -->
+            <path d="M750,300 Q790,280 830,290 Q850,310 840,340 Q820,360 790,355 Q760,340 750,320 Z" />
+            <!-- Middle East -->
+            <path d="M540,150 Q560,140 580,150 Q575,170 560,175 Q545,170 540,155 Z" />
+          </g>
+
+          <!-- Trade Routes from India -->
+          <g class="trade-routes">
+            <line x1="640" y1="175" x2="280" y2="150" class="map-line" />
+            <line x1="640" y1="175" x2="480" y2="110" class="map-line" />
+            <line x1="640" y1="175" x2="490" y2="230" class="map-line" />
+            <line x1="640" y1="175" x2="560" y2="155" class="map-line" />
+            <line x1="640" y1="175" x2="800" y2="310" class="map-line" />
+            <line x1="640" y1="175" x2="740" y2="110" class="map-line" />
+            <line x1="640" y1="175" x2="250" y2="280" class="map-line" />
+          </g>
+
+          <!-- Export destination dots -->
+          <g class="map-dots">
+            <!-- India Origin (larger) -->
+            <circle cx="640" cy="175" r="8" fill="#B08D57" opacity="0.9">
+              <animate attributeName="r" values="8;12;8" dur="2s" repeatCount="indefinite" />
+            </circle>
+            <circle cx="640" cy="175" r="16" fill="none" stroke="#B08D57" stroke-width="1" opacity="0.3">
+              <animate attributeName="r" values="16;24;16" dur="2s" repeatCount="indefinite" />
+              <animate attributeName="opacity" values="0.3;0;0.3" dur="2s" repeatCount="indefinite" />
+            </circle>
+
+            <!-- USA -->
+            <circle cx="200" cy="130" class="map-dot" />
+            <!-- Canada -->
+            <circle cx="220" cy="100" class="map-dot" />
+            <!-- Brazil -->
+            <circle cx="270" cy="310" class="map-dot" />
+            <!-- UK -->
+            <circle cx="450" cy="95" class="map-dot" />
+            <!-- Germany -->
+            <circle cx="480" cy="100" class="map-dot" />
+            <!-- Netherlands -->
+            <circle cx="465" cy="92" class="map-dot" />
+            <!-- UAE -->
+            <circle cx="560" cy="160" class="map-dot" />
+            <!-- Saudi -->
+            <circle cx="545" cy="170" class="map-dot" />
+            <!-- Japan -->
+            <circle cx="780" cy="120" class="map-dot" />
+            <!-- Korea -->
+            <circle cx="760" cy="115" class="map-dot" />
+            <!-- Australia -->
+            <circle cx="800" cy="330" class="map-dot" />
+            <!-- South Africa -->
+            <circle cx="490" cy="310" class="map-dot" />
+            <!-- Nigeria -->
+            <circle cx="460" cy="220" class="map-dot" />
+            <!-- Malaysia -->
+            <circle cx="710" cy="200" class="map-dot" />
+            <!-- Russia -->
+            <circle cx="600" cy="75" class="map-dot" />
+          </g>
+
+          <!-- India label -->
+          <text x="640" y="215" text-anchor="middle" fill="#B08D57" font-family="Inter, sans-serif" font-size="11"
+            font-weight="700" letter-spacing="0.1em">INDIA</text>
+        </svg>
+      </div>
+
+      <!-- Export Stats -->
+      <div class="export-stats stagger-children">
+        <div class="export-stat-card reveal">
+          <div class="export-stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20" />
+            </svg>
+          </div>
+          <h4>Global Logistics Network</h4>
+          <p>End-to-end freight management with reefer container access to all major international ports — FCL and LCL
+            options available.</p>
+        </div>
+        <div class="export-stat-card reveal">
+          <div class="export-stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2" />
+              <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2M12 12v4M8 12v4M16 12v4" />
+            </svg>
+          </div>
+          <h4>Cold Chain Excellence</h4>
+          <p>Unbroken cold chain from factory to destination — temperature-monitored warehousing and reefer logistics at
+            −18°C to +4°C.</p>
+        </div>
+        <div class="export-stat-card reveal">
+          <div class="export-stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+              <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
+            </svg>
+          </div>
+          <h4>Export Documentation</h4>
+          <p>Complete documentation support — phytosanitary certificates, Certificates of Analysis, APEDA registration,
+            Bill of Lading, and customs clearance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PARALLAX BAND — TRANSITION 2
+       ============================================================ -->
+  <div class="parallax-band">
+    <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5eb19?w=1600&q=80"
+      alt="Export shipping containers at port" id="parallax-img-2">
+    <div class="parallax-band-overlay">
+      <div class="parallax-band-content reveal">
+        <h2>Certified Quality. Trusted Worldwide.</h2>
+        <p>Our commitment to international food safety standards is backed by rigorous third-party audits, laboratory
+          testing, and continuous process improvement.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       CERTIFICATIONS SECTION
+       ============================================================ -->
+  <section class="certifications" id="certifications">
+    <div class="container">
+      <div class="cert-header reveal">
+        <div class="section-eyebrow">Quality Assurance</div>
+        <h2 class="headline-lg">Certifications &<br>Compliance</h2>
+        <p class="body-lg">
+          Every product leaving our facility meets or exceeds the stringent requirements of international food safety
+          and quality standards.
+        </p>
+      </div>
+
+      <div class="cert-grid stagger-children">
+        <div class="cert-card reveal">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <h4>HACCP</h4>
+          <p>Hazard Analysis Critical Control Points — systematic food safety management across all processing lines.
+          </p>
+        </div>
+
+        <div class="cert-card reveal">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 12l2 2 4-4" />
+              <circle cx="12" cy="12" r="10" />
+            </svg>
+          </div>
+          <h4>FSSAI</h4>
+          <p>Food Safety and Standards Authority of India — compliant with all domestic regulatory requirements for food
+            processing and export.</p>
+        </div>
+
+        <div class="cert-card reveal">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20" />
+            </svg>
+          </div>
+          <h4>APEDA</h4>
+          <p>Agricultural and Processed Food Products Export Development Authority — registered exporter with
+            preferential trade access.</p>
+        </div>
+
+        <div class="cert-card reveal">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
+          </div>
+          <h4>ISO 22000</h4>
+          <p>International food safety management system — ensuring consistent product quality and process control
+            across operations.</p>
+        </div>
+
+        <div class="cert-card reveal">
+          <div class="cert-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+              <path d="M22 4L12 14.01l-3-3" />
+            </svg>
+          </div>
+          <h4>GMP</h4>
+          <p>Good Manufacturing Practices — stringent facility, hygiene, and process standards ensuring product purity
+            and safety.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
        CTA BANNER SECTION
        ============================================================ -->
-  <section id="contact" style="padding: 120px 0; background: var(--natural-beige);">
+  <section style="padding: 120px 0; background: var(--natural-beige);">
     <div class="container">
       <div
         style="background: var(--forest-depth); border-radius: var(--radius-xl); padding: 80px 40px; text-align: center; position: relative; overflow: hidden; box-shadow: var(--shadow-lg);"
@@ -222,7 +589,7 @@
             Partner with AIVA Enterprises for consistent, premium-grade food ingredients. Contact our export team for
             tailored specifications and FOB/CIF pricing.
           </p>
-          <a href="#" class="btn btn-primary"
+          <a href="contact.html" class="btn btn-primary"
             style="background: var(--gold-leaf); border-color: var(--gold-leaf); color: var(--white);">
             Request a Quote
             <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
@@ -256,29 +623,29 @@
 
         <div class="footer-col">
           <h5>Products</h5>
-          <a href="#">Aseptic Fruit Pulps</a>
-          <a href="#">Concentrates</a>
-          <a href="#">IQF Frozen Fruits</a>
-          <a href="#">IQF Vegetables</a>
-          <a href="#">Tomato Paste</a>
+          <a href="products.html">Aseptic Fruit Pulps</a>
+          <a href="products.html">Concentrates</a>
+          <a href="products.html">IQF Frozen Fruits</a>
+          <a href="products.html">IQF Vegetables</a>
+          <a href="products.html">Tomato Paste</a>
         </div>
 
         <div class="footer-col">
           <h5>Company</h5>
           <a href="about.html">About Us</a>
-          <a href="about.html#process">Our Process</a>
-          <a href="about.html#certifications">Certifications</a>
-          <a href="about.html#global">Global Reach</a>
+          <a href="index.html#process">Our Process</a>
+          <a href="index.html#certifications">Certifications</a>
+          <a href="index.html#global">Global Reach</a>
           <a href="contact.html">Contact</a>
         </div>
 
         <div class="footer-col">
           <h5>Export</h5>
-          <a href="#">Request a Quote</a>
-          <a href="#">Sample Request</a>
-          <a href="about.html#global">Logistics</a>
-          <a href="about.html#certifications">Quality Standards</a>
-          <a href="#">Partnerships</a>
+          <a href="contact.html">Request a Quote</a>
+          <a href="contact.html">Sample Request</a>
+          <a href="index.html#global">Logistics</a>
+          <a href="index.html#certifications">Quality Standards</a>
+          <a href="contact.html">Partnerships</a>
         </div>
       </div>
 
@@ -305,7 +672,7 @@
     </svg>
   </a>
 
-  <script src="script.js"></script>
+  <script src="js/main.js"></script>
 </body>
 
 </html>
