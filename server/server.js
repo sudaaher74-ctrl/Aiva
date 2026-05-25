@@ -29,6 +29,7 @@ app.use((req, res, next) => {
 
 // API Routes
 app.use('/api/inquiries', require('./routes/inquiries'));
+app.use('/api/purchase-orders', require('./routes/purchaseOrders'));
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
