@@ -5,7 +5,7 @@ replacements = {
     "18, 53, 36": "11, 36, 71",
     "10, 31, 21": "4, 18, 38",
     # Hex values in SVGs
-    "%23123524": "%230B2447",
+    "%23123524": "%23000000",
 }
 
 css_vars_old = """  /* Brand Colors */
@@ -16,7 +16,7 @@ css_vars_old = """  /* Brand Colors */
   --gold-light: #c3a238;"""
 
 css_vars_new = """  /* Brand Colors */
-  --deep-green: #0B2447;
+  --deep-green: #000000;
   --forest-depth: #041226;
   --natural-beige: #F4F7F9;
   --gold-leaf: #B08D57;
