@@ -35,8 +35,8 @@
       </a>
 
       <div class="nav-links" id="nav-links">
-        <a href="index.html" class="nav-link active">Home</a>
-        <a href="products.html" class="nav-link">Products</a>
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="products.html" class="nav-link active">Products</a>
         <a href="about.html" class="nav-link">About Us</a>
         <a href="contact.html" class="nav-link">Contact</a>
         <a href="contact.html" class="nav-cta">Get a Quote</a>
@@ -51,78 +51,12 @@
 
     <!-- Mobile Overlay -->
     <div class="nav-mobile-overlay" id="nav-mobile-overlay">
-      <a href="index.html" class="nav-link active" data-mobile-link>Home</a>
-      <a href="products.html" class="nav-link" data-mobile-link>Products</a>
+      <a href="index.html" class="nav-link" data-mobile-link>Home</a>
+      <a href="products.html" class="nav-link active" data-mobile-link>Products</a>
       <a href="about.html" class="nav-link" data-mobile-link>About Us</a>
       <a href="contact.html" class="nav-link" data-mobile-link>Contact</a>
     </div>
   </nav>
-
-  <!-- ============================================================
-       HERO SECTION
-       ============================================================ -->
-  <section class="hero" id="hero">
-    <div class="hero-bg">
-      <img src="assets/images/hero-bg.png"
-        alt="AIVA Enterprises — Premium fruit processing facility and export operations at golden hour" loading="eager"
-        onerror="this.src='https://images.unsplash.com/photo-1596704017254-9b121068fb31?w=1600&q=80'">
-    </div>
-    <canvas id="hero-particles"></canvas>
-
-    <div class="container hero-content">
-      <div class="hero-eyebrow">
-        <span>Global Food Ingredient Partner</span>
-      </div>
-      <h1 class="hero-title">
-        Processed for<br>Consistency.<br>
-        <span class="text-gold">Supplied Globally.</span>
-      </h1>
-      <p class="hero-subtitle">
-        Premium Fruit Pulps, Concentrates & IQF Products for Global Food Industries trusted by manufacturers, HoReCa
-        brands, and distributors worldwide.
-      </p>
-      <div class="hero-actions">
-        <a href="#" class="btn btn-primary">
-          Explore Products
-          <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 10h12M12 4l6 6-6 6" />
-          </svg>
-        </a>
-        <a href="#" class="btn btn-secondary">
-          Global Inquiry
-          <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 10h12M12 4l6 6-6 6" />
-          </svg>
-        </a>
-      </div>
-    </div>
-
-    <div class="hero-scroll-indicator">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
-
-    <div class="hero-stats">
-      <div class="container hero-stats-inner">
-        <div class="hero-stat">
-          <div class="hero-stat-value"><span class="counter" data-target="25">0</span>+</div>
-          <div class="hero-stat-label">Countries Exported</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-value"><span class="counter" data-target="50000">0</span>+</div>
-          <div class="hero-stat-label">MT Annual Capacity</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-value"><span class="counter" data-target="16">0</span>+</div>
-          <div class="hero-stat-label">Product Lines</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-value"><span class="counter" data-target="15">0</span>+</div>
-          <div class="hero-stat-label">Years Experience</div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ============================================================
        PRODUCTS SECTION (CATEGORIES OVERVIEW)
@@ -201,35 +135,20 @@
   </section>
 
   <!-- ============================================================
-       CTA BANNER SECTION
+       ALL PRODUCTS SECTION
        ============================================================ -->
-  <section id="contact" style="padding: 120px 0; background: var(--natural-beige);">
+  <section class="all-products" id="all-products" style="padding: 80px 0; background: var(--white);">
     <div class="container">
-      <div
-        style="background: var(--forest-depth); border-radius: var(--radius-xl); padding: 80px 40px; text-align: center; position: relative; overflow: hidden; box-shadow: var(--shadow-lg);"
-        class="reveal">
-        <div
-          style="position: absolute; top: -50%; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(176,141,87,0.15) 0%, transparent 70%); border-radius: 50%;">
-        </div>
-        <div
-          style="position: absolute; bottom: -50%; right: -10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(176,141,87,0.1) 0%, transparent 70%); border-radius: 50%;">
-        </div>
+      <div class="section-eyebrow" style="text-align: center; margin-bottom: 16px;">Our Full Catalog</div>
+      <h2 class="headline-lg" style="text-align: center; margin-bottom: 40px;">Explore All Products</h2>
+      
+      <div class="product-tabs" style="display: flex; justify-content: center; gap: 16px; margin-bottom: 40px; flex-wrap: wrap;">
+        <button class="product-tab active btn btn-outline-dark" data-tab="aseptic">Aseptic Pulps & Pastes</button>
+        <button class="product-tab btn btn-outline-dark" data-tab="iqf">IQF Frozen Range</button>
+      </div>
 
-        <div style="position: relative; z-index: 2;">
-          <h2 class="headline-lg" style="color: var(--white); margin-bottom: 24px;">Ready to Elevate Your Supply Chain?
-          </h2>
-          <p class="body-lg" style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 40px;">
-            Partner with AIVA Enterprises for consistent, premium-grade food ingredients. Contact our export team for
-            tailored specifications and FOB/CIF pricing.
-          </p>
-          <a href="#" class="btn btn-primary"
-            style="background: var(--gold-leaf); border-color: var(--gold-leaf); color: var(--white);">
-            Request a Quote
-            <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 10h12M12 4l6 6-6 6" />
-            </svg>
-          </a>
-        </div>
+      <div class="product-grid" id="main-products-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+        <!-- Products injected by JS -->
       </div>
     </div>
   </section>

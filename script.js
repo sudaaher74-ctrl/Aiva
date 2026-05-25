@@ -628,8 +628,8 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="product-card-image">
             <img src="${product.image}" alt="${product.name}" loading="lazy">
             <div class="product-card-overlay">
-              <a href="product.html?id=${product.id}" class="product-card-overlay-cta" style="text-decoration: none;">
-                View Details
+              <a href="contact.html" class="product-card-overlay-cta" style="text-decoration: none;">
+                Inquire Now
                 <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M4 10h12M12 4l6 6-6 6" />
                 </svg>
