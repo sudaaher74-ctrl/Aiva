@@ -551,8 +551,20 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   const syncDefaultProducts = () => {
-    localStorage.setItem('aiva_products', JSON.stringify(defaultProducts));
-    return defaultProducts;
+    const stored = localStorage.getItem('aiva_products');
+    if (!stored) {
+      localStorage.setItem('aiva_products', JSON.stringify(defaultProducts));
+      return defaultProducts;
+    }
+    const products = JSON.parse(stored);
+    let updated = [...products];
+    defaultProducts.forEach(def => {
+      if (!updated.some(p => p.id === def.id)) {
+        updated.push(def);
+      }
+    });
+    localStorage.setItem('aiva_products', JSON.stringify(updated));
+    return updated;
   };
 
   // Global System Object
@@ -563,13 +575,36 @@ document.addEventListener('DOMContentLoaded', () => {
     getProductById: function(id) {
       return this.getProducts().find(p => p.id === id);
     },
-    addInquiry: function(inquiry) {
-      const inquiries = JSON.parse(localStorage.getItem('aiva_inquiries') || '[]');
-      inquiry.id = 'INQ-' + Math.random().toString(36).substr(2, 9).toUpperCase();
-      inquiry.date = new Date().toISOString();
-      inquiry.status = 'New';
-      inquiries.push(inquiry);
-      localStorage.setItem('aiva_inquiries', JSON.stringify(inquiries));
+    saveProducts: function(products) {
+      localStorage.setItem('aiva_products', JSON.stringify(products));
+      return products;
+    },
+    addProduct: function(product) {
+      const products = this.getProducts();
+      products.push(product);
+      this.saveProducts(products);
+      return product;
+    },
+    addInquiry: async function(inquiry) {
+      try {
+        const response = await fetch('http://localhost:5001/api/inquiries', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(inquiry)
+        });
+        const result = await response.json();
+        return result;
+      } catch (error) {
+        // Fallback to localStorage if server is down
+        const inquiries = JSON.parse(localStorage.getItem('aiva_inquiries') || '[]');
+        inquiry.id = 'INQ-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+        inquiry.date = new Date().toISOString();
+        inquiry.status = 'New';
+        inquiries.push(inquiry);
+        localStorage.setItem('aiva_inquiries', JSON.stringify(inquiries));
+        console.warn('Server unavailable, saved to localStorage');
+        return { success: true, data: inquiry };
+      }
     }
   };
 
