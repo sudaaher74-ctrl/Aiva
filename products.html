@@ -66,7 +66,13 @@
             <a href="index.html" class="logo">AIVA</a>
             <nav class="nav-links">
                 <a href="index.html#home">Home</a>
-                <a href="#products">Products</a>
+                <div class="nav-dropdown">
+                    <a href="products.html" class="dropdown-toggle">Products <i class="ph ph-caret-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="products.html#aseptic">Aseptic Pulps & Pastes</a>
+                        <a href="products.html#iqf">IQF Products</a>
+                    </div>
+                </div>
                 <a href="index.html#about">About Us</a>
                 <a href="#contact">Contact</a>
             </nav>
@@ -104,72 +110,6 @@
         </div>
     </section>
 
-    <!-- Product Categories -->
-    <section class="prod-categories section-padding" id="categories">
-        <div class="container">
-            <div class="horizontal-scroll-container" style="justify-content: center;">
-                <div class="category-card reveal-scale">
-                    <img src="./assets/images/products/kesarmangopulp.png" alt="Aseptic Pulps & Pastes">
-                    <div class="cat-content">
-                        <h3>Aseptic Pulps & Pastes</h3>
-                        <a href="#aseptic" class="btn-link">View Products <i class="ph ph-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="category-card reveal-scale delay-1">
-                    <img src="./assets/images/products/sweetcornIQF.png" alt="IQF Products">
-                    <div class="cat-content">
-                        <h3>IQF Products</h3>
-                        <a href="#iqf" class="btn-link">View Products <i class="ph ph-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Detailed Showcase (Alphonso Mango Pulp) -->
-    <section class="prod-showcase section-padding" id="showcase">
-        <div class="container split-layout align-center">
-            <div class="split-left showcase-img-wrap">
-                <img src="./assets/images/products/Alphansomangopulp.png" alt="Alphonso Mango Pulp" class="massive-render float-y">
-            </div>
-            <div class="split-right showcase-details">
-                <h4 class="section-subtitle">Flagship Export</h4>
-                <h2 class="section-title text-light">Alphonso Mango Pulp</h2>
-                <p class="section-desc text-light-dim">Smooth, homogeneous, free flowing with no lumps. Characteristic rich flavour of ripe Alphonso mangoes.</p>
-                
-                <div class="specs-grid">
-                    <div class="spec-item">
-                        <span class="spec-label">Brix</span>
-                        <span class="spec-val">Min 16.0° Bx</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-label">Packaging</span>
-                        <span class="spec-val">Aseptic Bag / Drum (216/220kg)</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-label">Shelf Life</span>
-                        <span class="spec-val">24 Months</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-label">Origin</span>
-                        <span class="spec-val">India</span>
-                    </div>
-                </div>
-
-                <div class="cert-icons">
-                    <span class="cert">FDA</span>
-                    <span class="cert">HACCP</span>
-                    <span class="cert">ISO</span>
-                </div>
-
-                <div class="hero-buttons mt-2">
-                    <a href="#" class="btn btn-primary">Request Sample</a>
-                    <a href="#" class="btn btn-outline">Download Specs</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Featured Products Grid -->
     <section class="prod-grid-section section-padding" id="aseptic">
         <div class="container">
@@ -178,6 +118,21 @@
             </div>
             
             <div class="premium-product-grid">
+                <!-- Product: Alphonso Mango -->
+                <div class="premium-prod-card">
+                    <div class="p-img-box">
+                        <img src="./assets/images/products/Alphansomangopulp.png" alt="Alphonso Mango Pulp">
+                    </div>
+                    <div class="p-info">
+                        <h3>Alphonso Mango Pulp</h3>
+                        <p class="p-desc">Smooth, homogeneous, free flowing with no lumps.</p>
+                        <ul class="p-specs">
+                            <li><span>Brix:</span> Min 16.0° Bx</li>
+                            <li><span>Shelf Life:</span> 24 Months</li>
+                        </ul>
+                        <a href="#contact" class="btn-link">Get Quote <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                </div>
                 <!-- Product: Totapuri -->
                 <div class="premium-prod-card">
                     <div class="p-img-box">
@@ -418,38 +373,7 @@
         </div>
     </section>
 
-    <!-- Export Advantages -->
-    <section class="adv-section section-padding">
-        <div class="container">
-            <h2 class="section-title text-center text-light">Why Partner With Us</h2>
-            <div class="adv-grid mt-4">
-                <div class="adv-card glass-panel">
-                    <i class="ph ph-leaf text-mango"></i>
-                    <h3>100% Natural</h3>
-                </div>
-                <div class="adv-card glass-panel">
-                    <i class="ph ph-shield-check text-mango"></i>
-                    <h3>Aseptic Processing</h3>
-                </div>
-                <div class="adv-card glass-panel">
-                    <i class="ph ph-globe-hemisphere-west text-mango"></i>
-                    <h3>International Export</h3>
-                </div>
-                <div class="adv-card glass-panel">
-                    <i class="ph ph-tractor text-mango"></i>
-                    <h3>Farm Fresh Sourcing</h3>
-                </div>
-                <div class="adv-card glass-panel">
-                    <i class="ph ph-prohibit text-mango"></i>
-                    <h3>No Preservatives</h3>
-                </div>
-                <div class="adv-card glass-panel">
-                    <i class="ph ph-package text-mango"></i>
-                    <h3>Bulk Supply Capacity</h3>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Certifications Strip -->
     <section class="cert-strip">

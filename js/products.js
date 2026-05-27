@@ -91,17 +91,48 @@ if (heroComp) {
 // ScrollTrigger Animations
 gsap.registerPlugin(ScrollTrigger);
 
-// Category Cards
-gsap.utils.toArray('.category-card').forEach(card => {
-    gsap.from(card, {
-        scrollTrigger: {
-            trigger: card,
-            start: 'top 85%',
-        },
-        y: 50,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out'
+// Dynamic Category Routing
+function updateCategoryVisibility() {
+    const hash = window.location.hash || '#aseptic';
+    const asepticSection = document.getElementById('aseptic');
+    const iqfSection = document.getElementById('iqf');
+
+    if (hash === '#iqf') {
+        if(asepticSection) asepticSection.style.display = 'none';
+        if(iqfSection) iqfSection.style.display = 'block';
+    } else {
+        // Default to aseptic
+        if(asepticSection) asepticSection.style.display = 'block';
+        if(iqfSection) iqfSection.style.display = 'none';
+    }
+    
+    // Refresh ScrollTrigger since layout changed
+    setTimeout(() => ScrollTrigger.refresh(), 100);
+}
+
+window.addEventListener('hashchange', updateCategoryVisibility);
+window.addEventListener('load', updateCategoryVisibility);
+
+// Dynamic Get Quote Image Update
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.premium-prod-card .btn-link').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const card = this.closest('.premium-prod-card');
+            if (card) {
+                const imgSource = card.querySelector('img').src;
+                const inquiryImg = document.querySelector('.inquiry-img img');
+                if (inquiryImg) {
+                    // Update the image source in the contact form
+                    inquiryImg.src = imgSource;
+                    
+                    // Add a tiny animation bump to show it updated
+                    gsap.fromTo(inquiryImg, 
+                        { scale: 0.9, opacity: 0.8 }, 
+                        { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.5)" }
+                    );
+                }
+            }
+        });
     });
 });
 
@@ -133,17 +164,4 @@ gsap.utils.toArray('.massive-render').forEach(img => {
     });
 });
 
-// Advantage Cards
-gsap.utils.toArray('.adv-card').forEach((card, i) => {
-    gsap.from(card, {
-        scrollTrigger: {
-            trigger: '.adv-grid',
-            start: 'top 80%',
-        },
-        y: 40,
-        opacity: 0,
-        duration: 0.6,
-        delay: i * 0.1,
-        ease: 'back.out(1.2)'
-    });
-});
+

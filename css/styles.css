@@ -305,6 +305,59 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
 }
 
+/* Nav Dropdown */
+.nav-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-dropdown .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.nav-dropdown .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--t-fast);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.nav-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.nav-dropdown .dropdown-menu a {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.8rem;
+    color: var(--c-light-grey);
+    white-space: nowrap;
+}
+
+.nav-dropdown .dropdown-menu a::after {
+    display: none;
+}
+
+.nav-dropdown .dropdown-menu a:hover {
+    background: rgba(255, 184, 0, 0.1);
+    color: var(--c-mango);
+}
+
 .nav-actions {
     display: flex;
     align-items: center;
