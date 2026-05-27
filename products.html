@@ -1,170 +1,437 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Products — AIVA Enterprises</title>
-  <meta name="description" content="Explore AIVA Enterprises' premium range of aseptic fruit pulps, concentrates, and IQF frozen products.">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23000000'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='800' font-size='18' fill='%23B08D57'>A</text></svg>">
-  <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - AIVA Enterprises | Premium Export</title>
+    <meta name="description"
+        content="World-class premium export products including Aseptic Fruit Pulps, Concentrates, IQF Fruits, and Tomato Paste.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Lenis CSS for smooth scroll basics -->
+    <style>
+        html.lenis,
+        html.lenis body {
+            height: auto;
+        }
+
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+
+        .lenis.lenis-stopped {
+            overflow: hidden;
+        }
+
+        .lenis.lenis-scrolling iframe {
+            pointer-events: none;
+        }
+    </style>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/products.css">
 </head>
-<body>
 
-  <!-- ============================================================
-       NAVIGATION
-       ============================================================ -->
-  <nav class="nav scrolled" id="main-nav">
-    <div class="container nav-inner">
-      <a href="index.html" class="nav-logo">
-        <div class="nav-logo-icon">A</div>
-        <div class="nav-logo-text">
-          AIVA
-          <span>Enterprises</span>
+<body class="loading dark-theme">
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-content">
+            <h1 class="preloader-title">AIVA</h1>
+            <p class="preloader-subtitle">PREMIUM PRODUCTS</p>
         </div>
-      </a>
-
-      <div class="nav-links" id="nav-links">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="products.html" class="nav-link active">Products</a>
-        <a href="about.html" class="nav-link">About Us</a>
-        <a href="contact.html" class="nav-link">Contact</a>
-        <a href="contact.html" class="nav-cta">Get a Quote</a>
-      </div>
-
-      <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-
-    <!-- Mobile Overlay -->
-    <div class="nav-mobile-overlay" id="nav-mobile-overlay">
-      <a href="index.html" class="nav-link" data-mobile-link>Home</a>
-      <a href="products.html" class="nav-link" data-mobile-link>Products</a>
-      <a href="about.html" class="nav-link" data-mobile-link>About Us</a>
-      <a href="contact.html" class="nav-link" data-mobile-link>Contact</a>
-    </div>
-  </nav>
-
-  <!-- ============================================================
-       INNER HERO SECTION
-       ============================================================ -->
-  <header style="background: linear-gradient(135deg, var(--forest-depth) 0%, var(--deep-green) 100%); padding: 160px 0 100px; color: var(--white); text-align: center; position: relative; overflow: hidden;">
-    <div class="container" style="position: relative; z-index: 2;">
-      <div class="section-eyebrow" style="color: var(--gold-leaf); justify-content: center; margin-bottom: 16px;">Product Portfolio</div>
-      <h1 class="headline-lg" style="margin-bottom: 20px;">Premium Ingredients for Global Brands</h1>
-      <p class="body-lg" style="max-width: 700px; margin: 0 auto; color: rgba(255, 255, 255, 0.75);">
-        Explore our complete catalog of aseptic fruit pulps, high-brix concentrates, and individually quick-frozen products. All processed in BRC & ISO certified facilities.
-      </p>
-    </div>
-    <div style="position: absolute; inset: 0; background: radial-gradient(circle, rgba(176, 141, 87, 0.08) 0%, transparent 80%); z-index: 1;"></div>
-  </header>
-
-  <!-- ============================================================
-       PRODUCTS CATALOG SECTION
-       ============================================================ -->
-  <section class="products" id="catalog" style="padding: 100px 0; background: var(--white); min-height: 800px;">
-    <div class="container">
-      
-      <!-- Category Tabs -->
-      <div class="product-tabs reveal" id="product-tabs" style="justify-content: center; margin-bottom: 60px;">
-        <button class="product-tab active" data-tab="aseptic">Aseptic Pulps & Pastes</button>
-        <button class="product-tab" data-tab="concentrates">Fruit Concentrates</button>
-        <button class="product-tab" data-tab="iqf">IQF Frozen Range</button>
-      </div>
-
-      <!-- Dynamic Product Grid -->
-      <div class="product-grid" id="main-products-grid">
-        <!-- Products will be injected here by main.js -->
-      </div>
-      
-    </div>
-  </section>
-
-  <!-- ============================================================
-       CTA BANNER SECTION
-       ============================================================ -->
-  <section style="padding: 120px 0; background: var(--natural-beige);">
-    <div class="container">
-      <div style="background: var(--forest-depth); border-radius: var(--radius-xl); padding: 80px 40px; text-align: center; position: relative; overflow: hidden; box-shadow: var(--shadow-lg);" class="reveal">
-        <div style="position: absolute; top: -50%; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(176,141,87,0.15) 0%, transparent 70%); border-radius: 50%;"></div>
-        <div style="position: absolute; bottom: -50%; right: -10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(176,141,87,0.1) 0%, transparent 70%); border-radius: 50%;"></div>
-        
-        <div style="position: relative; z-index: 2;">
-          <h2 class="headline-lg" style="color: var(--white); margin-bottom: 24px;">Need Custom Specifications?</h2>
-          <p class="body-lg" style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 40px;">
-            We offer bespoke processing parameters to match your exact manufacturing requirements. Contact us to discuss your specific needs.
-          </p>
-          <a href="contact.html" class="btn btn-primary" style="background: var(--gold-leaf); border-color: var(--gold-leaf); color: var(--white);">
-            Contact Technical Sales
-            <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 10h12M12 4l6 6-6 6" />
-            </svg>
-          </a>
+        <div class="preloader-progress">
+            <div class="progress-bar"></div>
         </div>
-      </div>
     </div>
-  </section>
 
-  <!-- ============================================================
-       FOOTER
-       ============================================================ -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="index.html" class="nav-logo" style="margin-bottom: 8px;">
-            <div class="nav-logo-icon">A</div>
-            <div class="nav-logo-text" style="color: #fff;">
-              AIVA
-              <span>Enterprises</span>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">AIVA</a>
+            <nav class="nav-links">
+                <a href="index.html#home">Home</a>
+                <a href="#products">Products</a>
+                <a href="index.html#about">About Us</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="#contact" class="btn btn-outline">Contact Us</a>
+                <button class="mobile-toggle"><i class="ph ph-list"></i></button>
             </div>
-          </a>
-          <p class="footer-brand-text">
-            A global sourcing and export company specializing in premium fruit pulps, concentrates, aseptic products, and IQF frozen fruits & vegetables for international food industries.
-          </p>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="prod-hero" id="home">
+        <div class="prod-hero-bg">
+            <div class="prod-hero-gradient"></div>
         </div>
 
-        <div class="footer-col">
-          <h5>Products</h5>
-          <a href="products.html">Aseptic Fruit Pulps</a>
-          <a href="products.html">Concentrates</a>
-          <a href="products.html">IQF Frozen Fruits</a>
-          <a href="products.html">IQF Vegetables</a>
-          <a href="products.html">Tomato Paste</a>
+        <div class="container split-layout prod-hero-content">
+            <div class="split-left">
+                <div class="premium-badge reveal-text">GLOBAL EXPORT QUALITY</div>
+                <h1 class="prod-hero-title"><span class="reveal-text">Premium Fruit</span><br><span
+                        class="reveal-text highlight">Processing Products</span></h1>
+                <p class="prod-hero-subtitle reveal-text delay-1">AIVA Enterprises delivers world-class aseptic fruit pulps, concentrates, IQF fruits, and tomato processing solutions to international markets.</p>
+                <div class="hero-buttons reveal-text delay-2">
+                    <a href="#products" class="btn btn-primary">Explore Products</a>
+                    <a href="#contact" class="btn btn-text">Request Bulk Quote <i class="ph ph-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="split-right prod-hero-composition">
+                <img src="./assets/images/products/Alphansomangopulp.png" class="prod-float main-prod" alt="Alphonso Mango" data-speed="1.2">
+                <img src="./assets/images/products/tomatopaste.png" class="prod-float sub-prod-1" alt="Tomato Paste" data-speed="-1.5">
+                <img src="./assets/images/products/strawberryIQF.png" class="prod-float sub-prod-2" alt="Strawberry IQF" data-speed="1.8">
+                <div class="glow-orb"></div>
+            </div>
         </div>
+    </section>
 
-        <div class="footer-col">
-          <h5>Company</h5>
-          <a href="about.html">About Us</a>
-          <a href="index.html#process">Our Process</a>
-          <a href="index.html#certifications">Certifications</a>
-          <a href="index.html#global">Global Reach</a>
-          <a href="contact.html">Contact</a>
+    <!-- Product Categories -->
+    <section class="prod-categories section-padding" id="categories">
+        <div class="container">
+            <div class="horizontal-scroll-container">
+                <div class="category-card reveal-scale">
+                    <img src="./assets/images/products/kesarmangopulp.png" alt="Aseptic Fruit Pulps">
+                    <div class="cat-content">
+                        <h3>Aseptic Fruit Pulps</h3>
+                        <a href="#aseptic" class="btn-link">View Products <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="category-card reveal-scale delay-1">
+                    <img src="./assets/images/products/BananaConcentrate.png" alt="Fruit Concentrates">
+                    <div class="cat-content">
+                        <h3>Fruit Concentrates</h3>
+                        <a href="#concentrates" class="btn-link">View Products <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="category-card reveal-scale delay-2">
+                    <img src="./assets/images/products/sweetcornIQF.png" alt="IQF Fruits">
+                    <div class="cat-content">
+                        <h3>IQF Fruits</h3>
+                        <a href="#iqf" class="btn-link">View Products <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="category-card reveal-scale delay-3">
+                    <img src="./assets/images/products/tomatopaste.png" alt="Tomato Paste">
+                    <div class="cat-content">
+                        <h3>Tomato Paste</h3>
+                        <a href="#tomato" class="btn-link">View Products <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="footer-col">
-          <h5>Export</h5>
-          <a href="contact.html">Request a Quote</a>
-          <a href="contact.html">Sample Request</a>
-          <a href="index.html#global">Logistics</a>
-          <a href="index.html#certifications">Quality Standards</a>
-          <a href="contact.html">Partnerships</a>
+    <!-- Detailed Showcase (Alphonso Mango Pulp) -->
+    <section class="prod-showcase section-padding" id="showcase">
+        <div class="container split-layout align-center">
+            <div class="split-left showcase-img-wrap">
+                <img src="./assets/images/products/Alphansomangopulp.png" alt="Alphonso Mango Pulp" class="massive-render float-y">
+            </div>
+            <div class="split-right showcase-details">
+                <h4 class="section-subtitle">Flagship Export</h4>
+                <h2 class="section-title text-light">Alphonso Mango Pulp</h2>
+                <p class="section-desc text-light-dim">Smooth, homogeneous, free flowing with no lumps. Characteristic rich flavour of ripe Alphonso mangoes.</p>
+                
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Brix</span>
+                        <span class="spec-val">Min 16.0° Bx</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Packaging</span>
+                        <span class="spec-val">Aseptic Bag / Drum (216/220kg)</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Shelf Life</span>
+                        <span class="spec-val">24 Months</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Origin</span>
+                        <span class="spec-val">India</span>
+                    </div>
+                </div>
+
+                <div class="cert-icons">
+                    <span class="cert">FDA</span>
+                    <span class="cert">HACCP</span>
+                    <span class="cert">ISO</span>
+                </div>
+
+                <div class="hero-buttons mt-2">
+                    <a href="#" class="btn btn-primary">Request Sample</a>
+                    <a href="#" class="btn btn-outline">Download Specs</a>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <div class="footer-bottom">
-        <p>© 2024 AIVA Enterprises. All rights reserved.</p>
-        <div class="footer-bottom-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Export Policy</a>
+    <!-- Featured Products Grid -->
+    <section class="prod-grid-section section-padding" id="products">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title text-light">Featured Exports</h2>
+            </div>
+            
+            <div class="premium-product-grid">
+                <!-- Product: Totapuri -->
+                <div class="premium-prod-card">
+                    <div class="p-img-box">
+                        <img src="./assets/images/products/totapurimangopulp.png" alt="Totapuri Mango Pulp">
+                    </div>
+                    <div class="p-info">
+                        <h3>Totapuri Mango Pulp</h3>
+                        <p class="p-desc">Smooth, homogeneous, characteristic rich flavour.</p>
+                        <ul class="p-specs">
+                            <li><span>Brix:</span> Min 14.0° Bx</li>
+                            <li><span>Shelf Life:</span> 24 Months</li>
+                        </ul>
+                        <a href="#contact" class="btn-link">Get Quote <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Product: Kesar -->
+                <div class="premium-prod-card">
+                    <div class="p-img-box">
+                        <img src="./assets/images/products/kesarmangopulp.png" alt="Kesar Mango Pulp">
+                    </div>
+                    <div class="p-info">
+                        <h3>Kesar Mango Pulp</h3>
+                        <p class="p-desc">Bright orange-yellow, rich Kesar flavour.</p>
+                        <ul class="p-specs">
+                            <li><span>Brix:</span> Min 16.0° Bx</li>
+                            <li><span>Shelf Life:</span> 24 Months</li>
+                        </ul>
+                        <a href="#contact" class="btn-link">Get Quote <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Product: Pink Guava -->
+                <div class="premium-prod-card">
+                    <div class="p-img-box">
+                        <img src="./assets/images/products/pinkguavapulp.png" alt="Pink Guava Pulp">
+                    </div>
+                    <div class="p-info">
+                        <h3>Pink Guava Pulp</h3>
+                        <p class="p-desc">Free from seeds, typical ripe guava flavour.</p>
+                        <ul class="p-specs">
+                            <li><span>Brix:</span> Min 8.0° Bx</li>
+                            <li><span>Shelf Life:</span> 24 Months</li>
+                        </ul>
+                        <a href="#contact" class="btn-link">Get Quote <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Product: Papaya -->
+                <div class="premium-prod-card">
+                    <div class="p-img-box">
+                        <img src="./assets/images/products/papayapulp.png" alt="Papaya Pulp">
+                    </div>
+                    <div class="p-info">
+                        <h3>Red Papaya Pulp</h3>
+                        <p class="p-desc">Natural bright red, typical Papaya flavour.</p>
+                        <ul class="p-specs">
+                            <li><span>Brix:</span> Min 9.0° Bx</li>
+                            <li><span>Shelf Life:</span> 24 Months</li>
+                        </ul>
+                        <a href="#contact" class="btn-link">Get Quote <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Product: Tomato Paste -->
+                <div class="premium-prod-card">
+                    <div class="p-img-box">
+                        <img src="./assets/images/products/tomatopaste.png" alt="Tomato Paste">
+                    </div>
+                    <div class="p-info">
+                        <h3>Tomato Paste</h3>
+                        <p class="p-desc">Rich almond red appearance, fresh tomato flavour.</p>
+                        <ul class="p-specs">
+                            <li><span>Brix:</span> 27 – 39° Bx</li>
+                            <li><span>Shelf Life:</span> 10 – 17 years</li>
+                        </ul>
+                        <a href="#contact" class="btn-link">Get Quote <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Product: Strawberry IQF -->
+                <div class="premium-prod-card">
+                    <div class="p-img-box">
+                        <img src="./assets/images/products/strawberryIQF.png" alt="Strawberry IQF">
+                    </div>
+                    <div class="p-info">
+                        <h3>Strawberry IQF</h3>
+                        <p class="p-desc">Sweet with slight tartness, bright red colour.</p>
+                        <ul class="p-specs">
+                            <li><span>Brix:</span> Min 6.0° Bx</li>
+                            <li><span>Format:</span> Halves, Dices, Whole</li>
+                        </ul>
+                        <a href="#contact" class="btn-link">Get Quote <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </footer>
+    </section>
 
-  <script src="js/main.js"></script>
+    <!-- Export Advantages -->
+    <section class="adv-section section-padding">
+        <div class="container">
+            <h2 class="section-title text-center text-light">Why Partner With Us</h2>
+            <div class="adv-grid mt-4">
+                <div class="adv-card glass-panel">
+                    <i class="ph ph-leaf text-mango"></i>
+                    <h3>100% Natural</h3>
+                </div>
+                <div class="adv-card glass-panel">
+                    <i class="ph ph-shield-check text-mango"></i>
+                    <h3>Aseptic Processing</h3>
+                </div>
+                <div class="adv-card glass-panel">
+                    <i class="ph ph-globe-hemisphere-west text-mango"></i>
+                    <h3>International Export</h3>
+                </div>
+                <div class="adv-card glass-panel">
+                    <i class="ph ph-tractor text-mango"></i>
+                    <h3>Farm Fresh Sourcing</h3>
+                </div>
+                <div class="adv-card glass-panel">
+                    <i class="ph ph-prohibit text-mango"></i>
+                    <h3>No Preservatives</h3>
+                </div>
+                <div class="adv-card glass-panel">
+                    <i class="ph ph-package text-mango"></i>
+                    <h3>Bulk Supply Capacity</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Strip -->
+    <section class="cert-strip">
+        <div class="container">
+            <div class="cert-logos">
+                <div class="cert-logo">FDA CERTIFIED</div>
+                <div class="cert-logo">HACCP APPROVED</div>
+                <div class="cert-logo">ISO 9001:2015</div>
+                <div class="cert-logo">FSSAI</div>
+                <div class="cert-logo">APEDA</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bulk Inquiry Section -->
+    <section class="inquiry-section section-padding" id="contact">
+        <div class="container split-layout align-center">
+            <div class="split-left inquiry-img">
+                <img src="./assets/images/products/kesarmangopulp.png" alt="Export Drum" class="float-y massive-render">
+                <div class="glow-orb"></div>
+            </div>
+            <div class="split-right">
+                <div class="glass-form-container">
+                    <h2 class="form-title">Bulk Export Inquiry</h2>
+                    <form class="luxury-form">
+                        <div class="form-row">
+                            <div class="form-group w-50">
+                                <input type="text" id="name" placeholder=" " required>
+                                <label for="name">Your Name</label>
+                            </div>
+                            <div class="form-group w-50">
+                                <input type="text" id="company" placeholder=" " required>
+                                <label for="company">Company</label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group w-50">
+                                <input type="text" id="country" placeholder=" " required>
+                                <label for="country">Country</label>
+                            </div>
+                            <div class="form-group w-50">
+                                <input type="email" id="email" placeholder=" " required>
+                                <label for="email">Work Email</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <select id="interest" required>
+                                <option value="" disabled selected>Product Interest</option>
+                                <option value="aseptic">Aseptic Fruit Pulps</option>
+                                <option value="iqf">IQF Fruits & Veg</option>
+                                <option value="tomato">Tomato Paste</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="qty" placeholder=" " required>
+                            <label for="qty">Quantity Requirement (e.g., 20 MT)</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" placeholder=" " rows="3" required></textarea>
+                            <label for="message">Additional Message</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Request Export Quote</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h2>AIVA</h2>
+                    <p>Premium Fruit Pulp & Juice Exporters.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <a href="index.html#about">About Us</a>
+                    <a href="#products">Products</a>
+                    <a href="index.html#quality">Certifications</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <h3>Connect</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+                        <a href="#"><i class="ph ph-envelope-simple"></i></a>
+                        <a href="#"><i class="ph ph-whatsapp-logo"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AIVA Enterprises. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Trade</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
+
+    <!-- Custom Products JS -->
+    <script src="./js/products.js"></script>
 </body>
+
 </html>
