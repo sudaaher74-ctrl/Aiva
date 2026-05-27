@@ -122,6 +122,10 @@ h1, h2, h3, h4, h5, h6 {
     padding: var(--section-pad);
 }
 
+.global.section-padding {
+    padding: 3rem 0 0 0;
+}
+
 .dark-section {
     background-color: var(--c-black);
     color: var(--c-white);
