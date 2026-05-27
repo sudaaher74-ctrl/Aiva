@@ -15,13 +15,26 @@ requestAnimationFrame(raf);
 window.addEventListener('load', () => {
     const preloader = document.querySelector('.preloader');
     if (preloader) {
-        setTimeout(() => {
-            preloader.classList.add('loaded');
-            document.body.classList.remove('loading');
-            
-            // Trigger initial animations
-            initHeroAnimations();
-        }, 1000);
+        const tlLoader = gsap.timeline({
+            onComplete: () => {
+                document.body.classList.remove('loading');
+                initHeroAnimations();
+            }
+        });
+
+        tlLoader.to(".progress-bar", {
+            width: "100%",
+            duration: 1.5,
+            ease: "power3.inOut"
+        })
+        .to(".preloader", {
+            yPercent: -100,
+            duration: 1,
+            ease: "power4.inOut"
+        }, "+=0.2");
+    } else {
+        document.body.classList.remove('loading');
+        initHeroAnimations();
     }
 });
 
