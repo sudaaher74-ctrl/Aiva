@@ -488,8 +488,26 @@ body.dark-theme .btn-outline:hover {
     background: rgba(255,255,255,0.05) !important;
 }
 
+.luxury-form input,
+.luxury-form textarea {
+    padding: 1rem;
+    border-radius: 8px;
+}
+
 .luxury-form label {
     color: rgba(255,255,255,0.5);
+    left: 1rem;
+}
+
+.luxury-form input:focus ~ label,
+.luxury-form input:not(:placeholder-shown) ~ label,
+.luxury-form textarea:focus ~ label,
+.luxury-form textarea:not(:placeholder-shown) ~ label {
+    top: -0.5rem;
+    left: 0.8rem;
+    background: #111; /* Covers the border */
+    padding: 0 0.3rem;
+    border-radius: 4px;
 }
 
 .luxury-form select {
