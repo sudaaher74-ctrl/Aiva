@@ -395,6 +395,43 @@ window.saveNotes = async function(id) {
   }
 };
 
+window.qualifyCustomer = async function(id) {
+  if (!confirm('Are you sure you want to convert this inquiry into a Customer?')) return;
+  try {
+    // 1. Fetch the inquiry details
+    const { data: inq } = await apiGet(`/inquiries/${id}`);
+    
+    // 2. Map data to Customer format
+    const customerData = {
+      company_name: inq.company || 'Unknown Company',
+      contact_person: inq.name,
+      email: inq.email,
+      phone: inq.phone,
+      country: inq.country
+    };
+
+    // 3. Create the customer
+    await apiPost('/customers', customerData);
+    
+    // 4. Update inquiry status to Closed (since they are now a customer)
+    await apiPatch(`/inquiries/${id}/status`, { status: 'Closed' });
+    
+    // 5. Append notes
+    const newNotes = (inq.notes ? inq.notes + '\n\n' : '') + `[System] Qualified as Customer on ${new Date().toLocaleDateString()}`;
+    await apiPatch(`/inquiries/${id}/notes`, { notes: newNotes });
+
+    showToast('Inquiry successfully qualified as a Customer!', 'success');
+    closeInquiryModal();
+    
+    // Refresh dashboards
+    if (document.getElementById('dashboard-stats')) loadDashboard();
+    if (document.getElementById('inquiries-table-body')) loadInquiries(currentFilter, currentSearch);
+    if (document.getElementById('customers-table-body')) loadCustomers();
+  } catch (error) {
+    showToast('Failed to qualify customer: ' + error.message, 'error');
+  }
+};
+
 // ============================================================
 // INQUIRY DETAIL MODAL
 // ============================================================
@@ -492,10 +529,16 @@ window.openInquiryModal = async function(id) {
           <span style="font-size:0.75rem;color:var(--text-tertiary);">
             ID: ${inq.inquiryId} · Submitted ${formatDateTime(inq.createdAt)}
           </span>
-          <button class="btn" style="color:var(--status-danger);border-color:rgba(239,68,68,0.3);border-radius:20px;font-size:0.75rem;" onclick="deleteInquiry('${inq._id}')">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-            Delete
-          </button>
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-success" style="border-radius:20px;font-size:0.75rem;" onclick="qualifyCustomer('${inq._id}')">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M5 13l4 4L19 7"></path></svg>
+              Qualify as Customer
+            </button>
+            <button class="btn" style="color:var(--status-danger);border-color:rgba(239,68,68,0.3);border-radius:20px;font-size:0.75rem;" onclick="deleteInquiry('${inq._id}')">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     `;
