@@ -3,7 +3,7 @@
  * Connects to backend API at localhost:5001
  */
 
-const API_BASE = 'http://localhost:5001/api';
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '' || window.location.protocol === 'file:' ? 'http://localhost:5001/api' : '/api';
 
 // ============================================================
 // API Helper Functions

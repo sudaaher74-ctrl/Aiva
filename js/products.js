@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Dynamic Product Fetching & Rendering
 async function initProducts() {
     try {
-        const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:5001/api' : '/api';
+        const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '' || window.location.protocol === 'file:' ? 'http://localhost:5001/api' : '/api';
         const res = await fetch(`${API_BASE}/products`);
         const data = await res.json();
         const products = data.data || [];
@@ -236,7 +236,7 @@ if (contactForm) {
         btn.disabled = true;
 
         try {
-            const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:5001/api' : '/api';
+            const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '' || window.location.protocol === 'file:' ? 'http://localhost:5001/api' : '/api';
             const res = await fetch(`${API_BASE}/inquiries`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

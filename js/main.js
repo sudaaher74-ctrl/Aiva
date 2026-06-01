@@ -249,7 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.disabled = true;
 
             try {
-                const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:5001/api' : '/api';
+                const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '' || window.location.protocol === 'file:' ? 'http://localhost:5001/api' : '/api';
                 const res = await fetch(`${API_BASE}/inquiries`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -278,7 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 10. Basic Analytics Tracking ---
     try {
-        const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:5001/api' : '/api';
+        const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '' || window.location.protocol === 'file:' ? 'http://localhost:5001/api' : '/api';
         fetch(`${API_BASE}/analytics/track`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
