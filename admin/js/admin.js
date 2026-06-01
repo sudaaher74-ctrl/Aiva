@@ -912,6 +912,8 @@ window.updatePOPreview = function() {
 
   if (document.getElementById('preview-subtotal')) document.getElementById('preview-subtotal').innerText = '$' + subtotal.toLocaleString();
   if (document.getElementById('preview-total')) document.getElementById('preview-total').innerText = '$' + total.toLocaleString();
+};
+
 document.addEventListener('input', (e) => {
   if (e.target.closest('#view-create-po')) {
     updatePOPreview();
