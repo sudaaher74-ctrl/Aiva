@@ -35,7 +35,7 @@ connectDB().then(async () => {
 app.use(cors({
   origin: '*',  // Allow all origins for development
   methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-  allowedHeaders: ['Content-Type']
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
