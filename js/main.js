@@ -233,11 +233,12 @@ document.addEventListener("DOMContentLoaded", () => {
             };
 
             const payload = {
-                name: safeVal('name'),
-                company: safeVal('company') || 'N/A', // from index.html which doesn't have it
+                name: safeVal('name') || 'N/A', // Assuming name field is used for company on index.html
+                company: safeVal('company') || safeVal('name') || 'N/A', // Fallback to 'name' if company field is missing
                 country: safeVal('country') || 'N/A',
+                phone: safeVal('phone') || 'N/A', // Adding phone which is required by the schema
                 email: safeVal('email'),
-                interest: safeVal('interest'),
+                product: safeVal('interest') || 'General Inquiry', // Schema uses 'product' not 'interest'
                 quantity: safeVal('qty') || 'N/A',
                 message: safeVal('message')
             };
