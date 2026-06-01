@@ -9,8 +9,27 @@ dotenv.config();
 // Create Express app
 const app = express();
 
-// Connect to MongoDB
-connectDB();
+// Connect to MongoDB and seed admin if needed
+connectDB().then(async () => {
+  const User = require('./models/User');
+  const bcrypt = require('bcryptjs');
+  try {
+    const existingAdmin = await User.findOne({ email: 'admin@aivaenterprises.com' });
+    if (!existingAdmin) {
+      const salt = await bcrypt.genSalt(10);
+      const password_hash = await bcrypt.hash('admin123', salt);
+      await User.create({
+        name: 'Super Admin',
+        email: 'admin@aivaenterprises.com',
+        password_hash,
+        role: 'Admin'
+      });
+      console.log('✅ Default Admin created: admin@aivaenterprises.com / admin123');
+    }
+  } catch (e) {
+    console.error('Error seeding admin user:', e);
+  }
+});
 
 // Middleware
 app.use(cors({
