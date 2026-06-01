@@ -248,7 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.disabled = true;
 
             try {
-                const res = await fetch('http://localhost:5000/api/inquiries', {
+                const res = await fetch('http://localhost:5001/api/inquiries', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
@@ -276,7 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 10. Basic Analytics Tracking ---
     try {
-        fetch('http://localhost:5000/api/analytics/track', {
+        fetch('http://localhost:5001/api/analytics/track', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

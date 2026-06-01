@@ -570,7 +570,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.aivaProductSystem = {
     getProducts: async function() {
       try {
-        const res = await fetch('http://localhost:5000/api/products');
+        const res = await fetch('http://localhost:5001/api/products');
         const data = await res.json();
         return data.data || [];
       } catch (err) {
@@ -586,7 +586,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     addProduct: async function(product) {
       try {
-        const res = await fetch('http://localhost:5000/api/products', {
+        const res = await fetch('http://localhost:5001/api/products', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -602,7 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     deleteProduct: async function(id) {
       try {
-        await fetch(`http://localhost:5000/api/products/${id}`, {
+        await fetch(`http://localhost:5001/api/products/${id}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('aiva_token')}`
@@ -612,7 +612,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     addInquiry: async function(inquiry) {
       try {
-        const response = await fetch('http://localhost:5000/api/inquiries', {
+        const response = await fetch('http://localhost:5001/api/inquiries', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(inquiry)

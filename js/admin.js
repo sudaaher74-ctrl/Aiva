@@ -3,7 +3,7 @@
  * Connects to backend API at localhost:5001
  */
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'http://localhost:5001/api';
 
 // ============================================================
 // API Helper Functions
@@ -173,7 +173,7 @@ async function loadDashboard() {
     console.error('Dashboard load error:', error);
     if (statsContainer) {
       statsContainer.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:var(--status-danger);padding:40px;">
-        ⚠️ Cannot connect to server. Make sure the backend is running on port 5000.
+        ⚠️ Cannot connect to server. Make sure the backend is running on port 5001.
         <br><small style="color:var(--text-secondary)">Run: cd server && npm start</small>
       </div>`;
     }

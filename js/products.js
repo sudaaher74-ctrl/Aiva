@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Dynamic Product Fetching & Rendering
 async function initProducts() {
     try {
-        const res = await fetch('http://localhost:5000/api/products');
+        const res = await fetch('http://localhost:5001/api/products');
         const data = await res.json();
         const products = data.data || [];
 
@@ -234,7 +234,7 @@ if (contactForm) {
         btn.disabled = true;
 
         try {
-            const res = await fetch('http://localhost:5000/api/inquiries', {
+            const res = await fetch('http://localhost:5001/api/inquiries', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
