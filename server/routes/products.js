@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 // @access  Private (Admin/Sales)
 router.post('/', protect, upload.fields([{ name: 'image', maxCount: 1 }, { name: 'pdf_catalog', maxCount: 1 }]), async (req, res) => {
   try {
-    const { name, category, description, status } = req.body;
+    const { name, category, description, status, tab, brix, shelfLife } = req.body;
     let image_url = '';
     let pdf_catalog_url = '';
 
@@ -35,7 +35,7 @@ router.post('/', protect, upload.fields([{ name: 'image', maxCount: 1 }, { name:
     }
 
     const product = await Product.create({
-      name, category, description, status, image_url, pdf_catalog_url
+      name, category, description, status, image_url, pdf_catalog_url, tab, brix, shelfLife
     });
 
     res.status(201).json({ success: true, data: product });
