@@ -567,27 +567,52 @@ document.addEventListener('DOMContentLoaded', () => {
     return updated;
   };
 
-  // Global System Object
   window.aivaProductSystem = {
-    getProducts: function() {
-      return syncDefaultProducts();
+    getProducts: async function() {
+      try {
+        const res = await fetch('http://localhost:5000/api/products');
+        const data = await res.json();
+        return data.data || [];
+      } catch (err) {
+        return syncDefaultProducts();
+      }
     },
-    getProductById: function(id) {
-      return this.getProducts().find(p => p.id === id);
+    getProductById: async function(id) {
+      const prods = await this.getProducts();
+      return prods.find(p => p.id === id || p._id === id);
     },
-    saveProducts: function(products) {
-      localStorage.setItem('aiva_products', JSON.stringify(products));
+    saveProducts: async function(products) {
       return products;
     },
-    addProduct: function(product) {
-      const products = this.getProducts();
-      products.push(product);
-      this.saveProducts(products);
-      return product;
+    addProduct: async function(product) {
+      try {
+        const res = await fetch('http://localhost:5000/api/products', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('aiva_token')}`
+          },
+          body: JSON.stringify(product)
+        });
+        const data = await res.json();
+        return data.data;
+      } catch (err) {
+        return product;
+      }
+    },
+    deleteProduct: async function(id) {
+      try {
+        await fetch(`http://localhost:5000/api/products/${id}`, {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('aiva_token')}`
+          }
+        });
+      } catch (err) {}
     },
     addInquiry: async function(inquiry) {
       try {
-        const response = await fetch('http://localhost:5001/api/inquiries', {
+        const response = await fetch('http://localhost:5000/api/inquiries', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(inquiry)
@@ -616,8 +641,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const mainProductsGrid = document.getElementById('main-products-grid');
 
   if (mainProductsGrid) {
-    const renderProducts = (tabId) => {
-      const products = window.aivaProductSystem.getProducts().filter(p => p.tab === tabId);
+    const renderProducts = async (tabId) => {
+      const allProducts = await window.aivaProductSystem.getProducts();
+      const products = allProducts.filter(p => p.tab === tabId);
       mainProductsGrid.innerHTML = '';
       
       products.forEach((product, index) => {
@@ -626,9 +652,9 @@ document.addEventListener('DOMContentLoaded', () => {
         card.style.animationDelay = `${index * 100}ms`;
         card.innerHTML = `
           <div class="product-card-image">
-            <img src="${product.image}" alt="${product.name}" loading="lazy">
+            <img src="${product.image || product.image_url}" alt="${product.name}" loading="lazy">
             <div class="product-card-overlay">
-              <a href="product.html?id=${product.id}" class="product-card-overlay-cta" style="text-decoration: none;">
+              <a href="product.html?id=${product.id || product._id}" class="product-card-overlay-cta" style="text-decoration: none;">
                 View Details
                 <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M4 10h12M12 4l6 6-6 6" />
@@ -639,7 +665,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="product-card-body">
             <div class="product-card-category">${product.category}</div>
             <h3 class="product-card-title">${product.name}</h3>
-            <p class="product-card-desc" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${product.desc}</p>
+            <p class="product-card-desc" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${product.desc || product.description}</p>
           </div>
         `;
         mainProductsGrid.appendChild(card);

@@ -3,14 +3,25 @@
  * Connects to backend API at localhost:5001
  */
 
-const API_BASE = 'http://localhost:5001/api';
+const API_BASE = 'http://localhost:5000/api';
+
+function getAuthHeaders() {
+  const token = localStorage.getItem('aiva_token');
+  return {
+    'Content-Type': 'application/json',
+    ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+  };
+}
 
 // ============================================================
 // API Helper Functions
 // ============================================================
 async function apiGet(endpoint) {
-  const res = await fetch(`${API_BASE}${endpoint}`);
+  const res = await fetch(`${API_BASE}${endpoint}`, {
+    headers: getAuthHeaders()
+  });
   const data = await res.json();
+  if (res.status === 401) return handleUnauthorized();
   if (!data.success) throw new Error(data.message);
   return data;
 }
@@ -18,10 +29,11 @@ async function apiGet(endpoint) {
 async function apiPost(endpoint, body) {
   const res = await fetch(`${API_BASE}${endpoint}`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: getAuthHeaders(),
     body: JSON.stringify(body)
   });
   const data = await res.json();
+  if (res.status === 401) return handleUnauthorized();
   if (!data.success) throw new Error(data.message);
   return data;
 }
@@ -29,19 +41,66 @@ async function apiPost(endpoint, body) {
 async function apiPatch(endpoint, body) {
   const res = await fetch(`${API_BASE}${endpoint}`, {
     method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
+    headers: getAuthHeaders(),
     body: JSON.stringify(body)
   });
   const data = await res.json();
+  if (res.status === 401) return handleUnauthorized();
   if (!data.success) throw new Error(data.message);
   return data;
 }
 
 async function apiDelete(endpoint) {
-  const res = await fetch(`${API_BASE}${endpoint}`, { method: 'DELETE' });
+  const res = await fetch(`${API_BASE}${endpoint}`, { 
+    method: 'DELETE',
+    headers: getAuthHeaders()
+  });
   const data = await res.json();
+  if (res.status === 401) return handleUnauthorized();
   if (!data.success) throw new Error(data.message);
   return data;
+}
+
+function handleUnauthorized() {
+  localStorage.removeItem('aiva_token');
+  showLoginOverlay();
+  throw new Error('Unauthorized. Please log in.');
+}
+
+// Authentication Logic
+async function login(email, password) {
+  try {
+    const res = await fetch(`${API_BASE}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await res.json();
+    if (data.success) {
+      localStorage.setItem('aiva_token', data.token);
+      hideLoginOverlay();
+      window.location.reload();
+    } else {
+      showToast(data.message, 'error');
+    }
+  } catch (err) {
+    showToast('Login failed', 'error');
+  }
+}
+
+function logout() {
+  localStorage.removeItem('aiva_token');
+  window.location.reload();
+}
+
+function showLoginOverlay() {
+  const overlay = document.getElementById('login-overlay');
+  if (overlay) overlay.style.display = 'flex';
+}
+
+function hideLoginOverlay() {
+  const overlay = document.getElementById('login-overlay');
+  if (overlay) overlay.style.display = 'none';
 }
 
 // ============================================================
@@ -518,6 +577,11 @@ function showToast(message, type = 'info') {
 // INIT — Run on page load
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
+  // Check auth
+  if (!localStorage.getItem('aiva_token')) {
+    showLoginOverlay();
+    return;
+  }
   // Highlight active sidebar link
   const currentPath = window.location.pathname.split('/').pop();
   document.querySelectorAll('.sidebar-link').forEach(link => {

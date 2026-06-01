@@ -136,19 +136,129 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Featured Products Grid
-gsap.utils.toArray('.premium-prod-card').forEach(card => {
-    gsap.from(card, {
-        scrollTrigger: {
-            trigger: card,
-            start: 'top 85%',
-        },
-        y: 60,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out'
+// Dynamic Product Fetching & Rendering
+async function initProducts() {
+    try {
+        const res = await fetch('http://localhost:5000/api/products');
+        const data = await res.json();
+        const products = data.data || [];
+
+        const asepticGrid = document.getElementById('aseptic-grid');
+        const iqfGrid = document.getElementById('iqf-grid');
+        if (!asepticGrid || !iqfGrid) return;
+
+        products.forEach(product => {
+            const html = `
+                <div class="premium-prod-card">
+                    <div class="p-img-box">
+                        <img src="${product.image || product.image_url}" alt="${product.name}">
+                    </div>
+                    <div class="p-info">
+                        <h3>${product.name}</h3>
+                        <p class="p-desc">${product.description || product.desc || ''}</p>
+                        <ul class="p-specs">
+                            <li><span>Category:</span> ${product.category}</li>
+                            ${product.brix ? `<li><span>Brix:</span> ${product.brix}</li>` : ''}
+                            ${product.shelfLife ? `<li><span>Shelf Life:</span> ${product.shelfLife}</li>` : ''}
+                        </ul>
+                        <a href="#contact" class="btn-link">Get Quote <i class="ph ph-arrow-right"></i></a>
+                    </div>
+                </div>
+            `;
+            
+            if (product.tab === 'aseptic') {
+                asepticGrid.insertAdjacentHTML('beforeend', html);
+            } else if (product.tab === 'iqf') {
+                iqfGrid.insertAdjacentHTML('beforeend', html);
+            }
+        });
+
+        // Initialize animations after DOM insertion
+        gsap.utils.toArray('.premium-prod-card').forEach(card => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%',
+                },
+                y: 60,
+                opacity: 0,
+                duration: 0.8,
+                ease: 'power3.out'
+            });
+        });
+
+        // Re-attach Get Quote click handlers
+        document.querySelectorAll('.premium-prod-card .btn-link').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const card = this.closest('.premium-prod-card');
+                if (card) {
+                    const imgSource = card.querySelector('img').src;
+                    const inquiryImg = document.querySelector('.inquiry-img img');
+                    if (inquiryImg) {
+                        inquiryImg.src = imgSource;
+                        gsap.fromTo(inquiryImg, 
+                            { scale: 0.9, opacity: 0.8 }, 
+                            { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.5)" }
+                        );
+                    }
+                }
+            });
+        });
+
+        setTimeout(() => ScrollTrigger.refresh(), 100);
+
+    } catch (error) {
+        console.error('Failed to load products:', error);
+    }
+}
+
+// Form Submission Handler
+const contactForm = document.querySelector('.luxury-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const payload = {
+            name: document.getElementById('name').value,
+            company: document.getElementById('company').value,
+            country: document.getElementById('country').value,
+            email: document.getElementById('email').value,
+            interest: document.getElementById('interest').value,
+            quantity: document.getElementById('qty').value,
+            message: document.getElementById('message').value
+        };
+
+        const btn = contactForm.querySelector('button[type="submit"]');
+        const originalText = btn.innerText;
+        btn.innerText = 'Sending...';
+        btn.disabled = true;
+
+        try {
+            const res = await fetch('http://localhost:5000/api/inquiries', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const data = await res.json();
+            
+            if (data.success) {
+                btn.innerText = 'Quote Requested!';
+                btn.style.background = '#10b981';
+                contactForm.reset();
+            } else {
+                btn.innerText = 'Error - Try Again';
+            }
+        } catch (error) {
+            btn.innerText = 'Error - Try Again';
+        }
+
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.style.background = '';
+            btn.disabled = false;
+        }, 3000);
     });
-});
+}
 
 // Massive Render Parallax (Alphonso & Inquiry)
 gsap.utils.toArray('.massive-render').forEach(img => {
@@ -163,5 +273,7 @@ gsap.utils.toArray('.massive-render').forEach(img => {
         ease: 'none'
     });
 });
+
+window.addEventListener('DOMContentLoaded', initProducts);
 
 

@@ -3,7 +3,7 @@
  * Connects to backend API at localhost:5001
  */
 
-const API_BASE = 'http://localhost:5001/api';
+const API_BASE = 'http://localhost:5000/api';
 
 // ============================================================
 // API Helper Functions

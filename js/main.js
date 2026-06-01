@@ -218,5 +218,76 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
+    // --- 9. Handle Luxury Form Submissions (e.g. index.html) ---
+    const luxuryForms = document.querySelectorAll('.luxury-form');
+    luxuryForms.forEach(form => {
+        if (form.getAttribute('data-handled') === 'true') return;
+        form.setAttribute('data-handled', 'true');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const safeVal = (id) => {
+                const el = document.getElementById(id);
+                return el ? el.value : '';
+            };
+
+            const payload = {
+                name: safeVal('name'),
+                company: safeVal('company') || 'N/A', // from index.html which doesn't have it
+                country: safeVal('country') || 'N/A',
+                email: safeVal('email'),
+                interest: safeVal('interest'),
+                quantity: safeVal('qty') || 'N/A',
+                message: safeVal('message')
+            };
+
+            const btn = form.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+            btn.innerText = 'Sending...';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch('http://localhost:5000/api/inquiries', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                
+                if (data.success) {
+                    btn.innerText = 'Inquiry Sent!';
+                    btn.style.background = '#10b981';
+                    form.reset();
+                } else {
+                    btn.innerText = 'Error - Try Again';
+                }
+            } catch (error) {
+                btn.innerText = 'Error - Try Again';
+            }
+
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.background = '';
+                btn.disabled = false;
+            }, 3000);
+        });
+    });
+
+    // --- 10. Basic Analytics Tracking ---
+    try {
+        fetch('http://localhost:5000/api/analytics/track', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                eventType: 'page_view',
+                pageUrl: window.location.pathname,
+                countryCode: 'Unknown',
+                browserInfo: navigator.userAgent
+            })
+        });
+    } catch (e) {
+        // Silently ignore tracking errors
+    }
 
 });

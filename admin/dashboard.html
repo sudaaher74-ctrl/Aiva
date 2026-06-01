@@ -752,9 +752,35 @@
     }
   
 
+/* Login Overlay */
+    #login-overlay {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--bg-base); display: none;
+      align-items: center; justify-content: center;
+    }
+    .login-card {
+      background: var(--bg-panel); padding: 40px; border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle); width: 100%; max-width: 400px;
+      text-align: center;
+    }
+    .login-input {
+      width: 100%; padding: 12px; margin-bottom: 16px;
+      background: var(--bg-input); border: 1px solid var(--border-subtle);
+      color: var(--text-primary); border-radius: var(--radius-sm);
+    }
 </style>
 </head>
 <body>
+  <!-- Login Overlay -->
+  <div id="login-overlay">
+    <div class="login-card">
+      <h2 style="color:var(--accent-gold);margin-bottom:8px;">AIVA OS</h2>
+      <p style="color:var(--text-secondary);margin-bottom:24px;">Admin Dashboard Login</p>
+      <input type="email" id="login-email" class="login-input" placeholder="Admin Email" />
+      <input type="password" id="login-password" class="login-input" placeholder="Password" />
+      <button class="btn btn-primary w-100" style="justify-content:center;" onclick="login(document.getElementById('login-email').value, document.getElementById('login-password').value)">Log In</button>
+    </div>
+  </div>
   <!-- Sidebar -->
   <aside class="admin-sidebar">
     <div class="sidebar-header">
@@ -798,6 +824,11 @@
       <a href="#analytics" class="sidebar-link">
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
         Analytics
+      </a>
+      <a href="#" class="sidebar-link" onclick="logout()" style="margin-top:auto;color:var(--status-danger)">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+        Logout
+      </a>
       </a>
     </nav>
     
@@ -2130,12 +2161,12 @@
       renderCatalog();
     });
 
-    // Render Dynamic Products List (No mock cards!)
-    function renderCatalog() {
+    // Fetch and render catalog
+    async function renderCatalog() {
       const grid = document.getElementById('admin-products-grid');
       if (!grid) return;
 
-      const products = window.aivaProductSystem.getProducts();
+      const products = await window.aivaProductSystem.getProducts();
       const batches = getBatchesObject();
 
       let filtered = products;
@@ -2309,7 +2340,7 @@
       }).join('');
     }
 
-    function saveNewBatch(e) {
+    async function saveNewBatch(e) {
       e.preventDefault();
       const productId = document.getElementById('batch-product-id').value;
       const batchNo = document.getElementById('new-batch-no').value.trim();
@@ -2342,8 +2373,9 @@
       renderCatalog();
 
       // Regene new batch number for convenience
-      const prod = window.aivaProductSystem.getProductById(productId);
-      const prefix = prod.name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 3);
+      const prods = await window.aivaProductSystem.getProducts();
+      const prod = prods.find(p => p.id === productId || p._id === productId);
+      const prefix = prod ? prod.name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 3) : 'PRD';
       const dateCode = new Date().toISOString().slice(2, 7).replace('-', '');
       const rand = Math.floor(100 + Math.random() * 900);
       document.getElementById('new-batch-no').value = `BT-${prefix}-${dateCode}-${rand}`;
@@ -2383,7 +2415,7 @@
       }
     }
 
-    function saveNewProduct(e) {
+    async function saveNewProduct(e) {
       e.preventDefault();
       const name = document.getElementById('prod-name').value.trim();
       const tab = document.getElementById('prod-tab').value;
@@ -2420,17 +2452,18 @@
       };
 
       // Add to shared systems catalog
-      window.aivaProductSystem.addProduct(newProduct);
+      await window.aivaProductSystem.addProduct(newProduct);
 
       showToast(`✅ ${name} registered in global inventory!`, 'success');
       closeModal('product-modal');
       renderCatalog();
     }
 
-    function deleteProduct(productId) {
+    async function deleteProduct(productId) {
       if (!confirm('Are you sure you want to permanently delete this product from Aiva catalog?')) return;
       
-      const products = window.aivaProductSystem.getProducts();
+      await window.aivaProductSystem.deleteProduct(productId);
+      const products = await window.aivaProductSystem.getProducts();
       const idx = products.findIndex(p => p.id === productId);
       if (idx !== -1) {
         products.splice(idx, 1);
@@ -2446,8 +2479,8 @@
       }
     }
 
-    function exportProductCSV() {
-      const products = window.aivaProductSystem.getProducts();
+    async function exportProductCSV() {
+      const products = await window.aivaProductSystem.getProducts();
       const batches = getBatchesObject();
 
       let csv = 'ID,Name,Category,Tab,Total Active Stock (MT),Brix,Shelf Life\n';
@@ -2520,12 +2553,11 @@
 
       try {
         // 1. Fetch Closed (Won) inquiries from live API
-        const res = await fetch(`${API_BASE}/inquiries?status=Closed`);
-        const data = await res.json();
+        const data = await apiGet(`/inquiries?status=Closed`);
         
         // 2. Fetch overall stats for incoming lead count
-        const statsRes = await fetch(`${API_BASE}/inquiries/stats`);
-        const statsData = await statsRes.json();
+        const statsRes = await apiGet(`/inquiries/stats`);
+        const totalLeads = statsRes.data.total;
 
         if (data.success) {
           allClients = data.data;
@@ -2552,7 +2584,7 @@
         tableBody.innerHTML = `
           <tr>
             <td colspan="7" style="text-align:center;color:var(--status-danger);padding:40px;">
-              ⚠️ Cannot connect to backend server. Ensure it is running on port 5001.
+              ⚠️ Cannot connect to backend server. Ensure it is running on port 5000.
             </td>
           </tr>
         `;
@@ -2706,8 +2738,7 @@
     // ============================================================
     async function loadStats() {
       try {
-        const res = await fetch(`${API_BASE}/purchase-orders/stats`);
-        const { data } = await res.json();
+        const { data } = await apiGet(`/purchase-orders/stats`);
 
         document.getElementById('kpi-total').textContent = data.total;
         document.getElementById('kpi-today-sub').textContent = `${data.today} created today`;
@@ -2733,8 +2764,7 @@
         if (status && status !== 'All') endpoint += `&status=${status}`;
         if (search) endpoint += `&search=${encodeURIComponent(search)}`;
 
-        const res = await fetch(`${API_BASE}${endpoint}`);
-        const { data: orders, pagination } = await res.json();
+        const { data: orders, pagination } = await apiGet(endpoint);
 
         const countEl = document.getElementById('po-count');
         if (countEl) countEl.textContent = `${pagination.total} orders`;
@@ -2853,12 +2883,7 @@
 
     async function updateStatus(id, newStatus) {
       try {
-        const res = await fetch(`${API_BASE}/purchase-orders/${id}/status`, {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ status: newStatus })
-        });
-        const data = await res.json();
+        const data = await apiPatch(`/purchase-orders/${id}/status`, { status: newStatus });
         if (data.success) {
           showToast(`Status updated to ${newStatus}`);
           loadOrders(currentFilter, currentSearch);
@@ -2877,8 +2902,7 @@
     async function deletePO(id, poNumber) {
       if (!confirm(`Delete purchase order ${poNumber}? This cannot be undone.`)) return;
       try {
-        const res = await fetch(`${API_BASE}/purchase-orders/${id}`, { method: 'DELETE' });
-        const data = await res.json();
+        const data = await apiDelete(`/purchase-orders/${id}`);
         if (data.success) {
           showToast(`${poNumber} deleted`);
           loadOrders(currentFilter, currentSearch);
@@ -2893,8 +2917,7 @@
 
     async function emailPO(id) {
       try {
-        const res = await fetch(`${API_BASE}/purchase-orders/${id}/email`, { method: 'POST' });
-        const data = await res.json();
+        const data = await apiPost(`/purchase-orders/${id}/email`, {});
         if (data.success) {
           showToast(data.message);
         } else {
@@ -2959,27 +2982,28 @@
     // ============================================================
     // Product list from shared system
     // ============================================================
-    function getProductOptions() {
+    async function getProductOptions() {
       let products = [];
-      if (window.aivaProductSystem) {
-        products = window.aivaProductSystem.getProducts();
-      }
+      try {
+        products = await window.aivaProductSystem.getProducts();
+      } catch (err) {}
       return products.map(p => `<option value="${p.name}">${p.name}</option>`).join('');
     }
 
     // ============================================================
     // Line Items Management
     // ============================================================
-    function addLineItem(data = {}) {
+    async function addLineItem(data = {}) {
       lineItemCount++;
       const tbody = document.getElementById('line-items-body');
       const tr = document.createElement('tr');
       tr.id = `line-item-${lineItemCount}`;
+      const options = await getProductOptions();
       tr.innerHTML = `
         <td>
           <select onchange="recalculate()" style="min-width:160px;">
             <option value="">Select product...</option>
-            ${getProductOptions()}
+            ${options}
             <option value="__custom">— Custom Product —</option>
           </select>
           ${data.productName ? `<script>document.querySelector('#line-item-${lineItemCount} select').value = '${data.productName}'<\/script>` : ''}
@@ -3162,22 +3186,13 @@
       }
 
       try {
-        let res;
+        let result;
         if (editingId) {
-          res = await fetch(`${API_BASE}/purchase-orders/${editingId}`, {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-          });
+          result = await apiPatch(`/purchase-orders/${editingId}`, data);
         } else {
-          res = await fetch(`${API_BASE}/purchase-orders`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-          });
+          result = await apiPost(`/purchase-orders`, data);
         }
 
-        const result = await res.json();
         if (result.success) {
           showToast(`Purchase Order ${result.data.poNumber} saved!`);
           editingId = result.data._id;
@@ -3216,9 +3231,8 @@
     }
 
     async function fetchPO(id) {
-      const res = await fetch(`${API_BASE}/purchase-orders/${id}`);
-      const { data } = await res.json();
-      return data;
+      const data = await apiGet(`/purchase-orders/${id}`);
+      if (data.success) return data.data;
     }
 
     // ============================================================
@@ -3556,51 +3570,53 @@
     // ============================================================
     async function loadExistingPO(id) {
       try {
-        const res = await fetch(`${API_BASE}/purchase-orders/${id}`);
-        const { data: po } = await res.json();
-        if (!po) return;
+        const data = await apiGet(`/purchase-orders/${id}`);
+        if (data.success) {
+          const po = data.data;
+          editingId = po._id;
+          document.getElementById('po-number-display').textContent = po.poNumber;
+          document.getElementById('page-title').textContent = 'Edit Purchase Order';
+          document.getElementById('page-subtitle').textContent = `Editing ${po.poNumber}`;
+          document.getElementById('summary-status').textContent = po.status.toUpperCase();
 
-        editingId = po._id;
-        document.getElementById('po-number-display').textContent = po.poNumber;
-        document.getElementById('page-title').textContent = 'Edit Purchase Order';
-        document.getElementById('page-subtitle').textContent = `Editing ${po.poNumber}`;
-        document.getElementById('summary-status').textContent = po.status.toUpperCase();
+          // Fill buyer
+          document.getElementById('buyerName').value = po.buyerName || '';
+          document.getElementById('buyerCompany').value = po.buyerCompany || '';
+          document.getElementById('buyerEmail').value = po.buyerEmail || '';
+          document.getElementById('buyerPhone').value = po.buyerPhone || '';
+          document.getElementById('buyerCountry').value = po.buyerCountry || '';
+          document.getElementById('buyerAddress').value = po.buyerAddress || '';
 
-        // Fill buyer
-        document.getElementById('buyerName').value = po.buyerName || '';
-        document.getElementById('buyerCompany').value = po.buyerCompany || '';
-        document.getElementById('buyerEmail').value = po.buyerEmail || '';
-        document.getElementById('buyerPhone').value = po.buyerPhone || '';
-        document.getElementById('buyerCountry').value = po.buyerCountry || '';
-        document.getElementById('buyerAddress').value = po.buyerAddress || '';
+          // Fill items
+          for (const item of (po.items || [])) {
+            await addLineItem(item);
+          }
 
-        // Fill items
-        (po.items || []).forEach(item => addLineItem(item));
+          // Fill shipment
+          document.getElementById('portOfLoading').value = po.portOfLoading || '';
+          document.getElementById('destinationPort').value = po.destinationPort || '';
+          document.getElementById('incoterms').value = po.incoterms || 'FOB';
+          document.getElementById('containerType').value = po.containerType || '20ft Dry';
+          document.getElementById('shipmentMethod').value = po.shipmentMethod || 'Sea';
+          if (po.deliveryDate) document.getElementById('deliveryDate').value = po.deliveryDate.split('T')[0];
 
-        // Fill shipment
-        document.getElementById('portOfLoading').value = po.portOfLoading || '';
-        document.getElementById('destinationPort').value = po.destinationPort || '';
-        document.getElementById('incoterms').value = po.incoterms || 'FOB';
-        document.getElementById('containerType').value = po.containerType || '20ft Dry';
-        document.getElementById('shipmentMethod').value = po.shipmentMethod || 'Sea';
-        if (po.deliveryDate) document.getElementById('deliveryDate').value = po.deliveryDate.split('T')[0];
+          // Fill financials
+          document.getElementById('gstPercent').value = po.gstPercent || 0;
+          document.getElementById('freightCharges').value = po.freightCharges || 0;
+          document.getElementById('insurance').value = po.insurance || 0;
+          document.getElementById('poCurrency').value = po.currency || 'USD';
 
-        // Fill financials
-        document.getElementById('gstPercent').value = po.gstPercent || 0;
-        document.getElementById('freightCharges').value = po.freightCharges || 0;
-        document.getElementById('insurance').value = po.insurance || 0;
-        document.getElementById('poCurrency').value = po.currency || 'USD';
+          // Fill terms
+          if (po.termsAndConditions) document.getElementById('termsAndConditions').value = po.termsAndConditions;
+          if (po.internalNotes) document.getElementById('internalNotes').value = po.internalNotes;
 
-        // Fill terms
-        if (po.termsAndConditions) document.getElementById('termsAndConditions').value = po.termsAndConditions;
-        if (po.internalNotes) document.getElementById('internalNotes').value = po.internalNotes;
+          recalculate();
 
-        recalculate();
-
-        // If action=pdf, auto-download
-        var urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('action') === 'pdf') {
-          setTimeout(() => generatePDF(po), 500);
+          // If action=pdf, auto-download
+          var urlParams = new URLSearchParams(window.location.search);
+          if (urlParams.get('action') === 'pdf') {
+            setTimeout(() => generatePDF(po), 500);
+          }
         }
       } catch (error) {
         showToast('Failed to load PO', 'error');
@@ -3628,15 +3644,16 @@
       } else {
         // Get next PO number
         try {
-          const res = await fetch(`${API_BASE}/purchase-orders/next-number`);
-          const { data } = await res.json();
-          document.getElementById('po-number-display').textContent = data.poNumber;
+          const data = await apiGet(`/purchase-orders/next-number`);
+          if (data.success) {
+            document.getElementById('po-number-display').textContent = data.data.poNumber;
+          }
         } catch (e) {
           document.getElementById('po-number-display').textContent = 'PO-AIVA-' + new Date().getFullYear() + '-0001';
         }
 
         // Add one empty line item
-        addLineItem();
+        await addLineItem();
       }
 
       // Live preview updates

@@ -28,6 +28,11 @@ app.use((req, res, next) => {
 });
 
 // API Routes
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/products', require('./routes/products'));
+app.use('/api/customers', require('./routes/customers'));
+app.use('/api/quotations', require('./routes/quotations'));
+app.use('/api/analytics', require('./routes/analytics'));
 app.use('/api/inquiries', require('./routes/inquiries'));
 app.use('/api/purchase-orders', require('./routes/purchaseOrders'));
 
