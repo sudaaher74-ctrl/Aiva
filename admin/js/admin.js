@@ -3,7 +3,7 @@
  * Connects to backend API at localhost:5001
  */
 
-const API_BASE = 'http://localhost:5001/api';
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:5001/api' : '/api';
 
 function getAuthHeaders() {
   const token = localStorage.getItem('aiva_token');
@@ -633,3 +633,474 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+// ============================================================
+// ROUTING LISTENER
+// ============================================================
+window.addEventListener('viewChanged', (e) => {
+  const viewId = e.detail.viewId;
+  if (viewId === 'dashboard') loadDashboard();
+  else if (viewId === 'inquiries') loadInquiries(currentFilter, currentSearch);
+  else if (viewId === 'customers') loadCustomers();
+  else if (viewId === 'products') loadAdminProducts();
+  else if (viewId === 'purchase-orders') loadPurchaseOrders();
+  else if (viewId === 'analytics') loadAnalytics();
+});
+
+// ============================================================
+// CUSTOMERS PAGE
+// ============================================================
+async function loadCustomers() {
+  const tableBody = document.getElementById('customers-table-body');
+  if (!tableBody) return;
+  
+  try {
+    const { data: customers } = await apiGet('/customers');
+    if (customers.length === 0) {
+      tableBody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--text-secondary);padding:40px;">No customers found.</td></tr>`;
+      return;
+    }
+    tableBody.innerHTML = customers.map(c => `
+      <tr data-id="${c._id}">
+        <td><div style="font-weight:600;">${c.companyName}</div><div style="font-size:0.75rem;color:var(--text-secondary)">${c.contactName}</div></td>
+        <td><a href="mailto:${c.email}" style="color:var(--accent-gold);">${c.email}</a></td>
+        <td>${c.phone || '-'}</td>
+        <td>${c.country}</td>
+        <td><span style="font-size:0.75rem;padding:4px 8px;background:rgba(255,255,255,0.05);border-radius:4px;">${c.segment || 'Retail'}</span></td>
+        <td>${c.totalSpent ? '$' + c.totalSpent.toLocaleString() : '$0'}</td>
+        <td>
+          <button class="btn btn-action" onclick="deleteCustomer('${c._id}')">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+          </button>
+        </td>
+      </tr>
+    `).join('');
+  } catch (error) {
+    console.error('Customers load error:', error);
+    tableBody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--status-danger);">Failed to load customers</td></tr>`;
+  }
+}
+
+window.deleteCustomer = async function(id) {
+  if (!confirm('Delete customer?')) return;
+  try {
+    await apiDelete(`/customers/${id}`);
+    showToast('Customer deleted', 'success');
+    loadCustomers();
+  } catch (err) {
+    showToast('Failed to delete customer', 'error');
+  }
+};
+
+// ============================================================
+// PURCHASE ORDERS PAGE
+// ============================================================
+async function loadPurchaseOrders() {
+  const tableBody = document.getElementById('po-table-body');
+  if (!tableBody) return;
+  
+  try {
+    const { data: pos } = await apiGet('/purchase-orders');
+    if (pos.length === 0) {
+      tableBody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--text-secondary);padding:40px;">No purchase orders found.</td></tr>`;
+      return;
+    }
+    tableBody.innerHTML = pos.map(po => {
+      const statusColor = po.status === 'Draft' ? 'var(--text-secondary)' : po.status === 'Sent' ? '#3B82F6' : po.status === 'Approved' ? '#10B981' : '#F59E0B';
+      return `
+      <tr>
+        <td style="font-weight:700;color:var(--text-primary)">${po.poNumber || po._id.substring(0, 8).toUpperCase()}</td>
+        <td>${formatDate(po.createdAt)}</td>
+        <td>${po.vendorName || '-'}</td>
+        <td style="font-weight:600">$${(po.totalAmount || 0).toLocaleString()}</td>
+        <td><span style="color:${statusColor};font-weight:700;font-size:0.8rem;padding:4px 8px;background:rgba(255,255,255,0.05);border-radius:12px;">${po.status || 'Draft'}</span></td>
+        <td>
+          <button class="btn btn-action" onclick="deletePO('${po._id}')">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+          </button>
+        </td>
+      </tr>
+    `}).join('');
+  } catch (err) {
+    tableBody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--status-danger);">Failed to load POs</td></tr>`;
+  }
+}
+
+window.deletePO = async function(id) {
+  if (!confirm('Delete purchase order?')) return;
+  try {
+    await apiDelete(`/purchase-orders/${id}`);
+    showToast('PO deleted', 'success');
+    loadPurchaseOrders();
+  } catch (err) {
+    showToast('Failed to delete PO', 'error');
+  }
+};
+
+// ============================================================
+// PRODUCTS (ADMIN CATALOG) PAGE
+// ============================================================
+async function loadAdminProducts() {
+  const grid = document.getElementById('admin-products-grid');
+  if (!grid) return;
+  
+  try {
+    const { data: products } = await apiGet('/products');
+    if (products.length === 0) {
+      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;">No products found in catalog.</div>';
+      return;
+    }
+    grid.innerHTML = products.map(p => `
+      <div class="product-card" style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:12px;overflow:hidden;position:relative;">
+        <div style="height:150px;overflow:hidden;">
+          <img src="${p.image_url || p.image || ''}" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='https://images.unsplash.com/photo-1553279768-865429fa0078?w=500&q=80'">
+        </div>
+        <div style="padding:16px;">
+          <div style="font-size:0.75rem;color:var(--accent-gold);text-transform:uppercase;margin-bottom:4px;font-weight:700">${p.category}</div>
+          <h3 style="font-size:1rem;margin:0 0 8px 0;font-weight:600">${p.name}</h3>
+          <p style="font-size:0.875rem;color:var(--text-secondary);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:16px">${p.desc || p.description}</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-weight:700;font-size:0.875rem">${p.brix ? 'Brix: '+p.brix : ''}</span>
+            <button class="btn btn-action" style="color:var(--status-danger)" onclick="deleteAdminProduct('${p._id}')">Delete</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  } catch (err) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--status-danger);">Failed to load products</div>';
+  }
+}
+
+window.deleteAdminProduct = async function(id) {
+  if (!confirm('Delete product?')) return;
+  try {
+    await apiDelete(`/products/${id}`);
+    showToast('Product deleted', 'success');
+    loadAdminProducts();
+  } catch (err) {
+    showToast('Failed to delete product', 'error');
+  }
+};
+
+// ============================================================
+// ANALYTICS PAGE (Stubs)
+// ============================================================
+async function loadAnalytics() {
+  // Setup charts if they exist in DOM
+  const ctxRevenue = document.getElementById('analyticsRevenueChart');
+  if (ctxRevenue) {
+    console.log('Would render charts here if Chart.js is loaded');
+  }
+}
+
+// ============================================================
+// PURCHASE ORDER CREATION
+// ============================================================
+window.savePO = async function(status, downloadPdf = false) {
+  const poData = {
+    vendorName: document.getElementById('po-vendor-name')?.value || '',
+    vendorAddress: document.getElementById('po-vendor-address')?.value || '',
+    vendorContact: document.getElementById('po-vendor-contact')?.value || '',
+    incoterms: document.getElementById('po-incoterms')?.value || 'FOB',
+    originPort: document.getElementById('po-origin')?.value || '',
+    destinationPort: document.getElementById('po-dest')?.value || '',
+    currency: document.getElementById('po-currency')?.value || 'USD',
+    deliveryDate: document.getElementById('po-delivery-date')?.value || null,
+    status: status,
+    items: [],
+    totalAmount: 0
+  };
+
+  // Collect line items
+  document.querySelectorAll('#line-items-body tr').forEach(row => {
+    const qty = parseFloat(row.querySelector('.po-qty')?.value || 0);
+    const price = parseFloat(row.querySelector('.po-price')?.value || 0);
+    const desc = row.querySelector('select')?.value || 'Item';
+    if (qty > 0 && price > 0) {
+      poData.items.push({ description: desc, quantity: qty, unitPrice: price });
+      poData.totalAmount += (qty * price);
+    }
+  });
+
+  if (poData.items.length === 0) {
+    showToast('Add at least one line item', 'error');
+    return;
+  }
+
+  try {
+    const { data: newPo } = await apiPost('/purchase-orders', poData);
+    showToast(`PO ${status} successfully!`, 'success');
+    
+    if (downloadPdf) {
+      // Stub for PDF generation
+      showToast('PDF downloaded', 'success');
+    }
+    
+    // Switch to PO list view
+    window.location.hash = 'purchase-orders';
+  } catch (err) {
+    showToast('Failed to save PO', 'error');
+  }
+};
+
+window.updatePOPreview = function() {
+  const origin = document.getElementById('po-origin')?.value || '-';
+  const dest = document.getElementById('po-dest')?.value || '-';
+  const inco = document.getElementById('po-incoterms')?.value || 'FOB';
+  
+  if (document.getElementById('preview-origin')) document.getElementById('preview-origin').innerText = origin;
+  if (document.getElementById('preview-dest')) document.getElementById('preview-dest').innerText = dest;
+  if (document.getElementById('preview-inco')) document.getElementById('preview-inco').innerText = inco;
+
+  // Calculate totals
+  let subtotal = 0;
+  document.querySelectorAll('#line-items-body tr').forEach(row => {
+    const qty = parseFloat(row.querySelector('.po-qty')?.value || 0);
+    const price = parseFloat(row.querySelector('.po-price')?.value || 0);
+    const total = qty * price;
+    if(row.querySelector('.po-line-total')) {
+      row.querySelector('.po-line-total').innerText = '$' + total.toLocaleString();
+    }
+    subtotal += total;
+  });
+  
+  const tax = subtotal * 0; // assuming 0% tax for now
+  const total = subtotal + tax;
+
+  if (document.getElementById('preview-subtotal')) document.getElementById('preview-subtotal').innerText = '$' + subtotal.toLocaleString();
+  if (document.getElementById('preview-total')) document.getElementById('preview-total').innerText = '$' + total.toLocaleString();
+document.addEventListener('input', (e) => {
+  if (e.target.closest('#view-create-po')) {
+    updatePOPreview();
+  }
+});
+
+window.openAddProductModal = function() {
+  let modal = document.getElementById('add-product-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'add-product-modal';
+    modal.className = 'modal-overlay';
+    modal.innerHTML = `
+      <div class="modal-card" style="max-width:500px;">
+        <div class="modal-header">
+          <h3 class="modal-title">Add New Product</h3>
+          <button class="modal-close" onclick="closeAddProductModal()">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="add-product-form" onsubmit="event.preventDefault(); submitAddProduct();">
+            <div class="modal-row">
+              <div class="modal-group full-width">
+                <label class="modal-label">Product Name</label>
+                <input type="text" id="prod-name" class="modal-input" required>
+              </div>
+              <div class="modal-group full-width">
+                <label class="modal-label">Category</label>
+                <input type="text" id="prod-category" class="modal-input" required>
+              </div>
+              <div class="modal-group full-width">
+                <label class="modal-label">Description</label>
+                <textarea id="prod-desc" class="modal-textarea" rows="3" required></textarea>
+              </div>
+              <div class="modal-group">
+                <label class="modal-label">Brix</label>
+                <input type="text" id="prod-brix" class="modal-input">
+              </div>
+              <div class="modal-group">
+                <label class="modal-label">Tab ID</label>
+                <select id="prod-tab" class="modal-select">
+                  <option value="aseptic">Aseptic</option>
+                  <option value="iqf">IQF</option>
+                  <option value="concentrates">Concentrates</option>
+                </select>
+              </div>
+              <div class="modal-group full-width">
+                <button type="submit" class="btn btn-primary" style="width:100%;margin-top:16px;">Save Product</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  }
+  modal.classList.add('active');
+};
+
+window.closeAddProductModal = function() {
+  const modal = document.getElementById('add-product-modal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.getElementById('add-product-form').reset();
+  }
+};
+
+window.submitAddProduct = async function() {
+  const product = {
+    name: document.getElementById('prod-name').value,
+    category: document.getElementById('prod-category').value,
+    description: document.getElementById('prod-desc').value,
+    brix: document.getElementById('prod-brix').value,
+    tab: document.getElementById('prod-tab').value,
+    image_url: 'https://images.unsplash.com/photo-1553279768-865429fa0078?w=800&q=80'
+  };
+
+  try {
+    await apiPost('/products', product);
+    showToast('Product added', 'success');
+    closeAddProductModal();
+    loadAdminProducts();
+  } catch (err) {
+    showToast('Failed to add product', 'error');
+  }
+};
+
+window.addLineItem = function() {
+  const tbody = document.getElementById('line-items-body');
+  if (!tbody) return;
+  const rowId = 'line-' + Math.random().toString(36).substr(2, 9);
+  const row = document.createElement('tr');
+  row.id = rowId;
+  row.innerHTML = `
+    <td>
+      <select class="form-input po-desc" style="padding:6px;width:100%;font-size:0.875rem">
+        <option value="Alphonso Mango Pulp">Alphonso Mango Pulp</option>
+        <option value="Totapuri Mango Pulp">Totapuri Mango Pulp</option>
+        <option value="Guava Pulp">Guava Pulp</option>
+        <option value="IQF Sweet Corn">IQF Sweet Corn</option>
+      </select>
+    </td>
+    <td><input type="number" class="form-input po-qty" value="1" min="1" style="padding:6px;width:100%"></td>
+    <td>
+      <select class="form-input po-unit" style="padding:6px;width:100%">
+        <option value="MT">MT</option>
+        <option value="FCL">FCL</option>
+        <option value="KG">KG</option>
+      </select>
+    </td>
+    <td><input type="text" class="form-input po-packaging" value="Aseptic Drum" style="padding:6px;width:100%"></td>
+    <td><input type="number" class="form-input po-price" value="1000" min="0" style="padding:6px;width:100%"></td>
+    <td>
+      <select class="form-input po-curr" style="padding:6px;width:100%">
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+      </select>
+    </td>
+    <td><input type="text" class="form-input po-storage" value="Ambient" style="padding:6px;width:100%"></td>
+    <td><input type="text" class="form-input po-shelf" value="24 Months" style="padding:6px;width:100%"></td>
+    <td class="po-line-total" style="font-weight:600;padding:6px;">$1,000</td>
+    <td>
+      <button class="btn btn-action" onclick="document.getElementById('${rowId}').remove(); updatePOPreview();" style="color:var(--status-danger)">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+      </button>
+    </td>
+  `;
+  tbody.appendChild(row);
+  updatePOPreview();
+};
+
+// ============================================================
+// ADD INQUIRY MODAL (Admin side)
+// ============================================================
+window.openAddInquiryModal = function() {
+  let modal = document.getElementById('add-inquiry-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'add-inquiry-modal';
+    modal.className = 'modal-overlay';
+    modal.innerHTML = `
+      <div class="modal-card" style="max-width:550px;">
+        <div class="modal-header">
+          <h3 class="modal-title">Create New Inquiry</h3>
+          <button class="modal-close" type="button" onclick="closeAddInquiryModal()">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="add-inquiry-form" onsubmit="event.preventDefault(); submitAddInquiry();">
+            <div class="modal-row">
+              <div class="modal-group">
+                <label class="modal-label">Name</label>
+                <input type="text" id="inq-name" class="modal-input" required>
+              </div>
+              <div class="modal-group">
+                <label class="modal-label">Company</label>
+                <input type="text" id="inq-company" class="modal-input" required>
+              </div>
+              <div class="modal-group">
+                <label class="modal-label">Email</label>
+                <input type="email" id="inq-email" class="modal-input" required>
+              </div>
+              <div class="modal-group">
+                <label class="modal-label">Phone</label>
+                <input type="text" id="inq-phone" class="modal-input">
+              </div>
+              <div class="modal-group">
+                <label class="modal-label">Country</label>
+                <input type="text" id="inq-country" class="modal-input" required>
+              </div>
+              <div class="modal-group">
+                <label class="modal-label">Product of Interest</label>
+                <input type="text" id="inq-product" class="modal-input">
+              </div>
+              <div class="modal-group full-width">
+                <label class="modal-label">Message/Requirements</label>
+                <textarea id="inq-message" class="modal-textarea" rows="4"></textarea>
+              </div>
+              <div class="modal-group full-width">
+                <button type="submit" class="btn btn-primary" style="width:100%;margin-top:16px;">Create Inquiry</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  }
+  modal.classList.add('active');
+};
+
+window.closeAddInquiryModal = function() {
+  const modal = document.getElementById('add-inquiry-modal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.getElementById('add-inquiry-form')?.reset();
+  }
+};
+
+window.submitAddInquiry = async function() {
+  const inquiry = {
+    name: document.getElementById('inq-name').value,
+    company: document.getElementById('inq-company').value,
+    email: document.getElementById('inq-email').value,
+    phone: document.getElementById('inq-phone').value,
+    country: document.getElementById('inq-country').value,
+    product: document.getElementById('inq-product').value,
+    message: document.getElementById('inq-message').value,
+    source: 'Admin Dashboard',
+    status: 'New'
+  };
+
+  try {
+    const res = await fetch(`${API_BASE}/inquiries`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(inquiry)
+    });
+    if (!res.ok) throw new Error('Failed to create inquiry');
+    
+    showToast('Inquiry created successfully!', 'success');
+    closeAddInquiryModal();
+    
+    // Refresh the inquiries view if it's currently showing
+    if (typeof loadInquiries === 'function') {
+      loadInquiries(typeof currentFilter !== 'undefined' ? currentFilter : 'All', typeof currentSearch !== 'undefined' ? currentSearch : '');
+    }
+  } catch (err) {
+    console.error(err);
+    showToast('Failed to create inquiry', 'error');
+  }
+};
+

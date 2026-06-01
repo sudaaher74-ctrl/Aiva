@@ -873,10 +873,10 @@
           <h1 class="page-title dashboard-title">Inquiry Management</h1>
         </div>
         <div class="page-actions">
-          <a href="../contact.html" class="btn btn-success export-btn" style="text-decoration:none;">
+          <button class="btn btn-success export-btn" onclick="openAddInquiryModal()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"></path></svg>
             New Inquiry
-          </a>
+          </button>
         </div>
       </div>
 
@@ -999,7 +999,7 @@
                 <div style="font-size:0.75rem;color:var(--text-secondary);">View, filter, and update all submissions</div>
               </div>
             </a>
-            <a href="../contact.html" style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--bg-input);border:1px solid var(--border-subtle);border-radius:8px;text-decoration:none;color:var(--text-primary);transition:all 0.2s;" onmouseover="this.style.borderColor='var(--accent-gold)'" onmouseout="this.style.borderColor='var(--border-subtle)'">
+            <a href="#" onclick="openAddInquiryModal(); return false;" style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--bg-input);border:1px solid var(--border-subtle);border-radius:8px;text-decoration:none;color:var(--text-primary);transition:all 0.2s;cursor:pointer;" onmouseover="this.style.borderColor='var(--accent-gold)'" onmouseout="this.style.borderColor='var(--border-subtle)'">
               <div style="width:36px;height:36px;border-radius:8px;background:var(--accent-gold-dim);display:flex;align-items:center;justify-content:center;">
                 <svg fill="none" stroke="var(--accent-gold)" stroke-width="2" viewBox="0 0 24 24" style="width:18px;height:18px;"><path d="M12 5v14M5 12h14"></path></svg>
               </div>
@@ -1095,9 +1095,9 @@
           <p class="page-subtitle">Oversee and respond to global trade requests in real-time. <span id="inquiry-count" style="color:var(--accent-gold);font-weight:600;"></span></p>
         </div>
         <div class="page-actions">
-          <a href="../contact.html" class="btn btn-success" style="border-radius: 20px; background: rgba(16,185,129,0.1); color: var(--status-success); border: 1px solid rgba(16,185,129,0.3); text-decoration:none;">
+          <button class="btn btn-success" onclick="openAddInquiryModal()" style="border-radius: 20px; background: rgba(16,185,129,0.1); color: var(--status-success); border: 1px solid rgba(16,185,129,0.3);">
             + New Inquiry
-          </a>
+          </button>
         </div>
       </div>
 
@@ -1319,15 +1319,15 @@
           <p class="page-subtitle">Draft a professional quotation for international commerce.</p>
         </div>
         <div class="page-actions">
-          <button class="btn btn-outline" style="color: var(--accent-gold); border-color: var(--accent-gold-dim);">
+          <button class="btn btn-outline" onclick="showToast('Quote Draft Saved', 'success')" style="color: var(--accent-gold); border-color: var(--accent-gold-dim);">
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M10 12h4"></path></svg>
             Save as Draft
           </button>
-          <button class="btn" style="background: rgba(16, 185, 129, 0.1); color: var(--status-success); border: 1px solid rgba(16, 185, 129, 0.3);">
+          <button class="btn" onclick="showToast('Quote PDF Exported', 'success')" style="background: rgba(16, 185, 129, 0.1); color: var(--status-success); border: 1px solid rgba(16, 185, 129, 0.3);">
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
             Export PDF
           </button>
-          <button class="btn btn-primary">
+          <button class="btn btn-primary" onclick="showToast('Quote Sent to Customer', 'success')">
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
             Send Email
           </button>
@@ -1498,10 +1498,10 @@
           <p class="page-subtitle">Create, manage, and track export purchase orders</p>
         </div>
         <div class="page-actions">
-          <a href="create-po.html" class="btn btn-primary" style="text-decoration:none;">
+          <button class="btn btn-primary" onclick="window.location.hash='create-po'" style="cursor:pointer;">
             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width:16px;height:16px;"><path d="M12 5v14M5 12h14"></path></svg>
             New Purchase Order
-          </a>
+          </button>
         </div>
       </div>
 
@@ -2119,6 +2119,8 @@
         link.classList.add('active');
       }
     });
+
+    window.dispatchEvent(new CustomEvent('viewChanged', { detail: { viewId } }));
   }
 
   window.addEventListener('hashchange', handleRoute);
@@ -2529,7 +2531,7 @@
     
 
     document.addEventListener('DOMContentLoaded', () => {
-      loadClientsData();
+      // loadClientsData(); // Disabled to prevent collision with admin.js loadCustomers()
 
       // Search Event Listener
       const search = document.getElementById('customer-search');
@@ -2770,7 +2772,7 @@
               <div class="po-empty">
                 <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
                 <p>No purchase orders found. Create your first one!</p>
-                <a href="create-po.html" class="btn btn-primary" style="text-decoration:none;">+ New Purchase Order</a>
+                <button class="btn btn-primary" onclick="window.location.hash='create-po'" style="text-decoration:none;cursor:pointer;">+ New Purchase Order</button>
               </div>
             </td></tr>`;
           return;
