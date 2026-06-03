@@ -29,6 +29,16 @@ connectDB().then(async () => {
   } catch (e) {
     console.error('Error seeding admin user:', e);
   }
+  
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    console.log(`\n🚀 AIVA Backend running on http://localhost:${PORT}`);
+    console.log(`📡 API endpoint: http://localhost:${PORT}/api/inquiries\n`);
+  });
+}).catch(err => {
+  console.error('Failed to connect to database', err);
+  process.exit(1);
 });
 
 // Middleware
@@ -56,6 +66,10 @@ app.use('/api/inquiries', require('./routes/inquiries'));
 app.use('/api/purchase-orders', require('./routes/purchaseOrders'));
 
 // Health check endpoint
+app.get('/', (req, res) => {
+  res.status(200).send('Server is running');
+});
+
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
@@ -71,14 +85,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, message: 'Internal server error' });
 });
 
-// Start server only if not running on Vercel
-if (process.env.NODE_ENV !== 'production') {
-  const PORT = process.env.PORT || 5000;
-  app.listen(PORT, () => {
-    console.log(`\n🚀 AIVA Backend running on http://localhost:${PORT}`);
-    console.log(`📡 API endpoint: http://localhost:${PORT}/api/inquiries\n`);
-  });
-}
+// Express server startup logic has been moved to the DB connection success block.
 
 // Export for Vercel serverless functions
 module.exports = app;
