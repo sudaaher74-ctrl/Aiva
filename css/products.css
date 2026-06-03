@@ -419,31 +419,75 @@ body.dark-theme .btn-outline:hover {
 }
 
 /* --------------------------------------------------------
-   Cert Strip
+   Standards Section (Light Theme Contrast)
 -------------------------------------------------------- */
-.cert-strip {
-    background: #000;
-    padding: 3rem 0;
+.standards-section {
+    background-color: #fbfbfb; /* Very light gray */
+    color: #050505; /* Force text color to black to override dark theme */
 }
 
-.cert-logos {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+.standards-header {
+    margin-bottom: 4rem;
+}
+
+.standards-subtitle {
+    color: #ffb800;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.standards-title {
+    color: #050505;
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.standards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
 }
 
-.cert-logo {
-    color: rgba(255,255,255,0.3);
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    font-size: 1.2rem;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
+.standard-card {
+    background-color: #ffffff;
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.cert-logo:hover {
-    color: #fff;
-    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+.standard-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.standard-icon {
+    font-size: 3rem;
+    color: #ffb800;
+    margin-bottom: 1.5rem;
+}
+
+.standard-card h3 {
+    color: #050505;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-family: 'Outfit', sans-serif;
+}
+
+.standard-card p {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
 }
 
 /* --------------------------------------------------------
