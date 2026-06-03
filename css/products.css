@@ -567,16 +567,32 @@ body.dark-theme .btn-outline:hover {
 }
 
 @media (max-width: 768px) {
+    .prod-hero {
+        padding-top: 100px;
+    }
+    .prod-hero-title {
+        font-size: clamp(2.5rem, 8vw, 3rem);
+    }
     .prod-hero-composition {
-        height: 400px;
+        height: 300px;
         margin-top: 2rem;
     }
-    .main-prod { width: 300px; }
-    .sub-prod-1 { width: 150px; }
-    .sub-prod-2 { width: 120px; }
+    .main-prod { width: 250px; }
+    .sub-prod-1 { width: 120px; }
+    .sub-prod-2 { width: 100px; }
     
     .form-row { flex-direction: column; }
     .w-50 { width: 100%; }
     
     .specs-grid { grid-template-columns: 1fr; }
+
+    .standards-section {
+        padding: 4rem 0;
+    }
+    .standards-title {
+        font-size: clamp(2rem, 8vw, 2.5rem);
+    }
+    .standard-card {
+        padding: 2rem 1.5rem;
+    }
 }
