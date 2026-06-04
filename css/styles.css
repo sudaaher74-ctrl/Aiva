@@ -600,7 +600,7 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     text-align: center;
     overflow: hidden;
-    background: var(--c-dark-grey);
+    background: var(--c-black);
     transition: var(--t-smooth);
     border: 1px solid rgba(255,255,255,0.05);
 }
