@@ -414,13 +414,14 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     z-index: 10;
     padding-top: 5rem;
+    max-width: 65%;
 }
 
 .hero-title {
     color: var(--c-white);
-    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
     font-weight: 900;
-    line-height: 1;
+    line-height: 1.1;
     margin-bottom: 1.5rem;
 }
 
