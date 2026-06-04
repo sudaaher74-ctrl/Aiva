@@ -44,8 +44,8 @@ html {
 
 body {
     font-family: var(--font-body);
-    color: var(--c-black);
-    background-color: var(--c-light);
+    color: var(--c-white);
+    background-color: var(--c-black);
     line-height: 1.6;
     overflow-x: hidden;
 }
@@ -529,7 +529,7 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     top: 5%;
     right: 0%;
-    background: var(--c-white);
+    background: var(--c-dark-grey);
     padding: 1.5rem;
     border-radius: 50%;
     width: 150px;
@@ -562,7 +562,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
-    color: var(--c-black);
+    color: var(--c-light);
 }
 
 .stats-grid {
@@ -681,7 +681,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .feature-card {
-    background: var(--c-white);
+    background: var(--c-dark-grey);
     padding: 3rem 2rem;
     border-radius: 20px;
     text-align: center;
@@ -822,7 +822,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     font-size: 1.5rem;
     font-weight: 500;
-    color: var(--c-black);
+    color: var(--c-white);
 }
 
 .client-card span {
