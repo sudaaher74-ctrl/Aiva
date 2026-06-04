@@ -345,7 +345,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-dropdown .dropdown-menu a {
     padding: 0.8rem 1.5rem;
     font-size: 0.8rem;
-    color: var(--c-light-grey);
+    color: rgba(255, 255, 255, 0.8);
     white-space: nowrap;
 }
 
