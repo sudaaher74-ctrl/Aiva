@@ -795,7 +795,7 @@ window.downloadPO = async function(id) {
       margin:       10,
       filename:     `PO-${po.poNumber || po._id.substring(0,8).toUpperCase()}.pdf`,
       image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  { scale: 2, useCORS: true },
+      html2canvas:  { scale: 2, useCORS: true, windowWidth: 800 },
       jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
       pagebreak:    { mode: 'avoid-all' }
     };
@@ -940,7 +940,7 @@ window.savePO = async function(status, downloadPdf = false) {
         margin:       10,
         filename:     `PO-${newPo.poNumber || 'DRAFT'}.pdf`,
         image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2, useCORS: true },
+        html2canvas:  { scale: 2, useCORS: true, windowWidth: 800 },
         jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
         pagebreak:    { mode: 'avoid-all' }
       };
@@ -1011,19 +1011,20 @@ function generatePOHtmlTemplate(po, num) {
   const grandTotal = subtotal + taxAmount + (po.freightCharges || 0) + (po.insurance || 0);
 
   return `
-<div id="po-pdf-template" style="padding: 30px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #111; width: 950px; background: white; box-sizing: border-box;">
-  <!-- Header -->
-  <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #002244; padding-bottom: 16px; margin-bottom: 16px;">
-    <div>
-      <div style="display: flex; align-items: center;">
-        <svg width="100" height="100" viewBox="0 0 32 32" style="margin-right: 20px;">
-          <rect width="32" height="32" rx="4" fill="#0B2B5E"/>
-          <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="800" font-size="18" fill="#B08D57">A</text>
-        </svg>
-        <div>
-          <h1 style="margin: 0; font-size: 64px; color: #002244; line-height: 1; letter-spacing: 2px;">AIVA</h1>
-          <div style="font-size: 20px; color: #002244; letter-spacing: 4px;">ENTERPRISES</div>
-        </div>
+<div id="po-pdf-template" style="width: 800px; height: 1120px; background: white; overflow: hidden; position: relative;">
+  <div style="width: 125%; height: 125%; transform: scale(0.8); transform-origin: top left; padding: 30px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #111; box-sizing: border-box;">
+    <!-- Header -->
+    <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #002244; padding-bottom: 20px; margin-bottom: 20px;">
+      <div>
+        <div style="display: flex; align-items: center;">
+          <svg width="100" height="100" viewBox="0 0 32 32" style="margin-right: 20px;">
+            <rect width="32" height="32" rx="4" fill="#0B2B5E"/>
+            <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="800" font-size="18" fill="#B08D57">A</text>
+          </svg>
+          <div>
+            <h1 style="margin: 0; font-size: 64px; color: #002244; line-height: 1; letter-spacing: 2px;">AIVA</h1>
+            <div style="font-size: 20px; color: #002244; letter-spacing: 4px;">ENTERPRISES</div>
+          </div>
       </div>
       <div style="font-size: 16px; margin-top: 16px; font-weight: bold; letter-spacing: 1px; color: #333;">IMPORT | EXPORT | GLOBAL TRADE</div>
     </div>
@@ -1188,9 +1189,10 @@ function generatePOHtmlTemplate(po, num) {
   </div>
 
   <!-- Footer -->
-  <div style="display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #002244; padding-top: 12px; color: #002244;">
-    <div style="font-size: 24px; font-weight: bold; font-style: italic;">Thank You!</div>
-    <div style="font-size: 14px; font-weight: bold; letter-spacing: 2px;">LET'S GROW TOGETHER GLOBALLY 🌐</div>
+    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #002244; padding-top: 12px; color: #002244;">
+      <div style="font-size: 24px; font-weight: bold; font-style: italic;">Thank You!</div>
+      <div style="font-size: 14px; font-weight: bold; letter-spacing: 2px;">LET'S GROW TOGETHER GLOBALLY 🌐</div>
+    </div>
   </div>
 </div>
   `;
