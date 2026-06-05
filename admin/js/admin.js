@@ -906,12 +906,7 @@ window.savePO = async function(status, downloadPdf = false) {
     if (downloadPdf) {
       showToast('Generating PDF...', 'info');
       
-      const wrapper = document.createElement('div');
-      wrapper.innerHTML = generatePOHtmlTemplate(poData, newPo.poNumber || 'DRAFT');
-      document.body.appendChild(wrapper);
-
-      // We only want to print the inner element
-      const element = wrapper.firstElementChild;
+      const htmlString = generatePOHtmlTemplate(poData, newPo.poNumber || 'DRAFT');
 
       const opt = {
         margin:       0,
@@ -922,13 +917,11 @@ window.savePO = async function(status, downloadPdf = false) {
       };
 
       try {
-        await html2pdf().set(opt).from(element).save();
+        await html2pdf().set(opt).from(htmlString).save();
         showToast('PDF downloaded successfully', 'success');
       } catch (err) {
         showToast('Failed to generate PDF', 'error');
         console.error(err);
-      } finally {
-        document.body.removeChild(wrapper);
       }
     }
     
@@ -989,7 +982,7 @@ function generatePOHtmlTemplate(po, num) {
   const grandTotal = subtotal + taxAmount + (po.freightCharges || 0) + (po.insurance || 0);
 
   return `
-<div id="po-pdf-template" style="padding: 40px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #111; width: 800px; background: white; box-sizing: border-box; position: absolute; left: -9999px;">
+<div id="po-pdf-template" style="padding: 40px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #111; width: 800px; background: white; box-sizing: border-box;">
   <!-- Header -->
   <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #002244; padding-bottom: 20px; margin-bottom: 20px;">
     <div>
