@@ -24,7 +24,7 @@ const products = [
     tab: 'aseptic',
     brix: '16-18° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/Alphansomangopulp.png',
+    image_url: './assets/alphonsomangodrum.png',
     status: 'Active'
   },
   {
@@ -34,7 +34,7 @@ const products = [
     tab: 'aseptic',
     brix: '16-18° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/kesarmangopulp.png',
+    image_url: './assets/alphonsomangodrum.png',
     status: 'Active'
   },
   {
@@ -84,7 +84,7 @@ const products = [
     tab: 'aseptic',
     brix: '9-11° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/pinkguavapulp.png',
+    image_url: './assets/images/products/pinkguavadrum.png',
     status: 'Active'
   },
   {
@@ -94,7 +94,7 @@ const products = [
     tab: 'aseptic',
     brix: '9-11° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/whiteguavapulp.png',
+    image_url: './assets/images/products/whiteguavadum.png',
     status: 'Active'
   },
   {
@@ -104,7 +104,7 @@ const products = [
     tab: 'aseptic',
     brix: '9-11° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/papayapulp.png',
+    image_url: './assets/images/products/papayapulpdrum.png',
     status: 'Active'
   },
   {
