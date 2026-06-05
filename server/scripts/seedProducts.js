@@ -44,7 +44,7 @@ const products = [
     tab: 'aseptic',
     brix: '14-16° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/totapurimangopulpdrum.png',
+    image_url: './assets/images/products/totapurimangopulpdrumm.png',
     status: 'Active'
   },
   {
@@ -74,7 +74,7 @@ const products = [
     tab: 'aseptic',
     brix: '20-22° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/guavaconcentradedrum.png',
+    image_url: './assets/images/products/gavaconcentratedrum.png',
     status: 'Active'
   },
   {
