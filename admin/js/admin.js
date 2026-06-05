@@ -904,22 +904,32 @@ window.savePO = async function(status, downloadPdf = false) {
     showToast(`PO ${status} successfully!`, 'success');
     
     if (downloadPdf) {
-      // Create a dummy PDF text content
-      const pdfText = `Purchase Order: ${newPo.poNumber || 'DRAFT'}\n` +
-                      `Buyer: ${poData.buyerName} (${poData.buyerCompany})\n` +
-                      `Total: ${poData.totalAmount} ${poData.currency}\n` +
-                      `Status: ${status}`;
-      const blob = new Blob([pdfText], { type: 'text/plain' });
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `PO-${newPo.poNumber || 'DRAFT'}.txt`; // Downloading as text file since real PDF generation isn't hooked up
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
+      showToast('Generating PDF...', 'info');
       
-      showToast('PDF downloaded', 'success');
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = generatePOHtmlTemplate(poData, newPo.poNumber || 'DRAFT');
+      document.body.appendChild(wrapper);
+
+      // We only want to print the inner element
+      const element = wrapper.firstElementChild;
+
+      const opt = {
+        margin:       0,
+        filename:     `PO-${newPo.poNumber || 'DRAFT'}.pdf`,
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      try {
+        await html2pdf().set(opt).from(element).save();
+        showToast('PDF downloaded successfully', 'success');
+      } catch (err) {
+        showToast('Failed to generate PDF', 'error');
+        console.error(err);
+      } finally {
+        document.body.removeChild(wrapper);
+      }
     }
     
     // Switch to PO list view
@@ -971,6 +981,198 @@ window.updatePOPreview = function() {
   if (document.getElementById('summary-insurance')) document.getElementById('summary-insurance').innerText = '$' + insurance.toLocaleString();
   if (document.getElementById('summary-total')) document.getElementById('summary-total').innerText = '$' + total.toLocaleString();
 };
+
+function generatePOHtmlTemplate(po, num) {
+  let subtotal = 0;
+  po.items.forEach(item => subtotal += (item.quantity * item.unitPrice));
+  const taxAmount = (subtotal * (po.gstPercent || 0)) / 100;
+  const grandTotal = subtotal + taxAmount + (po.freightCharges || 0) + (po.insurance || 0);
+
+  return `
+<div id="po-pdf-template" style="padding: 40px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #111; width: 800px; background: white; box-sizing: border-box; position: absolute; left: -9999px;">
+  <!-- Header -->
+  <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #002244; padding-bottom: 20px; margin-bottom: 20px;">
+    <div>
+      <div style="display: flex; align-items: center;">
+        <svg width="40" height="40" viewBox="0 0 32 32" style="margin-right: 12px;">
+          <rect width="32" height="32" rx="4" fill="#0B2B5E"/>
+          <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="800" font-size="18" fill="#B08D57">A</text>
+        </svg>
+        <div>
+          <h1 style="margin: 0; font-size: 28px; color: #002244; line-height: 1.1; letter-spacing: 1px;">AIVA</h1>
+          <div style="font-size: 14px; color: #002244; letter-spacing: 2px;">ENTERPRISES</div>
+        </div>
+      </div>
+      <div style="font-size: 10px; margin-top: 8px; font-weight: bold; letter-spacing: 1px;">IMPORT | EXPORT | GLOBAL TRADE</div>
+    </div>
+    <div style="text-align: right;">
+      <h2 style="margin: 0 0 10px 0; font-size: 24px; color: #002244;">PURCHASE ORDER</h2>
+      <table style="font-size: 12px; margin-left: auto; text-align: left; border-spacing: 0;">
+        <tr><td style="font-weight: bold; padding-right: 20px; padding-bottom: 4px;">PO Number</td><td>: ${num}</td></tr>
+        <tr><td style="font-weight: bold; padding-right: 20px; padding-bottom: 4px;">PO Date</td><td>: ${new Date().toLocaleDateString('en-GB', {day: '2-digit', month: 'short', year: 'numeric'})}</td></tr>
+        <tr><td style="font-weight: bold; padding-right: 20px; padding-bottom: 4px;">Delivery Date</td><td>: ${po.deliveryDate ? new Date(po.deliveryDate).toLocaleDateString('en-GB', {day: '2-digit', month: 'short', year: 'numeric'}) : 'TBD'}</td></tr>
+        <tr><td style="font-weight: bold; padding-right: 20px;">Reference</td><td>: AE/IMP/05-26/001</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Parties -->
+  <div style="display: flex; gap: 20px; margin-bottom: 20px;">
+    <div style="flex: 1; border: 1px solid #ddd;">
+      <div style="background: #002244; color: white; padding: 6px 12px; font-size: 12px; font-weight: bold;">BUYER (AIVA ENTERPRISES)</div>
+      <div style="padding: 12px; font-size: 12px; line-height: 1.6;">
+        <strong>AIVA Enterprises</strong><br>
+        123, Business Park,<br>
+        Andheri East, Mumbai – 400093,<br>
+        Maharashtra, India<br>
+        <table style="margin-top: 8px; border-spacing: 0;">
+          <tr><td style="width: 60px;">Email</td><td>: info@aivaenterprises.com</td></tr>
+          <tr><td>Phone</td><td>: +91 98765 43210</td></tr>
+          <tr><td>GST No.</td><td>: 27ABCDE1234F1Z5</td></tr>
+          <tr><td>IEC No.</td><td>: ABCDE1234F</td></tr>
+        </table>
+      </div>
+    </div>
+    <div style="flex: 1; border: 1px solid #ddd;">
+      <div style="background: #002244; color: white; padding: 6px 12px; font-size: 12px; font-weight: bold;">SUPPLIER</div>
+      <div style="padding: 12px; font-size: 12px; line-height: 1.6;">
+        <strong>${po.buyerCompany}</strong><br>
+        ${po.buyerAddress ? po.buyerAddress.split(',').join('<br>') + '<br>' : ''}
+        ${po.buyerCountry}<br>
+        <table style="margin-top: 8px; border-spacing: 0;">
+          <tr><td style="width: 60px;">Email</td><td>: ${po.buyerEmail}</td></tr>
+          <tr><td>Phone</td><td>: ${po.buyerPhone || '-'}</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Items Table -->
+  <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 11px; text-align: center;">
+    <thead>
+      <tr style="background: #002244; color: white;">
+        <th style="padding: 10px; border: 1px solid #ddd; width: 40px;">Sr. No.</th>
+        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Product Description</th>
+        <th style="padding: 10px; border: 1px solid #ddd;">Quantity</th>
+        <th style="padding: 10px; border: 1px solid #ddd;">Unit</th>
+        <th style="padding: 10px; border: 1px solid #ddd;">Unit Price<br>(${po.currency})</th>
+        <th style="padding: 10px; border: 1px solid #ddd;">Total Amount<br>(${po.currency})</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${po.items.map((item, i) => `
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">${i + 1}</td>
+        <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">${item.productName}</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${item.quantity.toLocaleString()}</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${item.unit}</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${item.unitPrice.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${(item.quantity * item.unitPrice).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+      </tr>
+      `).join('')}
+    </tbody>
+  </table>
+
+  <!-- Summary & Logistics -->
+  <div style="display: flex; gap: 20px; margin-bottom: 20px;">
+    <div style="flex: 1; border: 1px solid #ddd;">
+      <div style="background: #f4f6f8; padding: 6px 12px; font-size: 12px; font-weight: bold; border-bottom: 1px solid #ddd; color: #002244;">AMOUNT SUMMARY</div>
+      <table style="width: 100%; font-size: 12px; border-collapse: collapse;">
+        <tr><td style="padding: 8px 12px;">Subtotal</td><td style="padding: 8px 12px; text-align: right; width: 10px;">:</td><td style="padding: 8px 12px; text-align: right; width: 120px;">${po.currency} ${subtotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td></tr>
+        <tr><td style="padding: 8px 12px;">Freight Charges</td><td style="padding: 8px 12px; text-align: right;">:</td><td style="padding: 8px 12px; text-align: right;">${po.currency} ${po.freightCharges.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td></tr>
+        <tr><td style="padding: 8px 12px;">Insurance</td><td style="padding: 8px 12px; text-align: right;">:</td><td style="padding: 8px 12px; text-align: right;">${po.currency} ${po.insurance.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td></tr>
+        <tr><td style="padding: 8px 12px; border-bottom: 1px solid #ddd;">Other / Tax</td><td style="padding: 8px 12px; border-bottom: 1px solid #ddd; text-align: right;">:</td><td style="padding: 8px 12px; border-bottom: 1px solid #ddd; text-align: right;">${po.currency} ${taxAmount.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td></tr>
+        <tr style="background: #e9eff5; font-weight: bold; font-size: 14px; color: #002244;">
+          <td style="padding: 12px;">GRAND TOTAL</td><td style="padding: 12px; text-align: right;">:</td><td style="padding: 12px; text-align: right;">${po.currency} ${grandTotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+        </tr>
+      </table>
+    </div>
+    <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 12px; font-size: 12px; line-height: 2;">
+      <table style="width: 100%; border-collapse: collapse;">
+        <tr><td style="font-weight: bold; color: #002244; width: 140px;">Port of Loading</td><td style="width: 10px;">:</td><td>${po.portOfLoading || '-'}</td></tr>
+        <tr><td style="font-weight: bold; color: #002244;">Port of Discharge</td><td>:</td><td>${po.destinationPort || '-'}</td></tr>
+        <tr><td style="font-weight: bold; color: #002244;">Country of Dest.</td><td>:</td><td>${po.buyerCountry || '-'}</td></tr>
+        <tr><td style="font-weight: bold; color: #002244;">Incoterms</td><td>:</td><td>${po.incoterms || '-'}</td></tr>
+        <tr><td style="font-weight: bold; color: #002244;">Expected Shipment</td><td>:</td><td>${po.deliveryDate ? new Date(po.deliveryDate).toLocaleDateString('en-GB', {day: '2-digit', month: 'short', year: 'numeric'}) : 'TBD'}</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Requirements & terms blocks -->
+  <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+    <div style="flex: 1; border: 1px solid #ddd;">
+      <div style="background: #002244; color: white; padding: 6px 12px; font-size: 11px; font-weight: bold;">PAYMENT TERMS</div>
+      <div style="padding: 12px; font-size: 11px; line-height: 1.8;">
+        <div style="display: flex; align-items: center; gap: 6px;"><input type="checkbox" onclick="return false;" ${po.termsAndConditions.includes('100%') ? 'checked' : ''}> Advance 100%</div>
+        <div style="display: flex; align-items: center; gap: 6px;"><input type="checkbox" onclick="return false;" ${po.termsAndConditions.includes('Advance') && !po.termsAndConditions.includes('100%') ? 'checked' : ''}> 30% Advance, 70% Before Shipment</div>
+        <div style="display: flex; align-items: center; gap: 6px;"><input type="checkbox" onclick="return false;" ${po.termsAndConditions.includes('LC') || po.termsAndConditions.includes('L/C') ? 'checked' : ''}> Letter of Credit (L/C)</div>
+        <div style="margin-top: 8px; font-weight: bold; color: #002244;">Payment in ${po.currency}</div>
+      </div>
+    </div>
+    <div style="flex: 1; border: 1px solid #ddd;">
+      <div style="background: #002244; color: white; padding: 6px 12px; font-size: 11px; font-weight: bold;">PACKAGING REQUIREMENTS</div>
+      <div style="padding: 12px; font-size: 11px; line-height: 1.8;">
+        <div>${po.items[0]?.packaging || 'Standard Packaging'}</div>
+        <div>Strong & Sea-worthy Packing</div>
+        <div>Proper Palletization</div>
+        <div>As per International Standards</div>
+      </div>
+    </div>
+    <div style="flex: 1; border: 1px solid #ddd;">
+      <div style="background: #002244; color: white; padding: 6px 12px; font-size: 11px; font-weight: bold;">QUALITY SPECIFICATIONS</div>
+      <div style="padding: 12px; font-size: 11px; line-height: 1.8;">
+        <div>Products must be of premium quality.</div>
+        <div>Free from adulteration and moisture.</div>
+        <div>As per buyer's sample and</div>
+        <div>international quality standards.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Special Instructions -->
+  <div style="margin-bottom: 30px;">
+    <div style="font-size: 11px; font-weight: bold; color: #002244; margin-bottom: 4px;">SPECIAL INSTRUCTIONS</div>
+    <div style="font-size: 11px; padding: 8px 12px; background: #f9f9f9; border: 1px solid #eee;">
+      Please ensure timely shipment and provide all necessary shipping documents as per our requirements.<br>
+      ${po.termsAndConditions.replace(/\\n/g, '<br>')}
+    </div>
+  </div>
+
+  <!-- Signatures -->
+  <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 20px;">
+    <div style="width: 250px;">
+      <div style="font-weight: bold; margin-bottom: 40px; color: #002244;">For AIVA ENTERPRISES</div>
+      <div style="border-top: 1px solid #111; padding-top: 4px;">Authorized Signatory</div>
+      <table style="margin-top: 10px; width: 100%;">
+        <tr><td>Name</td><td>: _______________</td></tr>
+        <tr><td>Designation</td><td>: _______________</td></tr>
+        <tr><td>Date</td><td>: _______________</td></tr>
+      </table>
+    </div>
+    <!-- Round Stamp / Seal Placeholder -->
+    <div style="width: 100px; height: 100px; border: 2px solid #002244; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0.6;">
+      <div style="font-size: 16px; font-weight: bold; color: #002244;">AIVA</div>
+      <div style="font-size: 8px; color: #002244;">ENTERPRISES</div>
+    </div>
+    <div style="width: 250px;">
+      <div style="font-weight: bold; margin-bottom: 40px; color: #002244;">For SUPPLIER</div>
+      <div style="border-top: 1px solid #111; padding-top: 4px;">Authorized Signatory</div>
+      <table style="margin-top: 10px; width: 100%;">
+        <tr><td>Name</td><td>: _______________</td></tr>
+        <tr><td>Designation</td><td>: _______________</td></tr>
+        <tr><td>Date</td><td>: _______________</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #002244; padding-top: 12px; color: #002244;">
+    <div style="font-size: 24px; font-weight: bold; font-style: italic;">Thank You!</div>
+    <div style="font-size: 14px; font-weight: bold; letter-spacing: 2px;">LET'S GROW TOGETHER GLOBALLY 🌐</div>
+  </div>
+</div>
+  `;
+}
 
 document.addEventListener('input', (e) => {
   if (e.target.closest('#view-create-po')) {
