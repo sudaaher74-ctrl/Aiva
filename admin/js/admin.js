@@ -1016,7 +1016,7 @@ function generatePOHtmlTemplate(po, num) {
       <div style="padding: 12px; font-size: 12px; line-height: 1.6;">
         <strong>AIVA Enterprises</strong><br>
         123, Business Park,<br>
-        Andheri East, Mumbai – 400093,<br>
+        Mumbai – 400614,<br>
         Maharashtra, India<br>
         <table style="margin-top: 8px; border-spacing: 0;">
           <tr><td style="width: 60px;">Email</td><td>: info@aivaenterprises.com</td></tr>
