@@ -797,7 +797,7 @@ window.downloadPO = async function(id) {
       image:        { type: 'jpeg', quality: 0.98 },
       html2canvas:  { scale: 2, useCORS: true },
       jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-      pagebreak:    { mode: ['css', 'legacy'] }
+      pagebreak:    { mode: 'avoid-all' }
     };
     
     await html2pdf().set(opt).from(htmlString).save();
@@ -942,7 +942,7 @@ window.savePO = async function(status, downloadPdf = false) {
         image:        { type: 'jpeg', quality: 0.98 },
         html2canvas:  { scale: 2, useCORS: true },
         jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-        pagebreak:    { mode: ['css', 'legacy'] }
+        pagebreak:    { mode: 'avoid-all' }
       };
 
       try {
@@ -1011,18 +1011,18 @@ function generatePOHtmlTemplate(po, num) {
   const grandTotal = subtotal + taxAmount + (po.freightCharges || 0) + (po.insurance || 0);
 
   return `
-<div id="po-pdf-template" style="padding: 40px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #111; width: 800px; background: white; box-sizing: border-box;">
+<div id="po-pdf-template" style="padding: 30px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #111; width: 950px; background: white; box-sizing: border-box;">
   <!-- Header -->
-  <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #002244; padding-bottom: 20px; margin-bottom: 20px;">
+  <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #002244; padding-bottom: 16px; margin-bottom: 16px;">
     <div>
       <div style="display: flex; align-items: center;">
-        <svg width="120" height="120" viewBox="0 0 32 32" style="margin-right: 24px;">
+        <svg width="100" height="100" viewBox="0 0 32 32" style="margin-right: 20px;">
           <rect width="32" height="32" rx="4" fill="#0B2B5E"/>
           <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="800" font-size="18" fill="#B08D57">A</text>
         </svg>
         <div>
-          <h1 style="margin: 0; font-size: 72px; color: #002244; line-height: 1; letter-spacing: 2px;">AIVA</h1>
-          <div style="font-size: 24px; color: #002244; letter-spacing: 4px;">ENTERPRISES</div>
+          <h1 style="margin: 0; font-size: 64px; color: #002244; line-height: 1; letter-spacing: 2px;">AIVA</h1>
+          <div style="font-size: 20px; color: #002244; letter-spacing: 4px;">ENTERPRISES</div>
         </div>
       </div>
       <div style="font-size: 16px; margin-top: 16px; font-weight: bold; letter-spacing: 1px; color: #333;">IMPORT | EXPORT | GLOBAL TRADE</div>
