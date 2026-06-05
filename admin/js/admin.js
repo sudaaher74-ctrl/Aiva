@@ -841,14 +841,24 @@ async function loadAnalytics() {
 // ============================================================
 window.savePO = async function(status, downloadPdf = false) {
   const poData = {
-    vendorName: document.getElementById('po-vendor-name')?.value || '',
-    vendorAddress: document.getElementById('po-vendor-address')?.value || '',
-    vendorContact: document.getElementById('po-vendor-contact')?.value || '',
-    incoterms: document.getElementById('po-incoterms')?.value || 'FOB',
-    originPort: document.getElementById('po-origin')?.value || '',
-    destinationPort: document.getElementById('po-dest')?.value || '',
-    currency: document.getElementById('po-currency')?.value || 'USD',
-    deliveryDate: document.getElementById('po-delivery-date')?.value || null,
+    buyerName: document.getElementById('buyerName')?.value || '',
+    buyerCompany: document.getElementById('buyerCompany')?.value || '',
+    buyerCountry: document.getElementById('buyerCountry')?.value || '',
+    buyerEmail: document.getElementById('buyerEmail')?.value || '',
+    buyerPhone: document.getElementById('buyerPhone')?.value || '',
+    buyerAddress: document.getElementById('buyerAddress')?.value || '',
+    portOfLoading: document.getElementById('portOfLoading')?.value || '',
+    destinationPort: document.getElementById('destinationPort')?.value || '',
+    incoterms: document.getElementById('incoterms')?.value || 'FOB',
+    containerType: document.getElementById('containerType')?.value || '20ft Dry',
+    shipmentMethod: document.getElementById('shipmentMethod')?.value || 'Sea',
+    deliveryDate: document.getElementById('deliveryDate')?.value || null,
+    currency: document.getElementById('poCurrency')?.value || 'USD',
+    gstPercent: parseFloat(document.getElementById('gstPercent')?.value || 0),
+    freightCharges: parseFloat(document.getElementById('freightCharges')?.value || 0),
+    insurance: parseFloat(document.getElementById('insurance')?.value || 0),
+    termsAndConditions: document.getElementById('termsAndConditions')?.value || '',
+    internalNotes: document.getElementById('internalNotes')?.value || '',
     status: status,
     items: [],
     totalAmount: 0
@@ -858,9 +868,24 @@ window.savePO = async function(status, downloadPdf = false) {
   document.querySelectorAll('#line-items-body tr').forEach(row => {
     const qty = parseFloat(row.querySelector('.po-qty')?.value || 0);
     const price = parseFloat(row.querySelector('.po-price')?.value || 0);
-    const desc = row.querySelector('select')?.value || 'Item';
+    const desc = row.querySelector('.po-desc')?.value || 'Item';
+    const unit = row.querySelector('.po-unit')?.value || 'MT';
+    const packaging = row.querySelector('.po-packaging')?.value || '';
+    const currency = row.querySelector('.po-curr')?.value || 'USD';
+    const storageCondition = row.querySelector('.po-storage')?.value || '';
+    const shelfLife = row.querySelector('.po-shelf')?.value || '';
+
     if (qty > 0 && price > 0) {
-      poData.items.push({ description: desc, quantity: qty, unitPrice: price });
+      poData.items.push({ 
+        productName: desc, 
+        quantity: qty, 
+        unitPrice: price,
+        unit: unit,
+        packaging: packaging,
+        currency: currency,
+        storageCondition: storageCondition,
+        shelfLife: shelfLife
+      });
       poData.totalAmount += (qty * price);
     }
   });
@@ -869,34 +894,59 @@ window.savePO = async function(status, downloadPdf = false) {
     showToast('Add at least one line item', 'error');
     return;
   }
+  if (!poData.buyerName || !poData.buyerCompany || !poData.buyerEmail || !poData.buyerCountry) {
+    showToast('Please fill all required buyer details', 'error');
+    return;
+  }
 
   try {
     const { data: newPo } = await apiPost('/purchase-orders', poData);
     showToast(`PO ${status} successfully!`, 'success');
     
     if (downloadPdf) {
-      // Stub for PDF generation
+      // Create a dummy PDF text content
+      const pdfText = `Purchase Order: ${newPo.poNumber || 'DRAFT'}\n` +
+                      `Buyer: ${poData.buyerName} (${poData.buyerCompany})\n` +
+                      `Total: ${poData.totalAmount} ${poData.currency}\n` +
+                      `Status: ${status}`;
+      const blob = new Blob([pdfText], { type: 'text/plain' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `PO-${newPo.poNumber || 'DRAFT'}.txt`; // Downloading as text file since real PDF generation isn't hooked up
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+      
       showToast('PDF downloaded', 'success');
     }
     
     // Switch to PO list view
     window.location.hash = 'purchase-orders';
   } catch (err) {
-    showToast('Failed to save PO', 'error');
+    showToast('Failed to save PO: ' + err.message, 'error');
   }
 };
 
 window.updatePOPreview = function() {
-  const origin = document.getElementById('po-origin')?.value || '-';
-  const dest = document.getElementById('po-dest')?.value || '-';
-  const inco = document.getElementById('po-incoterms')?.value || 'FOB';
+  const origin = document.getElementById('portOfLoading')?.value || '-';
+  const dest = document.getElementById('destinationPort')?.value || '-';
+  const inco = document.getElementById('incoterms')?.value || 'FOB';
   
   if (document.getElementById('preview-origin')) document.getElementById('preview-origin').innerText = origin;
   if (document.getElementById('preview-dest')) document.getElementById('preview-dest').innerText = dest;
   if (document.getElementById('preview-inco')) document.getElementById('preview-inco').innerText = inco;
 
+  // Buyer Preview Update
+  const buyerName = document.getElementById('buyerName')?.value || '—';
+  const buyerCompany = document.getElementById('buyerCompany')?.value || 'Fill buyer details';
+  if (document.getElementById('preview-buyer')) document.getElementById('preview-buyer').innerText = buyerName;
+  if (document.getElementById('preview-company')) document.getElementById('preview-company').innerText = buyerCompany;
+
   // Calculate totals
   let subtotal = 0;
+  let itemCount = 0;
   document.querySelectorAll('#line-items-body tr').forEach(row => {
     const qty = parseFloat(row.querySelector('.po-qty')?.value || 0);
     const price = parseFloat(row.querySelector('.po-price')?.value || 0);
@@ -905,13 +955,21 @@ window.updatePOPreview = function() {
       row.querySelector('.po-line-total').innerText = '$' + total.toLocaleString();
     }
     subtotal += total;
+    itemCount++;
   });
   
-  const tax = subtotal * 0; // assuming 0% tax for now
-  const total = subtotal + tax;
+  const gstPercent = parseFloat(document.getElementById('gstPercent')?.value || 0);
+  const gstAmount = (subtotal * gstPercent) / 100;
+  const freight = parseFloat(document.getElementById('freightCharges')?.value || 0);
+  const insurance = parseFloat(document.getElementById('insurance')?.value || 0);
+  const total = subtotal + gstAmount + freight + insurance;
 
-  if (document.getElementById('preview-subtotal')) document.getElementById('preview-subtotal').innerText = '$' + subtotal.toLocaleString();
-  if (document.getElementById('preview-total')) document.getElementById('preview-total').innerText = '$' + total.toLocaleString();
+  if (document.getElementById('summary-items')) document.getElementById('summary-items').innerText = itemCount;
+  if (document.getElementById('summary-subtotal')) document.getElementById('summary-subtotal').innerText = '$' + subtotal.toLocaleString();
+  if (document.getElementById('summary-gst')) document.getElementById('summary-gst').innerText = '$' + gstAmount.toLocaleString();
+  if (document.getElementById('summary-freight')) document.getElementById('summary-freight').innerText = '$' + freight.toLocaleString();
+  if (document.getElementById('summary-insurance')) document.getElementById('summary-insurance').innerText = '$' + insurance.toLocaleString();
+  if (document.getElementById('summary-total')) document.getElementById('summary-total').innerText = '$' + total.toLocaleString();
 };
 
 document.addEventListener('input', (e) => {
