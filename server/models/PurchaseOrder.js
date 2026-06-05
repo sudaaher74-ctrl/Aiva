@@ -164,7 +164,7 @@ const purchaseOrderSchema = new mongoose.Schema({
 });
 
 // Pre-save: auto-generate PO number if not set
-purchaseOrderSchema.pre('save', async function(next) {
+purchaseOrderSchema.pre('save', async function() {
   if (!this.poNumber) {
     this.poNumber = await generatePONumber();
   }
@@ -178,8 +178,6 @@ purchaseOrderSchema.pre('save', async function(next) {
   this.subtotal = subtotal;
   this.gstAmount = (subtotal * (this.gstPercent || 0)) / 100;
   this.totalAmount = subtotal + this.gstAmount + (this.freightCharges || 0) + (this.insurance || 0);
-  
-  next();
 });
 
 // Indexes for faster queries
