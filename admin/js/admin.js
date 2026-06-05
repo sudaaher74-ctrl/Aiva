@@ -757,8 +757,11 @@ async function loadPurchaseOrders() {
         <td>${po.vendorName || '-'}</td>
         <td style="font-weight:600">$${(po.totalAmount || 0).toLocaleString()}</td>
         <td><span style="color:${statusColor};font-weight:700;font-size:0.8rem;padding:4px 8px;background:rgba(255,255,255,0.05);border-radius:12px;">${po.status || 'Draft'}</span></td>
-        <td>
-          <button class="btn btn-action" onclick="deletePO('${po._id}')">
+        <td style="display: flex; align-items: center;">
+          <button class="btn btn-action" onclick="downloadPO('${po._id}')" title="Download PDF" style="margin-right: 8px;">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+          </button>
+          <button class="btn btn-action" onclick="deletePO('${po._id}')" title="Delete PO">
             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
           </button>
         </td>
@@ -773,10 +776,35 @@ window.deletePO = async function(id) {
   if (!confirm('Delete purchase order?')) return;
   try {
     await apiDelete(`/purchase-orders/${id}`);
-    showToast('PO deleted', 'success');
+    showToast('PO deleted successfully', 'success');
     loadPurchaseOrders();
   } catch (err) {
     showToast('Failed to delete PO', 'error');
+  }
+};
+
+window.downloadPO = async function(id) {
+  try {
+    showToast('Fetching PO details...', 'info');
+    const { data: po } = await apiGet(`/purchase-orders/${id}`);
+    
+    showToast('Generating PDF...', 'info');
+    const htmlString = generatePOHtmlTemplate(po, po.poNumber || po._id.substring(0,8).toUpperCase());
+    
+    const opt = {
+      margin:       10,
+      filename:     `PO-${po.poNumber || po._id.substring(0,8).toUpperCase()}.pdf`,
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2, useCORS: true },
+      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+      pagebreak:    { mode: 'avoid-all' }
+    };
+    
+    await html2pdf().set(opt).from(htmlString).save();
+    showToast('PDF downloaded successfully', 'success');
+  } catch (err) {
+    showToast('Failed to download PDF', 'error');
+    console.error(err);
   }
 };
 
