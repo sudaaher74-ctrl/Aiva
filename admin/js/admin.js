@@ -824,7 +824,7 @@ async function loadAdminProducts() {
     grid.innerHTML = products.map(p => `
       <div class="product-card" style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:12px;overflow:hidden;position:relative;">
         <div style="height:150px;overflow:hidden;">
-          <img src="${p.image_url || p.image || ''}" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='https://images.unsplash.com/photo-1553279768-865429fa0078?w=500&q=80'">
+          <img src="${(p.image_url || p.image || '').replace('./assets', '../assets')}" style="width:100%;height:100%;object-fit:cover;" onerror="this.src='https://images.unsplash.com/photo-1553279768-865429fa0078?w=500&q=80'">
         </div>
         <div style="padding:16px;">
           <div style="font-size:0.75rem;color:var(--accent-gold);text-transform:uppercase;margin-bottom:4px;font-weight:700">${p.category}</div>
