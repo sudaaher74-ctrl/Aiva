@@ -34,7 +34,7 @@ const products = [
     tab: 'aseptic',
     brix: '16-18° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/alphonsomangodrum.png',
+    image_url: './assets/images/products/kesarmangopulpdrum.png',
     status: 'Active'
   },
   {
@@ -44,7 +44,7 @@ const products = [
     tab: 'aseptic',
     brix: '14-16° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/totapurimangopulp.png',
+    image_url: './assets/images/products/totapurimangopulpdrum.png',
     status: 'Active'
   },
   {
@@ -54,7 +54,7 @@ const products = [
     tab: 'aseptic',
     brix: '28-30° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/mang0concentrate.png',
+    image_url: './assets/images/products/mangoconcentrate.png',
     status: 'Active'
   },
   {
@@ -64,7 +64,7 @@ const products = [
     tab: 'aseptic',
     brix: '24-26° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/BananaConcentrate.png',
+    image_url: './assets/images/products/bananaconcentratdrum.png',
     status: 'Active'
   },
   {
@@ -74,7 +74,7 @@ const products = [
     tab: 'aseptic',
     brix: '20-22° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/guavaConcentrate.png',
+    image_url: './assets/images/products/guavaconcentradedrum.png',
     status: 'Active'
   },
   {
@@ -114,7 +114,7 @@ const products = [
     tab: 'aseptic',
     brix: '28-30° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/tomatopaste.png',
+    image_url: './assets/images/products/tomatopastedrum.png',
     status: 'Active'
   },
 
