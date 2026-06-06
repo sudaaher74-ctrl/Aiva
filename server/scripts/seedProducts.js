@@ -18,79 +18,86 @@ const connectDB = async () => {
 const products = [
   // Aseptic / Pulps & Pastes
   {
-    name: 'Alphonso Mango Pulp',
+    name: 'Alphonso Mango Pulp (Aseptic Drum)',
     category: 'Fruit Pulp',
-    description: 'Premium export-quality Alphonso Mango Pulp made from hand-picked Ratnagiri Alphonso mangoes.',
+    description: 'Premium export-quality Alphonso Mango Pulp made from hand-picked Ratnagiri Alphonso mangoes packaged in bulk aseptic drums.',
     tab: 'aseptic',
     brix: '16-18° Brix',
     shelfLife: '24 Months',
     image_url: './assets/alphonsomangodrum.png',
     status: 'Active'
   },
+  
   {
-    name: 'Kesar Mango Pulp',
+    name: 'Kesar Mango Pulp (Aseptic Drum)',
     category: 'Fruit Pulp',
-    description: 'Rich and vibrant Kesar Mango Pulp, known for its sweet taste and bright color.',
+    description: 'Rich and vibrant Kesar Mango Pulp, known for its sweet taste and bright color in bulk aseptic drums.',
     tab: 'aseptic',
     brix: '16-18° Brix',
     shelfLife: '24 Months',
     image_url: './assets/images/products/kesarmangopulpdrum.png',
     status: 'Active'
   },
+  
   {
-    name: 'Totapuri Mango Pulp',
+    name: 'Totapuri Mango Pulp (Aseptic Drum)',
     category: 'Fruit Pulp',
-    description: 'High-quality Totapuri Mango Pulp, perfect for nectars and juices.',
+    description: 'High-quality Totapuri Mango Pulp, perfect for nectars and juices in bulk aseptic drums.',
     tab: 'aseptic',
     brix: '14-16° Brix',
     shelfLife: '24 Months',
     image_url: './assets/images/products/totapurimangopulpdrumm.png',
     status: 'Active'
   },
+  
   {
-    name: 'Mango Concentrate',
+    name: 'Mango Concentrate (Aseptic Drum)',
     category: 'Concentrate',
-    description: 'Highly concentrated mango base for premium beverage production.',
+    description: 'Highly concentrated mango base for premium beverage production in bulk aseptic drums.',
     tab: 'aseptic',
     brix: '28-30° Brix',
     shelfLife: '24 Months',
     image_url: './assets/images/products/mangoconcentrate.png',
     status: 'Active'
   },
+  
   {
-    name: 'Banana Concentrate',
+    name: 'Banana Concentrate (Aseptic Drum)',
     category: 'Concentrate',
-    description: 'Sweet and smooth banana concentrate, ideal for baby food and smoothies.',
+    description: 'Sweet and smooth banana concentrate, ideal for baby food and smoothies in bulk aseptic drums.',
     tab: 'aseptic',
     brix: '24-26° Brix',
     shelfLife: '24 Months',
     image_url: './assets/images/products/bananaconcentratdrum.png',
     status: 'Active'
   },
+  
   {
-    name: 'Guava Concentrate',
+    name: 'Guava Concentrate (Aseptic Drum)',
     category: 'Concentrate',
-    description: 'Aromatic guava concentrate made from selected fresh guavas.',
+    description: 'Aromatic guava concentrate made from selected fresh guavas in bulk aseptic drums.',
     tab: 'aseptic',
     brix: '20-22° Brix',
     shelfLife: '24 Months',
     image_url: './assets/images/products/gavaconcentratedrum.png',
     status: 'Active'
   },
+  
   {
-    name: 'Pink Guava Pulp',
+    name: 'Pink Guava Pulp (Aseptic Drum)',
     category: 'Fruit Pulp',
-    description: 'Distinctive pink guava pulp with a sweet, musky flavor profile.',
+    description: 'Distinctive pink guava pulp with a sweet, musky flavor profile in bulk aseptic drums.',
     tab: 'aseptic',
     brix: '9-11° Brix',
     shelfLife: '24 Months',
     image_url: './assets/images/products/pinkguavadrum.png',
     status: 'Active'
   },
+  
   {
-    name: 'White Guava Pulp',
+    name: 'White Guava Pulp (Aseptic Drum)',
     category: 'Fruit Pulp',
-    description: 'Classic white guava pulp offering a perfect balance of sweetness and acidity.',
+    description: 'Classic white guava pulp offering a perfect balance of sweetness and acidity in bulk aseptic drums.',
     tab: 'aseptic',
     brix: '9-11° Brix',
     shelfLife: '24 Months',
@@ -98,25 +105,27 @@ const products = [
     status: 'Active'
   },
   {
-    name: 'Papaya Pulp',
+    name: 'Papaya Pulp (Aseptic Drum)',
     category: 'Fruit Pulp',
-    description: 'Tropical papaya pulp, rich in color and natural enzymes.',
+    description: 'Tropical papaya pulp, rich in color and natural enzymes in bulk aseptic drums.',
     tab: 'aseptic',
     brix: '9-11° Brix',
     shelfLife: '24 Months',
     image_url: './assets/images/products/papayapulpdrum.png',
     status: 'Active'
   },
+  
   {
-    name: 'Tomato Paste',
+    name: 'Tomato Paste (Aseptic Drum)',
     category: 'Paste',
-    description: 'Cold-break and hot-break tomato paste with intense red color and fresh flavor profile.',
+    description: 'Cold-break and hot-break tomato paste with intense red color and fresh flavor profile in bulk aseptic drums.',
     tab: 'aseptic',
     brix: '28-30° Brix',
     shelfLife: '24 Months',
     image_url: './assets/images/products/tomatopastedrum.png',
     status: 'Active'
   },
+  
 
   // IQF (Individually Quick Frozen)
   {
