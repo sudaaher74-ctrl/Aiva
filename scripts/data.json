@@ -105,22 +105,101 @@
       ]
     }
   ],
-  "locations": [
+  "landingPages": [
     {
       "slug": "fruit-pulp-exporter-india",
-      "country": "India",
-      "focus": "Fruit Pulps",
+      "h1": "Top Fruit Pulp Exporter in India",
+      "category": "Fruit Pulps",
       "title": "Top Fruit Pulp Exporter in India | AIVA Enterprises",
       "description": "India's leading exporter of premium fruit pulps. Global supply of Alphonso, Totapuri, and Guava pulp directly from trusted Indian farms.",
       "content": "As a primary agricultural hub, India produces some of the world's finest tropical fruits. AIVA Enterprises, headquartered in Navi Mumbai, leverages direct farm partnerships across Maharashtra and South India to process and export premium fruit pulps to over 20 countries."
     },
     {
       "slug": "fruit-pulp-supplier-uae",
-      "country": "UAE",
-      "focus": "Fruit Pulps & Concentrates",
+      "h1": "Trusted Fruit Pulp Supplier in UAE",
+      "category": "Fruit Pulps & Concentrates",
       "title": "Trusted Fruit Pulp Supplier in UAE & Dubai | AIVA Enterprises",
       "description": "Exporting Halal-certified premium fruit pulps and concentrates to the UAE. Reliable logistics to Jebel Ali for food manufacturers.",
       "content": "AIVA Enterprises is a trusted supply chain partner for food and beverage manufacturers in the United Arab Emirates. With rapid shipping routes from Nhava Sheva (Mumbai) to Jebel Ali, we ensure timely delivery of Halal-certified aseptic fruit pulps."
+    },
+    {
+      "slug": "alphonso-mango-pulp-exporter-india",
+      "h1": "Alphonso Mango Pulp Exporter in India",
+      "category": "Fruit Pulps",
+      "title": "Premium Alphonso Mango Pulp Exporter India | AIVA Enterprises",
+      "description": "Leading Alphonso mango pulp exporter from India. Sourced from Ratnagiri and Devgad. Request bulk B2B aseptic drums for global supply.",
+      "content": "AIVA Enterprises is renowned as a premier Alphonso Mango Pulp exporter in India. We source the highest quality Alphonso mangoes from authentic orchards to produce aseptic pulp that preserves the unique aroma, color, and taste that global beverage and dairy manufacturers demand.",
+      "image": "/assets/images/products/Alphansomangopulp.webp"
+    },
+    {
+      "slug": "totapuri-mango-pulp-manufacturer",
+      "h1": "Totapuri Mango Pulp Manufacturer & Exporter",
+      "category": "Fruit Pulps",
+      "title": "Totapuri Mango Pulp Manufacturer | AIVA Enterprises",
+      "description": "Top Totapuri mango pulp manufacturer and exporter. Bulk aseptic drum packaging. Ideal for multi-fruit juices and nectars globally.",
+      "content": "As a leading Totapuri mango pulp manufacturer, we process massive volumes of premium Totapuri mangoes during peak season. Our state-of-the-art facilities ensure a perfect Brix-acid ratio, making our pulp the ideal, cost-effective base for blended fruit beverages and nectars worldwide.",
+      "image": "/assets/images/products/kesarmangopulpdrum.webp"
+    },
+    {
+      "slug": "guava-pulp-supplier",
+      "h1": "Premium Guava Pulp Supplier",
+      "category": "Fruit Pulps",
+      "title": "White & Pink Guava Pulp Supplier | AIVA Enterprises",
+      "description": "Trusted guava pulp supplier offering both Pink and White Guava pulp in bulk aseptic drums. Highly aromatic and perfect for premium juices.",
+      "content": "AIVA Enterprises is a major Guava Pulp supplier, providing both Pink and White Guava variations. Our guava pulp is characterized by its gritty texture, robust flavor, and high vitamin C content, heavily sought after by juice and beverage producers.",
+      "image": "/assets/images/products/pinkguavapulp.webp"
+    },
+    {
+      "slug": "banana-pulp-exporter",
+      "h1": "Cavendish Banana Pulp Exporter",
+      "category": "Fruit Pulps",
+      "title": "Banana Pulp Exporter from India | AIVA Enterprises",
+      "description": "Premium Cavendish Banana Pulp exported globally. Aseptic processing ensuring natural color and flavor. Ideal for baby food and dairy.",
+      "content": "We are a prominent Banana Pulp exporter, utilizing high-grade Cavendish bananas. Our advanced processing techniques prevent oxidation, resulting in a naturally sweet and bright banana puree that is perfectly suited for baby food, ice creams, and smoothies.",
+      "image": "/assets/images/products/BananaConcentrate.webp"
+    },
+    {
+      "slug": "tomato-paste-exporter-india",
+      "h1": "Tomato Paste Exporter in India",
+      "category": "Concentrates",
+      "title": "Tomato Paste Exporter India (28-30 Brix) | AIVA Enterprises",
+      "description": "Top tomato paste exporter in India. Bulk 28-30 Brix Hot Break and Cold Break tomato paste for B2B food processors worldwide.",
+      "content": "As a leading tomato paste exporter in India, we supply high-quality 28-30 Brix tomato paste in both Hot Break and Cold Break formulations. Our paste provides a rich red color and intense tomato flavor, perfect for ketchup, sauces, and culinary applications.",
+      "image": "/assets/images/products/tomatopastedrum.webp"
+    },
+    {
+      "slug": "iqf-strawberry-exporter",
+      "h1": "Bulk IQF Strawberry Exporter",
+      "category": "IQF Products",
+      "title": "IQF Strawberry Exporter & Supplier | AIVA Enterprises",
+      "description": "Global IQF strawberry exporter. Premium quality, individually quick frozen strawberries for dairy, bakery, and retail.",
+      "content": "AIVA Enterprises is an experienced IQF strawberry exporter. We freeze our strawberries at the peak of ripeness using advanced Individual Quick Freezing technology, locking in the natural sweetness, structure, and vivid red color for industrial use.",
+      "image": "/assets/images/products/strawberryIQF.webp"
+    },
+    {
+      "slug": "iqf-sweet-corn-supplier",
+      "h1": "IQF Sweet Corn Supplier & Exporter",
+      "category": "IQF Products",
+      "title": "IQF Sweet Corn Supplier | AIVA Enterprises",
+      "description": "Reliable IQF sweet corn supplier. Plump, bright yellow kernels frozen at peak freshness. Bulk export for food service and retail.",
+      "content": "We are a trusted IQF sweet corn supplier, offering premium, brightly colored, and tender sweet corn kernels. Our stringent freezing process ensures maximum flavor retention and crispness, making it a favorite for ready-to-eat meals and frozen mixes.",
+      "image": "/assets/images/products/sweetcornIQF.webp"
+    },
+    {
+      "slug": "fruit-concentrate-supplier-india",
+      "h1": "Fruit Concentrate Supplier in India",
+      "category": "Concentrates",
+      "title": "Fruit Concentrate Supplier in India | AIVA Enterprises",
+      "description": "Leading fruit concentrate supplier in India. Offering mango, guava, and tomato concentrates for global beverage and food manufacturing.",
+      "content": "AIVA Enterprises is a key fruit concentrate supplier in India, providing high-brix concentrates that reduce shipping costs and provide intense flavor profiles. Our aseptic concentrates are the backbone of many global juice and beverage brands."
+    },
+    {
+      "slug": "food-ingredient-exporter-india",
+      "h1": "Food Ingredient Exporter in India",
+      "category": "Food Ingredients",
+      "title": "B2B Food Ingredient Exporter India | AIVA Enterprises",
+      "description": "India's premier food ingredient exporter. Supplying fruit pulps, IQF vegetables, and concentrates to the global HoReCa and manufacturing sectors.",
+      "content": "As a comprehensive food ingredient exporter in India, AIVA Enterprises provides a one-stop sourcing solution for global food manufacturers. From aseptic pulps to frozen vegetables, we guarantee quality, consistency, and reliable global logistics."
     }
   ]
 }
