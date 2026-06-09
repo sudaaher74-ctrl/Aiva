@@ -418,25 +418,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-title {
-    font-family: 'Satoshi', 'General Sans', 'Montserrat', sans-serif;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    line-height: 1.1;
     color: var(--c-white);
-    font-size: clamp(72px, 8vw, 120px);
-    font-weight: 900;
-    line-height: 0.95;
-    letter-spacing: -0.04em;
     margin-bottom: 1.5rem;
-    max-width: 850px;
-}
-
-@media (max-width: 1024px) {
-    .hero-title {
-        font-size: clamp(56px, 7vw, 80px);
-    }
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
 }
 
 .hero-title .highlight {
-    color: #D4AF37;
-    display: inline-block;
+    background: linear-gradient(90deg, #ffb800, #ff8a00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .hero-subtitle {
