@@ -623,8 +623,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const products = JSON.parse(stored);
     let updated = [...products];
     defaultProducts.forEach(def => {
-      if (!updated.some(p => p.id === def.id)) {
+      const existingIdx = updated.findIndex(p => p.id === def.id);
+      if (existingIdx === -1) {
         updated.push(def);
+      } else {
+        // Update image if it has changed
+        updated[existingIdx].image = def.image;
+        updated[existingIdx].image_url = def.image_url;
       }
     });
     localStorage.setItem('aiva_products', JSON.stringify(updated));

@@ -641,6 +641,11 @@ h1, h2, h3, h4, h5, h6 {
     transition: var(--t-smooth);
 }
 
+.product-card-image img[src*="pinkguavapulpdrum"],
+.product-card-image img[src*="papayapulpdrum1"] {
+    max-height: 80%;
+}
+
 .product-card:hover .product-card-image img {
     transform: scale(1.1) rotate(5deg);
 }
