@@ -19,7 +19,7 @@
     
     /* Typography */
     --font-heading: 'Outfit', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    --font-body: 'Outfit', sans-serif;
     
     /* Spacing & Layout */
     --container-w: 1400px;
@@ -419,7 +419,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-title {
     color: var(--c-white);
-    font-size: clamp(2rem, 4.5vw, 4.5rem);
+    font-size: clamp(3rem, 6vw, 6.5rem);
     font-weight: 900;
     line-height: 1.1;
     margin-bottom: 1.5rem;
@@ -432,12 +432,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-subtitle {
-    color: var(--c-grey);
-    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: clamp(1rem, 1.2vw, 1.25rem);
     margin-bottom: 3rem;
-    font-weight: 300;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-weight: 400;
+    line-height: 1.6;
+    max-width: 600px;
 }
 
 .hero-buttons {
