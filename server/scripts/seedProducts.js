@@ -94,16 +94,7 @@ const products = [
     status: 'Active'
   },
   
-  {
-    name: 'White Guava Pulp (Aseptic Drum)',
-    category: 'Fruit Pulp',
-    description: 'Classic white guava pulp offering a perfect balance of sweetness and acidity in bulk aseptic drums.',
-    tab: 'aseptic',
-    brix: '9-11° Brix',
-    shelfLife: '24 Months',
-    image_url: './assets/images/products/whiteguavadum.png',
-    status: 'Active'
-  },
+
   {
     name: 'Papaya Pulp (Aseptic Drum)',
     category: 'Fruit Pulp',

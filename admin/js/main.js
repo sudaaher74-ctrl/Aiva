@@ -192,24 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
       applications: ["Juices", "Nectars", "Candies"]
     },
     
-    {
-      id: "white-guava-pulp-drum",
-      tab: "aseptic",
-      category: "Aseptic Pulps & Pastes",
-      name: "White Guava Pulp (Aseptic Drum)",
-      desc: "Classic white guava pulp offering a perfect balance of sweetness and acidity in bulk aseptic drums.",
-      image: "assets/images/products/whiteguavadum.png",
-      appearance: "Creamy puree",
-      flavour: "Tropical guava",
-      brix: "Min. 9",
-      acidity: "0.40 - 0.80",
-      ph: "3.7 - 4.2",
-      colour: "Creamish White",
-      packaging: "215 Kgs in Drum",
-      shelflife: "18 Months",
-      storage: "Ambient",
-      applications: ["Juices", "Nectars", "Candies"]
-    },
+
     {
       id: "guava-concentrate-drum",
       tab: "aseptic",

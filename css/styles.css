@@ -623,7 +623,7 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 1;
 }
 
-.product-image-wrap {
+.product-card-image {
     height: 200px;
     display: flex;
     align-items: center;
@@ -633,13 +633,15 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
 }
 
-.product-image-wrap img {
+.product-card-image img {
     max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
     filter: drop-shadow(0 15px 25px rgba(0,0,0,0.5));
     transition: var(--t-smooth);
 }
 
-.product-card:hover .product-image-wrap img {
+.product-card:hover .product-card-image img {
     transform: scale(1.1) rotate(5deg);
 }
 
