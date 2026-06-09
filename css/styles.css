@@ -418,16 +418,24 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-title {
+    font-family: 'Satoshi', 'General Sans', 'Montserrat', sans-serif;
     color: var(--c-white);
-    font-size: clamp(3rem, 6vw, 6.5rem);
+    font-size: clamp(72px, 8vw, 120px);
     font-weight: 900;
-    line-height: 1.1;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
     margin-bottom: 1.5rem;
     max-width: 850px;
 }
 
+@media (max-width: 1024px) {
+    .hero-title {
+        font-size: clamp(56px, 7vw, 80px);
+    }
+}
+
 .hero-title .highlight {
-    color: var(--c-mango);
+    color: #D4AF37;
     display: inline-block;
 }
 
@@ -1019,7 +1027,7 @@ h1, h2, h3, h4, h5, h6 {
         min-height: 100vh;
     }
     .hero-title {
-        font-size: clamp(2.5rem, 10vw, 4rem);
+        font-size: clamp(42px, 10vw, 64px);
     }
     .section-title {
         font-size: clamp(2rem, 8vw, 2.5rem);
