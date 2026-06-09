@@ -90,7 +90,7 @@ const products = [
     tab: 'aseptic',
     brix: '9-11° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/pinkguavadrum.png',
+    image_url: './assets/images/products/pinkguavapulpdrum.png',
     status: 'Active'
   },
   
@@ -102,7 +102,7 @@ const products = [
     tab: 'aseptic',
     brix: '9-11° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/papayapulpdrum.png',
+    image_url: './assets/images/products/papayapulpdrum1.png',
     status: 'Active'
   },
   
