@@ -18,7 +18,7 @@ const connectDB = async () => {
 const products = [
   // Aseptic / Pulps & Pastes
   {
-    name: 'Alphonso Mango Pulp (Aseptic Drum)',
+    name: 'Alphonso Mango Pulp',
     category: 'Fruit Pulp',
     description: 'Premium export-quality Alphonso Mango Pulp made from hand-picked Ratnagiri Alphonso mangoes packaged in bulk aseptic drums.',
     tab: 'aseptic',
@@ -29,7 +29,7 @@ const products = [
   },
   
   {
-    name: 'Kesar Mango Pulp (Aseptic Drum)',
+    name: 'Kesar Mango Pulp',
     category: 'Fruit Pulp',
     description: 'Rich and vibrant Kesar Mango Pulp, known for its sweet taste and bright color in bulk aseptic drums.',
     tab: 'aseptic',
@@ -40,7 +40,7 @@ const products = [
   },
   
   {
-    name: 'Totapuri Mango Pulp (Aseptic Drum)',
+    name: 'Totapuri Mango Pulp',
     category: 'Fruit Pulp',
     description: 'High-quality Totapuri Mango Pulp, perfect for nectars and juices in bulk aseptic drums.',
     tab: 'aseptic',
@@ -51,7 +51,7 @@ const products = [
   },
   
   {
-    name: 'Mango Concentrate (Aseptic Drum)',
+    name: 'Mango Concentrate',
     category: 'Concentrate',
     description: 'Highly concentrated mango base for premium beverage production in bulk aseptic drums.',
     tab: 'aseptic',
@@ -62,7 +62,7 @@ const products = [
   },
   
   {
-    name: 'Banana Concentrate (Aseptic Drum)',
+    name: 'Banana Concentrate',
     category: 'Concentrate',
     description: 'Sweet and smooth banana concentrate, ideal for baby food and smoothies in bulk aseptic drums.',
     tab: 'aseptic',
@@ -73,7 +73,7 @@ const products = [
   },
   
   {
-    name: 'Guava Concentrate (Aseptic Drum)',
+    name: 'Guava Concentrate',
     category: 'Concentrate',
     description: 'Aromatic guava concentrate made from selected fresh guavas in bulk aseptic drums.',
     tab: 'aseptic',
@@ -84,7 +84,7 @@ const products = [
   },
   
   {
-    name: 'Pink Guava Pulp (Aseptic Drum)',
+    name: 'Pink Guava Pulp',
     category: 'Fruit Pulp',
     description: 'Distinctive pink guava pulp with a sweet, musky flavor profile in bulk aseptic drums.',
     tab: 'aseptic',
@@ -96,7 +96,7 @@ const products = [
   
 
   {
-    name: 'Papaya Pulp (Aseptic Drum)',
+    name: 'Papaya Pulp',
     category: 'Fruit Pulp',
     description: 'Tropical papaya pulp, rich in color and natural enzymes in bulk aseptic drums.',
     tab: 'aseptic',
@@ -107,7 +107,7 @@ const products = [
   },
   
   {
-    name: 'Tomato Paste (Aseptic Drum)',
+    name: 'Tomato Paste',
     category: 'Paste',
     description: 'Cold-break and hot-break tomato paste with intense red color and fresh flavor profile in bulk aseptic drums.',
     tab: 'aseptic',
