@@ -3,18 +3,26 @@
   "cleanUrls": true,
   "builds": [
     {
-      "src": "server/server.js",
+      "src": "backend/server.js",
       "use": "@vercel/node"
     },
     {
-      "src": "**",
+      "src": "frontend/**",
       "use": "@vercel/static"
     }
   ],
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/server/server.js"
+      "destination": "/backend/server.js"
+    },
+    {
+      "source": "/seo/(.*)",
+      "destination": "/frontend/seo/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/frontend/$1"
     }
   ],
   "env": {

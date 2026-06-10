@@ -18,14 +18,16 @@ function generateSitemap() {
   addUrl('/products');
   addUrl('/contact');
 
-  // Add generated location pages in root
-  const rootDir = path.join(__dirname, '..');
-  fs.readdirSync(rootDir).forEach(file => {
-    if (file.endsWith('.html') && !['index.html', 'about.html', 'products.html', 'contact.html', 'dashboard.html'].includes(file)) {
-      const slug = file.replace('.html', '');
-      addUrl(`/${slug}`);
-    }
-  });
+  // Add generated location pages in seo
+  const seoDir = path.join(__dirname, '..', 'seo');
+  if (fs.existsSync(seoDir)) {
+    fs.readdirSync(seoDir).forEach(file => {
+      if (file.endsWith('.html')) {
+        const slug = file.replace('.html', '');
+        addUrl(`/seo/${slug}`);
+      }
+    });
+  }
 
   // Add product pages
   const productsDir = path.join(__dirname, '..', 'products');

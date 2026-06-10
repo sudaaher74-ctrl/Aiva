@@ -5,10 +5,12 @@ const dataPath = path.join(__dirname, 'data.json');
 const templatePath = path.join(__dirname, 'template.html');
 const productsDir = path.join(__dirname, '..', 'products');
 const locationsDir = path.join(__dirname, '..', 'locations');
+const seoDir = path.join(__dirname, '..', 'seo');
 
 // Ensure output directories exist
 if (!fs.existsSync(productsDir)) fs.mkdirSync(productsDir);
 if (!fs.existsSync(locationsDir)) fs.mkdirSync(locationsDir);
+if (!fs.existsSync(seoDir)) fs.mkdirSync(seoDir);
 
 const data = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
 const template = fs.readFileSync(templatePath, 'utf8');
@@ -103,7 +105,7 @@ function generateLandingPages() {
     
     html = html.replace(/\{\{TITLE\}\}/g, page.title);
     html = html.replace(/\{\{META_DESC\}\}/g, page.description);
-    html = html.replace(/\{\{CANONICAL_URL\}\}/g, `https://www.aivaenterprises.com/${page.slug}`);
+    html = html.replace(/\{\{CANONICAL_URL\}\}/g, `https://www.aivaenterprises.com/seo/${page.slug}`);
     
     html = html.replace(/\{\{PRODUCT_NAME\}\}/g, page.h1);
     html = html.replace(/\{\{CATEGORY\}\}/g, page.category);
@@ -126,13 +128,13 @@ function generateLandingPages() {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.aivaenterprises.com/" },
-        { "@type": "ListItem", "position": 2, "name": page.h1, "item": `https://www.aivaenterprises.com/${page.slug}` }
+        { "@type": "ListItem", "position": 2, "name": page.h1, "item": `https://www.aivaenterprises.com/seo/${page.slug}` }
       ]
     };
     html = html.replace(/\{\{JSON_LD\}\}/g, `<script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>`);
 
-    // Save Location pages directly in the root folder for cleaner URLs (e.g., /fruit-pulp-exporter-india)
-    const outputPath = path.join(__dirname, '..', `${page.slug}.html`);
+    // Save Location pages in the seo folder
+    const outputPath = path.join(seoDir, `${page.slug}.html`);
     fs.writeFileSync(outputPath, html);
     console.log(`Generated: ${outputPath}`);
   });
