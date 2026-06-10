@@ -101,7 +101,8 @@
                     <a href="products.html" class="dropdown-toggle">Products <i class="ph ph-caret-down"></i></a>
                     <div class="dropdown-menu">
                         <a href="products.html#aseptic">Aseptic Pulps & Pastes</a>
-                        <a href="products.html#iqf">IQF Products</a>
+                        <a href="products.html#iqf-fruits">IQF Fruits</a>
+                        <a href="products.html#iqf-frozen">IQF Frozen</a>
                         <a href="products.html#vegetables">Vegetables</a>
                     </div>
                 </div>
@@ -154,13 +155,25 @@
         </div>
     </section>
 
-    <!-- IQF Products Grid -->
-    <section class="prod-grid-section section-padding" id="iqf">
+    <!-- IQF Fruits Grid -->
+    <section class="prod-grid-section section-padding" id="iqf-fruits">
         <div class="container">
             <div class="section-header text-center">
-                <h2 class="section-title text-light">IQF Products</h2>
+                <h2 class="section-title text-light">IQF Fruits</h2>
             </div>
-            <div class="premium-product-grid" id="iqf-grid">
+            <div class="premium-product-grid" id="iqf-fruits-grid">
+                <!-- Dynamically populated from API -->
+            </div>
+        </div>
+    </section>
+
+    <!-- IQF Frozen Grid -->
+    <section class="prod-grid-section section-padding" id="iqf-frozen">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title text-light">IQF Frozen</h2>
+            </div>
+            <div class="premium-product-grid" id="iqf-frozen-grid">
                 <!-- Dynamically populated from API -->
             </div>
         </div>
@@ -262,7 +275,8 @@
                             <select id="interest" required>
                                 <option value="" disabled selected>Product Interest</option>
                                 <option value="aseptic">Aseptic Fruit Pulps</option>
-                                <option value="iqf">IQF Fruits & Veg</option>
+                                <option value="iqf-fruits">IQF Fruits</option>
+                                <option value="iqf-frozen">IQF Frozen</option>
                                 <option value="vegetables">Vegetables</option>
                                 <option value="tomato">Tomato Paste</option>
                             </select>

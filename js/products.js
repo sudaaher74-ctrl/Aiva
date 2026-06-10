@@ -95,16 +95,19 @@ gsap.registerPlugin(ScrollTrigger);
 function updateCategoryVisibility() {
     const hash = window.location.hash || '#aseptic';
     const asepticSection = document.getElementById('aseptic');
-    const iqfSection = document.getElementById('iqf');
-
+    const iqfFruitsSection = document.getElementById('iqf-fruits');
+    const iqfFrozenSection = document.getElementById('iqf-frozen');
     const vegetablesSection = document.getElementById('vegetables');
 
     if(asepticSection) asepticSection.style.display = 'none';
-    if(iqfSection) iqfSection.style.display = 'none';
+    if(iqfFruitsSection) iqfFruitsSection.style.display = 'none';
+    if(iqfFrozenSection) iqfFrozenSection.style.display = 'none';
     if(vegetablesSection) vegetablesSection.style.display = 'none';
 
-    if (hash === '#iqf') {
-        if(iqfSection) iqfSection.style.display = 'block';
+    if (hash === '#iqf-fruits') {
+        if(iqfFruitsSection) iqfFruitsSection.style.display = 'block';
+    } else if (hash === '#iqf-frozen') {
+        if(iqfFrozenSection) iqfFrozenSection.style.display = 'block';
     } else if (hash === '#vegetables') {
         if(vegetablesSection) vegetablesSection.style.display = 'block';
     } else {
@@ -151,9 +154,10 @@ async function initProducts() {
         const products = data.data || [];
 
         const asepticGrid = document.getElementById('aseptic-grid');
-        const iqfGrid = document.getElementById('iqf-grid');
+        const iqfFruitsGrid = document.getElementById('iqf-fruits-grid');
+        const iqfFrozenGrid = document.getElementById('iqf-frozen-grid');
         const vegetablesGrid = document.getElementById('vegetables-grid');
-        if (!asepticGrid || !iqfGrid) return;
+        if (!asepticGrid) return;
 
         products.forEach(product => {
             const html = `
@@ -176,8 +180,10 @@ async function initProducts() {
             
             if (product.tab === 'aseptic') {
                 if(asepticGrid) asepticGrid.insertAdjacentHTML('beforeend', html);
-            } else if (product.tab === 'iqf') {
-                if(iqfGrid) iqfGrid.insertAdjacentHTML('beforeend', html);
+            } else if (product.tab === 'iqf-fruits') {
+                if(iqfFruitsGrid) iqfFruitsGrid.insertAdjacentHTML('beforeend', html);
+            } else if (product.tab === 'iqf-frozen') {
+                if(iqfFrozenGrid) iqfFrozenGrid.insertAdjacentHTML('beforeend', html);
             } else if (product.tab === 'vegetables') {
                 if(vegetablesGrid) vegetablesGrid.insertAdjacentHTML('beforeend', html);
             }

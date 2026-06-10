@@ -668,7 +668,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "iqf-coriander-green-chilli",
-      tab: "vegetables",
+      tab: "iqf-frozen",
       category: "IQF Frozen Range",
       name: "Coriander & Green Chilli",
       desc: "Fresh coriander and green chilli blend, individually quick frozen.",
@@ -686,7 +686,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "iqf-mint",
-      tab: "vegetables",
+      tab: "iqf-frozen",
       category: "IQF Frozen Range",
       name: "Mint",
       desc: "Fresh mint leaves, individually quick frozen.",
@@ -704,7 +704,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "iqf-onion",
-      tab: "vegetables",
+      tab: "iqf-frozen",
       category: "IQF Frozen Range",
       name: "Onion",
       desc: "Diced or sliced onions, individually quick frozen.",
@@ -722,7 +722,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "iqf-tomato",
-      tab: "vegetables",
+      tab: "iqf-frozen",
       category: "IQF Frozen Range",
       name: "Tomato",
       desc: "Diced tomatoes, individually quick frozen.",

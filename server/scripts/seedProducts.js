@@ -123,7 +123,7 @@ const products = [
     name: 'IQF Strawberry',
     category: 'IQF Fruits',
     description: 'Individually Quick Frozen (IQF) strawberries maintaining natural texture, flavor, and color.',
-    tab: 'iqf',
+    tab: 'iqf-fruits',
     shelfLife: '18 Months',
     image_url: './assets/images/products/iqf_fruites/strawberryIQF.webp',
     status: 'Active'
@@ -132,7 +132,7 @@ const products = [
     name: 'IQF Banana',
     category: 'IQF Fruits',
     description: 'Premium frozen banana slices or dices, perfect for baking and smoothies.',
-    tab: 'iqf',
+    tab: 'iqf-fruits',
     shelfLife: '18 Months',
     image_url: './assets/images/products/iqf_fruites/bananaIQF.webp',
     status: 'Active'
@@ -141,7 +141,7 @@ const products = [
     name: 'IQF Guava',
     category: 'IQF Fruits',
     description: 'Frozen guava maintaining its strong tropical aroma and nutritional value.',
-    tab: 'iqf',
+    tab: 'iqf-fruits',
     shelfLife: '18 Months',
     image_url: './assets/images/products/iqf_fruites/guavaIQF.webp',
     status: 'Active'
@@ -258,7 +258,7 @@ const products = [
     name: 'IQF Coriander & Green Chilli',
     category: 'IQF Vegetables',
     description: 'Fresh coriander and green chilli blend, individually quick frozen.',
-    tab: 'vegetables',
+    tab: 'iqf-frozen',
     shelfLife: '24 Months',
     image_url: './assets/images/products/iqf_frozen/coriander&greenchilli.png',
     status: 'Active'
@@ -267,7 +267,7 @@ const products = [
     name: 'IQF Mint',
     category: 'IQF Vegetables',
     description: 'Fresh mint leaves, individually quick frozen.',
-    tab: 'vegetables',
+    tab: 'iqf-frozen',
     shelfLife: '24 Months',
     image_url: './assets/images/products/iqf_frozen/mint.png',
     status: 'Active'
@@ -276,7 +276,7 @@ const products = [
     name: 'IQF Onion',
     category: 'IQF Vegetables',
     description: 'Diced or sliced onions, individually quick frozen.',
-    tab: 'vegetables',
+    tab: 'iqf-frozen',
     shelfLife: '24 Months',
     image_url: './assets/images/products/iqf_frozen/onion.png',
     status: 'Active'
@@ -285,7 +285,7 @@ const products = [
     name: 'IQF Tomato',
     category: 'IQF Vegetables',
     description: 'Diced tomatoes, individually quick frozen.',
-    tab: 'vegetables',
+    tab: 'iqf-frozen',
     shelfLife: '24 Months',
     image_url: './assets/images/products/iqf_frozen/tomamto.png',
     status: 'Active'
