@@ -255,8 +255,8 @@ const products = [
     status: 'Active'
   },
   {
-    name: 'IQF Coriander & Green Chilli',
-    category: 'IQF Vegetables',
+    name: 'Coriander & Green Chilli',
+    category: 'Frozen',
     description: 'Fresh coriander and green chilli blend, individually quick frozen.',
     tab: 'iqf-frozen',
     shelfLife: '24 Months',
@@ -264,8 +264,8 @@ const products = [
     status: 'Active'
   },
   {
-    name: 'IQF Mint',
-    category: 'IQF Vegetables',
+    name: 'Mint',
+    category: 'Frozen',
     description: 'Fresh mint leaves, individually quick frozen.',
     tab: 'iqf-frozen',
     shelfLife: '24 Months',
@@ -273,8 +273,8 @@ const products = [
     status: 'Active'
   },
   {
-    name: 'IQF Onion',
-    category: 'IQF Vegetables',
+    name: 'Onion',
+    category: 'Frozen',
     description: 'Diced or sliced onions, individually quick frozen.',
     tab: 'iqf-frozen',
     shelfLife: '24 Months',
@@ -282,8 +282,8 @@ const products = [
     status: 'Active'
   },
   {
-    name: 'IQF Tomato',
-    category: 'IQF Vegetables',
+    name: 'Tomato',
+    category: 'Frozen',
     description: 'Diced tomatoes, individually quick frozen.',
     tab: 'iqf-frozen',
     shelfLife: '24 Months',
