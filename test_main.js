@@ -8,7 +8,7 @@ global.document = {
 };
 global.localStorage = { getItem: () => null, setItem: () => {} };
 
-const code = fs.readFileSync("/Users/milquu/Documents/Aiva 2/js/main.js", "utf8");
+const code = fs.readFileSync("/Users/milquu/Documents/Aiva 2/frontend/js/main.js", "utf8");
 try {
   eval(code);
   console.log("Success! No runtime errors on load.");

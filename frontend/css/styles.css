@@ -623,8 +623,10 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 1;
 }
 
-.product-card-image {
-    height: 200px;
+.product-image-wrap {
+    height: 300px;
+    width: 100%;
+    max-width: 320px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -633,7 +635,7 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
 }
 
-.product-card-image img {
+.product-image-wrap img {
     max-height: 100%;
     max-width: 100%;
     object-fit: contain;
@@ -641,12 +643,12 @@ h1, h2, h3, h4, h5, h6 {
     transition: var(--t-smooth);
 }
 
-.product-card-image img[src*="pinkguavapulpdrum"],
-.product-card-image img[src*="papayapulpdrum1"] {
+.product-image-wrap img[src*="pinkguavapulpdrum"],
+.product-image-wrap img[src*="papayapulpdrum1"] {
     max-height: 80%;
 }
 
-.product-card:hover .product-card-image img {
+.product-card:hover .product-image-wrap img {
     transform: scale(1.1) rotate(5deg);
 }
 
