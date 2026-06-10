@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "alphonso-mango-pulp-drum",
       tab: "aseptic",
-      category: "Aseptic Pulps & Pastes",
+      category: "Aseptic pulp/paste",
       name: "Alphonso Mango Pulp",
       desc: "Premium Alphonso Mango Pulp in bulk aseptic drums.",
       image: "assets/alphonsomangodrum.png",
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "totapuri-mango-pulp-drum",
       tab: "aseptic",
-      category: "Aseptic Pulps & Pastes",
+      category: "Aseptic pulp/paste",
       name: "Totapuri Mango Pulp",
       desc: "High quality Totapuri Mango Pulp in bulk aseptic drums.",
       image: "assets/images/products/pulp/totapurimangopulpdrumm.webp",
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "kesar-mango-pulp-drum",
       tab: "aseptic",
-      category: "Aseptic Pulps & Pastes",
+      category: "Aseptic pulp/paste",
       name: "Kesar Mango Pulp",
       desc: "Sweet and aromatic Kesar Mango Pulp in bulk aseptic drums.",
       image: "assets/images/products/pulp/kesarmangopulpdrum.webp",
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "pink-guava-pulp-drum",
       tab: "aseptic",
-      category: "Aseptic Pulps & Pastes",
+      category: "Aseptic pulp/paste",
       name: "Pink Guava Pulp",
       desc: "Distinctive pink guava pulp with a sweet, musky flavor profile in bulk aseptic drums.",
       image: "assets/images/products/pulp/pinkguavapulpdrum.png",
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "guava-concentrate-drum",
       tab: "aseptic",
-      category: "Aseptic Pulps & Pastes",
+      category: "Aseptic pulp/paste",
       name: "Guava Concentrate",
       desc: "Aromatic guava concentrate made from selected fresh guavas in bulk aseptic drums.",
       image: "assets/images/products/pulp/gavaconcentratedrum.webp",
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "mango-concentrate-drum",
       tab: "aseptic",
-      category: "Aseptic Pulps & Pastes",
+      category: "Aseptic pulp/paste",
       name: "Mango Concentrate",
       desc: "Highly concentrated mango base for premium beverage production in bulk aseptic drums.",
       image: "assets/images/products/pulp/mangoconcentrate.webp",
@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "papaya-pulp-drum",
       tab: "aseptic",
-      category: "Aseptic Pulps & Pastes",
+      category: "Aseptic pulp/paste",
       name: "Papaya Pulp",
       desc: "Tropical papaya pulp, rich in color and natural enzymes in bulk aseptic drums.",
       image: "assets/images/products/pulp/papayapulpdrum1.png",
@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "tomato-paste-drum",
       tab: "aseptic",
-      category: "Aseptic Pulps & Pastes",
+      category: "Aseptic pulp/paste",
       name: "Tomato Paste",
       desc: "Cold-break and hot-break tomato paste with intense red color and fresh flavor profile in bulk aseptic drums.",
       image: "assets/images/products/pulp/tomatopastedrum.webp",
@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "banana-concentrate-drum",
       tab: "aseptic",
-      category: "Aseptic Pulps & Pastes",
+      category: "Aseptic pulp/paste",
       name: "Banana Concentrate",
       desc: "Sweet and smooth banana concentrate, ideal for baby food and smoothies in bulk aseptic drums.",
       image: "assets/images/products/pulp/bananaconcentratdrum.webp",
@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "pomegranate-juice",
       tab: "aseptic",
-      category: "Aseptic Pulps & Pastes",
+      category: "Aseptic pulp/paste",
       name: "Pomegranate Juice",
       desc: "Clear and vibrant pomegranate juice.",
       image: "assets/images/products/pomegranate-juice.webp",
@@ -309,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "raw-mango-pulp",
       tab: "aseptic",
-      category: "Aseptic Pulps & Pastes",
+      category: "Aseptic pulp/paste",
       name: "Raw Mango Pulp (Totapuri)",
       desc: "Tart and tangy raw mango pulp.",
       image: "assets/images/products/raw-mango-pulp.webp",
@@ -327,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "strawberry-pulp",
       tab: "aseptic",
-      category: "Aseptic Pulps & Pastes",
+      category: "Aseptic pulp/paste",
       name: "Strawberry Pulp (With & Without Seeds)",
       desc: "Sweet and tart strawberry pulp, available with or without seeds.",
       image: "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=800&q=80",
@@ -345,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "sapota-pulp",
       tab: "aseptic",
-      category: "Aseptic Pulps & Pastes",
+      category: "Aseptic pulp/paste",
       name: "Sapota Pulp",
       desc: "Smooth aseptic sapota pulp with natural caramel sweetness.",
       image: productImages.sapotaPulp || 'https://images.unsplash.com/photo-1590004953392-5aba2e72269a?w=800&q=80',
@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "amla-pulp",
       tab: "aseptic",
-      category: "Aseptic Pulps & Pastes",
+      category: "Aseptic pulp/paste",
       name: "Amla Pulp",
       desc: "Tart and highly nutritious amla (Indian gooseberry) pulp.",
       image: "assets/images/products/amla-pulp.webp",
@@ -381,7 +381,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "jamun-pulp",
       tab: "aseptic",
-      category: "Aseptic Pulps & Pastes",
+      category: "Aseptic pulp/paste",
       name: "Jamun Pulp",
       desc: "Deep purple jamun pulp with a bold sweet-tart taste.",
       image: productImages.jamunPulp || 'https://images.unsplash.com/photo-1595180579979-3c825a0a38ad?w=800&q=80',
@@ -399,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "sugarcane-juice",
       tab: "aseptic",
-      category: "Aseptic Pulps & Pastes",
+      category: "Aseptic pulp/paste",
       name: "Sugarcane Juice",
       desc: "Naturally sweet and refreshing sugarcane juice.",
       image: "assets/images/products/sugarcane-juice.webp",
@@ -417,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "pineapple-pulp",
       tab: "aseptic",
-      category: "Aseptic Pulps & Pastes",
+      category: "Aseptic pulp/paste",
       name: "Pineapple Pulp",
       desc: "Sweet and tropical pineapple pulp.",
       image: "assets/images/products/pineapple-pulp.webp",
@@ -435,7 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "lime-juice",
       tab: "aseptic",
-      category: "Aseptic Pulps & Pastes",
+      category: "Aseptic pulp/paste",
       name: "Lime Juice",
       desc: "Tangy and citrusy lime juice.",
       image: "assets/images/products/lime-juice.webp",
@@ -453,7 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "iqf-green-peas",
       tab: "vegetables",
-      category: "IQF Frozen Range",
+      category: "Frozen",
       name: "Green Peas",
       desc: "Tender and sweet individually quick frozen green peas.",
       image: "assets/images/products/vegetables/greenpeas.png",
@@ -471,7 +471,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "iqf-green-beans",
       tab: "vegetables",
-      category: "IQF Frozen Range",
+      category: "Frozen",
       name: "Green Beans (Cut)",
       desc: "Cut green beans, individually quick frozen.",
       image: "assets/images/products/green-beans-cut.webp",
@@ -489,7 +489,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "iqf-okra-cuts",
       tab: "vegetables",
-      category: "IQF Frozen Range",
+      category: "Frozen",
       name: "Okra (Cut)",
       desc: "Clean-cut okra frozen quickly for reliable color and texture.",
       image: "assets/images/products/vegetables/okraIQFfrozzen.png",
@@ -507,7 +507,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "iqf-spinach",
       tab: "vegetables",
-      category: "IQF Frozen Range",
+      category: "Frozen",
       name: "Spinach (Whole / Chopped)",
       desc: "Fresh spinach leaves, available whole or chopped.",
       image: "assets/images/products/vegetables/spinch.png",
@@ -525,7 +525,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "iqf-mix-vegetable",
       tab: "vegetables",
-      category: "IQF Frozen Range",
+      category: "Frozen",
       name: "Mix Vegetable",
       desc: "Blend of Green Peas, Carrot & Green Beans.",
       image: "assets/images/products/vegetables/mixvegitables.png",
@@ -543,7 +543,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "iqf-corn-on-cobs",
       tab: "vegetables",
-      category: "IQF Frozen Range",
+      category: "Frozen",
       name: "Corn on Cobs",
       desc: "Sweet corn cob portions frozen quickly.",
       image: "assets/images/products/vegetables/corn on cobs.png",
@@ -561,7 +561,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "iqf-sweet-corn",
       tab: "vegetables",
-      category: "IQF Frozen Range",
+      category: "Frozen",
       name: "Sweet Corn",
       desc: "Tender, sweet corn kernels.",
       image: "assets/images/products/vegetables/sweetcorn.png",
@@ -579,7 +579,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "iqf-carrot",
       tab: "vegetables",
-      category: "IQF Frozen Range",
+      category: "Frozen",
       name: "Carrot",
       desc: "Diced carrots, individually quick frozen.",
       image: "assets/images/products/vegetables/carrot.png",
@@ -597,7 +597,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "iqf-baby-corn",
       tab: "vegetables",
-      category: "IQF Frozen Range",
+      category: "Frozen",
       name: "Baby Corn",
       desc: "Tender baby corn, individually quick frozen.",
       image: "assets/images/products/vegetables/babycoen.png",
@@ -615,7 +615,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ,{
       id: "iqf-beetroot",
       tab: "vegetables",
-      category: "IQF Frozen Range",
+      category: "Frozen",
       name: "Beetroot",
       desc: "Diced beetroot, individually quick frozen.",
       image: "assets/images/products/vegetables/beetroot.png",
@@ -633,7 +633,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "iqf-cauliflower",
       tab: "vegetables",
-      category: "IQF Frozen Range",
+      category: "Frozen",
       name: "Cauliflower",
       desc: "Cauliflower florets, individually quick frozen.",
       image: "assets/images/products/vegetables/cauliflower.png",
@@ -651,7 +651,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "iqf-mushroom",
       tab: "vegetables",
-      category: "IQF Frozen Range",
+      category: "Frozen",
       name: "Mushroom",
       desc: "Sliced or whole mushrooms, individually quick frozen.",
       image: "assets/images/products/vegetables/mashrum.png",
@@ -669,7 +669,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "iqf-coriander-green-chilli",
       tab: "iqf-frozen",
-      category: "IQF Frozen Range",
+      category: "Frozen",
       name: "Coriander & Green Chilli",
       desc: "Fresh coriander and green chilli blend, individually quick frozen.",
       image: "assets/images/products/iqf_frozen/coriander&greenchilli.png",
@@ -687,7 +687,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "iqf-mint",
       tab: "iqf-frozen",
-      category: "IQF Frozen Range",
+      category: "Frozen",
       name: "Mint",
       desc: "Fresh mint leaves, individually quick frozen.",
       image: "assets/images/products/iqf_frozen/mint.png",
@@ -705,7 +705,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "iqf-onion",
       tab: "iqf-frozen",
-      category: "IQF Frozen Range",
+      category: "Frozen",
       name: "Onion",
       desc: "Diced or sliced onions, individually quick frozen.",
       image: "assets/images/products/iqf_frozen/onion.png",
@@ -723,7 +723,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "iqf-tomato",
       tab: "iqf-frozen",
-      category: "IQF Frozen Range",
+      category: "Frozen",
       name: "Tomato",
       desc: "Diced tomatoes, individually quick frozen.",
       image: "assets/images/products/iqf_frozen/tomamto.png",
