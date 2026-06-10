@@ -35,7 +35,7 @@ const products = [
     tab: 'aseptic',
     brix: '16-18° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/kesarmangopulpdrum.png',
+    image_url: './assets/images/products/pulp/kesarmangopulpdrum.png',
     status: 'Active'
   },
   
@@ -46,7 +46,7 @@ const products = [
     tab: 'aseptic',
     brix: '14-16° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/totapurimangopulpdrumm.png',
+    image_url: './assets/images/products/pulp/totapurimangopulpdrumm.png',
     status: 'Active'
   },
   
@@ -57,7 +57,7 @@ const products = [
     tab: 'aseptic',
     brix: '28-30° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/mangoconcentrate.png',
+    image_url: './assets/images/products/pulp/mangoconcentrate.png',
     status: 'Active'
   },
   
@@ -68,7 +68,7 @@ const products = [
     tab: 'aseptic',
     brix: '24-26° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/bananaconcentratdrum.png',
+    image_url: './assets/images/products/pulp/bananaconcentratdrum.png',
     status: 'Active'
   },
   
@@ -79,7 +79,7 @@ const products = [
     tab: 'aseptic',
     brix: '20-22° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/gavaconcentratedrum.png',
+    image_url: './assets/images/products/pulp/gavaconcentratedrum.png',
     status: 'Active'
   },
   
@@ -90,7 +90,7 @@ const products = [
     tab: 'aseptic',
     brix: '9-11° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/pinkguavapulpdrum.png',
+    image_url: './assets/images/products/pulp/pinkguavapulpdrum.png',
     status: 'Active'
   },
   
@@ -102,7 +102,7 @@ const products = [
     tab: 'aseptic',
     brix: '9-11° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/papayapulpdrum1.png',
+    image_url: './assets/images/products/pulp/papayapulpdrum1.png',
     status: 'Active'
   },
   
@@ -113,7 +113,7 @@ const products = [
     tab: 'aseptic',
     brix: '28-30° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/tomatopastedrum.png',
+    image_url: './assets/images/products/pulp/tomatopastedrum.png',
     status: 'Active'
   },
   
@@ -125,7 +125,7 @@ const products = [
     description: 'Individually Quick Frozen (IQF) strawberries maintaining natural texture, flavor, and color.',
     tab: 'iqf',
     shelfLife: '18 Months',
-    image_url: './assets/images/products/strawberryIQF.png',
+    image_url: './assets/images/products/iqf/strawberryIQF.png',
     status: 'Active'
   },
   {
@@ -134,7 +134,7 @@ const products = [
     description: 'Premium frozen banana slices or dices, perfect for baking and smoothies.',
     tab: 'iqf',
     shelfLife: '18 Months',
-    image_url: './assets/images/products/bananaIQF.png',
+    image_url: './assets/images/products/iqf/bananaIQF.png',
     status: 'Active'
   },
   {
@@ -143,7 +143,7 @@ const products = [
     description: 'Frozen guava maintaining its strong tropical aroma and nutritional value.',
     tab: 'iqf',
     shelfLife: '18 Months',
-    image_url: './assets/images/products/guavaIQF.png',
+    image_url: './assets/images/products/iqf/guavaIQF.png',
     status: 'Active'
   },
   {
@@ -152,7 +152,7 @@ const products = [
     description: 'Diced Totapuri mangoes frozen at peak freshness.',
     tab: 'iqf',
     shelfLife: '18 Months',
-    image_url: './assets/images/products/totapuriIQF.png',
+    image_url: './assets/images/products/iqf/totapuriIQF.png',
     status: 'Active'
   },
   {
@@ -161,7 +161,7 @@ const products = [
     description: 'Tender and sweet IQF corn kernels, processed within hours of harvest.',
     tab: 'iqf',
     shelfLife: '18 Months',
-    image_url: './assets/images/products/sweetcornIQF.png',
+    image_url: './assets/images/products/vegetables/sweetcornIQF.png',
     status: 'Active'
   }
 ];
