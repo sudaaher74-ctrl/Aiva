@@ -35,7 +35,7 @@ const products = [
     tab: 'aseptic',
     brix: '16-18° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/pulp/kesarmangopulpdrum.png',
+    image_url: './assets/images/products/pulp/kesarmangopulpdrum.webp',
     status: 'Active'
   },
   
@@ -46,7 +46,7 @@ const products = [
     tab: 'aseptic',
     brix: '14-16° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/pulp/totapurimangopulpdrumm.png',
+    image_url: './assets/images/products/pulp/totapurimangopulpdrumm.webp',
     status: 'Active'
   },
   
@@ -57,7 +57,7 @@ const products = [
     tab: 'aseptic',
     brix: '28-30° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/pulp/mangoconcentrate.png',
+    image_url: './assets/images/products/pulp/mangoconcentrate.webp',
     status: 'Active'
   },
   
@@ -68,7 +68,7 @@ const products = [
     tab: 'aseptic',
     brix: '24-26° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/pulp/bananaconcentratdrum.png',
+    image_url: './assets/images/products/pulp/bananaconcentratdrum.webp',
     status: 'Active'
   },
   
@@ -79,7 +79,7 @@ const products = [
     tab: 'aseptic',
     brix: '20-22° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/pulp/gavaconcentratedrum.png',
+    image_url: './assets/images/products/pulp/gavaconcentratedrum.webp',
     status: 'Active'
   },
   
@@ -113,7 +113,7 @@ const products = [
     tab: 'aseptic',
     brix: '28-30° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/pulp/tomatopastedrum.png',
+    image_url: './assets/images/products/pulp/tomatopastedrum.webp',
     status: 'Active'
   },
   
@@ -125,7 +125,7 @@ const products = [
     description: 'Individually Quick Frozen (IQF) strawberries maintaining natural texture, flavor, and color.',
     tab: 'iqf',
     shelfLife: '18 Months',
-    image_url: './assets/images/products/iqf/strawberryIQF.png',
+    image_url: './assets/images/products/iqf_fruites/strawberryIQF.webp',
     status: 'Active'
   },
   {
@@ -134,7 +134,7 @@ const products = [
     description: 'Premium frozen banana slices or dices, perfect for baking and smoothies.',
     tab: 'iqf',
     shelfLife: '18 Months',
-    image_url: './assets/images/products/iqf/bananaIQF.png',
+    image_url: './assets/images/products/iqf_fruites/bananaIQF.webp',
     status: 'Active'
   },
   {
@@ -143,7 +143,7 @@ const products = [
     description: 'Frozen guava maintaining its strong tropical aroma and nutritional value.',
     tab: 'iqf',
     shelfLife: '18 Months',
-    image_url: './assets/images/products/iqf/guavaIQF.png',
+    image_url: './assets/images/products/iqf_fruites/guavaIQF.webp',
     status: 'Active'
   },
   {
@@ -152,7 +152,7 @@ const products = [
     description: 'Diced Totapuri mangoes frozen at peak freshness.',
     tab: 'iqf',
     shelfLife: '18 Months',
-    image_url: './assets/images/products/iqf/totapuriIQF.png',
+    image_url: './assets/images/products/iqf_fruites/totapuriIQF.webp',
     status: 'Active'
   },
   {
