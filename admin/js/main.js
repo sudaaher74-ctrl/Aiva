@@ -452,7 +452,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "iqf-green-peas",
-      tab: "iqf",
+      tab: "vegetables",
       category: "IQF Frozen Range",
       name: "Green Peas",
       desc: "Tender and sweet individually quick frozen green peas.",
@@ -470,7 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "iqf-green-beans",
-      tab: "iqf",
+      tab: "vegetables",
       category: "IQF Frozen Range",
       name: "Green Beans (Cut)",
       desc: "Cut green beans, individually quick frozen.",
@@ -488,7 +488,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "iqf-okra-cuts",
-      tab: "iqf",
+      tab: "vegetables",
       category: "IQF Frozen Range",
       name: "Okra (Cut)",
       desc: "Clean-cut okra frozen quickly for reliable color and texture.",
@@ -506,7 +506,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "iqf-spinach",
-      tab: "iqf",
+      tab: "vegetables",
       category: "IQF Frozen Range",
       name: "Spinach (Whole / Chopped)",
       desc: "Fresh spinach leaves, available whole or chopped.",
@@ -524,7 +524,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "iqf-mix-vegetable",
-      tab: "iqf",
+      tab: "vegetables",
       category: "IQF Frozen Range",
       name: "Mix Vegetable",
       desc: "Blend of Green Peas, Carrot & Green Beans.",
@@ -542,7 +542,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "iqf-corn-on-cobs",
-      tab: "iqf",
+      tab: "vegetables",
       category: "IQF Frozen Range",
       name: "Corn on Cobs",
       desc: "Sweet corn cob portions frozen quickly.",
@@ -560,7 +560,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "iqf-sweet-corn",
-      tab: "iqf",
+      tab: "vegetables",
       category: "IQF Frozen Range",
       name: "Sweet Corn",
       desc: "Tender, sweet corn kernels.",
@@ -578,7 +578,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "iqf-carrot",
-      tab: "iqf",
+      tab: "vegetables",
       category: "IQF Frozen Range",
       name: "Carrot",
       desc: "Diced carrots, individually quick frozen.",
@@ -596,7 +596,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "iqf-baby-corn",
-      tab: "iqf",
+      tab: "vegetables",
       category: "IQF Frozen Range",
       name: "Baby Corn",
       desc: "Tender baby corn, individually quick frozen.",
@@ -614,7 +614,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     ,{
       id: "iqf-beetroot",
-      tab: "iqf",
+      tab: "vegetables",
       category: "IQF Frozen Range",
       name: "Beetroot",
       desc: "Diced beetroot, individually quick frozen.",
@@ -632,7 +632,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "iqf-cauliflower",
-      tab: "iqf",
+      tab: "vegetables",
       category: "IQF Frozen Range",
       name: "Cauliflower",
       desc: "Cauliflower florets, individually quick frozen.",
@@ -650,7 +650,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "iqf-mushroom",
-      tab: "iqf",
+      tab: "vegetables",
       category: "IQF Frozen Range",
       name: "Mushroom",
       desc: "Sliced or whole mushrooms, individually quick frozen.",
@@ -668,7 +668,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "iqf-coriander-green-chilli",
-      tab: "iqf",
+      tab: "vegetables",
       category: "IQF Frozen Range",
       name: "Coriander & Green Chilli",
       desc: "Fresh coriander and green chilli blend, individually quick frozen.",
@@ -686,7 +686,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "iqf-mint",
-      tab: "iqf",
+      tab: "vegetables",
       category: "IQF Frozen Range",
       name: "Mint",
       desc: "Fresh mint leaves, individually quick frozen.",
@@ -704,7 +704,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "iqf-onion",
-      tab: "iqf",
+      tab: "vegetables",
       category: "IQF Frozen Range",
       name: "Onion",
       desc: "Diced or sliced onions, individually quick frozen.",
@@ -722,7 +722,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "iqf-tomato",
-      tab: "iqf",
+      tab: "vegetables",
       category: "IQF Frozen Range",
       name: "Tomato",
       desc: "Diced tomatoes, individually quick frozen.",

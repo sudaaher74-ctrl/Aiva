@@ -97,13 +97,19 @@ function updateCategoryVisibility() {
     const asepticSection = document.getElementById('aseptic');
     const iqfSection = document.getElementById('iqf');
 
+    const vegetablesSection = document.getElementById('vegetables');
+
+    if(asepticSection) asepticSection.style.display = 'none';
+    if(iqfSection) iqfSection.style.display = 'none';
+    if(vegetablesSection) vegetablesSection.style.display = 'none';
+
     if (hash === '#iqf') {
-        if(asepticSection) asepticSection.style.display = 'none';
         if(iqfSection) iqfSection.style.display = 'block';
+    } else if (hash === '#vegetables') {
+        if(vegetablesSection) vegetablesSection.style.display = 'block';
     } else {
         // Default to aseptic
         if(asepticSection) asepticSection.style.display = 'block';
-        if(iqfSection) iqfSection.style.display = 'none';
     }
     
     // Refresh ScrollTrigger since layout changed
@@ -146,6 +152,7 @@ async function initProducts() {
 
         const asepticGrid = document.getElementById('aseptic-grid');
         const iqfGrid = document.getElementById('iqf-grid');
+        const vegetablesGrid = document.getElementById('vegetables-grid');
         if (!asepticGrid || !iqfGrid) return;
 
         products.forEach(product => {
@@ -168,9 +175,11 @@ async function initProducts() {
             `;
             
             if (product.tab === 'aseptic') {
-                asepticGrid.insertAdjacentHTML('beforeend', html);
+                if(asepticGrid) asepticGrid.insertAdjacentHTML('beforeend', html);
             } else if (product.tab === 'iqf') {
-                iqfGrid.insertAdjacentHTML('beforeend', html);
+                if(iqfGrid) iqfGrid.insertAdjacentHTML('beforeend', html);
+            } else if (product.tab === 'vegetables') {
+                if(vegetablesGrid) vegetablesGrid.insertAdjacentHTML('beforeend', html);
             }
         });
 
