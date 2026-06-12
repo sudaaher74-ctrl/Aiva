@@ -124,7 +124,7 @@ function HomeHero() {
         <img
           src="/assets/images/products/pulp/papayapulp.webp"
           className="float-item f-papaya"
-          alt="Papaya"
+          alt="Papaya Pulp Bottle"
           data-speed="1.8"
         />
       </div>

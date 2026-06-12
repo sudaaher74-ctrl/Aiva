@@ -13,6 +13,8 @@ import Products from './pages/Products';
 
 gsap.registerPlugin(ScrollTrigger);
 
+import MobileBottomNav from './components/MobileBottomNav';
+
 function App() {
   const location = useLocation();
 
@@ -85,6 +87,7 @@ function App() {
         <Route path="/products.html" element={<Products />} />
       </Routes>
       <Footer />
+      <MobileBottomNav />
     </>
   );
 }
