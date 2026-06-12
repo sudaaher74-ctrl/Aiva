@@ -481,7 +481,9 @@ h1, h2, h3, h4, h5, h6 {
 .hero-title .highlight {
     background: linear-gradient(90deg, #ffb800, #ff8a00);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
+    color: transparent;
 }
 
 .hero-subtitle {
