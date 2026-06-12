@@ -76,7 +76,10 @@ function ProductGrid() {
   const visibleCategory = getVisibleCategory();
 
   const renderGrid = (category, title) => {
-    const filtered = products.filter((p) => p.tab === category);
+    const filtered = products.filter((p) => {
+      if (category === 'iqf-fruits') return p.tab === 'iqf-fruits' || p.tab === 'iqf';
+      return p.tab === category;
+    });
     if (visibleCategory !== category) return null;
 
     return (
