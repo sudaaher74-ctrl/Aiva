@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -17,10 +18,12 @@ function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const closeMenu = () => setIsOpen(false);
+
   return (
     <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="container nav-container">
-        <Link to="/" className="logo">
+        <Link to="/" className="logo" onClick={closeMenu}>
           <img
             src="/assets/images/products/newlogo.webp"
             alt="AIVA Enterprises Logo"
@@ -33,28 +36,28 @@ function Navbar() {
             }}
           />
         </Link>
-        <nav className="nav-links">
-          <Link to="/#home">Home</Link>
+        <nav className={`nav-links ${isOpen ? 'active' : ''}`}>
+          <Link to="/#home" onClick={closeMenu}>Home</Link>
           <div className="nav-dropdown">
-            <Link to="/products" className="dropdown-toggle">
+            <Link to="/products" className="dropdown-toggle" onClick={closeMenu}>
               Products <i className="ph ph-caret-down"></i>
             </Link>
             <div className="dropdown-menu">
-              <Link to="/products#aseptic">Aseptic pulp/paste</Link>
-              <Link to="/products#iqf-fruits">IQF fruits</Link>
-              <Link to="/products#iqf-frozen">Frozen</Link>
-              <Link to="/products#vegetables">IQF Vegetables</Link>
+              <Link to="/products#aseptic" onClick={closeMenu}>Aseptic pulp/paste</Link>
+              <Link to="/products#iqf-fruits" onClick={closeMenu}>IQF fruits</Link>
+              <Link to="/products#iqf-frozen" onClick={closeMenu}>Frozen</Link>
+              <Link to="/products#vegetables" onClick={closeMenu}>IQF Vegetables</Link>
             </div>
           </div>
-          <Link to="/#about">About Us</Link>
-          <Link to="#contact">Contact</Link>
+          <Link to="/#about" onClick={closeMenu}>About Us</Link>
+          <Link to="#contact" onClick={closeMenu}>Contact</Link>
         </nav>
         <div className="nav-actions">
-          <Link to="#contact" className="btn btn-outline">
+          <Link to="#contact" className="btn btn-outline" onClick={closeMenu}>
             Contact Us
           </Link>
-          <button className="mobile-toggle">
-            <i className="ph ph-list"></i>
+          <button className="mobile-toggle" onClick={() => setIsOpen(!isOpen)}>
+            <i className={`ph ${isOpen ? 'ph-x' : 'ph-list'}`}></i>
           </button>
         </div>
       </div>
