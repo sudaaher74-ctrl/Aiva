@@ -27,13 +27,7 @@ function Navbar() {
           <img
             src="/assets/images/products/newlogo.webp"
             alt="AIVA Enterprises Logo"
-            style={{
-              height: '140px',
-              width: 'auto',
-              objectFit: 'contain',
-              transform: 'scale(1.2)',
-              transformOrigin: 'left center',
-            }}
+            className="logo-img"
           />
         </Link>
         <nav className={`nav-links ${isOpen ? 'active' : ''}`}>
