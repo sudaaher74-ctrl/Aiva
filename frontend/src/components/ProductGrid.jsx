@@ -82,6 +82,12 @@ function ProductGrid() {
     });
     if (visibleCategory !== category) return null;
 
+    const getImageUrl = (url) => {
+      if (!url) return '';
+      if (url.startsWith('./')) return url.substring(1);
+      return url;
+    };
+
     return (
       <section className="prod-grid-section section-padding" id={category}>
         <div className="container">
@@ -92,7 +98,7 @@ function ProductGrid() {
             {filtered.map((product) => (
               <div className="premium-prod-card" key={product._id || product.id}>
                 <div className="p-img-box">
-                  <img src={product.image || product.image_url} alt={product.name} />
+                  <img src={getImageUrl(product.image || product.image_url)} alt={product.name} />
                 </div>
                 <div className="p-info">
                   <h3>{product.name}</h3>
