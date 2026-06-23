@@ -134,7 +134,7 @@ const products = [
     description: 'Premium frozen banana slices or dices, perfect for baking and smoothies.',
     tab: 'iqf-fruits',
     shelfLife: '18 Months',
-    image_url: './assets/images/products/iqf_fruites/bananaIQF.webp',
+    image_url: './assets/images/products/iqf_fruites/bananaIQF.png',
     status: 'Active'
   },
   {
