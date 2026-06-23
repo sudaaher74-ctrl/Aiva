@@ -27,12 +27,12 @@ function MobileBottomNav() {
         </Link>
 
         {/* Using a clipboard/file icon for Quote to match the request */}
-        <Link to="#contact" className={`nav-item ${isActive('#quote') ? 'active' : ''}`} title="Quote" onClick={() => window.location.hash = '#contact'}>
+        <Link to="/#contact" className={`nav-item ${isActive('#contact') ? 'active' : ''}`} title="Quote">
           <i className="ph ph-clipboard-text"></i>
         </Link>
 
         {/* Contact icon */}
-        <Link to="#contact" className={`nav-item ${isActive('#contact') ? 'active' : ''}`} title="Contact">
+        <Link to="/#contact" className={`nav-item ${isActive('#contact') ? 'active' : ''}`} title="Contact">
           <i className="ph ph-user"></i>
         </Link>
       </nav>

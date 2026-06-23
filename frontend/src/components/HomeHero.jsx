@@ -110,9 +110,9 @@ function HomeHero() {
       {/* Floating Parallax Elements */}
       <div className="floating-elements">
         <img
-          src="/assets/images/products/pulp/Alphansomangopulp.webp"
+          src="/assets/mobilehomepage.png"
           className="float-item f-mango"
-          alt="Mango"
+          alt="Aiva Products"
           data-speed="1.5"
         />
         <img
