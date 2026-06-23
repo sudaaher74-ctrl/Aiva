@@ -65,7 +65,7 @@ const ManageProducts = () => {
                 <th>Product Info</th>
                 <th>Category</th>
                 <th>Status</th>
-                <th>Price</th>
+                <th>Shelf Life</th>
                 <th style={{ textAlign: 'right' }}>Actions</th>
               </tr>
             </thead>
@@ -79,22 +79,22 @@ const ManageProducts = () => {
                   <tr key={product._id}>
                     <td>
                       <div className="cell-company">
-                        <div className="company-logo" style={{ backgroundImage: `url(${product.images?.[0]?.url})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: 'var(--bg-panel-hover)' }}>
-                          {!product.images?.[0]?.url && 'P'}
+                        <div className="company-logo" style={{ backgroundImage: `url(${product.image_url || ''})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: 'var(--bg-panel-hover)' }}>
+                          {!product.image_url && 'P'}
                         </div>
                         <div className="cell-company-info">
                           <span className="cell-company-name">{product.name}</span>
-                          <span className="cell-company-id">SKU: {product.sku || 'N/A'}</span>
+                          <span className="cell-company-id">Brix: {product.brix || 'N/A'}</span>
                         </div>
                       </div>
                     </td>
                     <td>{product.category}</td>
                     <td>
-                      <div className="status-badge status-active">
-                        <div className="status-dot"></div> Active
+                      <div className={`status-badge ${product.status === 'Inactive' ? 'status-inactive' : 'status-active'}`}>
+                        <div className="status-dot"></div> {product.status || 'Active'}
                       </div>
                     </td>
-                    <td className="cell-value-gold">${product.price || '0.00'}</td>
+                    <td className="cell-value-gold">{product.shelfLife || 'N/A'}</td>
                     <td style={{ textAlign: 'right' }}>
                       <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
                         <button className="header-icon-btn" title="Edit"><PencilSimple /></button>

@@ -55,8 +55,8 @@ const AdminLayout = () => {
           <div className="header-actions">
             <div className="user-profile">
               <div className="user-info">
-                <span className="user-name">Super Admin</span>
-                <span className="user-role">Administrator</span>
+                <span className="user-name">Admin Portal</span>
+                <span className="user-role">AIVA Enterprises</span>
               </div>
             </div>
           </div>
