@@ -19,10 +19,19 @@ gsap.registerPlugin(ScrollTrigger);
 
 import MobileBottomNav from './components/MobileBottomNav';
 
-function App() {
+// Admin Components
+import AdminLayout from './components/admin/AdminLayout';
+import AdminProtectedRoute from './components/admin/AdminProtectedRoute';
+import AdminLogin from './pages/admin/AdminLogin';
+import DashboardOverview from './pages/admin/DashboardOverview';
+import ManageProducts from './pages/admin/ManageProducts';
+import ManageInquiries from './pages/admin/ManageInquiries';function App() {
   const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith('/admin');
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
+    if (isAdminRoute) return; // Disable Lenis on Admin routes for native scroll handling
     // 1. Initialize Lenis (Smooth Scrolling)
     const lenis = new Lenis({
       duration: 1.2,
@@ -75,16 +84,18 @@ function App() {
           browserInfo: navigator.userAgent,
         }),
       });
-    } catch (e) {
+    } catch {
       // Silently ignore tracking errors
     }
   }, [location]);
 
   return (
     <>
-      <Preloader />
-      <Navbar />
+      {!isAdminRoute && <Preloader />}
+      {!isAdminRoute && <Navbar />}
+      
       <Routes>
+        {/* Public Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<ProductDetail />} />
@@ -93,9 +104,19 @@ function App() {
         <Route path="/blog/:slug" element={<BlogDetail />} />
         {/* If the user accesses products.html, we can catch it or rely on Vercel rewrites */}
         <Route path="/products.html" element={<Products />} />
+
+        {/* Admin Routes */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin" element={<AdminProtectedRoute><AdminLayout /></AdminProtectedRoute>}>
+          <Route index element={<DashboardOverview />} />
+          <Route path="dashboard" element={<DashboardOverview />} />
+          <Route path="products" element={<ManageProducts />} />
+          <Route path="inquiries" element={<ManageInquiries />} />
+        </Route>
       </Routes>
-      <Footer />
-      <MobileBottomNav />
+      
+      {!isAdminRoute && <Footer />}
+      {!isAdminRoute && <MobileBottomNav />}
     </>
   );
 }
