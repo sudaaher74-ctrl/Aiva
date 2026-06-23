@@ -35,8 +35,14 @@ const AdminLayout = () => {
           <Link to="/admin/products" className={`sidebar-link ${path.includes('/admin/products') ? 'active' : ''}`}>
             <Package weight={path.includes('/admin/products') ? 'fill' : 'regular'} /> Products
           </Link>
+          <Link to="/admin/purchase-orders" className={`sidebar-link ${path.includes('/admin/purchase-orders') ? 'active' : ''}`}>
+            <Receipt weight={path.includes('/admin/purchase-orders') ? 'fill' : 'regular'} /> Purchase Orders
+          </Link>
           <Link to="/admin/inquiries" className={`sidebar-link ${path.includes('/admin/inquiries') ? 'active' : ''}`}>
             <ChatCircleDots weight={path.includes('/admin/inquiries') ? 'fill' : 'regular'} /> Inquiries
+          </Link>
+          <Link to="/admin/po-generator" className={`sidebar-link ${path.includes('/admin/po-generator') ? 'active' : ''}`}>
+            <Printer weight={path.includes('/admin/po-generator') ? 'fill' : 'regular'} /> PO Generator
           </Link>
 
           <div className="sidebar-nav-group">Account</div>
