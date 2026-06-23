@@ -44,10 +44,10 @@ function Navbar() {
             </div>
           </div>
           <Link to="/#about" onClick={closeMenu}>About Us</Link>
-          <Link to="#contact" onClick={closeMenu}>Contact</Link>
+          <Link to="/#contact" onClick={closeMenu}>Contact</Link>
         </nav>
         <div className="nav-actions">
-          <Link to="#contact" className="btn btn-outline" onClick={closeMenu}>
+          <Link to="/#contact" className="btn btn-outline" onClick={closeMenu}>
             Contact Us
           </Link>
           <button className="mobile-toggle" onClick={() => setIsOpen(!isOpen)}>
