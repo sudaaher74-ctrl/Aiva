@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import './Blog.css'; // Optional: We will write inline styles or a small CSS file
+
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
