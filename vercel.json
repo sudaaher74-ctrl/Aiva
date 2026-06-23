@@ -21,23 +21,19 @@
     },
     {
       "source": "/seo/(.*)",
-      "destination": "/frontend/seo/$1"
-    },
-    {
-      "source": "/(assets/.*|admin/css/.*|admin/js/.*|favicon\\.svg|icons\\.svg)",
-      "destination": "/frontend/$1"
+      "destination": "/seo/$1"
     },
     {
       "source": "/admin",
-      "destination": "/frontend/admin/index.html"
+      "destination": "/admin/index.html"
     },
     {
       "source": "/admin/(.*)",
-      "destination": "/frontend/admin/index.html"
+      "destination": "/admin/index.html"
     },
     {
       "source": "/(.*)",
-      "destination": "/frontend/index.html"
+      "destination": "/index.html"
     }
   ],
   "env": {
