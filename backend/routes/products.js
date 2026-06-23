@@ -15,6 +15,19 @@ router.get('/', async (req, res) => {
   }
 });
 
+// @route   GET /api/products/:id
+router.get('/:id', async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (!product) {
+      return res.status(404).json({ success: false, message: 'Product not found' });
+    }
+    res.json({ success: true, data: product });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+});
+
 // @route   POST /api/products
 // @access  Private (Admin/Sales)
 router.post('/', protect, upload.fields([{ name: 'image', maxCount: 1 }, { name: 'pdf_catalog', maxCount: 1 }]), async (req, res) => {

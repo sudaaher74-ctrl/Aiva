@@ -10,6 +10,7 @@ import Preloader from './components/Preloader';
 
 import Home from './pages/Home';
 import Products from './pages/Products';
+import ProductDetail from './pages/ProductDetail';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -83,6 +84,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/products/:id" element={<ProductDetail />} />
         {/* If the user accesses products.html, we can catch it or rely on Vercel rewrites */}
         <Route path="/products.html" element={<Products />} />
       </Routes>

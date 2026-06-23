@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import ProductHero from '../components/ProductHero';
 import ProductGrid from '../components/ProductGrid';
 import StandardsSection from '../components/StandardsSection';
@@ -25,6 +26,10 @@ function Products() {
 
   return (
     <>
+      <Helmet>
+        <title>Our Products | AIVA Enterprises</title>
+        <meta name="description" content="Explore our premium range of aseptic fruit pulps, IQF fruits, and vegetables." />
+      </Helmet>
       <ProductHero />
       <ProductGrid />
       <StandardsSection />

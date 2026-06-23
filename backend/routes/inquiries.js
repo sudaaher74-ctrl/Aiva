@@ -124,6 +124,8 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+const nodemailer = require('nodemailer');
+
 // ============================================================
 // POST /api/inquiries — Create new inquiry (from contact form)
 // ============================================================
@@ -142,6 +144,41 @@ router.post('/', async (req, res) => {
       message: message || '',
       source: source || 'Contact Page'
     });
+
+    try {
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS
+        }
+      });
+
+      const mailOptions = {
+        from: process.env.EMAIL_USER || '"AIVA System" <no-reply@aivaenterprises.com>',
+        to: process.env.EMAIL_USER || 'Enquire@aivaenterprises.com',
+        subject: `New Bulk Inquiry from ${company || name}`,
+        html: `
+          <h2>New Bulk Inquiry Received</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Company:</strong> ${company || 'N/A'}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Country:</strong> ${country}</p>
+          <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
+          <p><strong>Product Interest:</strong> ${product || 'General'}</p>
+          <p><strong>Quantity:</strong> ${quantity || 'N/A'}</p>
+          <p><strong>Message:</strong><br/> ${message}</p>
+        `
+      };
+
+      if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+        await transporter.sendMail(mailOptions);
+      } else {
+        console.log('Skipping email notification: EMAIL_USER and EMAIL_PASS not configured in .env');
+      }
+    } catch (emailError) {
+      console.error('Failed to send email notification:', emailError);
+    }
 
     res.status(201).json({ success: true, data: inquiry });
   } catch (error) {

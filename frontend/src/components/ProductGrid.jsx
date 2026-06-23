@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -118,9 +118,14 @@ function ProductGrid() {
                       </li>
                     )}
                   </ul>
-                  <a href="#contact" className="btn-link" onClick={() => handleQuoteClick(product.image || product.image_url)}>
-                    Get Quote <i className="ph ph-arrow-right"></i>
-                  </a>
+                  <div style={{ display: 'flex', gap: '10px', marginTop: '15px' }}>
+                    <a href="#contact" className="btn-link" onClick={() => handleQuoteClick(product.image || product.image_url)}>
+                      Get Quote <i className="ph ph-arrow-right"></i>
+                    </a>
+                    <Link to={`/products/${product._id || product.id}`} className="btn-link" style={{ color: '#D4AF37' }}>
+                      View Details
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}
