@@ -858,7 +858,7 @@ window.downloadPO = async function(id) {
       margin:       10,
       filename:     `PO-${po.poNumber || po._id.substring(0,8).toUpperCase()}.pdf`,
       image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  { scale: 2, useCORS: true },
+      html2canvas:  { scale: 2, useCORS: true, windowWidth: 800, scrollX: 0, scrollY: 0 },
       jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
       pagebreak:    { mode: 'avoid-all' }
     };
@@ -1003,7 +1003,7 @@ window.savePO = async function(status, downloadPdf = false) {
         margin:       10,
         filename:     `PO-${newPo.poNumber || 'DRAFT'}.pdf`,
         image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2, useCORS: true },
+        html2canvas:  { scale: 2, useCORS: true, windowWidth: 800, scrollX: 0, scrollY: 0 },
         jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
         pagebreak:    { mode: 'avoid-all' }
       };
@@ -1074,10 +1074,10 @@ function generatePOHtmlTemplate(po, num) {
   const grandTotal = subtotal + taxAmount + (po.freightCharges || 0) + (po.insurance || 0);
 
   return `
-<div id="po-pdf-template" style="width: 800px; padding: 20px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #111; background: white; box-sizing: border-box;">
+<div id="po-pdf-template" style="width: 800px; max-width: 800px; padding: 20px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #111; background: white; box-sizing: border-box; overflow: hidden; word-break: break-word;">
   <!-- Header -->
-  <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #002244; padding-bottom: 12px; margin-bottom: 12px;">
-    <div>
+  <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; border-bottom: 2px solid #002244; padding-bottom: 12px; margin-bottom: 12px;">
+    <div style="min-width: 0;">
       <div style="display: flex; align-items: center;">
         <svg width="60" height="60" viewBox="0 0 32 32" style="margin-right: 12px;">
           <rect width="32" height="32" rx="4" fill="#0B2B5E"/>
@@ -1090,8 +1090,8 @@ function generatePOHtmlTemplate(po, num) {
       </div>
       <div style="font-size: 11px; margin-top: 8px; font-weight: bold; letter-spacing: 1px; color: #333;">IMPORT | EXPORT | GLOBAL TRADE</div>
     </div>
-    <div style="text-align: right;">
-      <h2 style="margin: 0 0 6px 0; font-size: 18px; color: #002244;">PURCHASE ORDER</h2>
+    <div style="text-align: right; flex-shrink: 0;">
+      <h2 style="margin: 0 0 6px 0; font-size: 18px; color: #002244; white-space: nowrap;">PURCHASE ORDER</h2>
       <table style="font-size: 10px; margin-left: auto; text-align: left; border-spacing: 0;">
         <tr><td style="font-weight: bold; padding-right: 12px; padding-bottom: 2px;">PO Number</td><td>: ${num}</td></tr>
         <tr><td style="font-weight: bold; padding-right: 12px; padding-bottom: 2px;">PO Date</td><td>: ${new Date().toLocaleDateString('en-GB', {day: '2-digit', month: 'short', year: 'numeric'})}</td></tr>
