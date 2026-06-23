@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 
 
 const Blog = () => {
@@ -26,10 +26,11 @@ const Blog = () => {
 
   return (
     <div className="blog-page">
-      <Helmet>
-        <title>Industry News & Updates | AIVA</title>
-        <meta name="description" content="Stay updated with the latest news, insights, and updates from AIVA Enterprises regarding the global export of premium agricultural commodities." />
-      </Helmet>
+      <SEO 
+        title="Industry News & Updates"
+        description="Stay updated with the latest news, insights, and updates from AIVA Enterprises regarding the global export of premium agricultural commodities."
+        canonicalUrl="/blog"
+      />
 
       <section className="blog-hero" style={{ padding: '120px 20px 60px', textAlign: 'center', background: 'var(--bg-dark)' }}>
         <span className="eyebrow" style={{ color: 'var(--accent-gold)', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.8rem', fontWeight: 'bold' }}>Insights & News</span>

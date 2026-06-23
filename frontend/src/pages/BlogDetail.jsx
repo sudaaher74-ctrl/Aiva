@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 
 const BlogDetail = () => {
   const { slug } = useParams();
@@ -40,10 +40,35 @@ const BlogDetail = () => {
 
   return (
     <div className="blog-detail-page">
-      <Helmet>
-        <title>{blog.title} | AIVA Journal</title>
-        <meta name="description" content={blog.content.substring(0, 160).replace(/<[^>]+>/g, '')} />
-      </Helmet>
+      <SEO 
+        title={blog.title}
+        description={blog.content.substring(0, 160).replace(/<[^>]+>/g, '')}
+        canonicalUrl={`/blog/${slug}`}
+        ogType="article"
+        ogImage={blog.image_url || 'https://www.aivaenterprises.com/assets/images/og-image.webp'}
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": blog.title,
+            "image": blog.image_url || "https://www.aivaenterprises.com/assets/images/og-image.webp",
+            "author": {
+              "@type": "Person",
+              "name": blog.author || "AIVA Enterprises"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "AIVA Enterprises",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.aivaenterprises.com/assets/images/products/newlogo.webp"
+              }
+            },
+            "datePublished": blog.createdAt,
+            "dateModified": blog.updatedAt || blog.createdAt
+          }
+        ]}
+      />
 
       <article style={{ maxWidth: '800px', margin: '0 auto', padding: '120px 20px 60px' }}>
         <Link to="/blog" style={{ color: 'var(--accent-gold)', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 'bold' }}>&larr; Back to Journal</Link>

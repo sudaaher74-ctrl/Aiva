@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import ProductHero from '../components/ProductHero';
 import ProductGrid from '../components/ProductGrid';
 import StandardsSection from '../components/StandardsSection';
@@ -26,10 +26,24 @@ function Products() {
 
   return (
     <>
-      <Helmet>
-        <title>Our Products | AIVA Enterprises</title>
-        <meta name="description" content="Explore our premium range of aseptic fruit pulps, IQF fruits, and vegetables." />
-      </Helmet>
+      <SEO 
+        title="Premium Fruit Pulps & IQF Fruits"
+        description="Explore our premium range of aseptic fruit pulps (Alphonso Mango, Totapuri, Pink Guava) and IQF fruits & vegetables for B2B export."
+        canonicalUrl="/products"
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": "Alphonso Mango Pulp",
+            "image": "https://www.aivaenterprises.com/assets/images/products/pulp/Alphansomangopulp.webp",
+            "description": "Premium Aseptic Alphonso Mango Pulp for B2B manufacturing.",
+            "brand": {
+              "@type": "Brand",
+              "name": "AIVA Enterprises"
+            }
+          }
+        ]}
+      />
       <ProductHero />
       <ProductGrid />
       <StandardsSection />

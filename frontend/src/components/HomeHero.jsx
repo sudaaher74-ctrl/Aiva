@@ -88,10 +88,11 @@ function HomeHero() {
         >
           GLOBAL EXPORT QUALITY
         </div>
-        <h1 className="hero-title">
-          <span className="reveal-text">The Standard Behind</span>
-          <br />
-          <span className="reveal-text highlight">The Standard.</span>
+        <h1 className="hero-title" style={{ position: 'relative' }}>
+          <span style={{ position: 'absolute', width: 1, height: 1, padding: 0, margin: -1, overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', whiteSpace: 'nowrap', borderWidth: 0 }}>Premium Fruit Pulp Exporter India</span>
+          <span className="reveal-text" aria-hidden="true">The Standard Behind</span>
+          <br aria-hidden="true" />
+          <span className="reveal-text highlight" aria-hidden="true">The Standard.</span>
         </h1>
         <div className="hero-buttons reveal-text delay-2">
           <Link to="/products" className="btn btn-primary">
@@ -105,19 +106,25 @@ function HomeHero() {
         <img
           src="/assets/images/products/pulp/Alphansomangopulp.webp"
           className="float-item f-mango"
-          alt="Mango"
+          alt="Premium Alphonso Mango Pulp Exporter"
+          width="400"
+          height="600"
           data-speed="1.5"
         />
         <img
           src="/assets/images/products/pulp/pinkguavapulp.webp"
           className="float-item f-guava"
-          alt="Guava"
+          alt="Pink Guava Pulp Manufacturer"
+          width="400"
+          height="600"
           data-speed="-1.2"
         />
         <img
           src="/assets/images/products/pulp/papayapulp.webp"
           className="float-item f-papaya"
-          alt="Papaya Pulp Bottle"
+          alt="Papaya Pulp Supplier"
+          width="400"
+          height="600"
           data-speed="1.8"
         />
       </div>

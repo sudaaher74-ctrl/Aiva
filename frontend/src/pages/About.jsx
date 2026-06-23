@@ -1,14 +1,35 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 const About = () => {
   return (
     <div className="about-page">
-      <Helmet>
-        <title>About AIVA | Premium Global Agricultural Exports</title>
-        <meta name="description" content="Learn about AIVA Enterprises, our history, our farming facilities, and our commitment to premium global agricultural exports including spices, pulses, and grains." />
-      </Helmet>
+      <SEO 
+        title="About Us | Premium Fruit Pulp Manufacturer"
+        description="Learn about AIVA Enterprises, our history, our state-of-the-art facilities, and our commitment to premium global exports of fruit pulps and IQF fruits."
+        canonicalUrl="/about"
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.aivaenterprises.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "About Us",
+                "item": "https://www.aivaenterprises.com/about"
+              }
+            ]
+          }
+        ]}
+      />
 
       {/* Hero Section */}
       <section className="about-hero" style={{ padding: '140px 20px 80px', textAlign: 'center', background: 'linear-gradient(to bottom, #0A0A0A, #111111)', position: 'relative', overflow: 'hidden' }}>

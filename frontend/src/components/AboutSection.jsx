@@ -60,17 +60,23 @@ function AboutSection() {
             <img
               src="/assets/images/products/pulp/kesarmangopulp.webp"
               className="comp-img comp-main"
-              alt="Kesar Mango"
+              alt="Premium Kesar Mango Pulp Manufacturer"
+              loading="lazy"
+              width="500"
+              height="600"
             />
             <img
               src="/assets/images/products/pulp/tomatopaste.webp"
               className="comp-img comp-sub"
-              alt="Tomato Paste"
+              alt="Tomato Paste Exporter India"
+              loading="lazy"
+              width="400"
+              height="400"
             />
           </div>
         </div>
         <div className="split-right content-block">
-          <h4 className="section-subtitle">Our Heritage</h4>
+          <h3 className="section-subtitle">Premium Fruit Pulp Manufacturer</h3>
           <h2 className="section-title">
             Cultivating Global <br />
             Quality Standards

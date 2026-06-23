@@ -31,8 +31,11 @@ function GlobalExport() {
   return (
     <section className="export section-padding" id="export" ref={sectionRef}>
       <div className="container text-center">
-        <h4 className="section-subtitle">Global Reach</h4>
-        <h2 className="section-title">Trusted Worldwide</h2>
+        <h3 className="section-subtitle">Based in Navi Mumbai, Maharashtra</h3>
+        <h2 className="section-title">Global Exporter from India</h2>
+        <p style={{ maxWidth: '800px', margin: '0 auto 2rem', color: 'var(--text-secondary)' }}>
+          Operating from our strategic base in Navi Mumbai, Maharashtra, AIVA Enterprises connects the rich agricultural heritage of India with global markets. Our world-class supply chain ensures premium fruit pulps and IQF produce reach destinations worldwide with uncompromised quality.
+        </p>
 
         <div className="global-map-container reveal-scale" style={{ maxWidth: '1000px', margin: '1rem auto 0' }}>
           <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg" id="world-map">
