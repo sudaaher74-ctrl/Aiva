@@ -56,7 +56,7 @@ function AboutSection() {
     <section className="about section-padding" id="about" ref={sectionRef}>
       <div className="container split-layout">
         <div className="split-left">
-          <div className="image-composition" style={{ transform: 'translateX(20px)' }}>
+          <div className="image-composition">
             <img
               src="/assets/images/products/pulp/kesarmangopulp.webp"
               className="comp-img comp-main"
