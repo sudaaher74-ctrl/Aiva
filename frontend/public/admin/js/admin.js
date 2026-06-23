@@ -857,7 +857,7 @@ async function generatePOPdf(htmlString, filename) {
 
   // Render off-screen at the exact template width.
   const holder = document.createElement('div');
-  holder.style.cssText = `position:fixed;left:-10000px;top:0;width:${TEMPLATE_WIDTH}px;background:#ffffff;`;
+  holder.style.cssText = `position:absolute;left:0;top:0;z-index:-9999;visibility:hidden;width:${TEMPLATE_WIDTH}px;background:#ffffff;`;
   holder.innerHTML = htmlString;
   document.body.appendChild(holder);
   const target = holder.firstElementChild || holder;
