@@ -1105,9 +1105,11 @@ window.updatePOPreview = function() {
 
 function generatePOHtmlTemplate(po, num) {
   let subtotal = 0;
-  po.items.forEach(item => subtotal += (item.quantity * item.unitPrice));
+  const items = po.items || [];
+  items.forEach(item => subtotal += (item.quantity * item.unitPrice));
   const taxAmount = (subtotal * (po.gstPercent || 0)) / 100;
   const grandTotal = subtotal + taxAmount + (po.freightCharges || 0) + (po.insurance || 0);
+  const terms = po.termsAndConditions || '';
 
   return `
 <div id="po-pdf-template" style="width: 800px; max-width: 800px; padding: 20px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #111; background: white; box-sizing: border-box; overflow: hidden; word-break: break-word;">
@@ -1181,14 +1183,14 @@ function generatePOHtmlTemplate(po, num) {
       </tr>
     </thead>
     <tbody>
-      ${po.items.map((item, i) => `
+      ${items.map((item, i) => `
       <tr>
         <td style="padding: 6px; border: 1px solid #ddd;">${i + 1}</td>
-        <td style="padding: 6px; border: 1px solid #ddd; text-align: left;">${item.productName}</td>
-        <td style="padding: 6px; border: 1px solid #ddd;">${item.quantity.toLocaleString()}</td>
-        <td style="padding: 6px; border: 1px solid #ddd;">${item.unit}</td>
-        <td style="padding: 6px; border: 1px solid #ddd;">${item.unitPrice.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-        <td style="padding: 6px; border: 1px solid #ddd;">${(item.quantity * item.unitPrice).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+        <td style="padding: 6px; border: 1px solid #ddd; text-align: left;">${item.productName || item.desc || '-'}</td>
+        <td style="padding: 6px; border: 1px solid #ddd;">${(item.quantity || 0).toLocaleString()}</td>
+        <td style="padding: 6px; border: 1px solid #ddd;">${item.unit || '-'}</td>
+        <td style="padding: 6px; border: 1px solid #ddd;">${(item.unitPrice || 0).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+        <td style="padding: 6px; border: 1px solid #ddd;">${((item.quantity || 0) * (item.unitPrice || 0)).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
       </tr>
       `).join('')}
     </tbody>
@@ -1224,16 +1226,16 @@ function generatePOHtmlTemplate(po, num) {
     <div style="flex: 1; border: 1px solid #ddd;">
       <div style="background: #002244; color: white; padding: 4px 8px; font-size: 9px; font-weight: bold;">PAYMENT TERMS</div>
       <div style="padding: 8px; font-size: 9px; line-height: 1.6;">
-        <div style="display: flex; align-items: center; gap: 4px;"><input type="checkbox" onclick="return false;" ${po.termsAndConditions.includes('100%') ? 'checked' : ''}> Advance 100%</div>
-        <div style="display: flex; align-items: center; gap: 4px;"><input type="checkbox" onclick="return false;" ${po.termsAndConditions.includes('Advance') && !po.termsAndConditions.includes('100%') ? 'checked' : ''}> 30% Adv, 70% Before Ship</div>
-        <div style="display: flex; align-items: center; gap: 4px;"><input type="checkbox" onclick="return false;" ${po.termsAndConditions.includes('LC') || po.termsAndConditions.includes('L/C') ? 'checked' : ''}> Letter of Credit (L/C)</div>
+        <div style="display: flex; align-items: center; gap: 4px;"><input type="checkbox" onclick="return false;" ${terms.includes('100%') ? 'checked' : ''}> Advance 100%</div>
+        <div style="display: flex; align-items: center; gap: 4px;"><input type="checkbox" onclick="return false;" ${terms.includes('Advance') && !terms.includes('100%') ? 'checked' : ''}> 30% Adv, 70% Before Ship</div>
+        <div style="display: flex; align-items: center; gap: 4px;"><input type="checkbox" onclick="return false;" ${terms.includes('LC') || terms.includes('L/C') ? 'checked' : ''}> Letter of Credit (L/C)</div>
         <div style="margin-top: 6px; font-weight: bold; color: #002244;">Payment in ${po.currency}</div>
       </div>
     </div>
     <div style="flex: 1; border: 1px solid #ddd;">
       <div style="background: #002244; color: white; padding: 4px 8px; font-size: 9px; font-weight: bold;">PACKAGING REQ</div>
       <div style="padding: 8px; font-size: 9px; line-height: 1.6;">
-        <div>${po.items[0]?.packaging || 'Standard Packaging'}</div>
+        <div>${items[0]?.packaging || 'Standard Packaging'}</div>
         <div>Strong & Sea-worthy Packing</div>
         <div>Proper Palletization</div>
         <div>Intl Standards</div>
@@ -1254,7 +1256,7 @@ function generatePOHtmlTemplate(po, num) {
     <div style="font-size: 10px; font-weight: bold; color: #002244; margin-bottom: 4px;">SPECIAL INSTRUCTIONS</div>
     <div style="font-size: 9px; padding: 6px 10px; background: #f9f9f9; border: 1px solid #eee;">
       Please ensure timely shipment and provide all necessary shipping documents.<br>
-      ${po.termsAndConditions.replace(/\\n/g, '<br>')}
+      ${terms.replace(/\\n/g, '<br>')}
     </div>
   </div>
 
