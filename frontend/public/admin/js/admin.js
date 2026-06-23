@@ -846,24 +846,69 @@ window.deletePO = async function(id) {
   }
 };
 
+// ============================================================
+// Deterministic PO → PDF renderer.
+// Captures the 800px template with html2canvas, then places it
+// into an A4 page at an EXACT fitted width + fixed left margin so
+// the document can never be clipped on the left or right.
+// ============================================================
+async function generatePOPdf(htmlString, filename) {
+  const TEMPLATE_WIDTH = 800; // must match #po-pdf-template width
+
+  // Render off-screen at the exact template width.
+  const holder = document.createElement('div');
+  holder.style.cssText = `position:fixed;left:-10000px;top:0;width:${TEMPLATE_WIDTH}px;background:#ffffff;`;
+  holder.innerHTML = htmlString;
+  document.body.appendChild(holder);
+  const target = holder.firstElementChild || holder;
+
+  try {
+    const canvas = await html2canvas(target, {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: '#ffffff',
+      width: TEMPLATE_WIDTH,
+      windowWidth: TEMPLATE_WIDTH,
+      scrollX: 0,
+      scrollY: 0,
+    });
+
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+    const pageW = pdf.internal.pageSize.getWidth();   // 210
+    const pageH = pdf.internal.pageSize.getHeight();  // 297
+    const margin = 10;
+    const imgW = pageW - margin * 2;                  // fitted width
+    const imgH = (canvas.height * imgW) / canvas.width;
+    const pageContentH = pageH - margin * 2;
+    const imgData = canvas.toDataURL('image/jpeg', 0.98);
+
+    // First page, then slice any overflow onto further pages.
+    pdf.addImage(imgData, 'JPEG', margin, margin, imgW, imgH);
+    let heightLeft = imgH - pageContentH;
+    let offset = 0;
+    while (heightLeft > 0) {
+      offset += pageContentH;
+      pdf.addPage();
+      pdf.addImage(imgData, 'JPEG', margin, margin - offset, imgW, imgH);
+      heightLeft -= pageContentH;
+    }
+
+    pdf.save(filename);
+  } finally {
+    document.body.removeChild(holder);
+  }
+}
+
 window.downloadPO = async function(id) {
   try {
     showToast('Fetching PO details...', 'info');
     const { data: po } = await apiGet(`/purchase-orders/${id}`);
     
     showToast('Generating PDF...', 'info');
-    const htmlString = generatePOHtmlTemplate(po, po.poNumber || po._id.substring(0,8).toUpperCase());
-    
-    const opt = {
-      margin:       10,
-      filename:     `PO-${po.poNumber || po._id.substring(0,8).toUpperCase()}.pdf`,
-      image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  { scale: 2, useCORS: true, windowWidth: 800, scrollX: 0, scrollY: 0 },
-      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-      pagebreak:    { mode: 'avoid-all' }
-    };
-    
-    await html2pdf().set(opt).from(htmlString).save();
+    const poNum = po.poNumber || po._id.substring(0,8).toUpperCase();
+    const htmlString = generatePOHtmlTemplate(po, poNum);
+    await generatePOPdf(htmlString, `PO-${poNum}.pdf`);
     showToast('PDF downloaded successfully', 'success');
   } catch (err) {
     showToast('Failed to download PDF', 'error');
@@ -999,17 +1044,8 @@ window.savePO = async function(status, downloadPdf = false) {
       
       const htmlString = generatePOHtmlTemplate(poData, newPo.poNumber || 'DRAFT');
 
-      const opt = {
-        margin:       10,
-        filename:     `PO-${newPo.poNumber || 'DRAFT'}.pdf`,
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2, useCORS: true, windowWidth: 800, scrollX: 0, scrollY: 0 },
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-        pagebreak:    { mode: 'avoid-all' }
-      };
-
       try {
-        await html2pdf().set(opt).from(htmlString).save();
+        await generatePOPdf(htmlString, `PO-${newPo.poNumber || 'DRAFT'}.pdf`);
         showToast('PDF downloaded successfully', 'success');
       } catch (err) {
         showToast('Failed to generate PDF', 'error');
