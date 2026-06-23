@@ -816,12 +816,16 @@ async function loadPurchaseOrders() {
       return `
       <tr>
         <td style="font-weight:700;color:var(--text-primary)">${po.poNumber || po._id.substring(0, 8).toUpperCase()}</td>
-        <td>${formatDate(po.createdAt)}</td>
-        <td>${po.vendorName || '-'}</td>
+        <td>
+          <div style="font-weight:600">${po.buyerCompany || po.buyerName || '-'}</div>
+          ${po.buyerName ? `<div style="font-size:0.75rem;color:var(--text-secondary)">${po.buyerName}</div>` : ''}
+        </td>
+        <td>${po.items && po.items.length ? po.items.length + ' item(s)' : '-'}</td>
         <td style="font-weight:600">$${(po.totalAmount || 0).toLocaleString()}</td>
         <td><span style="color:${statusColor};font-weight:700;font-size:0.8rem;padding:4px 8px;background:rgba(255,255,255,0.05);border-radius:12px;">${po.status || 'Draft'}</span></td>
-        <td style="display: flex; align-items: center;">
-          <button class="btn btn-action" onclick="downloadPO('${po._id}')" title="Download PDF" style="margin-right: 8px;">
+        <td>${formatDate(po.createdAt)}</td>
+        <td style="display: flex; align-items: center; gap: 8px;">
+          <button class="btn btn-action" onclick="downloadPO('${po._id}')" title="Download PDF">
             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
           </button>
           <button class="btn btn-action" onclick="deletePO('${po._id}')" title="Delete PO">
