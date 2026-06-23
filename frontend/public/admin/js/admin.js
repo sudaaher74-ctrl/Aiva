@@ -911,7 +911,7 @@ window.downloadPO = async function(id) {
     await generatePOPdf(htmlString, `PO-${poNum}.pdf`);
     showToast('PDF downloaded successfully', 'success');
   } catch (err) {
-    showToast('Failed to download PDF', 'error');
+    showToast('Failed to download PDF: ' + err.message, 'error');
     console.error(err);
   }
 };
@@ -1117,7 +1117,7 @@ function generatePOHtmlTemplate(po, num) {
   <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; border-bottom: 2px solid #002244; padding-bottom: 12px; margin-bottom: 12px;">
     <div style="min-width: 0;">
       <div style="display: flex; align-items: center;">
-        <svg width="60" height="60" viewBox="0 0 32 32" style="margin-right: 12px;">
+        <svg width="60" height="60" viewBox="0 0 32 32" style="margin-right: 12px;" xmlns="http://www.w3.org/2000/svg">
           <rect width="32" height="32" rx="4" fill="#0B2B5E"/>
           <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="800" font-size="18" fill="#B08D57">A</text>
         </svg>
