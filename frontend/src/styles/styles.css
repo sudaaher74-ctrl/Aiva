@@ -534,7 +534,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-buttons {
     display: flex;
-    gap: 2rem;
+    gap: 3rem;
     align-items: center;
     margin-top: 2rem;
 }
@@ -1189,7 +1189,7 @@ h1, h2, h3, h4, h5, h6 {
     .hero-buttons {
         flex-direction: column;
         align-items: stretch;
-        gap: 1rem;
+        gap: 1.5rem;
         width: 100%;
     }
     .hero-buttons .btn-primary {
