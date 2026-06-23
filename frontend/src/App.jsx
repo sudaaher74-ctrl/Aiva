@@ -29,6 +29,7 @@ import ManageInquiries from './pages/admin/ManageInquiries';
 import ManagePurchaseOrders from './pages/admin/ManagePurchaseOrders';
 import PurchaseOrderForm from './pages/admin/PurchaseOrderForm';
 import PurchaseOrderView from './pages/admin/PurchaseOrderView';
+import ExportPOGenerator from './pages/admin/ExportPOGenerator';
 
 function App() {
   const location = useLocation();
@@ -117,6 +118,7 @@ function App() {
           <Route path="dashboard" element={<DashboardOverview />} />
           <Route path="products" element={<ManageProducts />} />
           <Route path="inquiries" element={<ManageInquiries />} />
+          <Route path="po-generator" element={<ExportPOGenerator />} />
           <Route path="purchase-orders" element={<ManagePurchaseOrders />} />
           <Route path="purchase-orders/new" element={<PurchaseOrderForm />} />
           <Route path="purchase-orders/:id" element={<PurchaseOrderView />} />

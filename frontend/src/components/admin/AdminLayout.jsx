@@ -1,5 +1,5 @@
 import { Link, useLocation, Outlet, useNavigate } from 'react-router-dom';
-import { Package, ChatCircleDots, SignOut, SquaresFour, Receipt } from '@phosphor-icons/react';
+import { Package, ChatCircleDots, SignOut, SquaresFour, Receipt, Printer } from '@phosphor-icons/react';
 import '../../styles/admin.css';
 
 const AdminLayout = () => {
@@ -40,6 +40,9 @@ const AdminLayout = () => {
           </Link>
           <Link to="/admin/inquiries" className={`sidebar-link ${path.includes('/admin/inquiries') ? 'active' : ''}`}>
             <ChatCircleDots weight={path.includes('/admin/inquiries') ? 'fill' : 'regular'} /> Inquiries
+          </Link>
+          <Link to="/admin/po-generator" className={`sidebar-link ${path.includes('/admin/po-generator') ? 'active' : ''}`}>
+            <Printer weight={path.includes('/admin/po-generator') ? 'fill' : 'regular'} /> PO Generator
           </Link>
 
           <div className="sidebar-nav-group">Account</div>
