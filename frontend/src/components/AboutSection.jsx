@@ -55,20 +55,6 @@ function AboutSection() {
   return (
     <section className="about section-padding" id="about" ref={sectionRef}>
       <div className="container split-layout">
-        <div className="split-left">
-          <div className="image-composition">
-            <img
-              src="/assets/images/products/pulp/kesarmangopulp.webp"
-              className="comp-img comp-main"
-              alt="Kesar Mango"
-            />
-            <img
-              src="/assets/images/products/pulp/tomatopaste.webp"
-              className="comp-img comp-sub"
-              alt="Tomato Paste"
-            />
-          </div>
-        </div>
         <div className="split-right content-block">
           <h4 className="section-subtitle">Our Heritage</h4>
           <h2 className="section-title">
@@ -100,6 +86,20 @@ function AboutSection() {
                 Made to Spec Customized Requirements
               </p>
             </div>
+          </div>
+        </div>
+        <div className="split-left">
+          <div className="image-composition">
+            <img
+              src="/assets/images/products/pulp/kesarmangopulp.webp"
+              className="comp-img comp-main"
+              alt="Kesar Mango"
+            />
+            <img
+              src="/assets/images/products/pulp/tomatopaste.webp"
+              className="comp-img comp-sub"
+              alt="Tomato Paste"
+            />
           </div>
         </div>
       </div>
