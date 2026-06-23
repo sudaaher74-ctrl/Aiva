@@ -863,6 +863,17 @@ async function generatePOPdf(htmlString, filename) {
   const target = holder.firstElementChild || holder;
 
   try {
+    if (window.html2pdf) {
+      await html2pdf().set({
+        margin: 10,
+        filename: filename,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, width: TEMPLATE_WIDTH, windowWidth: TEMPLATE_WIDTH },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      }).from(target).save();
+      return;
+    }
+
     const canvas = await html2canvas(target, {
       scale: 2,
       useCORS: true,
@@ -873,8 +884,9 @@ async function generatePOPdf(htmlString, filename) {
       scrollY: 0,
     });
 
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+    const jsPDFConstructor = (window.jspdf && window.jspdf.jsPDF) || window.jsPDF;
+    if (!jsPDFConstructor) throw new Error("jsPDF library not found");
+    const pdf = new jsPDFConstructor({ unit: 'mm', format: 'a4', orientation: 'portrait' });
     const pageW = pdf.internal.pageSize.getWidth();   // 210
     const pageH = pdf.internal.pageSize.getHeight();  // 297
     const margin = 10;
