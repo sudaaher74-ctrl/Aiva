@@ -1,4 +1,5 @@
 const cloudinary = require('cloudinary').v2;
+const sharp = require('sharp');
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME || 'demo',
@@ -6,7 +7,16 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET || 'abcdefgh'
 });
 
-const uploadToCloudinary = (fileBuffer, folder, resourceType = 'image') => {
+const uploadToCloudinary = async (fileBuffer, folder, resourceType = 'image') => {
+  let processedBuffer = fileBuffer;
+  
+  if (resourceType === 'image') {
+    processedBuffer = await sharp(fileBuffer)
+      .resize({ width: 1200, withoutEnlargement: true })
+      .webp({ quality: 80 })
+      .toBuffer();
+  }
+
   return new Promise((resolve, reject) => {
     const uploadStream = cloudinary.uploader.upload_stream(
       {
@@ -18,7 +28,7 @@ const uploadToCloudinary = (fileBuffer, folder, resourceType = 'image') => {
         resolve(result);
       }
     );
-    uploadStream.end(fileBuffer);
+    uploadStream.end(processedBuffer);
   });
 };
 

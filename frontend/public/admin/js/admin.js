@@ -103,6 +103,60 @@ function hideLoginOverlay() {
   if (overlay) overlay.style.display = 'none';
 }
 
+window.toggleAuthView = function(view) {
+  document.getElementById('login-card-view').style.display = 'none';
+  document.getElementById('forgot-card-view').style.display = 'none';
+  document.getElementById('reset-card-view').style.display = 'none';
+
+  if (view === 'login') document.getElementById('login-card-view').style.display = 'block';
+  if (view === 'forgot') document.getElementById('forgot-card-view').style.display = 'block';
+  if (view === 'reset') document.getElementById('reset-card-view').style.display = 'block';
+}
+
+let currentResetToken = null;
+
+window.requestPasswordReset = async function(email) {
+  if (!email) return showToast('Please enter an email', 'error');
+  try {
+    const res = await fetch(`${API_BASE}/auth/forgot-password`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    const data = await res.json();
+    if (data.success) {
+      showToast('Reset link sent to your email', 'success');
+      toggleAuthView('login');
+    } else {
+      showToast(data.message, 'error');
+    }
+  } catch (err) {
+    showToast('Failed to request reset', 'error');
+  }
+}
+
+window.submitPasswordReset = async function(password) {
+  if (!password) return showToast('Please enter a new password', 'error');
+  if (!currentResetToken) return showToast('Invalid reset token', 'error');
+  try {
+    const res = await fetch(`${API_BASE}/auth/reset-password`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: currentResetToken, password })
+    });
+    const data = await res.json();
+    if (data.success) {
+      showToast('Password reset successfully! Please log in.', 'success');
+      window.location.hash = '';
+      toggleAuthView('login');
+    } else {
+      showToast(data.message, 'error');
+    }
+  } catch (err) {
+    showToast('Failed to reset password', 'error');
+  }
+}
+
 // ============================================================
 // Utility Functions
 // ============================================================
@@ -620,9 +674,18 @@ function showToast(message, type = 'info') {
 // INIT — Run on page load
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
-  // Check auth
+  // Check auth and hash
+  const hash = window.location.hash;
+  if (hash.startsWith('#reset=')) {
+    currentResetToken = hash.split('=')[1];
+    showLoginOverlay();
+    toggleAuthView('reset');
+    return;
+  }
+
   if (!localStorage.getItem('aiva_token')) {
     showLoginOverlay();
+    toggleAuthView('login');
     return;
   }
   // Highlight active sidebar link
@@ -1427,3 +1490,165 @@ window.submitAddInquiry = async function() {
   }
 };
 
+// ============================================================
+// BLOGS MANAGEMENT
+// ============================================================
+let quillEditor = null;
+
+window.loadBlogs = async function() {
+  const tableBody = document.getElementById('blogs-table-body');
+  if (!tableBody) return;
+  try {
+    const res = await fetch(`${API_BASE}/blogs/admin`, {
+      headers: { 'Authorization': `Bearer ${localStorage.getItem('aiva_token')}` }
+    });
+    const data = await res.json();
+    if (data.success) {
+      if (data.data.length === 0) {
+        tableBody.innerHTML = `<tr><td colspan="5" class="po-empty">No blogs found.</td></tr>`;
+        return;
+      }
+      tableBody.innerHTML = data.data.map(blog => `
+        <tr>
+          <td><strong>${blog.title}</strong></td>
+          <td>${blog.author}</td>
+          <td><span class="badge ${blog.isPublished ? 'badge-passed' : 'badge-pending'}">${blog.isPublished ? 'Published' : 'Draft'}</span></td>
+          <td>${new Date(blog.createdAt).toLocaleDateString()}</td>
+          <td style="text-align: right;">
+            <div class="po-actions" style="justify-content: flex-end;">
+              <button class="po-action-btn" onclick="editBlog('${blog._id}')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></button>
+              <button class="po-action-btn danger" onclick="deleteBlog('${blog._id}')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+  } catch (err) {
+    console.error(err);
+    showToast('Failed to load blogs', 'error');
+  }
+}
+
+function initQuill() {
+  if (!quillEditor && document.getElementById('blog-editor')) {
+    quillEditor = new Quill('#blog-editor', {
+      theme: 'snow',
+      modules: {
+        toolbar: [
+          [{ 'header': [1, 2, 3, false] }],
+          ['bold', 'italic', 'underline', 'strike'],
+          [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+          ['link', 'image'],
+          ['clean']
+        ]
+      }
+    });
+  }
+}
+
+window.openBlogModal = function() {
+  initQuill();
+  document.getElementById('blog-id').value = '';
+  document.getElementById('blog-title').value = '';
+  document.getElementById('blog-slug').value = '';
+  document.getElementById('blog-author').value = 'AIVA Enterprises';
+  document.getElementById('blog-tags').value = '';
+  document.getElementById('blog-image').value = '';
+  document.getElementById('blog-published').checked = true;
+  quillEditor.root.innerHTML = '';
+  
+  const modal = document.getElementById('blog-modal');
+  if (modal) modal.classList.add('active');
+}
+
+window.closeBlogModal = function() {
+  const modal = document.getElementById('blog-modal');
+  if (modal) modal.classList.remove('active');
+}
+
+window.editBlog = async function(id) {
+  try {
+    const res = await fetch(`${API_BASE}/blogs/admin`, {
+      headers: { 'Authorization': `Bearer ${localStorage.getItem('aiva_token')}` }
+    });
+    const data = await res.json();
+    const blog = data.data.find(b => b._id === id);
+    if (!blog) return;
+
+    initQuill();
+    document.getElementById('blog-id').value = blog._id;
+    document.getElementById('blog-title').value = blog.title;
+    document.getElementById('blog-slug').value = blog.slug;
+    document.getElementById('blog-author').value = blog.author;
+    document.getElementById('blog-tags').value = blog.tags ? blog.tags.join(', ') : '';
+    document.getElementById('blog-image').value = ''; // cannot pre-fill file inputs
+    document.getElementById('blog-published').checked = blog.isPublished;
+    quillEditor.root.innerHTML = blog.content;
+
+    const modal = document.getElementById('blog-modal');
+    if (modal) modal.classList.add('active');
+  } catch (err) {
+    showToast('Failed to load blog details', 'error');
+  }
+}
+
+window.saveBlog = async function() {
+  const id = document.getElementById('blog-id').value;
+  const title = document.getElementById('blog-title').value;
+  const slug = document.getElementById('blog-slug').value;
+  const author = document.getElementById('blog-author').value;
+  const tagsStr = document.getElementById('blog-tags').value;
+  const tags = tagsStr.split(',').map(t => t.trim()).filter(t => t);
+  const isPublished = document.getElementById('blog-published').checked;
+  const content = quillEditor.root.innerHTML;
+  const imageFile = document.getElementById('blog-image').files[0];
+
+  if (!title || !slug || !content) {
+    return showToast('Title, slug, and content are required', 'error');
+  }
+
+  const formData = new FormData();
+  formData.append('title', title);
+  formData.append('slug', slug);
+  formData.append('author', author);
+  formData.append('content', content);
+  formData.append('tags', JSON.stringify(tags));
+  formData.append('isPublished', isPublished);
+  if (imageFile) formData.append('image', imageFile);
+
+  try {
+    const url = id ? `${API_BASE}/blogs/${id}` : `${API_BASE}/blogs`;
+    const method = id ? 'PUT' : 'POST';
+    const res = await fetch(url, {
+      method,
+      headers: { 'Authorization': `Bearer ${localStorage.getItem('aiva_token')}` },
+      body: formData
+    });
+    const data = await res.json();
+    if (data.success) {
+      showToast('Blog saved successfully', 'success');
+      closeBlogModal();
+      loadBlogs();
+    } else {
+      showToast(data.message || 'Error saving blog', 'error');
+    }
+  } catch (err) {
+    showToast('Failed to save blog', 'error');
+  }
+}
+
+window.deleteBlog = async function(id) {
+  if (!confirm('Are you sure you want to delete this blog post?')) return;
+  try {
+    const res = await fetch(`${API_BASE}/blogs/${id}`, {
+      method: 'DELETE',
+      headers: { 'Authorization': `Bearer ${localStorage.getItem('aiva_token')}` }
+    });
+    if (res.ok) {
+      showToast('Blog deleted', 'success');
+      loadBlogs();
+    }
+  } catch (err) {
+    showToast('Failed to delete blog', 'error');
+  }
+}
