@@ -97,13 +97,6 @@ function HomeHero() {
           <Link to="/products" className="btn btn-primary">
             Explore Products
           </Link>
-          <a
-            href="#contact"
-            className="btn btn-text"
-            style={{ fontWeight: 600, fontSize: '1.1rem', padding: '0.5rem 0' }}
-          >
-            Request Bulk Quote <i className="ph ph-arrow-right"></i>
-          </a>
         </div>
       </div>
 
