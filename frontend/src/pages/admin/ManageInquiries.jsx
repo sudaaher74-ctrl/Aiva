@@ -67,7 +67,7 @@ const ManageInquiries = () => {
             <thead>
               <tr>
                 <th>Contact</th>
-                <th>Product / Subject</th>
+                <th>Subject</th>
                 <th>Message Snippet</th>
                 <th>Date</th>
                 <th style={{ textAlign: 'right' }}>Actions</th>
@@ -87,7 +87,7 @@ const ManageInquiries = () => {
                         <span className="cell-company-id">{inquiry.email}</span>
                       </div>
                     </td>
-                    <td style={{ fontWeight: '500' }}>{inquiry.product || 'General Inquiry'}</td>
+                    <td style={{ fontWeight: '500' }}>{inquiry.subject || 'General Inquiry'}</td>
                     <td style={{ color: 'var(--text-secondary)', maxWidth: '200px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                       {inquiry.message}
                     </td>
