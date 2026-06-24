@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react"
-
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import axios from "axios"
 import {
@@ -33,6 +32,9 @@ export default function ProductFormModal({
   const [shelfLife, setShelfLife] = useState("")
   const [status, setStatus] = useState("Active")
   
+  // New File States
+  const [imageFile, setImageFile] = useState<File | null>(null)
+  
   const queryClient = useQueryClient()
   const { toast } = useToast()
 
@@ -54,15 +56,23 @@ export default function ProductFormModal({
       setBrix("")
       setShelfLife("")
       setStatus("Active")
+      setImageFile(null)
     }
   }, [productToEdit, isOpen])
 
   const mutation = useMutation({
-    mutationFn: async (newProduct: any) => {
+    mutationFn: async (formData: FormData) => {
+      // We must pass FormData and set content-type header
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      };
+
       if (productToEdit) {
-        return axios.patch(`${API_URL}/products/${productToEdit._id}`, newProduct)
+        return axios.patch(`${API_URL}/products/${productToEdit._id}`, formData, config)
       } else {
-        return axios.post(`${API_URL}/products`, newProduct)
+        return axios.post(`${API_URL}/products`, formData, config)
       }
     },
     onSuccess: () => {
@@ -84,15 +94,21 @@ export default function ProductFormModal({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    mutation.mutate({
-      name,
-      category,
-      description,
-      tab,
-      brix,
-      shelfLife,
-      status
-    })
+
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("category", category);
+    formData.append("description", description);
+    formData.append("tab", tab);
+    formData.append("brix", brix);
+    formData.append("shelfLife", shelfLife);
+    formData.append("status", status);
+
+    if (imageFile) {
+      formData.append("image", imageFile);
+    }
+
+    mutation.mutate(formData)
   }
 
   return (
@@ -116,6 +132,23 @@ export default function ProductFormModal({
           <div className="space-y-2">
             <Label htmlFor="description">Description</Label>
             <Input id="description" value={description} onChange={e => setDescription(e.target.value)} />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="image">Product Image (Upload via Cloudinary)</Label>
+            <Input 
+              id="image" 
+              type="file" 
+              accept="image/*"
+              onChange={e => {
+                if (e.target.files && e.target.files[0]) {
+                  setImageFile(e.target.files[0])
+                }
+              }} 
+            />
+            {productToEdit?.image_url && !imageFile && (
+              <p className="text-xs text-muted-foreground mt-1">Current image uploaded.</p>
+            )}
           </div>
 
           <div className="grid grid-cols-2 gap-4">

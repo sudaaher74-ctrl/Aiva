@@ -5,7 +5,6 @@ import DashboardLayout from './layouts/DashboardLayout'
 import Dashboard from './pages/Dashboard'
 import Leads from './pages/Leads'
 import Products from './pages/Products'
-import Inventory from './pages/Inventory'
 import Login from './pages/Login'
 import { Toaster } from "@/components/ui/toaster"
 import { AuthProvider, useAuth } from './contexts/AuthContext'
@@ -27,6 +26,9 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
   return children;
 }
 
+import PurchaseOrders from './pages/PurchaseOrders'
+import Quotations from './pages/Quotations'
+
 function AppRoutes() {
   return (
     <Routes>
@@ -41,7 +43,8 @@ function AppRoutes() {
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="leads" element={<Leads />} />
         <Route path="products" element={<Products />} />
-        <Route path="inventory" element={<Inventory />} />
+        <Route path="quotations" element={<Quotations />} />
+        <Route path="purchase-orders" element={<PurchaseOrders />} />
       </Route>
     </Routes>
   )

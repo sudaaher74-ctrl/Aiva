@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom"
 import { cn } from "@/lib/utils"
-import { LayoutDashboard, Users, Package, Settings, LogOut } from "lucide-react"
+import { LayoutDashboard, Users, Package, Settings, LogOut, FileText, ShoppingCart } from "lucide-react"
 
 const navItems = [
   {
@@ -19,9 +19,14 @@ const navItems = [
     icon: Package,
   },
   {
-    title: "Inventory",
-    href: "/inventory",
-    icon: Package, // Consider using a different icon like Warehouse if available, but Package works
+    title: "Quotations",
+    href: "/quotations",
+    icon: FileText,
+  },
+  {
+    title: "Purchase Orders",
+    href: "/purchase-orders",
+    icon: ShoppingCart,
   },
 ]
 
