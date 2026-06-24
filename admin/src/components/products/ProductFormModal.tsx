@@ -14,7 +14,7 @@ import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-const API_URL = "http://localhost:5000/api"
+const API_URL = "http://localhost:5001/api"
 
 export default function ProductFormModal({ 
   isOpen, 
