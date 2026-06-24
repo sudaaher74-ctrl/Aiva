@@ -156,7 +156,7 @@ router.post('/', async (req, res) => {
 
       const mailOptions = {
         from: process.env.EMAIL_USER || '"AIVA System" <no-reply@aivaenterprises.com>',
-        to: process.env.EMAIL_USER || 'Enquire@aivaenterprises.com',
+        to: process.env.EMAIL_USER || 'Enquiry@aivaenterprises.com',
         subject: `New Bulk Inquiry from ${company || name}`,
         html: `
           <h2>New Bulk Inquiry Received</h2>
