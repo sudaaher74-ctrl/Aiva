@@ -4,10 +4,15 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/admin/',
   plugins: [react()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    port: 5174,
+    strictPort: true,
+  }
 })

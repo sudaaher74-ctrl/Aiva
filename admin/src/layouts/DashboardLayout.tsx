@@ -6,7 +6,7 @@ import axios from "axios"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
-const API_URL = "http://localhost:5001/api"
+const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:5001/api' : '/api'
 
 export default function DashboardLayout() {
   // Polling for new inquiries every 30s

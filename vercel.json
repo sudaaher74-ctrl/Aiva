@@ -7,7 +7,7 @@
       "use": "@vercel/node"
     },
     {
-      "src": "frontend/package.json",
+      "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
         "distDir": "dist"
@@ -20,24 +20,16 @@
       "destination": "/backend/server.js"
     },
     {
-      "source": "/seo/(.*)",
-      "destination": "/frontend/seo/$1"
-    },
-    {
-      "source": "/(assets/.*|admin/css/.*|admin/js/.*|favicon\\.svg|icons\\.svg)",
-      "destination": "/frontend/$1"
-    },
-    {
       "source": "/admin",
-      "destination": "/frontend/admin"
+      "destination": "/admin/index.html"
     },
     {
       "source": "/admin/(.*)",
-      "destination": "/frontend/admin"
+      "destination": "/admin/index.html"
     },
     {
       "source": "/(.*)",
-      "destination": "/frontend"
+      "destination": "/index.html"
     }
   ],
   "env": {

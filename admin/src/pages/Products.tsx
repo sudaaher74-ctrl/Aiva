@@ -15,7 +15,7 @@ import { Badge } from "@/components/ui/badge"
 import { useToast } from "@/hooks/use-toast"
 import ProductFormModal from "@/components/products/ProductFormModal"
 
-const API_URL = "http://localhost:5001/api"
+const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:5001/api' : '/api'
 
 export default function Products() {
   const [isModalOpen, setIsModalOpen] = useState(false)

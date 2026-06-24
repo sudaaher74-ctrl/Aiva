@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Download, Search } from "lucide-react"
 
-const API_URL = "http://localhost:5001/api"
+const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:5001/api' : '/api'
 
 export default function Leads() {
   const [search, setSearch] = useState("")
