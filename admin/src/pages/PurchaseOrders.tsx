@@ -9,8 +9,11 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useToast } from "@/hooks/use-toast"
+import { Download } from "lucide-react"
+import { downloadPurchaseOrderPDF } from "@/utils/generatePDF"
 
 export default function PurchaseOrders() {
   const queryClient = useQueryClient()
@@ -67,7 +70,7 @@ export default function PurchaseOrders() {
               <TableHead>Country</TableHead>
               <TableHead>Total Amt</TableHead>
               <TableHead>Status</TableHead>
-              <TableHead>Update Status</TableHead>
+              <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -116,6 +119,15 @@ export default function PurchaseOrders() {
                       <SelectItem value="Delivered">Delivered</SelectItem>
                     </SelectContent>
                   </Select>
+                  <Button 
+                    variant="outline" 
+                    size="icon" 
+                    className="ml-2" 
+                    onClick={() => downloadPurchaseOrderPDF(order)}
+                    title="Download PDF"
+                  >
+                    <Download className="h-4 w-4" />
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
