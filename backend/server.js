@@ -82,6 +82,7 @@ app.use('/api/analytics', require('./routes/analytics'));
 app.use('/api/customers', require('./routes/customers'));
 app.use('/api/quotations', require('./routes/quotations'));
 app.use('/api/inventory', require('./routes/inventory'));
+app.use('/api/search', require('./routes/search'));
 
 // Health check endpoint
 app.get('/', (req, res) => {

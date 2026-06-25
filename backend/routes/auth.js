@@ -141,4 +141,35 @@ router.post('/register', async (req, res) => {
   }
 });
 
+// @route   PUT /api/auth/profile
+// @access  Private
+router.put('/profile', protect, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
+    if (req.body.name) user.name = req.body.name;
+    if (req.body.email) user.email = req.body.email;
+    if (req.body.password) {
+      const salt = await bcrypt.genSalt(10);
+      user.password_hash = await bcrypt.hash(req.body.password, salt);
+    }
+    await user.save();
+
+    res.json({
+      success: true,
+      data: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
 module.exports = router;

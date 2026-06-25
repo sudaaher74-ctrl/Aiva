@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom"
 import { cn } from "@/lib/utils"
-import { LayoutDashboard, Users, Package, Settings, LogOut, FileText, ShoppingCart, ClipboardList } from "lucide-react"
+import { LayoutDashboard, Users, Package, Settings, LogOut, FileText, ShoppingCart, ClipboardList, BarChart3, Building2 } from "lucide-react"
 import { useAuth } from "../contexts/AuthContext"
 
 const navItems = [
@@ -10,9 +10,19 @@ const navItems = [
     icon: LayoutDashboard,
   },
   {
+    title: "Reports",
+    href: "/reports",
+    icon: BarChart3,
+  },
+  {
     title: "Leads (Inquiries)",
     href: "/leads",
     icon: Users,
+  },
+  {
+    title: "Customers",
+    href: "/customers",
+    icon: Building2,
   },
   {
     title: "Products",
@@ -71,10 +81,10 @@ export default function Sidebar() {
 
       {/* Bottom Actions */}
       <div className="border-t border-gray-800 p-4">
-        <button className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-800 hover:text-white">
+        <Link to="/settings" className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-800 hover:text-white">
           <Settings className="h-5 w-5" />
           Settings
-        </button>
+        </Link>
         <button className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-800 hover:text-white mt-1" onClick={() => {
           logout();
           window.location.href = '/login';

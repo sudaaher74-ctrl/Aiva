@@ -26,10 +26,13 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
   return children;
 }
 
-import PurchaseOrders from './pages/PurchaseOrders'
 import Quotations from './pages/Quotations'
-import Inventory from './pages/Inventory'
+import PurchaseOrders from './pages/PurchaseOrders'
 import Search from './pages/Search'
+import Inventory from './pages/Inventory'
+import Customers from './pages/Customers'
+import Settings from './pages/Settings'
+import Reports from './pages/Reports'
 
 function AppRoutes() {
   return (
@@ -43,12 +46,15 @@ function AppRoutes() {
       }>
         <Route index element={<Navigate to="/dashboard" replace />} />
         <Route path="dashboard" element={<Dashboard />} />
+        <Route path="reports" element={<Reports />} />
         <Route path="leads" element={<Leads />} />
+        <Route path="customers" element={<Customers />} />
         <Route path="products" element={<Products />} />
+        <Route path="inventory" element={<Inventory />} />
         <Route path="quotations" element={<Quotations />} />
         <Route path="purchase-orders" element={<PurchaseOrders />} />
-        <Route path="inventory" element={<Inventory />} />
         <Route path="search" element={<Search />} />
+        <Route path="settings" element={<Settings />} />
       </Route>
     </Routes>
   )
