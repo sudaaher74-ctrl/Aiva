@@ -11,10 +11,11 @@ import {
 } from "@/components/ui/table"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Search, Plus, Trash2, Edit } from "lucide-react"
+import { Search, Plus, Trash2, Edit, Download } from "lucide-react"
 import { Skeleton } from "@/components/ui/skeleton"
 import CustomerFormModal from "@/components/customers/CustomerFormModal"
 import { useToast } from "@/hooks/use-toast"
+import { downloadCSV } from "@/utils/csvExport"
 
 export default function Customers() {
   const [search, setSearch] = useState("")
@@ -63,9 +64,14 @@ export default function Customers() {
           <h2 className="text-3xl font-bold tracking-tight">Customers</h2>
           <p className="text-muted-foreground">Manage registered B2B buyers.</p>
         </div>
-        <Button onClick={handleAddNew} className="bg-[#c5a059] hover:bg-[#b38b45] text-zinc-950">
-          <Plus className="mr-2 h-4 w-4" /> Add Customer
-        </Button>
+        <div className="flex gap-2">
+          <Button variant="outline" onClick={() => data && downloadCSV(data, 'Customers')}>
+            <Download className="mr-2 h-4 w-4" /> Export CSV
+          </Button>
+          <Button onClick={handleAddNew} className="bg-[#c5a059] hover:bg-[#b38b45] text-zinc-950">
+            <Plus className="mr-2 h-4 w-4" /> Add Customer
+          </Button>
+        </div>
       </div>
 
       <div className="flex items-center gap-2 max-w-sm">

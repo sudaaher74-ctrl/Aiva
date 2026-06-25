@@ -13,8 +13,9 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useToast } from "@/hooks/use-toast"
-import { Plus } from "lucide-react"
+import { Plus, Download } from "lucide-react"
 import QuotationFormModal from "@/components/quotations/QuotationFormModal"
+import { downloadCSV } from "@/utils/csvExport"
 
 export default function Quotations() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -58,9 +59,14 @@ export default function Quotations() {
             Manage quote requests from B2B buyers.
           </p>
         </div>
-        <Button onClick={() => setIsModalOpen(true)}>
-          <Plus className="mr-2 h-4 w-4" /> Create Quotation
-        </Button>
+        <div className="flex gap-2">
+          <Button variant="outline" onClick={() => data && downloadCSV(data, 'Quotations')}>
+            <Download className="mr-2 h-4 w-4" /> Export CSV
+          </Button>
+          <Button onClick={() => setIsModalOpen(true)}>
+            <Plus className="mr-2 h-4 w-4" /> Create Quotation
+          </Button>
+        </div>
       </div>
 
       <div className="rounded-md border bg-white shadow-sm">

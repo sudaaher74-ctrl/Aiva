@@ -12,10 +12,14 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useToast } from "@/hooks/use-toast"
-import { Download } from "lucide-react"
+import { Download, Plus } from "lucide-react"
 import { downloadPurchaseOrderPDF } from "@/utils/generatePDF"
+import { downloadCSV } from "@/utils/csvExport"
+import { useState } from "react"
+import PurchaseOrderFormModal from "@/components/purchase-orders/PurchaseOrderFormModal"
 
 export default function PurchaseOrders() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const queryClient = useQueryClient()
   const { toast } = useToast()
 
@@ -57,6 +61,14 @@ export default function PurchaseOrders() {
           <p className="text-muted-foreground">
             Manage bulk orders and fulfillments.
           </p>
+        </div>
+        <div className="flex gap-2">
+          <Button variant="outline" onClick={() => data && downloadCSV(data, 'PurchaseOrders')}>
+            <Download className="mr-2 h-4 w-4" /> Export CSV
+          </Button>
+          <Button onClick={() => setIsModalOpen(true)}>
+            <Plus className="mr-2 h-4 w-4" /> Create PO
+          </Button>
         </div>
       </div>
 
@@ -134,6 +146,13 @@ export default function PurchaseOrders() {
           </TableBody>
         </Table>
       </div>
+
+      {isModalOpen && (
+        <PurchaseOrderFormModal 
+          isOpen={isModalOpen} 
+          onClose={() => setIsModalOpen(false)} 
+        />
+      )}
     </div>
   )
 }
