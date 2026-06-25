@@ -23,8 +23,8 @@ const inquirySchema = new mongoose.Schema({
   },
   company: {
     type: String,
-    required: [true, 'Company name is required'],
-    trim: true
+    trim: true,
+    default: ''
   },
   email: {
     type: String,
@@ -34,13 +34,13 @@ const inquirySchema = new mongoose.Schema({
   },
   phone: {
     type: String,
-    required: [true, 'Phone is required'],
-    trim: true
+    trim: true,
+    default: ''
   },
   country: {
     type: String,
-    required: [true, 'Country is required'],
-    trim: true
+    trim: true,
+    default: ''
   },
   product: {
     type: String,

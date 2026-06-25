@@ -27,12 +27,20 @@ function ContactSection() {
           ? 'http://localhost:5001/api'
           : '/api';
 
+      const payload = {
+        name: formData.name,
+        company: formData.name, // The form asks for Company Name
+        email: formData.email,
+        product: formData.interest, // Map interest to product
+        message: formData.message
+      };
+
       const response = await fetch(`${API_BASE}/inquiries`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       });
 
       if (response.ok) {
