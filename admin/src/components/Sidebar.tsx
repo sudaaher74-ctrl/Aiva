@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom"
 import { cn } from "@/lib/utils"
-import { LayoutDashboard, Users, Package, Settings, LogOut, FileText, ShoppingCart } from "lucide-react"
+import { LayoutDashboard, Users, Package, Settings, LogOut, FileText, ShoppingCart, ClipboardList } from "lucide-react"
+import { useAuth } from "../contexts/AuthContext"
 
 const navItems = [
   {
@@ -19,6 +20,11 @@ const navItems = [
     icon: Package,
   },
   {
+    title: "Inventory",
+    href: "/inventory",
+    icon: ClipboardList,
+  },
+  {
     title: "Quotations",
     href: "/quotations",
     icon: FileText,
@@ -32,6 +38,7 @@ const navItems = [
 
 export default function Sidebar() {
   const location = useLocation()
+  const { logout } = useAuth()
 
   return (
     <div className="flex h-full w-64 flex-col border-r bg-black text-white">
@@ -69,7 +76,7 @@ export default function Sidebar() {
           Settings
         </button>
         <button className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-800 hover:text-white mt-1" onClick={() => {
-          localStorage.removeItem('token');
+          logout();
           window.location.href = '/login';
         }}>
           <LogOut className="h-5 w-5" />

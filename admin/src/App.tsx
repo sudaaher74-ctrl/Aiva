@@ -28,6 +28,8 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
 import PurchaseOrders from './pages/PurchaseOrders'
 import Quotations from './pages/Quotations'
+import Inventory from './pages/Inventory'
+import Search from './pages/Search'
 
 function AppRoutes() {
   return (
@@ -45,6 +47,8 @@ function AppRoutes() {
         <Route path="products" element={<Products />} />
         <Route path="quotations" element={<Quotations />} />
         <Route path="purchase-orders" element={<PurchaseOrders />} />
+        <Route path="inventory" element={<Inventory />} />
+        <Route path="search" element={<Search />} />
       </Route>
     </Routes>
   )

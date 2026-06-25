@@ -5,10 +5,23 @@ import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { useAuth } from "../contexts/AuthContext"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:5001/api' : '/api'
 
 export default function DashboardLayout() {
+  const { user } = useAuth()
+  const navigate = useNavigate()
+  const [searchQuery, setSearchQuery] = useState("")
+
+  const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && searchQuery.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`)
+    }
+  }
+
   // Polling for new inquiries every 30s
   const { data: inquiries } = useQuery({
     queryKey: ['notifications-inquiries'],
@@ -34,6 +47,9 @@ export default function DashboardLayout() {
               type="text"
               placeholder="Search..."
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleSearch}
             />
           </div>
           <div className="flex items-center gap-4">
@@ -74,8 +90,8 @@ export default function DashboardLayout() {
 
             <div className="flex items-center gap-2">
               <div className="flex flex-col text-right">
-                <span className="text-sm font-medium leading-none">Super Admin</span>
-                <span className="text-xs text-muted-foreground">admin@aivaenterprises.com</span>
+                <span className="text-sm font-medium leading-none">{user?.name || "Admin"}</span>
+                <span className="text-xs text-muted-foreground">{user?.email || "admin@aivaenterprises.com"}</span>
               </div>
               <UserCircle className="h-8 w-8 text-muted-foreground" />
             </div>

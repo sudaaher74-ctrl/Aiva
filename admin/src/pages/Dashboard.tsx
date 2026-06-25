@@ -124,6 +124,34 @@ export default function Dashboard() {
             )}
           </div>
         </div>
+
+        <div className="col-span-3 rounded-xl border bg-card text-card-foreground shadow flex flex-col">
+          <div className="p-6 space-y-1 border-b">
+            <h3 className="font-semibold leading-none tracking-tight">Recent Inquiries</h3>
+            <p className="text-sm text-muted-foreground">Latest leads requiring attention</p>
+          </div>
+          <div className="p-6 pt-0 flex-1 overflow-auto">
+            {isInquiriesLoading ? (
+              <div className="text-sm text-muted-foreground py-4 text-center">Loading...</div>
+            ) : inquiries && inquiries.length > 0 ? (
+              <div className="space-y-4 mt-4">
+                {inquiries.slice(0, 5).map((inquiry: any) => (
+                  <div key={inquiry._id} className="flex items-center justify-between border-b border-zinc-100 last:border-0 pb-3 last:pb-0">
+                    <div>
+                      <p className="font-medium text-sm">{inquiry.name}</p>
+                      <p className="text-xs text-muted-foreground">{inquiry.company}</p>
+                    </div>
+                    <div className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-700">
+                      {inquiry.status || 'New'}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-sm text-muted-foreground py-4 text-center">No recent inquiries.</div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
