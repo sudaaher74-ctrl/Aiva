@@ -56,10 +56,13 @@ export default function Dashboard() {
       
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {/* Total Revenue Card */}
-        <div className="rounded-xl border bg-card text-card-foreground shadow">
-          <div className="p-6 flex flex-row items-center justify-between space-y-0 pb-2">
-            <h3 className="tracking-tight text-sm font-medium">Total Revenue</h3>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="h-4 w-4 text-muted-foreground"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        <div className="rounded-2xl border border-zinc-200/60 bg-white/60 backdrop-blur-md text-card-foreground premium-shadow hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group">
+          <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="p-6 flex flex-row items-center justify-between space-y-0 pb-2 relative z-10">
+            <h3 className="tracking-tight text-sm font-semibold text-zinc-500 uppercase">Total Revenue</h3>
+            <div className="p-2.5 bg-gradient-to-br from-[#c5a059]/20 to-[#c5a059]/5 rounded-xl">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="h-4 w-4 text-[#c5a059]"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </div>
           </div>
           <div className="p-6 pt-0">
             <div className="text-2xl font-bold">
@@ -70,10 +73,13 @@ export default function Dashboard() {
         </div>
 
         {/* Active Leads Card */}
-        <div className="rounded-xl border bg-card text-card-foreground shadow">
-          <div className="p-6 flex flex-row items-center justify-between space-y-0 pb-2">
-            <h3 className="tracking-tight text-sm font-medium">Active Leads</h3>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="h-4 w-4 text-muted-foreground"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        <div className="rounded-2xl border border-zinc-200/60 bg-white/60 backdrop-blur-md text-card-foreground premium-shadow hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group">
+          <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="p-6 flex flex-row items-center justify-between space-y-0 pb-2 relative z-10">
+            <h3 className="tracking-tight text-sm font-semibold text-zinc-500 uppercase">Active Leads</h3>
+            <div className="p-2.5 bg-gradient-to-br from-blue-500/20 to-blue-500/5 rounded-xl">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="h-4 w-4 text-blue-600"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
           </div>
           <div className="p-6 pt-0">
             <div className="text-2xl font-bold">
@@ -84,10 +90,13 @@ export default function Dashboard() {
         </div>
 
         {/* Total Orders Card */}
-        <div className="rounded-xl border bg-card text-card-foreground shadow">
-          <div className="p-6 flex flex-row items-center justify-between space-y-0 pb-2">
-            <h3 className="tracking-tight text-sm font-medium">Total Orders</h3>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="h-4 w-4 text-muted-foreground"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+        <div className="rounded-2xl border border-zinc-200/60 bg-white/60 backdrop-blur-md text-card-foreground premium-shadow hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group">
+          <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="p-6 flex flex-row items-center justify-between space-y-0 pb-2 relative z-10">
+            <h3 className="tracking-tight text-sm font-semibold text-zinc-500 uppercase">Total Orders</h3>
+            <div className="p-2.5 bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 rounded-xl">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="h-4 w-4 text-emerald-600"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+            </div>
           </div>
           <div className="p-6 pt-0">
             <div className="text-2xl font-bold">
@@ -99,7 +108,7 @@ export default function Dashboard() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <div className="col-span-4 rounded-xl border bg-card text-card-foreground shadow">
+        <div className="col-span-4 rounded-2xl border border-zinc-200/60 bg-white/60 backdrop-blur-md text-card-foreground premium-shadow overflow-hidden">
           <div className="p-6 space-y-1">
             <h3 className="font-semibold leading-none tracking-tight">Order Status Overview</h3>
             <p className="text-sm text-muted-foreground">Distribution of purchase orders by status</p>
@@ -124,7 +133,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="col-span-3 rounded-xl border bg-card text-card-foreground shadow flex flex-col">
+        <div className="col-span-3 rounded-2xl border border-zinc-200/60 bg-white/60 backdrop-blur-md text-card-foreground premium-shadow flex flex-col overflow-hidden">
           <div className="p-6 space-y-1 border-b">
             <h3 className="font-semibold leading-none tracking-tight">Recent Inquiries</h3>
             <p className="text-sm text-muted-foreground">Latest leads requiring attention</p>

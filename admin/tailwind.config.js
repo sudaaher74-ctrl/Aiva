@@ -60,6 +60,10 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      boxShadow: {
+        premium: "0 8px 30px rgba(0,0,0,0.04)",
+        glow: "0 0 20px rgba(197, 160, 89, 0.3)",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

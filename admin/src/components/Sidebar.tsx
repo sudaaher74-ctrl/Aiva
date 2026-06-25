@@ -51,10 +51,10 @@ export default function Sidebar() {
   const { logout } = useAuth()
 
   return (
-    <div className="flex h-full w-64 flex-col border-r bg-black text-white">
+    <div className="flex h-full w-64 flex-col border-r border-zinc-800 bg-gradient-to-b from-zinc-950 to-zinc-900 text-white shadow-2xl z-20 shrink-0">
       {/* Logo */}
-      <div className="flex h-16 items-center px-6 font-bold text-xl tracking-wider text-primary border-b border-gray-800">
-        AIVA <span className="text-white ml-2 text-sm font-normal">ENTERPRISES</span>
+      <div className="flex h-16 items-center px-6 font-bold text-xl tracking-wider text-[#c5a059] border-b border-zinc-800/50 bg-black/20">
+        AIVA <span className="text-zinc-100 ml-2 text-sm font-normal">ENTERPRISES</span>
       </div>
 
       {/* Navigation */}
@@ -66,10 +66,10 @@ export default function Sidebar() {
               key={item.href}
               to={item.href}
               className={cn(
-                "group flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300",
                 isActive 
-                  ? "bg-primary text-primary-foreground" 
-                  : "text-gray-300 hover:bg-gray-800 hover:text-white"
+                  ? "bg-gradient-to-r from-[#c5a059] to-[#d4b982] text-zinc-950 shadow-glow scale-[1.02]" 
+                  : "text-zinc-400 hover:bg-white/5 hover:text-zinc-50 hover:scale-[1.02]"
               )}
             >
               <item.icon className="h-5 w-5 flex-shrink-0" />
@@ -80,12 +80,12 @@ export default function Sidebar() {
       </nav>
 
       {/* Bottom Actions */}
-      <div className="border-t border-gray-800 p-4">
-        <Link to="/settings" className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-800 hover:text-white">
+      <div className="border-t border-zinc-800/50 p-4 bg-black/10">
+        <Link to="/settings" className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-zinc-400 transition-all duration-300 hover:bg-white/5 hover:text-zinc-50 hover:scale-[1.02]">
           <Settings className="h-5 w-5" />
           Settings
         </Link>
-        <button className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-800 hover:text-white mt-1" onClick={() => {
+        <button className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-zinc-400 transition-all duration-300 hover:bg-red-500/10 hover:text-red-400 hover:scale-[1.02] mt-1" onClick={() => {
           logout();
           window.location.href = '/login';
         }}>

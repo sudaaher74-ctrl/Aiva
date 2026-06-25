@@ -34,12 +34,12 @@ export default function DashboardLayout() {
   const totalNotifications = newInquiries.length
 
   return (
-    <div className="flex h-screen w-full bg-secondary/30">
+    <div className="flex h-screen w-full bg-gradient-to-br from-zinc-50 to-zinc-100/80">
       <Sidebar />
-      <div className="flex flex-1 flex-col overflow-hidden">
+      <div className="flex flex-1 flex-col overflow-hidden relative">
         {/* Top Navigation */}
-        <header className="flex h-16 items-center justify-between border-b bg-background px-6">
-          <div className="flex items-center w-full max-w-md gap-2 rounded-md border bg-muted/50 px-3 py-2">
+        <header className="flex h-16 items-center justify-between border-b border-zinc-200/50 glass px-6 shrink-0 relative z-10">
+          <div className="flex items-center w-full max-w-md gap-2 rounded-full border border-zinc-200/60 bg-white/50 px-4 py-2 premium-shadow hover:bg-white transition-colors duration-300">
             <Search className="h-4 w-4 text-muted-foreground" />
             <input
               type="text"

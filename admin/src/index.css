@@ -4,10 +4,10 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --background: 210 40% 98%; /* slate-50 for a softer premium look */
+    --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
     --primary: 38 49% 56%; /* Gold: #c5a059 */
@@ -53,6 +53,18 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground selection:bg-primary/20 selection:text-primary;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-[0_8px_30px_rgb(0,0,0,0.04)];
+  }
+  .glass-dark {
+    @apply bg-zinc-950/70 backdrop-blur-md border border-white/5;
+  }
+  .premium-shadow {
+    @apply shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-shadow duration-300;
   }
 }
