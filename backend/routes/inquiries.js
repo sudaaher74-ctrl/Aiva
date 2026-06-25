@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const Inquiry = require('../models/Inquiry');
+const { protect } = require('../middleware/auth');
 
 // ============================================================
 // GET /api/inquiries — List all inquiries (with filters)
 // Query params: ?status=New&search=john&limit=50&page=1
 // ============================================================
-router.get('/', async (req, res) => {
+router.get('/', protect, async (req, res) => {
   try {
     const { status, search, limit = 50, page = 1 } = req.query;
     const query = {};
@@ -54,7 +55,7 @@ router.get('/', async (req, res) => {
 // ============================================================
 // GET /api/inquiries/stats — Dashboard KPI stats
 // ============================================================
-router.get('/stats', async (req, res) => {
+router.get('/stats', protect, async (req, res) => {
   try {
     const [total, statusCounts, recentInquiries, todayCount] = await Promise.all([
       Inquiry.countDocuments(),
@@ -112,7 +113,7 @@ router.get('/stats', async (req, res) => {
 // ============================================================
 // GET /api/inquiries/:id — Get single inquiry
 // ============================================================
-router.get('/:id', async (req, res) => {
+router.get('/:id', protect, async (req, res) => {
   try {
     const inquiry = await Inquiry.findById(req.params.id);
     if (!inquiry) {
@@ -193,7 +194,7 @@ router.post('/', async (req, res) => {
 // ============================================================
 // PATCH /api/inquiries/:id/status — Update inquiry status
 // ============================================================
-router.patch('/:id/status', async (req, res) => {
+router.patch('/:id/status', protect, async (req, res) => {
   try {
     const { status } = req.body;
     const validStatuses = ['New', 'Contacted', 'Quoted', 'Closed', 'Lost'];
@@ -224,7 +225,7 @@ router.patch('/:id/status', async (req, res) => {
 // ============================================================
 // PATCH /api/inquiries/:id/notes — Update admin notes
 // ============================================================
-router.patch('/:id/notes', async (req, res) => {
+router.patch('/:id/notes', protect, async (req, res) => {
   try {
     const { notes } = req.body;
 
@@ -247,7 +248,7 @@ router.patch('/:id/notes', async (req, res) => {
 // ============================================================
 // DELETE /api/inquiries/:id — Delete an inquiry
 // ============================================================
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', protect, async (req, res) => {
   try {
     const inquiry = await Inquiry.findByIdAndDelete(req.params.id);
 

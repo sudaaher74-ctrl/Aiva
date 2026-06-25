@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Inventory = require('../models/Inventory');
 const Product = require('../models/Product');
+const { protect } = require('../middleware/auth');
 
 // Get all inventory items
-router.get('/', async (req, res) => {
+router.get('/', protect, async (req, res) => {
   try {
     const inventory = await Inventory.find().populate('product', 'name category image_url');
     res.status(200).json({ success: true, data: inventory });
@@ -15,7 +16,7 @@ router.get('/', async (req, res) => {
 });
 
 // Add stock movement (Stock In / Stock Out)
-router.post('/movement', async (req, res) => {
+router.post('/movement', protect, async (req, res) => {
   try {
     const { productId, warehouseLocation, batchNumber, quantity, type, unit, expiryDate } = req.body;
 
