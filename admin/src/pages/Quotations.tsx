@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
 import { api } from "@/lib/axios"
 import {
@@ -9,10 +10,14 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useToast } from "@/hooks/use-toast"
+import { Plus } from "lucide-react"
+import QuotationFormModal from "@/components/quotations/QuotationFormModal"
 
 export default function Quotations() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const queryClient = useQueryClient()
   const { toast } = useToast()
 
@@ -36,9 +41,9 @@ export default function Quotations() {
 
   const getStatusBadgeVariant = (status: string) => {
     switch(status) {
-      case 'Pending': return 'secondary'
-      case 'Responded': return 'default'
-      case 'Approved': return 'outline'
+      case 'Draft': return 'secondary'
+      case 'Sent': return 'default'
+      case 'Accepted': return 'outline'
       case 'Rejected': return 'destructive'
       default: return 'default'
     }
@@ -53,6 +58,9 @@ export default function Quotations() {
             Manage quote requests from B2B buyers.
           </p>
         </div>
+        <Button onClick={() => setIsModalOpen(true)}>
+          <Plus className="mr-2 h-4 w-4" /> Create Quotation
+        </Button>
       </div>
 
       <div className="rounded-md border bg-white shadow-sm">
@@ -110,9 +118,9 @@ export default function Quotations() {
                       <SelectValue placeholder="Update Status" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="Pending">Pending</SelectItem>
-                      <SelectItem value="Responded">Responded</SelectItem>
-                      <SelectItem value="Approved">Approved</SelectItem>
+                      <SelectItem value="Draft">Draft</SelectItem>
+                      <SelectItem value="Sent">Sent</SelectItem>
+                      <SelectItem value="Accepted">Accepted</SelectItem>
                       <SelectItem value="Rejected">Rejected</SelectItem>
                     </SelectContent>
                   </Select>
@@ -122,6 +130,11 @@ export default function Quotations() {
           </TableBody>
         </Table>
       </div>
+
+      <QuotationFormModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </div>
   )
 }
