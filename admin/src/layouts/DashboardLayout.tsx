@@ -2,14 +2,12 @@ import { Outlet } from "react-router-dom"
 import Sidebar from "@/components/Sidebar"
 import { Bell, Search, UserCircle } from "lucide-react"
 import { useQuery } from "@tanstack/react-query"
-import axios from "axios"
+import { api } from "@/lib/axios"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { useAuth } from "../contexts/AuthContext"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-
-const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:5001/api' : '/api'
 
 export default function DashboardLayout() {
   const { user } = useAuth()
@@ -26,7 +24,7 @@ export default function DashboardLayout() {
   const { data: inquiries } = useQuery({
     queryKey: ['notifications-inquiries'],
     queryFn: async () => {
-      const response = await axios.get(`${API_URL}/inquiries`)
+      const response = await api.get(`/inquiries`)
       return response.data.data
     },
     refetchInterval: 30000

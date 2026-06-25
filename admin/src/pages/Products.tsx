@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
-import axios from "axios"
+import { api } from "@/lib/axios"
 import { Plus, Edit, Trash2 } from "lucide-react"
 import {
   Table,
@@ -14,8 +14,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { useToast } from "@/hooks/use-toast"
 import ProductFormModal from "@/components/products/ProductFormModal"
-
-const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:5001/api' : '/api'
+import { Skeleton } from "@/components/ui/skeleton"
 
 export default function Products() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -27,14 +26,14 @@ export default function Products() {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
-      const response = await axios.get(`${API_URL}/products`)
+      const response = await api.get(`/products`)
       return response.data.data
     }
   })
 
   const deleteMutation = useMutation({
     mutationFn: async (id: string) => {
-      return axios.delete(`${API_URL}/products/${id}`)
+      return api.delete(`/products/${id}`)
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['products'] })
@@ -96,9 +95,19 @@ export default function Products() {
           </TableHeader>
           <TableBody>
             {isLoading && (
-              <TableRow>
-                <TableCell colSpan={6} className="text-center py-10 text-muted-foreground">Loading products...</TableCell>
-              </TableRow>
+              Array.from({ length: 5 }).map((_, i) => (
+                <TableRow key={i}>
+                  <TableCell><Skeleton className="h-10 w-10 rounded" /></TableCell>
+                  <TableCell><Skeleton className="h-4 w-[200px]" /></TableCell>
+                  <TableCell><Skeleton className="h-4 w-[100px]" /></TableCell>
+                  <TableCell><Skeleton className="h-4 w-[80px]" /></TableCell>
+                  <TableCell><Skeleton className="h-6 w-[60px] rounded-full" /></TableCell>
+                  <TableCell className="text-right flex justify-end gap-2">
+                    <Skeleton className="h-8 w-8 rounded" />
+                    <Skeleton className="h-8 w-8 rounded" />
+                  </TableCell>
+                </TableRow>
+              ))
             )}
             {isError && (
               <TableRow>

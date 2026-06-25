@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { api } from "@/lib/axios";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   BarChart,
   Bar,
@@ -10,13 +11,11 @@ import {
   ResponsiveContainer
 } from "recharts";
 
-const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:5001/api' : '/api';
-
 export default function Dashboard() {
   const { data: poStats, isLoading: isPoStatsLoading } = useQuery({
     queryKey: ['poStats'],
     queryFn: async () => {
-      const response = await axios.get(`${API_URL}/purchase-orders/stats`);
+      const response = await api.get(`/purchase-orders/stats`);
       return response.data.data;
     }
   });
@@ -24,7 +23,7 @@ export default function Dashboard() {
   const { data: inquiries, isLoading: isInquiriesLoading } = useQuery({
     queryKey: ['inquiries'],
     queryFn: async () => {
-      const response = await axios.get(`${API_URL}/inquiries`);
+      const response = await api.get(`/inquiries`);
       return response.data.data;
     }
   });
@@ -64,7 +63,7 @@ export default function Dashboard() {
           </div>
           <div className="p-6 pt-0">
             <div className="text-2xl font-bold">
-              {isPoStatsLoading ? "..." : formatCurrency(totalRevenue)}
+              {isPoStatsLoading ? <Skeleton className="h-8 w-24" /> : formatCurrency(totalRevenue)}
             </div>
             <p className="text-xs text-muted-foreground">All time approved orders</p>
           </div>
@@ -78,7 +77,7 @@ export default function Dashboard() {
           </div>
           <div className="p-6 pt-0">
             <div className="text-2xl font-bold">
-              {isInquiriesLoading ? "..." : activeLeadsCount}
+              {isInquiriesLoading ? <Skeleton className="h-8 w-16" /> : activeLeadsCount}
             </div>
             <p className="text-xs text-muted-foreground">Currently open inquiries</p>
           </div>
@@ -92,7 +91,7 @@ export default function Dashboard() {
           </div>
           <div className="p-6 pt-0">
             <div className="text-2xl font-bold">
-              {isPoStatsLoading ? "..." : totalOrders}
+              {isPoStatsLoading ? <Skeleton className="h-8 w-16" /> : totalOrders}
             </div>
             <p className="text-xs text-muted-foreground">Total purchase orders</p>
           </div>
@@ -107,7 +106,7 @@ export default function Dashboard() {
           </div>
           <div className="p-6 pt-0 h-[350px]">
             {isPoStatsLoading ? (
-              <div className="flex h-full items-center justify-center text-muted-foreground">Loading chart...</div>
+              <Skeleton className="h-[300px] w-full mt-4" />
             ) : (
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={chartData} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
@@ -132,7 +131,17 @@ export default function Dashboard() {
           </div>
           <div className="p-6 pt-0 flex-1 overflow-auto">
             {isInquiriesLoading ? (
-              <div className="text-sm text-muted-foreground py-4 text-center">Loading...</div>
+              <div className="space-y-4 mt-4">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <div key={i} className="flex items-center justify-between border-b border-zinc-100 last:border-0 pb-3 last:pb-0">
+                    <div className="space-y-2">
+                      <Skeleton className="h-4 w-[150px]" />
+                      <Skeleton className="h-3 w-[100px]" />
+                    </div>
+                    <Skeleton className="h-5 w-[60px] rounded-full" />
+                  </div>
+                ))}
+              </div>
             ) : inquiries && inquiries.length > 0 ? (
               <div className="space-y-4 mt-4">
                 {inquiries.slice(0, 5).map((inquiry: any) => (

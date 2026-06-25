@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import axios from "axios"
+import { api } from "@/lib/axios"
 import {
   Dialog,
   DialogContent,
@@ -12,8 +12,6 @@ import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-
-const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:5001/api' : '/api'
 
 export default function ProductFormModal({ 
   isOpen, 
@@ -70,9 +68,9 @@ export default function ProductFormModal({
       };
 
       if (productToEdit) {
-        return axios.patch(`${API_URL}/products/${productToEdit._id}`, formData, config)
+        return api.patch(`/products/${productToEdit._id}`, formData, config)
       } else {
-        return axios.post(`${API_URL}/products`, formData, config)
+        return api.post(`/products`, formData, config)
       }
     },
     onSuccess: () => {

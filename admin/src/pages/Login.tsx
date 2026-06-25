@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { api } from '@/lib/axios';
 import { useAuth } from '../contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-
-const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:5001/api' : '/api';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -22,7 +20,7 @@ export default function Login() {
     setIsLoading(true);
 
     try {
-      const response = await axios.post(`${API_URL}/auth/login`, {
+      const response = await api.post(`/auth/login`, {
         email,
         password
       });

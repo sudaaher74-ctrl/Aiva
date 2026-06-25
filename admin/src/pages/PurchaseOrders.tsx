@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
-import axios from "axios"
+import { api } from "@/lib/axios"
 import {
   Table,
   TableBody,
@@ -12,8 +12,6 @@ import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useToast } from "@/hooks/use-toast"
 
-const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:5001/api' : '/api'
-
 export default function PurchaseOrders() {
   const queryClient = useQueryClient()
   const { toast } = useToast()
@@ -21,14 +19,14 @@ export default function PurchaseOrders() {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['purchaseOrders'],
     queryFn: async () => {
-      const response = await axios.get(`${API_URL}/purchase-orders`)
+      const response = await api.get(`/purchase-orders`)
       return response.data.data
     }
   })
 
   const mutation = useMutation({
     mutationFn: async ({ id, status }: { id: string, status: string }) => {
-      return axios.patch(`${API_URL}/purchase-orders/${id}/status`, { status })
+      return api.patch(`/purchase-orders/${id}/status`, { status })
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['purchaseOrders'] })

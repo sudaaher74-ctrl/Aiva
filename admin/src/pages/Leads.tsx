@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useQuery } from "@tanstack/react-query"
-import axios from "axios"
+import { api } from "@/lib/axios"
+import { Skeleton } from "@/components/ui/skeleton"
 import {
   Table,
   TableBody,
@@ -14,15 +15,13 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Download, Search } from "lucide-react"
 
-const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:5001/api' : '/api'
-
 export default function Leads() {
   const [search, setSearch] = useState("")
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['inquiries'],
     queryFn: async () => {
-      const response = await axios.get(`${API_URL}/inquiries`)
+      const response = await api.get(`/inquiries`)
       return response.data.data
     }
   })
@@ -111,9 +110,17 @@ export default function Leads() {
           </TableHeader>
           <TableBody>
             {isLoading && (
-              <TableRow>
-                <TableCell colSpan={7} className="text-center py-10 text-muted-foreground">Loading leads...</TableCell>
-              </TableRow>
+              Array.from({ length: 5 }).map((_, i) => (
+                <TableRow key={i}>
+                  <TableCell><Skeleton className="h-4 w-[100px]" /></TableCell>
+                  <TableCell><Skeleton className="h-4 w-[80px]" /></TableCell>
+                  <TableCell><Skeleton className="h-4 w-[150px]" /></TableCell>
+                  <TableCell><Skeleton className="h-4 w-[150px]" /></TableCell>
+                  <TableCell><Skeleton className="h-4 w-[100px]" /></TableCell>
+                  <TableCell><Skeleton className="h-4 w-[120px]" /></TableCell>
+                  <TableCell><Skeleton className="h-6 w-[80px] rounded-full" /></TableCell>
+                </TableRow>
+              ))
             )}
             {isError && (
               <TableRow>

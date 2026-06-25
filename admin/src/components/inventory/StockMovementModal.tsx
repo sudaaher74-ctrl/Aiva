@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query"
-import axios from "axios"
+import { api } from "@/lib/axios"
 import {
   Dialog,
   DialogContent,
@@ -12,8 +12,6 @@ import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-
-const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:5001/api' : '/api'
 
 export default function StockMovementModal({ 
   isOpen, 
@@ -38,14 +36,14 @@ export default function StockMovementModal({
   const { data: products } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
-      const response = await axios.get(`${API_URL}/products`)
+      const response = await api.get(`/products`)
       return response.data.data
     }
   })
 
   const mutation = useMutation({
     mutationFn: async (movementData: any) => {
-      return axios.post(`${API_URL}/inventory/movement`, movementData)
+      return api.post(`/inventory/movement`, movementData)
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['inventory'] })

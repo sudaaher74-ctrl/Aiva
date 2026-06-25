@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useQuery } from "@tanstack/react-query"
-import axios from "axios"
+import { api } from "@/lib/axios"
 import { ArrowDownToLine, ArrowUpFromLine, Download, Search } from "lucide-react"
 import {
   Table,
@@ -14,8 +14,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import StockMovementModal from "@/components/inventory/StockMovementModal"
-
-const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:5001/api' : '/api'
+import { Skeleton } from "@/components/ui/skeleton"
 
 export default function Inventory() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -25,7 +24,7 @@ export default function Inventory() {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['inventory'],
     queryFn: async () => {
-      const response = await axios.get(`${API_URL}/inventory`)
+      const response = await api.get(`/inventory`)
       return response.data.data
     }
   })
@@ -129,9 +128,21 @@ export default function Inventory() {
           </TableHeader>
           <TableBody>
             {isLoading && (
-              <TableRow>
-                <TableCell colSpan={6} className="text-center py-10 text-muted-foreground">Loading inventory...</TableCell>
-              </TableRow>
+              Array.from({ length: 5 }).map((_, i) => (
+                <TableRow key={i}>
+                  <TableCell className="flex items-center gap-3">
+                    <Skeleton className="h-8 w-8 rounded" />
+                    <Skeleton className="h-4 w-[150px]" />
+                  </TableCell>
+                  <TableCell><Skeleton className="h-4 w-[100px]" /></TableCell>
+                  <TableCell><Skeleton className="h-4 w-[100px]" /></TableCell>
+                  <TableCell><Skeleton className="h-4 w-[80px]" /></TableCell>
+                  <TableCell className="text-right flex justify-end">
+                    <Skeleton className="h-4 w-[50px]" />
+                  </TableCell>
+                  <TableCell><Skeleton className="h-6 w-[80px] rounded-full" /></TableCell>
+                </TableRow>
+              ))
             )}
             {isError && (
               <TableRow>

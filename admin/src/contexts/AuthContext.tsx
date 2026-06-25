@@ -1,5 +1,4 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
-import axios from 'axios';
 
 interface User {
   id: string;
@@ -32,8 +31,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (storedToken && storedUser) {
       setToken(storedToken);
       setUser(JSON.parse(storedUser));
-      // Optionally configure axios default headers here
-      axios.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
     }
     
     setIsLoading(false);
@@ -44,7 +41,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(newUser);
     localStorage.setItem('token', newToken);
     localStorage.setItem('user', JSON.stringify(newUser));
-    axios.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
   };
 
   const logout = () => {
@@ -52,7 +48,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(null);
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    delete axios.defaults.headers.common['Authorization'];
   };
 
   return (
