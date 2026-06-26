@@ -41,24 +41,31 @@ export const downloadPurchaseOrderPDF = (order: any) => {
   // ==========================================
   let currentY = margin
 
-  // Logo Placeholder
-  doc.setFillColor(...colors.primary)
-  doc.roundedRect(margin, currentY, 12, 12, 2, 2, 'F')
-  doc.setTextColor(255, 255, 255)
-  doc.setFont("helvetica", "bold")
-  doc.setFontSize(14)
-  doc.text("A", margin + 3.5, currentY + 8.5)
+  const continueGenerating = (logoImg?: HTMLImageElement) => {
+    if (logoImg) {
+      const imgWidth = 40
+      const imgHeight = (logoImg.height * imgWidth) / logoImg.width
+      doc.addImage(logoImg, 'PNG', margin, currentY, imgWidth, imgHeight)
+      currentY += imgHeight + 8
+    } else {
+      // Fallback if logo fails to load
+      doc.setFillColor(...colors.primary)
+      doc.roundedRect(margin, currentY, 12, 12, 2, 2, 'F')
+      doc.setTextColor(255, 255, 255)
+      doc.setFont("helvetica", "bold")
+      doc.setFontSize(14)
+      doc.text("A", margin + 3.5, currentY + 8.5)
 
-  doc.setTextColor(...colors.textDark)
-  doc.setFont("helvetica", "bold")
-  doc.setFontSize(16)
-  doc.text("AIVA", margin + 15, currentY + 8.5)
+      doc.setTextColor(...colors.textDark)
+      doc.setFont("helvetica", "bold")
+      doc.setFontSize(16)
+      doc.text("AIVA", margin + 15, currentY + 8.5)
+      currentY += 20
+    }
 
-  // Title
-  setFontTitle()
-  doc.text("PURCHASE ORDER", pageWidth - margin, currentY + 8, { align: "right" })
-
-  currentY += 20
+    // Title
+    setFontTitle()
+    doc.text("PURCHASE ORDER", pageWidth - margin, margin + 8, { align: "right" })
 
   // Header Info
   setFontHeading()
@@ -321,4 +328,17 @@ export const downloadPurchaseOrderPDF = (order: any) => {
 
   // Save the PDF
   doc.save(`${order.poNumber || 'PurchaseOrder'}.pdf`)
+  } // End of continueGenerating
+
+  // Load Logo
+  const img = new Image()
+  img.crossOrigin = "Anonymous"
+  img.src = '/logo.png' // Ensure logo is placed in admin/public/logo.png
+  img.onload = () => {
+    continueGenerating(img)
+  }
+  img.onerror = () => {
+    console.warn("Logo could not be loaded for PDF, using fallback.")
+    continueGenerating()
+  }
 }

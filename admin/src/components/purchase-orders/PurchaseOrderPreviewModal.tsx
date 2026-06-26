@@ -66,10 +66,18 @@ export default function PurchaseOrderPreviewModal({ isOpen, onClose, order }: Pr
               {/* Header */}
               <div className="flex justify-between items-start mb-10">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-blue-600 rounded flex items-center justify-center text-white font-bold text-2xl shadow-sm">
-                    A
+                  <img src="/logo.png" alt="AIVA Enterprises Logo" className="h-16 w-auto object-contain" onError={(e) => {
+                    // Fallback if logo is missing
+                    (e.target as HTMLImageElement).style.display = 'none';
+                    const fallback = document.getElementById('logo-fallback');
+                    if (fallback) fallback.style.display = 'flex';
+                  }} />
+                  <div id="logo-fallback" className="hidden items-center gap-3">
+                    <div className="w-12 h-12 bg-blue-600 rounded flex items-center justify-center text-white font-bold text-2xl shadow-sm">
+                      A
+                    </div>
+                    <h1 className="text-3xl font-bold tracking-tight text-slate-800">AIVA</h1>
                   </div>
-                  <h1 className="text-3xl font-bold tracking-tight text-slate-800">AIVA</h1>
                 </div>
                 <div className="text-right">
                   <h2 className="text-4xl font-bold text-blue-600 tracking-tight uppercase">Purchase Order</h2>
