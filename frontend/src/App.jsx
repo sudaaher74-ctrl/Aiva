@@ -16,8 +16,14 @@ import About from './pages/About';
 gsap.registerPlugin(ScrollTrigger);
 
 import MobileBottomNav from './components/MobileBottomNav';
+import PublicLayout from './components/PublicLayout';
 
+import ChatbotLogin from './pages/chatbot/ChatbotLogin';
+import ChatbotApp from './pages/chatbot/ChatbotApp';
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 function App() {
   const location = useLocation();
@@ -81,24 +87,22 @@ function App() {
   }, [location]);
 
   return (
-    <>
-      <Preloader />
-      <Navbar />
-      
+    <QueryClientProvider client={queryClient}>
       <Routes>
-        {/* Public Routes */}
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/:id" element={<ProductDetail />} />
-        <Route path="/about" element={<About />} />
-        {/* If the user accesses products.html, we can catch it or rely on Vercel rewrites */}
-        <Route path="/products.html" element={<Products />} />
+        {/* Public Routes with Navbar and Footer */}
+        <Route element={<PublicLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:id" element={<ProductDetail />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/products.html" element={<Products />} />
+        </Route>
 
+        {/* Standalone Chatbot Routes */}
+        <Route path="/chatbot/login" element={<ChatbotLogin />} />
+        <Route path="/chatbot" element={<ChatbotApp />} />
       </Routes>
-      
-      <Footer />
-      <MobileBottomNav />
-    </>
+    </QueryClientProvider>
   );
 }
 

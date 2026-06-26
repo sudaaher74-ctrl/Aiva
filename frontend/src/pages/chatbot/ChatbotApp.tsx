@@ -1,10 +1,12 @@
 import { useState, useRef, useEffect } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { api } from '@/lib/axios'
+import { api } from '../../lib/axios'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Send, Sparkles, PanelLeftOpen, PanelLeftClose, Zap, RotateCcw } from 'lucide-react'
-import AiMessage from '@/components/ai/AiMessage'
-import AiChatSidebar from '@/components/ai/AiChatSidebar'
+import AiMessage from '../../components/chatbot/AiMessage'
+import AiChatSidebar from '../../components/chatbot/AiChatSidebar'
+
+import { useNavigate } from 'react-router-dom'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -20,6 +22,13 @@ export default function AiChat() {
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const queryClient = useQueryClient()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!localStorage.getItem('token')) {
+      navigate('/chatbot/login')
+    }
+  }, [navigate])
 
   // Fetch conversations for sidebar
   const { data: conversations = [] } = useQuery({
@@ -146,7 +155,7 @@ export default function AiChat() {
   const showWelcome = messages.length === 0
 
   return (
-    <div className="flex h-[calc(100vh-64px)] bg-zinc-950 -m-6 overflow-hidden">
+    <div className="flex h-screen w-screen bg-[#08060d] text-zinc-100 font-sans overflow-hidden chatbot-app m-0 p-0 absolute top-0 left-0 right-0 bottom-0 z-50">
       {/* Sidebar */}
       <AiChatSidebar
         conversations={conversations}

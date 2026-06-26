@@ -5,12 +5,6 @@ import { useAuth } from "../contexts/AuthContext"
 
 const navItems = [
   {
-    title: "AI Assistant",
-    href: "/ai-chat",
-    icon: Sparkles,
-    isAi: true,
-  },
-  {
     title: "Dashboard",
     href: "/dashboard",
     icon: LayoutDashboard,

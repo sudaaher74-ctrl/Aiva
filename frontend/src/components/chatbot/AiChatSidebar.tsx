@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils'
+import { cn } from '../../lib/utils'
 import { MessageSquarePlus, Pin, Trash2, Search, X } from 'lucide-react'
 import { useState } from 'react'
 

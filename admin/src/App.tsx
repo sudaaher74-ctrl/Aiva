@@ -33,8 +33,6 @@ import Inventory from './pages/Inventory'
 import Customers from './pages/Customers'
 import Settings from './pages/Settings'
 import Reports from './pages/Reports'
-import AiChat from './pages/AiChat'
-import AiFloatingButton from './components/ai/AiFloatingButton'
 
 function AppRoutes() {
   return (
@@ -56,12 +54,10 @@ function AppRoutes() {
         <Route path="inventory" element={<Inventory />} />
         <Route path="quotations" element={<Quotations />} />
         <Route path="purchase-orders" element={<PurchaseOrders />} />
-        <Route path="ai-chat" element={<AiChat />} />
         <Route path="search" element={<Search />} />
         <Route path="settings" element={<Settings />} />
       </Route>
     </Routes>
-    <AiFloatingButton />
     </>
   )
 }

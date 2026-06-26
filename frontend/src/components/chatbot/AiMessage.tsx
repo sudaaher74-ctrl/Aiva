@@ -1,6 +1,6 @@
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { cn } from '@/lib/utils'
+import { cn } from '../../lib/utils'
 import { Bot, User, Copy, Check } from 'lucide-react'
 import { useState } from 'react'
 
