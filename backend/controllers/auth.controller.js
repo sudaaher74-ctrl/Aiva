@@ -85,7 +85,7 @@ exports.login = asyncHandler(async (req, res, next) => {
 
   const token = jwt.sign(
     { id: user._id, role: user.role },
-    process.env.JWT_SECRET,
+    process.env.JWT_SECRET || 'aiva-secret-key-2026',
     { expiresIn: '1d' }
   );
 
