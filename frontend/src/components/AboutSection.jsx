@@ -58,6 +58,15 @@ function AboutSection() {
         <div className="split-left">
           <div className="image-composition">
             <img
+              src="/assets/images/products/pulp/tomatopastedrum.webp"
+              className="comp-img comp-bg"
+              alt="Industrial Tomato Paste Drum"
+              loading="lazy"
+              width="450"
+              height="450"
+              style={{ left: '-15%', top: '0%', zIndex: 1, filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.2))' }}
+            />
+            <img
               src="/assets/images/products/pulp/tomatopaste.webp"
               className="comp-img comp-main"
               alt="Premium Tomato Paste Manufacturer"
