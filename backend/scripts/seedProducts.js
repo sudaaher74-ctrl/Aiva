@@ -260,7 +260,7 @@ const products = [
     description: 'Fresh coriander and green chilli blend, individually quick frozen.',
     tab: 'iqf-frozen',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/iqf_frozen/coriander&greenchilli.png',
+    image_url: './assets/images/products/iqf_frozen/coriander&greencilli.png',
     status: 'Active'
   },
   {
@@ -287,7 +287,25 @@ const products = [
     description: 'Diced tomatoes, individually quick frozen.',
     tab: 'iqf-frozen',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/iqf_frozen/tomamto.png',
+    image_url: './assets/images/products/iqf_frozen/tomato.png',
+    status: 'Active'
+  },
+  {
+    name: 'IQF 6mm French Fries',
+    category: 'IQF Frozen',
+    description: 'Premium 6mm straight cut French fries, individually quick frozen.',
+    tab: 'iqf-frozen',
+    shelfLife: '24 Months',
+    image_url: './assets/images/products/iqf_frozen/6mmfrenchfries.png',
+    status: 'Active'
+  },
+  {
+    name: 'IQF 9mm French Fries',
+    category: 'IQF Frozen',
+    description: 'Premium 9mm straight cut French fries, individually quick frozen.',
+    tab: 'iqf-frozen',
+    shelfLife: '24 Months',
+    image_url: './assets/images/products/iqf_frozen/9mmfrenchfries.png',
     status: 'Active'
   }
 ];
