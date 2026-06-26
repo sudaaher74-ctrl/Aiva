@@ -17,8 +17,8 @@ export const downloadPurchaseOrderPDF = (order: any) => {
 
   // --- Colors ---
   const colors = {
-    primary: [37, 99, 235] as [number, number, number], // #2563EB
-    textDark: [30, 41, 59] as [number, number, number], // #1E293B
+    primary: [212, 175, 55] as [number, number, number], // #D4AF37
+    textDark: [17, 24, 39] as [number, number, number], // #111827
     textLight: [100, 116, 139] as [number, number, number], // #64748B
     border: [226, 232, 240] as [number, number, number], // #E2E8F0
     bgLight: [248, 250, 252] as [number, number, number], // #F8FAFC
@@ -49,9 +49,9 @@ export const downloadPurchaseOrderPDF = (order: any) => {
       currentY += imgHeight + 8
     } else {
       // Fallback if logo fails to load
-      doc.setFillColor(...colors.primary)
+      doc.setFillColor(0, 0, 0) // Black background
       doc.roundedRect(margin, currentY, 12, 12, 2, 2, 'F')
-      doc.setTextColor(255, 255, 255)
+      doc.setTextColor(...colors.primary) // Gold text
       doc.setFont("helvetica", "bold")
       doc.setFontSize(14)
       doc.text("A", margin + 3.5, currentY + 8.5)

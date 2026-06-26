@@ -52,7 +52,7 @@ export default function PurchaseOrderPreviewModal({ isOpen, onClose, order }: Pr
             <Button variant="outline" onClick={() => window.print()} className="hidden md:flex">
               <Printer className="mr-2 h-4 w-4" /> Print
             </Button>
-            <Button onClick={() => downloadPurchaseOrderPDF(order)} className="bg-blue-600 hover:bg-blue-700 text-white">
+            <Button onClick={() => downloadPurchaseOrderPDF(order)} className="bg-black hover:bg-zinc-800 text-[#D4AF37]">
               <Download className="mr-2 h-4 w-4" /> Download PDF
             </Button>
           </div>
@@ -73,14 +73,14 @@ export default function PurchaseOrderPreviewModal({ isOpen, onClose, order }: Pr
                     if (fallback) fallback.style.display = 'flex';
                   }} />
                   <div id="logo-fallback" className="hidden items-center gap-3">
-                    <div className="w-12 h-12 bg-blue-600 rounded flex items-center justify-center text-white font-bold text-2xl shadow-sm">
+                    <div className="w-12 h-12 bg-black rounded flex items-center justify-center text-[#D4AF37] font-bold text-2xl shadow-sm">
                       A
                     </div>
                     <h1 className="text-3xl font-bold tracking-tight text-slate-800">AIVA</h1>
                   </div>
                 </div>
                 <div className="text-right">
-                  <h2 className="text-4xl font-bold text-blue-600 tracking-tight uppercase">Purchase Order</h2>
+                  <h2 className="text-4xl font-bold text-[#D4AF37] tracking-tight uppercase">Purchase Order</h2>
                   <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm text-slate-600">
                     <div className="font-semibold text-slate-800">PO Number:</div>
                     <div className="font-medium text-slate-900">{order.poNumber || "N/A"}</div>
@@ -173,7 +173,7 @@ export default function PurchaseOrderPreviewModal({ isOpen, onClose, order }: Pr
                   </thead>
                   <tbody className="divide-y divide-slate-200">
                     {items.map((item: any, idx: number) => (
-                      <tr key={idx} className="bg-white hover:bg-blue-50/50 transition-colors duration-150">
+                      <tr key={idx} className="bg-white hover:bg-zinc-50 transition-colors duration-150">
                         <td className="px-4 py-3 font-medium text-slate-500">{idx + 1}</td>
                         <td className="px-4 py-3 font-semibold text-slate-800">{item.productName}</td>
                         <td className="px-4 py-3 text-slate-600">{item.hsCode || "N/A"}</td>
@@ -218,7 +218,7 @@ export default function PurchaseOrderPreviewModal({ isOpen, onClose, order }: Pr
                   <div className="bg-slate-50 p-5 border-t border-slate-200">
                     <div className="flex justify-between items-center text-lg">
                       <span className="font-bold text-slate-800">Grand Total:</span>
-                      <span className="font-black text-blue-600">{order.currency || 'USD'} {(order.totalAmount || 0).toLocaleString()}</span>
+                      <span className="font-black text-[#D4AF37]">{order.currency || 'USD'} {(order.totalAmount || 0).toLocaleString()}</span>
                     </div>
                   </div>
                 </div>

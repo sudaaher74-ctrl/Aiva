@@ -170,7 +170,7 @@ export default function PurchaseOrders() {
                       onClick={() => openEditModal(order)}
                       title="Edit PO"
                     >
-                      <Edit className="h-4 w-4 text-blue-600" />
+                      <Edit className="h-4 w-4 text-black" />
                     </Button>
 
                     <Button 
