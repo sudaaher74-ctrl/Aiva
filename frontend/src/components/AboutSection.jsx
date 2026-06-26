@@ -56,32 +56,35 @@ function AboutSection() {
     <section className="about section-padding" id="about" ref={sectionRef}>
       <div className="container split-layout">
         <div className="split-left">
-          <div className="image-composition">
+          <div 
+            className="image-composition"
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: '15px',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '100%',
+              minHeight: '400px'
+            }}
+          >
             <img
               src="/assets/images/products/pulp/tomatopastedrum.webp"
-              className="comp-img comp-bg"
               alt="Industrial Tomato Paste Drum"
               loading="lazy"
-              width="450"
-              height="450"
-              style={{ left: '-15%', top: '0%', zIndex: 1, filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.2))' }}
+              style={{ width: '30%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.15))' }}
             />
             <img
               src="/assets/images/products/pulp/tomatopaste.webp"
-              className="comp-img comp-main"
               alt="Premium Tomato Paste Manufacturer"
               loading="lazy"
-              width="500"
-              height="600"
+              style={{ width: '35%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 15px 25px rgba(0,0,0,0.15))' }}
             />
             <img
               src="/assets/images/products/pulp/Alphansomangopulp.webp"
-              className="comp-img comp-sub"
               alt="Alphonso Mango Exporter India"
               loading="lazy"
-              width="400"
-              height="400"
-              style={{ left: 'auto', right: '-5%', bottom: '-5%', zIndex: 3 }}
+              style={{ width: '30%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.15))' }}
             />
           </div>
         </div>
