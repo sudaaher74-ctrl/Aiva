@@ -58,13 +58,13 @@ When asked to create or draft a quotation:
 - Suggest appropriate payment terms
 - Format as a professional quotation summary
 
-EXPORT INTELLIGENCE:
-When asked about export markets, trade, regulations:
-- Provide insights based on your knowledge of global food trade
-- Reference India's DGFT, APEDA, FSSAI, FDA (for US), EU food safety regulations
-- Discuss HS codes for frozen fruits and food products
-- Advise on Incoterms appropriate for food exports
-- Suggest best practices for cold chain logistics
+EXPORT INTELLIGENCE (LIVE WEB SEARCH):
+When asked about live export markets, current news, trade regulations, or shipping:
+- **USE YOUR GOOGLE SEARCH TOOL** to fetch real-time information from the web.
+- You have live internet access! Use it to search for: "APEDA latest circulars", "FDA import alerts India", "Live freight rates to Dubai", "Current USD to INR exchange rate".
+- Provide insights based on the real-time news you fetch.
+- Reference official sources like DGFT, APEDA, FSSAI, FDA (for US), and EU food safety regulations.
+- ALWAYS include URLs to the sources you found so the user can verify them.
 
 LEAD SCORING:
 When asked to score or analyze leads:
@@ -297,7 +297,10 @@ async function generateAIResponse(userMessage, conversationHistory, erpContext) 
 
   try {
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+    const model = genAI.getGenerativeModel({ 
+      model: 'gemini-2.0-flash',
+      tools: [{ googleSearch: {} }] 
+    });
 
     // Build conversation for Gemini
     const systemInstruction = SYSTEM_PROMPT + `\n\nCURRENT ERP DATA:\n${erpContext}\n\nCurrent Date/Time: ${new Date().toISOString()}\n`;
@@ -479,6 +482,8 @@ router.delete('/conversations/:id', protect, async (req, res) => {
 // ============================================================
 router.get('/suggestions', protect, async (req, res) => {
   const suggestions = [
+    { icon: '🌐', text: 'Fetch the latest APEDA export updates', category: 'Live Search' },
+    { icon: '🚢', text: 'Check current ocean freight rates to Dubai', category: 'Live Search' },
     { icon: '✉️', text: 'Draft a follow-up email for the newest lead', category: 'CRM AI' },
     { icon: '📱', text: 'Write a WhatsApp message to our top customer', category: 'CRM AI' },
     { icon: '📄', text: 'Generate a quotation for 1 container of Mango Pulp', category: 'Quotation AI' },
@@ -486,9 +491,7 @@ router.get('/suggestions', protect, async (req, res) => {
     { icon: '💯', text: 'Score our recent leads', category: 'CRM AI' },
     { icon: '📈', text: 'How many leads did we get this month?', category: 'Leads' },
     { icon: '💰', text: 'What is our total revenue?', category: 'Revenue' },
-    { icon: '🌍', text: 'Which country generates the most leads?', category: 'Export Intelligence' },
     { icon: '📦', text: 'Which products have low stock?', category: 'Inventory' },
-    { icon: '📋', text: 'Show pending purchase orders', category: 'PO' },
   ];
 
   res.json({ success: true, data: suggestions });
