@@ -3,9 +3,9 @@ const { z } = require('zod');
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   PORT: z.string().transform(Number).default('5001'),
-  MONGO_URI: z.string().min(1, 'MONGO_URI is required'),
-  JWT_SECRET: z.string().min(10, 'JWT_SECRET must be at least 10 characters long'),
-  GEMINI_API_KEY: z.string().min(1, 'GEMINI_API_KEY is required'),
+  MONGODB_URI: z.string().optional(),
+  JWT_SECRET: z.string().optional(),
+  GEMINI_API_KEY: z.string().optional(),
 });
 
 const validateEnv = () => {
