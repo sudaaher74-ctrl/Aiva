@@ -54,28 +54,8 @@ function AboutSection() {
 
   return (
     <section className="about section-padding" id="about" ref={sectionRef}>
-      <div className="container split-layout">
-        <div className="split-left">
-          <div className="image-composition">
-            <img
-              src="/assets/images/products/pulp/kesarmangopulp.webp"
-              className="comp-img comp-main"
-              alt="Premium Kesar Mango Pulp Manufacturer"
-              loading="lazy"
-              width="500"
-              height="600"
-            />
-            <img
-              src="/assets/images/products/pulp/tomatopaste.webp"
-              className="comp-img comp-sub"
-              alt="Tomato Paste Exporter India"
-              loading="lazy"
-              width="400"
-              height="400"
-            />
-          </div>
-        </div>
-        <div className="split-right content-block">
+      <div className="container">
+        <div className="content-block" style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
           <h3 className="section-subtitle">Premium Fruit Pulp Manufacturer</h3>
           <h2 className="section-title">
             Cultivating Global <br />
@@ -85,7 +65,7 @@ function AboutSection() {
             AIVA Enterprises specializes in aseptic fruit products, concentrates, purees, frozen products, and IQF fruits and vegetables, delivering reliable ingredient solutions that preserve quality, freshness, and consistency from source to supply.
           </p>
 
-          <div className="stats-grid">
+          <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', marginTop: '40px', textAlign: 'left' }}>
             <div className="stat-item" style={{ display: 'flex', alignItems: 'center' }}>
               <p style={{ fontWeight: 600, fontSize: '1.1rem', color: 'var(--color-primary)' }}>
                 70 MT/Day Processing Capacity
