@@ -72,6 +72,7 @@ function AboutSection() {
               loading="lazy"
               width="400"
               height="400"
+              style={{ left: 'auto', right: '-5%', bottom: '-5%', zIndex: 3 }}
             />
           </div>
         </div>
