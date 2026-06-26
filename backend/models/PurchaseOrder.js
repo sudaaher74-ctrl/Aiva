@@ -183,6 +183,7 @@ purchaseOrderSchema.pre('save', async function() {
 // Indexes for faster queries
 purchaseOrderSchema.index({ status: 1 });
 purchaseOrderSchema.index({ createdAt: -1 });
+purchaseOrderSchema.index({ buyerEmail: 1, status: 1 });
 purchaseOrderSchema.index({ buyerCompany: 'text', buyerName: 'text', poNumber: 'text' });
 
 module.exports = mongoose.model('PurchaseOrder', purchaseOrderSchema);

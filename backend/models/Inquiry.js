@@ -72,9 +72,10 @@ const inquirySchema = new mongoose.Schema({
   timestamps: true  // adds createdAt and updatedAt automatically
 });
 
-// Index for faster queries
+// Add indexes for frequent queries and sorting
 inquirySchema.index({ status: 1 });
+inquirySchema.index({ email: 1 });
 inquirySchema.index({ createdAt: -1 });
-inquirySchema.index({ name: 'text', company: 'text', email: 'text', country: 'text' });
+inquirySchema.index({ email: 1, status: 1 });
 
 module.exports = mongoose.model('Inquiry', inquirySchema);

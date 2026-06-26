@@ -1,69 +1,70 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const helmet = require('helmet');
+const xss = require('xss-clean');
+const mongoSanitize = require('express-mongo-sanitize');
+const morgan = require('morgan');
+const compression = require('compression');
 const connectDB = require('./config/db');
+const validateEnv = require('./config/env');
+const globalErrorHandler = require('./middleware/errorHandler');
+const AppError = require('./utils/AppError');
+
+// Catch Uncaught Exceptions immediately
+process.on('uncaughtException', err => {
+  console.error('UNCAUGHT EXCEPTION! 💥 Shutting down...');
+  console.error(err.name, err.message);
+  process.exit(1);
+});
 
 // Load environment variables
 dotenv.config();
 
+// Validate Environment Variables
+validateEnv();
+
 // Create Express app
 const app = express();
 
-// Connect to MongoDB and seed admin if needed
-connectDB().then(async () => {
-  const User = require('./models/User');
-  const bcrypt = require('bcryptjs');
-  try {
-    const existingAdmin = await User.findOne({ email: 'admin@aivaenterprises.com' });
-    if (!existingAdmin) {
-      const salt = await bcrypt.genSalt(10);
-      const password_hash = await bcrypt.hash('admin123', salt);
-      await User.create({
-        name: 'Super Admin',
-        email: 'admin@aivaenterprises.com',
-        password_hash,
-        role: 'Admin'
-      });
-      console.log('✅ Default Admin created: admin@aivaenterprises.com / admin123');
-    }
-  } catch (e) {
-    console.error('Error seeding admin user:', e);
-  }
-  
-  const PORT = process.env.PORT || 5000;
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-    console.log(`\n🚀 AIVA Backend running on http://localhost:${PORT}`);
-    console.log(`📡 API endpoint: http://localhost:${PORT}/api/inquiries\n`);
-  });
-}).catch(err => {
-  console.error('Failed to connect to database', err);
-  process.exit(1);
-});
+// Set security HTTP headers
+app.use(helmet());
 
-// Middleware
+// Logging
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+} else {
+  // Production logging format: IP, user, date, method, url, HTTP version, status, response length, response time
+  app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] - :response-time ms'));
+}
+
+// Enable CORS
 app.use(cors({
-  origin: '*',  // Allow all origins for development
-  methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+  origin: process.env.CLIENT_URL || '*',  // Use * as fallback or restrict to CLIENT_URL
+  methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-// Request logging (simple)
-app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
-  next();
-});
+// Body parser, reading data from body into req.body
+app.use(express.json({ limit: '10kb' }));
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
+// Data sanitization against NoSQL query injection
+app.use(mongoSanitize());
+
+// Data sanitization against XSS
+app.use(xss());
+
+// Compress all responses
+app.use(compression());
+
+// Rate Limiting
 const rateLimit = require('express-rate-limit');
-
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 200,
   message: { success: false, message: 'Too many requests from this IP, please try again later.' }
 });
-
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 20,
@@ -85,27 +86,77 @@ app.use('/api/inventory', require('./routes/inventory'));
 app.use('/api/search', require('./routes/search'));
 app.use('/api/ai', require('./routes/ai'));
 
-// Health check endpoint
-app.get('/', (req, res) => {
-  res.status(200).send('Server is running');
+// Base Health Check endpoints (Requested)
+app.get('/api', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'AIVA Backend Running',
+    version: '1.0.0'
+  });
 });
 
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+  const mongoose = require('mongoose');
+  res.status(200).json({
+    status: 'OK',
+    database: mongoose.connection.readyState === 1 ? 'Connected' : 'Disconnected',
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString()
+  });
 });
 
-// 404 handler
-app.use((req, res) => {
-  res.status(404).json({ success: false, message: 'Route not found' });
+// Handle undefined Routes (404 Handler)
+app.all('*', (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 
-// Error handler
-app.use((err, req, res, next) => {
-  console.error('Server Error:', err);
-  res.status(500).json({ success: false, message: 'Internal server error' });
+// Global Error Handler
+app.use(globalErrorHandler);
+
+// Connect to Database and start server
+let server;
+connectDB().then(async () => {
+  const User = require('./models/User');
+  const bcrypt = require('bcryptjs');
+  try {
+    const existingAdmin = await User.findOne({ email: 'admin@aivaenterprises.com' });
+    if (!existingAdmin) {
+      const salt = await bcrypt.genSalt(10);
+      const password_hash = await bcrypt.hash('admin123', salt);
+      await User.create({
+        name: 'Super Admin',
+        email: 'admin@aivaenterprises.com',
+        password_hash,
+        role: 'Admin'
+      });
+      console.log('✅ Default Admin created: admin@aivaenterprises.com / admin123');
+    }
+  } catch (e) {
+    console.error('Error seeding admin user:', e);
+  }
+  
+  // Dynamic Render Port
+  const PORT = process.env.PORT || 5001;
+  server = app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+  });
+
+}).catch(err => {
+  console.error('Failed to connect to database', err);
+  process.exit(1);
 });
 
-// Express server startup logic has been moved to the DB connection success block.
+// Handle Unhandled Promise Rejections (e.g. database connection issues after startup)
+process.on('unhandledRejection', err => {
+  console.error('UNHANDLED REJECTION! 💥 Shutting down...');
+  console.error(err.name, err.message);
+  if (server) {
+    server.close(() => {
+      process.exit(1);
+    });
+  } else {
+    process.exit(1);
+  }
+});
 
-// Export for Vercel serverless functions
 module.exports = app;
