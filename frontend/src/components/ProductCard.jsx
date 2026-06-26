@@ -91,7 +91,7 @@ const ProductCard = ({ product, handleQuoteClick }) => {
         <img 
           src={imageUrl} 
           alt={product.name} 
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain p-6"
         />
       </motion.div>
 
