@@ -344,7 +344,7 @@ router.post('/chat', protect, async (req, res) => {
     let conversation = null;
 
     if (conversationId) {
-      conversation = await Conversation.findOne({ _id: conversationId, userId: req.user._id });
+      conversation = await Conversation.findOne({ _id: conversationId, userId: req.user.id });
       if (conversation) {
         conversationHistory = conversation.messages;
       }
@@ -360,7 +360,7 @@ router.post('/chat', protect, async (req, res) => {
       conversation = new Conversation({
         title,
         messages: [],
-        userId: req.user._id
+        userId: req.user.id
       });
     }
 
@@ -389,7 +389,7 @@ router.post('/chat', protect, async (req, res) => {
 // ============================================================
 router.get('/conversations', protect, async (req, res) => {
   try {
-    const conversations = await Conversation.find({ userId: req.user._id })
+    const conversations = await Conversation.find({ userId: req.user.id })
       .select('title pinned createdAt updatedAt messages')
       .sort({ pinned: -1, updatedAt: -1 })
       .lean();
@@ -418,7 +418,7 @@ router.get('/conversations/:id', protect, async (req, res) => {
   try {
     const conversation = await Conversation.findOne({
       _id: req.params.id,
-      userId: req.user._id
+      userId: req.user.id
     });
 
     if (!conversation) {
@@ -442,7 +442,7 @@ router.patch('/conversations/:id', protect, async (req, res) => {
     if (pinned !== undefined) update.pinned = pinned;
 
     const conversation = await Conversation.findOneAndUpdate(
-      { _id: req.params.id, userId: req.user._id },
+      { _id: req.params.id, userId: req.user.id },
       update,
       { new: true }
     );
@@ -464,7 +464,7 @@ router.delete('/conversations/:id', protect, async (req, res) => {
   try {
     const conversation = await Conversation.findOneAndDelete({
       _id: req.params.id,
-      userId: req.user._id
+      userId: req.user.id
     });
 
     if (!conversation) {
