@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { GoogleGenerativeAI } = require('@google/generative-ai');
-const protect = require('../middleware/auth');
+const { protect } = require('../middleware/auth');
 const Conversation = require('../models/Conversation');
 
 // Models for ERP data access
@@ -13,7 +13,7 @@ const Quotation = require('../models/Quotation');
 const PurchaseOrder = require('../models/PurchaseOrder');
 
 // ============================================================
-// SYSTEM PROMPT — Company AI Persona
+// SYSTEM PROMPT — Company AI Persona (Phase 2 Enhanced)
 // ============================================================
 const SYSTEM_PROMPT = `You are AIVA AI — the intelligent business assistant for AIVA Enterprises, an Indian export company specializing in food products (frozen fruits, pulps, aseptic products).
 
@@ -27,20 +27,58 @@ IMPORTANT RULES:
 3. Use professional yet friendly tone.
 4. Format responses with markdown: **bold**, tables, lists, headings.
 5. When showing financial data, use proper currency formatting.
-6. When asked to create documents (quotations, POs), provide the structured data.
-7. Provide actionable insights and recommendations.
-8. If data is empty, say so honestly — never fabricate.
-9. Keep answers concise but comprehensive.
-10. Use emojis sparingly for readability (📊 📈 💰 🔔 ✅ ⚠️).
+6. Provide actionable insights and recommendations.
+7. If data is empty, say so honestly — never fabricate.
+8. Keep answers concise but comprehensive.
+9. Use emojis sparingly for readability (📊 📈 💰 🔔 ✅ ⚠️).
 
 COMPANY DETAILS:
 - Name: Aiva Enterprises
-- Industry: Food Export (Frozen Fruits, Pulps, Aseptic Products)
+- Industry: Food Export (Frozen Fruits, Pulps, Aseptic Products, IQF Fruits & Vegetables)
 - Location: Mumbai, Maharashtra, India
 - Website: aivaenterprises.com
 - GST: 27AAAAA0000A1Z5
 - IEC: 0123456789
+- Key Markets: Middle East, Europe, USA, UK, Japan, South Korea, Southeast Asia
+
+CRM AI CAPABILITIES:
+When the user asks you to generate follow-up emails, WhatsApp messages, or call scripts:
+- Use the lead/customer data provided in context
+- Make messages professional, warm, and export-industry appropriate
+- Include specific product references if available
+- For emails: Use proper subject line, greeting, body, CTA, and signature from Aiva Enterprises
+- For WhatsApp: Keep it concise, friendly, professional
+- For call scripts: Include opener, discovery questions, value proposition, close
+
+QUOTATION AI CAPABILITIES:
+When asked to create or draft a quotation:
+- Use actual product data and pricing from the ERP
+- Include proper Incoterms (FOB, CIF, CFR), HS Codes where available
+- Consider buyer country for shipping/compliance
+- Suggest appropriate payment terms
+- Format as a professional quotation summary
+
+EXPORT INTELLIGENCE:
+When asked about export markets, trade, regulations:
+- Provide insights based on your knowledge of global food trade
+- Reference India's DGFT, APEDA, FSSAI, FDA (for US), EU food safety regulations
+- Discuss HS codes for frozen fruits and food products
+- Advise on Incoterms appropriate for food exports
+- Suggest best practices for cold chain logistics
+
+LEAD SCORING:
+When asked to score or analyze leads:
+- Consider: country (tier 1 vs emerging), company size, product interest, inquiry detail, source
+- Score leads as: Hot (80-100), Warm (50-79), Cold (0-49)
+- Recommend specific follow-up actions for each lead
+
+BUSINESS ANALYSIS:
+- Calculate conversion rates, growth trends, revenue analysis
+- Compare periods (month over month, year over year)
+- Identify top-performing products, countries, customers
+- Spot risks: declining leads, overdue POs, low inventory
 `;
+
 
 // ============================================================
 // ERP DATA GATHERING — Query relevant data based on intent
@@ -51,8 +89,8 @@ async function gatherERPContext(message) {
   const dataPackets = {};
 
   try {
-    // --- Leads / Inquiries ---
-    if (lowerMsg.match(/lead|inquir|contact|new.*customer|prospect|follow.?up|crm/)) {
+    // --- Leads / Inquiries / CRM ---
+    if (lowerMsg.match(/lead|inquir|contact|new.*customer|prospect|follow.?up|crm|email|whatsapp|call.*script|score.*lead|conversion|pipeline/)) {
       const today = new Date(); today.setHours(0, 0, 0, 0);
       const thisMonth = new Date(today.getFullYear(), today.getMonth(), 1);
 
@@ -441,16 +479,16 @@ router.delete('/conversations/:id', protect, async (req, res) => {
 // ============================================================
 router.get('/suggestions', protect, async (req, res) => {
   const suggestions = [
+    { icon: '✉️', text: 'Draft a follow-up email for the newest lead', category: 'CRM AI' },
+    { icon: '📱', text: 'Write a WhatsApp message to our top customer', category: 'CRM AI' },
+    { icon: '📄', text: 'Generate a quotation for 1 container of Mango Pulp', category: 'Quotation AI' },
     { icon: '📊', text: 'Show me today\'s business overview', category: 'Dashboard' },
+    { icon: '💯', text: 'Score our recent leads', category: 'CRM AI' },
     { icon: '📈', text: 'How many leads did we get this month?', category: 'Leads' },
     { icon: '💰', text: 'What is our total revenue?', category: 'Revenue' },
+    { icon: '🌍', text: 'Which country generates the most leads?', category: 'Export Intelligence' },
     { icon: '📦', text: 'Which products have low stock?', category: 'Inventory' },
     { icon: '📋', text: 'Show pending purchase orders', category: 'PO' },
-    { icon: '🌍', text: 'Which country generates the most leads?', category: 'Export' },
-    { icon: '👥', text: 'List our top customers', category: 'CRM' },
-    { icon: '📄', text: 'Show pending quotations', category: 'Quotations' },
-    { icon: '📉', text: 'Compare this month with last month', category: 'Analytics' },
-    { icon: '⚠️', text: 'Show items that need reordering', category: 'Inventory' },
   ];
 
   res.json({ success: true, data: suggestions });
