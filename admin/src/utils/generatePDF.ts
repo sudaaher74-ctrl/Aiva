@@ -333,7 +333,7 @@ export const downloadPurchaseOrderPDF = (order: any) => {
   // Load Logo
   const img = new Image()
   img.crossOrigin = "Anonymous"
-  img.src = '/logo.png' // Ensure logo is placed in admin/public/logo.png
+  img.src = '/admin/logo.png' // Use base path since vite config has base: '/admin/'
   img.onload = () => {
     continueGenerating(img)
   }

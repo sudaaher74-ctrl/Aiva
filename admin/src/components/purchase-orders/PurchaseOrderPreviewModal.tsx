@@ -66,7 +66,7 @@ export default function PurchaseOrderPreviewModal({ isOpen, onClose, order }: Pr
               {/* Header */}
               <div className="flex justify-between items-start mb-10">
                 <div className="flex items-center gap-3">
-                  <img src="/logo.png" alt="AIVA Enterprises Logo" className="h-16 w-auto object-contain" onError={(e) => {
+                  <img src="/admin/logo.png" alt="AIVA Enterprises Logo" className="h-16 w-auto object-contain" onError={(e) => {
                     // Fallback if logo is missing
                     (e.target as HTMLImageElement).style.display = 'none';
                     const fallback = document.getElementById('logo-fallback');
