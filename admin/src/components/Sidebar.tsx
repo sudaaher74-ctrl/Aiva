@@ -1,9 +1,15 @@
 import { Link, useLocation } from "react-router-dom"
 import { cn } from "@/lib/utils"
-import { LayoutDashboard, Users, Package, Settings, LogOut, FileText, ShoppingCart, ClipboardList, BarChart3, Building2 } from "lucide-react"
+import { LayoutDashboard, Users, Package, Settings, LogOut, FileText, ShoppingCart, ClipboardList, BarChart3, Building2, Sparkles } from "lucide-react"
 import { useAuth } from "../contexts/AuthContext"
 
 const navItems = [
+  {
+    title: "AI Assistant",
+    href: "/ai-chat",
+    icon: Sparkles,
+    isAi: true,
+  },
   {
     title: "Dashboard",
     href: "/dashboard",
@@ -61,19 +67,24 @@ export default function Sidebar() {
       <nav className="flex-1 space-y-1 px-3 py-4">
         {navItems.map((item) => {
           const isActive = location.pathname.startsWith(item.href)
+          const isAi = (item as any).isAi
           return (
             <Link
               key={item.href}
               to={item.href}
               className={cn(
                 "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300",
-                isActive 
-                  ? "bg-gradient-to-r from-[#c5a059] to-[#d4b982] text-zinc-950 shadow-glow scale-[1.02]" 
-                  : "text-zinc-400 hover:bg-white/5 hover:text-zinc-50 hover:scale-[1.02]"
+                isAi && !isActive && "bg-gradient-to-r from-[#c5a059]/10 to-transparent border border-[#c5a059]/20 text-[#c5a059] hover:from-[#c5a059]/20 hover:border-[#c5a059]/30 mb-3",
+                isAi && isActive && "bg-gradient-to-r from-[#c5a059] to-[#d4b982] text-zinc-950 shadow-glow scale-[1.02] mb-3",
+                !isAi && isActive && "bg-gradient-to-r from-[#c5a059] to-[#d4b982] text-zinc-950 shadow-glow scale-[1.02]",
+                !isAi && !isActive && "text-zinc-400 hover:bg-white/5 hover:text-zinc-50 hover:scale-[1.02]"
               )}
             >
               <item.icon className="h-5 w-5 flex-shrink-0" />
               {item.title}
+              {isAi && !isActive && (
+                <span className="ml-auto text-[9px] font-bold uppercase tracking-wider bg-[#c5a059]/20 text-[#c5a059] px-1.5 py-0.5 rounded-full">New</span>
+              )}
             </Link>
           )
         })}
