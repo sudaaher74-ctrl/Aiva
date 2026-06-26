@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLocation, Link } from 'react-router-dom';
+import ProductCard from './ProductCard';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -96,38 +97,11 @@ function ProductGrid() {
           </div>
           <div className="premium-product-grid">
             {filtered.map((product) => (
-              <div className="premium-prod-card" key={product._id || product.id}>
-                <div className="p-img-box">
-                  <img src={getImageUrl(product.image || product.image_url)} alt={product.name} />
-                </div>
-                <div className="p-info">
-                  <h3>{product.name}</h3>
-                  <p className="p-desc">{product.description || product.desc || ''}</p>
-                  <ul className="p-specs">
-                    <li>
-                      <span>Category:</span> {product.category}
-                    </li>
-                    {product.brix && (
-                      <li>
-                        <span>Brix:</span> {product.brix}
-                      </li>
-                    )}
-                    {product.shelfLife && (
-                      <li>
-                        <span>Shelf Life:</span> {product.shelfLife}
-                      </li>
-                    )}
-                  </ul>
-                  <div style={{ display: 'flex', gap: '10px', marginTop: '15px' }}>
-                    <a href="#contact" className="btn-link" onClick={() => handleQuoteClick(product.image || product.image_url)}>
-                      Get Quote <i className="ph ph-arrow-right"></i>
-                    </a>
-                    <Link to={`/products/${product._id || product.id}`} className="btn-link" style={{ color: '#D4AF37' }}>
-                      View Details
-                    </Link>
-                  </div>
-                </div>
-              </div>
+              <ProductCard 
+                key={product._id || product.id} 
+                product={product} 
+                handleQuoteClick={handleQuoteClick} 
+              />
             ))}
           </div>
         </div>
