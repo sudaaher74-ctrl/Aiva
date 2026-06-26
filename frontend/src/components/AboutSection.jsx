@@ -67,22 +67,6 @@ function AboutSection() {
               justifyContent: 'center'
             }}
           >
-            {/* Background Drum 1 (Tomato Paste) */}
-            <img
-              src="/assets/images/products/pulp/tomatopastedrum.webp"
-              alt="Industrial Tomato Paste Drum"
-              loading="lazy"
-              style={{
-                position: 'absolute',
-                width: '50%',
-                left: '0%',
-                top: '5%',
-                zIndex: 1,
-                filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.3)) blur(3px)',
-                opacity: 0.9
-              }}
-            />
-
             {/* Background Drum 2 (Mango Pulp) */}
             <img
               src="/assets/images/products/pulp/kesarmangopulpdrum.webp"
@@ -90,42 +74,28 @@ function AboutSection() {
               loading="lazy"
               style={{
                 position: 'absolute',
-                width: '50%',
-                right: '0%',
-                top: '15%',
+                width: '60%',
+                right: '5%',
+                top: '5%',
                 zIndex: 1,
-                filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.3)) blur(4px)',
+                filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.3)) blur(2px)',
                 opacity: 0.8
               }}
             />
 
-            {/* Foreground Bottle 1 (Tomato Paste) */}
+            {/* Foreground Drum 1 (Tomato Paste) */}
             <img
-              src="/assets/images/products/pulp/tomatopaste.webp"
-              alt="Premium Tomato Paste Manufacturer"
+              src="/assets/images/products/pulp/tomatopastedrum.webp"
+              alt="Industrial Tomato Paste Drum"
               loading="lazy"
               style={{
                 position: 'absolute',
-                width: '45%',
+                width: '65%',
                 left: '10%',
-                bottom: '10%',
+                top: '15%',
                 zIndex: 2,
-                filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.3))'
-              }}
-            />
-
-            {/* Foreground Bottle 2 (Mango Pulp) */}
-            <img
-              src="/assets/images/products/pulp/Alphansomangopulp.webp"
-              alt="Alphonso Mango Exporter India"
-              loading="lazy"
-              style={{
-                position: 'absolute',
-                width: '40%',
-                right: '10%',
-                bottom: '5%',
-                zIndex: 3,
-                filter: 'drop-shadow(0 30px 50px rgba(0,0,0,0.4)) blur(1px)'
+                filter: 'drop-shadow(0 30px 40px rgba(0,0,0,0.4))',
+                opacity: 1
               }}
             />
           </div>
