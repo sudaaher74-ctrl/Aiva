@@ -12,14 +12,15 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useToast } from "@/hooks/use-toast"
-import { Download, Plus } from "lucide-react"
-import { downloadPurchaseOrderPDF } from "@/utils/generatePDF"
+import { Download, Plus, FileText } from "lucide-react"
 import { downloadCSV } from "@/utils/csvExport"
 import { useState } from "react"
 import PurchaseOrderFormModal from "@/components/purchase-orders/PurchaseOrderFormModal"
+import PurchaseOrderPreviewModal from "@/components/purchase-orders/PurchaseOrderPreviewModal"
 
 export default function PurchaseOrders() {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [previewOrder, setPreviewOrder] = useState<any>(null)
   const queryClient = useQueryClient()
   const { toast } = useToast()
 
@@ -135,10 +136,10 @@ export default function PurchaseOrders() {
                     variant="outline" 
                     size="icon" 
                     className="ml-2" 
-                    onClick={() => downloadPurchaseOrderPDF(order)}
-                    title="Download PDF"
+                    onClick={() => setPreviewOrder(order)}
+                    title="Preview PO"
                   >
-                    <Download className="h-4 w-4" />
+                    <FileText className="h-4 w-4" />
                   </Button>
                 </TableCell>
               </TableRow>
@@ -151,6 +152,14 @@ export default function PurchaseOrders() {
         <PurchaseOrderFormModal 
           isOpen={isModalOpen} 
           onClose={() => setIsModalOpen(false)} 
+        />
+      )}
+
+      {previewOrder && (
+        <PurchaseOrderPreviewModal
+          isOpen={!!previewOrder}
+          onClose={() => setPreviewOrder(null)}
+          order={previewOrder}
         />
       )}
     </div>
