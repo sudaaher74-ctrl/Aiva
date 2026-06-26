@@ -15,11 +15,15 @@ import { Trash2, Plus } from "lucide-react"
 
 export default function PurchaseOrderFormModal({ 
   isOpen, 
-  onClose 
+  onClose,
+  initialData
 }: { 
   isOpen: boolean, 
-  onClose: () => void 
+  onClose: () => void,
+  initialData?: any
 }) {
+  const isEditMode = !!initialData
+
   const [formData, setFormData] = useState({
     buyerName: "",
     buyerCompany: "",
@@ -38,30 +42,53 @@ export default function PurchaseOrderFormModal({
   const { toast } = useToast()
 
   useEffect(() => {
-    if (!isOpen) {
-      setFormData({
-        buyerName: "", buyerCompany: "", buyerCountry: "", buyerEmail: "", 
-        portOfLoading: "Nhava Sheva, India", destinationPort: "", incoterms: "FOB", shipmentMethod: "Sea"
-      })
-      setItems([{ productName: "", quantity: 1, unit: "MT", unitPrice: 0 }])
-      setFinancials({ freightCharges: 0, insurance: 0, gstPercent: 0 })
+    if (isOpen) {
+      if (initialData) {
+        setFormData({
+          buyerName: initialData.buyerName || "", 
+          buyerCompany: initialData.buyerCompany || "", 
+          buyerCountry: initialData.buyerCountry || "", 
+          buyerEmail: initialData.buyerEmail || "", 
+          portOfLoading: initialData.portOfLoading || "Nhava Sheva, India", 
+          destinationPort: initialData.destinationPort || "", 
+          incoterms: initialData.incoterms || "FOB", 
+          shipmentMethod: initialData.shipmentMethod || "Sea"
+        })
+        setItems(initialData.items && initialData.items.length > 0 ? initialData.items : [{ productName: "", quantity: 1, unit: "MT", unitPrice: 0 }])
+        setFinancials({ 
+          freightCharges: initialData.freightCharges || 0, 
+          insurance: initialData.insurance || 0, 
+          gstPercent: initialData.gstPercent || 0 
+        })
+      } else {
+        setFormData({
+          buyerName: "", buyerCompany: "", buyerCountry: "", buyerEmail: "", 
+          portOfLoading: "Nhava Sheva, India", destinationPort: "", incoterms: "FOB", shipmentMethod: "Sea"
+        })
+        setItems([{ productName: "", quantity: 1, unit: "MT", unitPrice: 0 }])
+        setFinancials({ freightCharges: 0, insurance: 0, gstPercent: 0 })
+      }
     }
-  }, [isOpen])
+  }, [isOpen, initialData])
 
   const mutation = useMutation({
     mutationFn: async (data: any) => {
-      return api.post(`/purchase-orders`, data)
+      if (isEditMode) {
+        return api.patch(`/purchase-orders/${initialData._id}`, data)
+      } else {
+        return api.post(`/purchase-orders`, data)
+      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['purchaseOrders'] })
       queryClient.invalidateQueries({ queryKey: ['poStats'] })
-      toast({ title: "Purchase Order created successfully" })
+      toast({ title: `Purchase Order ${isEditMode ? 'updated' : 'created'} successfully` })
       onClose()
     },
     onError: (error: any) => {
       toast({
         title: "Error",
-        description: error?.response?.data?.message || "There was an error creating the PO.",
+        description: error?.response?.data?.message || `There was an error ${isEditMode ? 'updating' : 'creating'} the PO.`,
         variant: "destructive",
       })
     }
@@ -74,12 +101,15 @@ export default function PurchaseOrderFormModal({
     if (validItems.length === 0) return toast({ title: "Please add at least one valid product", variant: "destructive" })
     if (!formData.buyerCompany || !formData.buyerEmail) return toast({ title: "Buyer Company and Email are required", variant: "destructive" })
 
-    mutation.mutate({
+    const payload: any = {
       ...formData,
       items: validItems,
-      ...financials,
-      status: "Draft"
-    })
+      ...financials
+    }
+    
+    if (!isEditMode) payload.status = "Draft";
+
+    mutation.mutate(payload)
   }
 
   const handleItemChange = (index: number, field: string, value: string | number) => {
@@ -99,7 +129,7 @@ export default function PurchaseOrderFormModal({
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Create New Purchase Order</DialogTitle>
+          <DialogTitle>{isEditMode ? 'Edit Purchase Order' : 'Create New Purchase Order'}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-6 py-4">
           
@@ -173,7 +203,7 @@ export default function PurchaseOrderFormModal({
           <div className="flex justify-end items-center pt-4 border-t space-x-2">
             <Button variant="outline" type="button" onClick={onClose}>Cancel</Button>
             <Button type="submit" disabled={mutation.isPending}>
-              {mutation.isPending ? "Creating..." : "Create PO"}
+              {mutation.isPending ? (isEditMode ? "Updating..." : "Creating...") : (isEditMode ? "Update PO" : "Create PO")}
             </Button>
           </div>
 

@@ -12,7 +12,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useToast } from "@/hooks/use-toast"
-import { Download, Plus, FileText } from "lucide-react"
+import { Download, Plus, FileText, Edit, Trash2 } from "lucide-react"
 import { downloadCSV } from "@/utils/csvExport"
 import { useState } from "react"
 import PurchaseOrderFormModal from "@/components/purchase-orders/PurchaseOrderFormModal"
@@ -20,6 +20,7 @@ import PurchaseOrderPreviewModal from "@/components/purchase-orders/PurchaseOrde
 
 export default function PurchaseOrders() {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [editOrder, setEditOrder] = useState<any>(null)
   const [previewOrder, setPreviewOrder] = useState<any>(null)
   const queryClient = useQueryClient()
   const { toast } = useToast()
@@ -41,6 +42,35 @@ export default function PurchaseOrders() {
       toast({ title: "Order status updated" })
     }
   })
+
+  const deleteMutation = useMutation({
+    mutationFn: async (id: string) => {
+      return api.delete(`/purchase-orders/${id}`)
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['purchaseOrders'] })
+      toast({ title: "Purchase Order deleted successfully" })
+    },
+    onError: (error: any) => {
+      toast({ title: "Error deleting order", description: error?.response?.data?.message, variant: "destructive" })
+    }
+  })
+
+  const handleDelete = (id: string) => {
+    if (window.confirm("Are you sure you want to delete this purchase order? This action cannot be undone.")) {
+      deleteMutation.mutate(id)
+    }
+  }
+
+  const openEditModal = (order: any) => {
+    setEditOrder(order)
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setTimeout(() => setEditOrder(null), 300) // Clear after animation
+  }
 
   const getStatusBadgeVariant = (status: string) => {
     switch(status) {
@@ -67,7 +97,7 @@ export default function PurchaseOrders() {
           <Button variant="outline" onClick={() => data && downloadCSV(data, 'PurchaseOrders')}>
             <Download className="mr-2 h-4 w-4" /> Export CSV
           </Button>
-          <Button onClick={() => setIsModalOpen(true)}>
+          <Button onClick={() => { setEditOrder(null); setIsModalOpen(true); }}>
             <Plus className="mr-2 h-4 w-4" /> Create PO
           </Button>
         </div>
@@ -83,7 +113,7 @@ export default function PurchaseOrders() {
               <TableHead>Country</TableHead>
               <TableHead>Total Amt</TableHead>
               <TableHead>Status</TableHead>
-              <TableHead>Actions</TableHead>
+              <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -116,31 +146,52 @@ export default function PurchaseOrders() {
                   <Badge variant={getStatusBadgeVariant(order.status)}>{order.status}</Badge>
                 </TableCell>
                 <TableCell>
-                  <Select 
-                    value={order.status} 
-                    onValueChange={(val) => mutation.mutate({ id: order._id, status: val })}
-                  >
-                    <SelectTrigger className="w-[130px]">
-                      <SelectValue placeholder="Status" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Draft">Draft</SelectItem>
-                      <SelectItem value="Pending">Pending</SelectItem>
-                      <SelectItem value="Approved">Approved</SelectItem>
-                      <SelectItem value="Processing">Processing</SelectItem>
-                      <SelectItem value="Shipped">Shipped</SelectItem>
-                      <SelectItem value="Delivered">Delivered</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <Button 
-                    variant="outline" 
-                    size="icon" 
-                    className="ml-2" 
-                    onClick={() => setPreviewOrder(order)}
-                    title="Preview PO"
-                  >
-                    <FileText className="h-4 w-4" />
-                  </Button>
+                  <div className="flex items-center justify-end gap-2">
+                    <Select 
+                      value={order.status} 
+                      onValueChange={(val) => mutation.mutate({ id: order._id, status: val })}
+                    >
+                      <SelectTrigger className="w-[130px]">
+                        <SelectValue placeholder="Status" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Draft">Draft</SelectItem>
+                        <SelectItem value="Pending">Pending</SelectItem>
+                        <SelectItem value="Approved">Approved</SelectItem>
+                        <SelectItem value="Processing">Processing</SelectItem>
+                        <SelectItem value="Shipped">Shipped</SelectItem>
+                        <SelectItem value="Delivered">Delivered</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    
+                    <Button 
+                      variant="outline" 
+                      size="icon" 
+                      onClick={() => openEditModal(order)}
+                      title="Edit PO"
+                    >
+                      <Edit className="h-4 w-4 text-blue-600" />
+                    </Button>
+
+                    <Button 
+                      variant="outline" 
+                      size="icon" 
+                      onClick={() => setPreviewOrder(order)}
+                      title="Preview PO"
+                    >
+                      <FileText className="h-4 w-4" />
+                    </Button>
+
+                    <Button 
+                      variant="outline" 
+                      size="icon" 
+                      onClick={() => handleDelete(order._id)}
+                      title="Delete PO"
+                      className="hover:bg-red-50 hover:text-red-600"
+                    >
+                      <Trash2 className="h-4 w-4 text-red-500" />
+                    </Button>
+                  </div>
                 </TableCell>
               </TableRow>
             ))}
@@ -148,12 +199,11 @@ export default function PurchaseOrders() {
         </Table>
       </div>
 
-      {isModalOpen && (
-        <PurchaseOrderFormModal 
-          isOpen={isModalOpen} 
-          onClose={() => setIsModalOpen(false)} 
-        />
-      )}
+      <PurchaseOrderFormModal 
+        isOpen={isModalOpen} 
+        onClose={handleCloseModal} 
+        initialData={editOrder}
+      />
 
       {previewOrder && (
         <PurchaseOrderPreviewModal
