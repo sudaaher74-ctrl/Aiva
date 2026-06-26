@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_BASE = 
   window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === ''
-    ? 'http://localhost:5000/api'
+    ? 'http://localhost:5001/api'
     : '/api';
 
 export const api = axios.create({
@@ -19,5 +19,17 @@ api.interceptors.request.use((config) => {
   }
   return config;
 });
+
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.location.href = '/chatbot/login';
+    }
+    return Promise.reject(error);
+  }
+);
 
 export default api;

@@ -52,7 +52,7 @@ const ChatbotLogin = () => {
               className="w-full bg-[#1a1a1a] border border-[#333] text-white rounded-lg px-4 py-3 focus:outline-none focus:border-[#c5a059] transition-colors"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="ceo@aivaenterprises.com"
+              placeholder="admin@aivaenterprises.com"
             />
           </div>
           

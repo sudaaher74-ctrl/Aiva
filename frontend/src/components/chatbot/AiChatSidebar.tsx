@@ -143,6 +143,20 @@ export default function AiChatSidebar({
           </div>
         )}
       </div>
+      
+      {/* Logout button */}
+      <div className="p-4 border-t border-[#333]">
+        <button 
+          onClick={() => {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = '/chatbot/login';
+          }}
+          className="w-full flex items-center justify-center gap-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-400/10 p-2 rounded-lg transition-colors"
+        >
+          Logout
+        </button>
+      </div>
     </div>
   )
 }
