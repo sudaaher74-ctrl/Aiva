@@ -59,32 +59,58 @@ function AboutSection() {
           <div 
             className="image-composition"
             style={{
-              display: 'flex',
-              flexDirection: 'row',
-              gap: '15px',
-              alignItems: 'center',
-              justifyContent: 'center',
+              position: 'relative',
               width: '100%',
-              minHeight: '400px'
+              minHeight: '550px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
             }}
           >
+            {/* Background Drum (Blurred, behind, left) */}
             <img
               src="/assets/images/products/pulp/tomatopastedrum.webp"
               alt="Industrial Tomato Paste Drum"
               loading="lazy"
-              style={{ width: '30%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.15))' }}
+              style={{
+                position: 'absolute',
+                width: '65%',
+                left: '0%',
+                top: '5%',
+                zIndex: 1,
+                filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.3)) blur(4px)',
+                opacity: 0.9
+              }}
             />
+
+            {/* Main Bottle (Clear, center) */}
             <img
               src="/assets/images/products/pulp/tomatopaste.webp"
               alt="Premium Tomato Paste Manufacturer"
               loading="lazy"
-              style={{ width: '35%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 15px 25px rgba(0,0,0,0.15))' }}
+              style={{
+                position: 'absolute',
+                width: '60%',
+                left: '15%',
+                top: '15%',
+                zIndex: 2,
+                filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.3))'
+              }}
             />
+
+            {/* Foreground Bottle (Slight blur, right, overlapping) */}
             <img
               src="/assets/images/products/pulp/Alphansomangopulp.webp"
               alt="Alphonso Mango Exporter India"
               loading="lazy"
-              style={{ width: '30%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.15))' }}
+              style={{
+                position: 'absolute',
+                width: '55%',
+                right: '0%',
+                bottom: '5%',
+                zIndex: 3,
+                filter: 'drop-shadow(0 30px 50px rgba(0,0,0,0.4)) blur(2.5px)'
+              }}
             />
           </div>
         </div>
