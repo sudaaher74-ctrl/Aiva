@@ -2,10 +2,8 @@ import { useState, useRef, useEffect } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { api } from '../../lib/axios'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Send, Sparkles, PanelLeftOpen, PanelLeftClose, Zap, RotateCcw } from 'lucide-react'
+import { Send, Sparkles, PanelLeftOpen, PanelLeftClose, Zap, RotateCcw, ArrowLeft, Mic, VolumeX, Bot } from 'lucide-react'
 import AiMessage from '../../components/chatbot/AiMessage'
-import AiChatSidebar from '../../components/chatbot/AiChatSidebar'
-
 import { useNavigate } from 'react-router-dom'
 
 interface Message {
@@ -18,7 +16,6 @@ export default function AiChat() {
   const [messages, setMessages] = useState<Message[]>([])
   const [conversationId, setConversationId] = useState<string | null>(null)
   const [isStreaming, setIsStreaming] = useState(false)
-  const [sidebarOpen, setSidebarOpen] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const queryClient = useQueryClient()
@@ -94,7 +91,6 @@ export default function AiChat() {
       const conv = res.data.data
       setMessages(conv.messages.map((m: any) => ({ role: m.role, content: m.content })))
       setConversationId(id)
-      setSidebarOpen(false)
     } catch {
       console.error('Failed to load conversation')
     }
@@ -105,7 +101,6 @@ export default function AiChat() {
     setMessages([])
     setConversationId(null)
     setInput('')
-    setSidebarOpen(false)
     inputRef.current?.focus()
   }
 
@@ -155,64 +150,42 @@ export default function AiChat() {
   const showWelcome = messages.length === 0
 
   return (
-    <div className="flex h-screen w-screen bg-[#08060d] text-zinc-100 font-sans overflow-hidden chatbot-app m-0 p-0 absolute top-0 left-0 right-0 bottom-0 z-50">
-      {/* Sidebar */}
-      <AiChatSidebar
-        conversations={conversations}
-        activeConversationId={conversationId}
-        onSelectConversation={loadConversation}
-        onNewChat={handleNewChat}
-        onDeleteConversation={(id) => {
-          if (window.confirm('Delete this conversation?')) {
-            deleteMutation.mutate(id)
-            if (id === conversationId) handleNewChat()
-          }
-        }}
-        onPinConversation={(id, pinned) => pinMutation.mutate({ id, pinned })}
-        isOpen={sidebarOpen}
-        onClose={() => setSidebarOpen(false)}
-      />
-
-      {/* Overlay for mobile sidebar */}
-      {sidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
-      )}
-
+    <div className="flex h-screen w-screen bg-gray-50 text-gray-900 font-sans overflow-hidden chatbot-app m-0 p-0 absolute top-0 left-0 right-0 bottom-0 z-50">
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top Bar */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-xl shrink-0">
-          <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 bg-white shrink-0 shadow-sm z-10">
+          <div className="flex items-center gap-4">
             <button
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="p-2 rounded-lg text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200 transition-colors"
+              onClick={() => navigate('/dashboard')}
+              className="p-1.5 rounded-full text-gray-500 hover:bg-gray-100 transition-colors"
             >
-              {sidebarOpen ? <PanelLeftClose className="h-5 w-5" /> : <PanelLeftOpen className="h-5 w-5" />}
+              <ArrowLeft className="h-5 w-5" />
             </button>
-            <div className="flex items-center gap-2">
-              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-[#c5a059] to-[#d4b982] flex items-center justify-center">
-                <Sparkles className="h-4 w-4 text-zinc-950" />
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 rounded-full bg-[#3f51b5] flex items-center justify-center shadow-sm">
+                <Sparkles className="h-5 w-5 text-white" />
               </div>
               <div>
-                <h1 className="text-sm font-bold text-zinc-100">AIVA AI Assistant</h1>
-                <p className="text-[10px] text-zinc-500 uppercase tracking-wider">Business Intelligence</p>
+                <h1 className="text-base font-bold text-gray-900">AI Business Assistant</h1>
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-green-500"></span>
+                  <p className="text-xs text-green-500 font-medium">Online & Analyzing</p>
+                </div>
               </div>
             </div>
           </div>
-          <button
-            onClick={handleNewChat}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200 transition-colors"
-          >
-            <RotateCcw className="h-3.5 w-3.5" />
-            New Chat
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              className="p-2 rounded-full text-gray-400 hover:bg-gray-100 transition-colors"
+            >
+              <VolumeX className="h-5 w-5" />
+            </button>
+          </div>
         </div>
 
         {/* Messages Area */}
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto bg-gray-50/50">
           {showWelcome ? (
             <div className="flex flex-col items-center justify-center h-full px-4 pb-8">
               {/* Welcome Hero */}
@@ -221,13 +194,13 @@ export default function AiChat() {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-center max-w-2xl"
               >
-                <div className="mx-auto mb-6 h-20 w-20 rounded-2xl bg-gradient-to-br from-[#c5a059] to-[#d4b982] flex items-center justify-center shadow-xl shadow-[#c5a059]/20">
-                  <Sparkles className="h-10 w-10 text-zinc-950" />
+                <div className="mx-auto mb-6 h-20 w-20 rounded-full bg-[#3f51b5] flex items-center justify-center shadow-lg">
+                  <Bot className="h-10 w-10 text-white" />
                 </div>
-                <h2 className="text-3xl font-bold text-zinc-100 mb-2">
-                  Welcome to <span className="text-[#c5a059]">AIVA AI</span>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                  Welcome to <span className="text-[#3f51b5]">AIVA AI</span>
                 </h2>
-                <p className="text-zinc-500 text-sm mb-8 leading-relaxed max-w-lg mx-auto">
+                <p className="text-gray-500 text-sm mb-8 leading-relaxed max-w-lg mx-auto">
                   Your intelligent business assistant. Ask me anything about leads, customers, purchase orders, inventory, quotations, revenue, and more.
                 </p>
 
@@ -240,21 +213,21 @@ export default function AiChat() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.08 }}
                       onClick={() => handleSuggestion(s.text)}
-                      className="group flex items-center gap-3 px-4 py-3 rounded-xl border border-zinc-800 bg-zinc-900/50 text-left hover:border-[#c5a059]/30 hover:bg-zinc-900 transition-all duration-200"
+                      className="group flex items-center gap-3 px-4 py-3 rounded-xl border border-gray-200 bg-white shadow-sm text-left hover:border-[#3f51b5]/50 hover:bg-gray-50 transition-all duration-200"
                     >
                       <span className="text-xl">{s.icon}</span>
                       <div className="flex-1 min-w-0">
-                        <span className="text-sm text-zinc-300 group-hover:text-zinc-100 truncate block">{s.text}</span>
-                        <span className="text-[10px] text-zinc-600 uppercase tracking-wider">{s.category}</span>
+                        <span className="text-sm text-gray-700 group-hover:text-gray-900 truncate block font-medium">{s.text}</span>
+                        <span className="text-[10px] text-gray-500 uppercase tracking-wider">{s.category}</span>
                       </div>
-                      <Zap className="h-3.5 w-3.5 text-zinc-700 group-hover:text-[#c5a059] transition-colors shrink-0" />
+                      <Zap className="h-3.5 w-3.5 text-gray-400 group-hover:text-[#3f51b5] transition-colors shrink-0" />
                     </motion.button>
                   ))}
                 </div>
               </motion.div>
             </div>
           ) : (
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-4xl mx-auto py-6">
               <AnimatePresence>
                 {messages.map((msg, i) => (
                   <motion.div
@@ -284,9 +257,13 @@ export default function AiChat() {
         </div>
 
         {/* Input Area */}
-        <div className="border-t border-zinc-800 bg-zinc-950/80 backdrop-blur-xl p-4 shrink-0">
-          <div className="max-w-4xl mx-auto">
-            <div className="relative flex items-end gap-2 bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-3 focus-within:ring-1 focus-within:ring-[#c5a059]/40 focus-within:border-[#c5a059]/40 transition-all">
+        <div className="bg-white p-4 shrink-0 pb-6 relative z-10">
+          <div className="max-w-4xl mx-auto flex items-center gap-4">
+            <button className="p-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors flex-shrink-0">
+              <Mic className="h-5 w-5" />
+            </button>
+            
+            <div className="flex-1 relative flex items-center gap-2 bg-white border border-[#d4b982] rounded-full px-5 py-3 focus-within:ring-2 focus-within:ring-[#d4b982]/40 focus-within:border-[#d4b982] shadow-sm transition-all">
               <textarea
                 ref={inputRef}
                 value={input}
@@ -294,20 +271,21 @@ export default function AiChat() {
                 onKeyDown={handleKeyDown}
                 placeholder="Ask me anything about your business..."
                 rows={1}
-                className="flex-1 bg-transparent text-sm text-zinc-200 placeholder:text-zinc-600 resize-none focus:outline-none max-h-[200px]"
+                className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 resize-none focus:outline-none max-h-[120px] pt-0.5"
               />
-              <button
-                onClick={handleSend}
-                disabled={!input.trim() || isStreaming}
-                className="flex items-center justify-center h-8 w-8 rounded-lg bg-[#c5a059] text-zinc-950 hover:bg-[#d4b982] disabled:opacity-30 disabled:cursor-not-allowed transition-all shrink-0"
-              >
-                <Send className="h-4 w-4" />
-              </button>
             </div>
-            <p className="text-[10px] text-zinc-600 text-center mt-2">
-              AIVA AI can make mistakes. Always verify important business data.
-            </p>
+            
+            <button
+              onClick={handleSend}
+              disabled={!input.trim() || isStreaming}
+              className="flex items-center justify-center h-12 w-12 rounded-full bg-[#8c9eff] text-white hover:bg-[#7986cb] shadow-md disabled:opacity-50 disabled:cursor-not-allowed transition-all shrink-0"
+            >
+              <Send className="h-5 w-5 ml-0.5" />
+            </button>
           </div>
+          <p className="text-[11px] text-gray-400 text-center mt-3">
+            AI can make mistakes. Verify important business metrics from your reports.
+          </p>
         </div>
       </div>
     </div>

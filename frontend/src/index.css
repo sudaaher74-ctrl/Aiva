@@ -51,7 +51,7 @@
 
 @layer base {
   .chatbot-app {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground text-left;
   }
   .chatbot-app * {
     @apply border-border;

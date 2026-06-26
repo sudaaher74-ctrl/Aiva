@@ -22,58 +22,57 @@ export default function AiMessage({ role, content, isStreaming }: AiMessageProps
 
   return (
     <div className={cn(
-      "group flex gap-4 px-4 py-6 md:px-8",
-      isUser ? "bg-transparent" : "bg-zinc-900/40"
+      "group flex w-full gap-3 px-4 py-4 md:px-8",
+      isUser ? "flex-row-reverse" : "flex-row"
     )}>
       {/* Avatar */}
       <div className={cn(
-        "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg shadow-md",
-        isUser ? "bg-zinc-700" : "bg-gradient-to-br from-[#c5a059] to-[#d4b982]"
+        "flex h-8 w-8 shrink-0 items-center justify-center rounded-full mt-auto shadow-sm",
+        isUser ? "bg-gray-200" : "bg-[#3f51b5]"
       )}>
         {isUser ? (
-          <User className="h-4 w-4 text-zinc-300" />
+          <User className="h-4 w-4 text-gray-500" />
         ) : (
-          <Bot className="h-4 w-4 text-zinc-950" />
+          <Bot className="h-4 w-4 text-white" />
         )}
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-hidden min-w-0">
-        <div className="flex items-center gap-2 mb-1">
-          <span className={cn(
-            "text-xs font-semibold uppercase tracking-wider",
-            isUser ? "text-zinc-400" : "text-[#c5a059]"
-          )}>
-            {isUser ? 'You' : 'AIVA AI'}
-          </span>
-        </div>
-
+      <div className={cn(
+        "flex flex-col max-w-[85%] md:max-w-[75%] min-w-0",
+        isUser ? "items-end" : "items-start"
+      )}>
         {isStreaming ? (
-          <div className="flex items-center gap-1.5 text-zinc-400 text-sm">
+          <div className="bg-white border border-gray-100 shadow-sm rounded-2xl rounded-bl-sm px-5 py-4 flex items-center gap-1.5 text-gray-500 text-sm">
             <div className="flex gap-1">
-              <span className="w-2 h-2 rounded-full bg-[#c5a059] animate-bounce" style={{ animationDelay: '0ms' }} />
-              <span className="w-2 h-2 rounded-full bg-[#c5a059] animate-bounce" style={{ animationDelay: '150ms' }} />
-              <span className="w-2 h-2 rounded-full bg-[#c5a059] animate-bounce" style={{ animationDelay: '300ms' }} />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#3f51b5] animate-bounce" style={{ animationDelay: '0ms' }} />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#3f51b5] animate-bounce" style={{ animationDelay: '150ms' }} />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#3f51b5] animate-bounce" style={{ animationDelay: '300ms' }} />
             </div>
-            <span className="text-xs text-zinc-500">Analyzing your data...</span>
+            <span className="text-xs ml-1">Analyzing...</span>
           </div>
         ) : (
-          <div className="prose prose-invert prose-sm max-w-none
-            prose-headings:text-zinc-100 prose-headings:font-bold prose-headings:border-b prose-headings:border-zinc-800 prose-headings:pb-2
-            prose-p:text-zinc-300 prose-p:leading-relaxed
-            prose-a:text-[#c5a059] prose-a:no-underline hover:prose-a:underline
-            prose-strong:text-zinc-100
-            prose-code:text-[#c5a059] prose-code:bg-zinc-800/50 prose-code:rounded prose-code:px-1.5 prose-code:py-0.5 prose-code:text-xs prose-code:font-mono
-            prose-pre:bg-zinc-950 prose-pre:border prose-pre:border-zinc-800 prose-pre:rounded-xl
-            prose-li:text-zinc-300
-            prose-td:text-zinc-300 prose-th:text-zinc-200
-            prose-table:border-collapse
-            prose-th:bg-zinc-800/60 prose-th:px-3 prose-th:py-2 prose-th:text-left prose-th:text-xs prose-th:uppercase prose-th:tracking-wider prose-th:font-bold prose-th:border prose-th:border-zinc-700
-            prose-td:px-3 prose-td:py-2 prose-td:border prose-td:border-zinc-800
-          ">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {content}
-            </ReactMarkdown>
+          <div className={cn(
+            "px-5 py-4 shadow-sm",
+            isUser 
+              ? "bg-[#3f51b5] text-white rounded-2xl rounded-br-sm" 
+              : "bg-white border border-gray-100 text-gray-800 rounded-2xl rounded-bl-sm"
+          )}>
+            <div className={cn(
+              "prose prose-sm max-w-none prose-p:leading-relaxed",
+              isUser ? "prose-invert text-white prose-p:text-white prose-strong:text-white" : "prose-p:text-gray-700 prose-headings:text-gray-900 prose-strong:text-gray-900",
+              !isUser && "prose-a:text-[#3f51b5] prose-a:no-underline hover:prose-a:underline",
+              "prose-code:text-[#3f51b5] prose-code:bg-gray-50 prose-code:rounded prose-code:px-1.5 prose-code:py-0.5 prose-code:text-xs prose-code:font-mono",
+              "prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:rounded-xl",
+              !isUser && "prose-li:text-gray-700",
+              "prose-table:border-collapse",
+              !isUser && "prose-th:bg-gray-50 prose-th:px-3 prose-th:py-2 prose-th:text-left prose-th:text-xs prose-th:uppercase prose-th:tracking-wider prose-th:font-bold prose-th:border prose-th:border-gray-200",
+              !isUser && "prose-td:px-3 prose-td:py-2 prose-td:border prose-td:border-gray-200"
+            )}>
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {content}
+              </ReactMarkdown>
+            </div>
           </div>
         )}
 
@@ -81,7 +80,7 @@ export default function AiMessage({ role, content, isStreaming }: AiMessageProps
         {!isUser && !isStreaming && content && (
           <button
             onClick={handleCopy}
-            className="mt-3 flex items-center gap-1.5 text-xs text-zinc-500 hover:text-zinc-300 transition-colors opacity-0 group-hover:opacity-100"
+            className="mt-2 flex items-center gap-1.5 text-xs text-gray-400 hover:text-gray-600 transition-colors opacity-0 group-hover:opacity-100 pl-1"
           >
             {copied ? <Check className="h-3.5 w-3.5 text-green-500" /> : <Copy className="h-3.5 w-3.5" />}
             {copied ? 'Copied' : 'Copy'}

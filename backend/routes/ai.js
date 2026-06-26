@@ -297,20 +297,20 @@ async function generateAIResponse(userMessage, conversationHistory, erpContext) 
 
   try {
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ 
-      model: 'gemini-2.0-flash',
-      tools: [{ googleSearch: {} }] 
-    });
-
     // Build conversation for Gemini
     const systemInstruction = SYSTEM_PROMPT + `\n\nCURRENT ERP DATA:\n${erpContext}\n\nCurrent Date/Time: ${new Date().toISOString()}\n`;
+
+    const model = genAI.getGenerativeModel({ 
+      model: 'gemini-2.5-flash',
+      systemInstruction,
+      tools: [{ googleSearch: {} }] 
+    });
 
     const chat = model.startChat({
       history: conversationHistory.slice(-10).map(msg => ({
         role: msg.role === 'assistant' ? 'model' : 'user',
         parts: [{ text: msg.content }]
-      })),
-      systemInstruction
+      }))
     });
 
     const result = await chat.sendMessage(userMessage);
