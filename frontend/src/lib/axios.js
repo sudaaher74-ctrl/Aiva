@@ -4,7 +4,7 @@ const API_BASE =
   import.meta.env.VITE_API_URL ||
   (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === ''
     ? 'http://localhost:5001/api'
-    : '/api');
+    : 'https://aiva-aea6.onrender.com/api');
 
 export const api = axios.create({
   baseURL: API_BASE,
