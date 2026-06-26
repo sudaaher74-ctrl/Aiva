@@ -27,8 +27,12 @@ const queryClient = new QueryClient();
 
 function App() {
   const location = useLocation();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
+    // Disable Lenis on chatbot routes because it blocks inner scrolling
+    if (location.pathname.startsWith('/chatbot')) {
+      return;
+    }
+
     // 1. Initialize Lenis (Smooth Scrolling)
     const lenis = new Lenis({
       duration: 1.2,
@@ -60,7 +64,7 @@ function App() {
       lenis.destroy();
       gsap.ticker.remove(lenis.raf);
     };
-  }, []);
+  }, [location.pathname]);
 
   // Basic Analytics Tracking on route change
   useEffect(() => {
