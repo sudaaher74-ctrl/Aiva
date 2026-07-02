@@ -105,14 +105,16 @@ function HomeHero() {
 
       {/* Floating Parallax Elements */}
       <div className="floating-elements">
+        {/* The BIG bottle that shouldn't be removed */}
         <img
-          src="/assets/images/products/pulp/pinkguavapulp.webp"
-          className="float-item f-guava"
-          alt="Pink Guava Pulp Manufacturer"
+          src="/assets/images/products/pulp/Alphansomangopulp.webp"
+          className="float-item f-mango"
+          alt="Premium Alphonso Mango Pulp Exporter"
           width="400"
           height="600"
-          data-speed="-1.2"
+          data-speed="1.5"
         />
+        {/* The Papaya bottle */}
         <img
           src="/assets/images/products/pulp/papayapulp.webp"
           className="float-item f-papaya"
@@ -121,6 +123,7 @@ function HomeHero() {
           height="600"
           data-speed="1.8"
         />
+        {/* The Mango tree */}
         <img
           src="/assets/images/products/mangotree.png"
           className="float-item f-mangotree"
