@@ -6,7 +6,7 @@ import ProductGrid from '../components/ProductGrid';
 import StandardsSection from '../components/StandardsSection';
 import BulkInquiry from '../components/BulkInquiry';
 
-function Products() {
+function Products({ categorySlug }) {
   const location = useLocation();
 
   useEffect(() => {
@@ -45,7 +45,7 @@ function Products() {
         ]}
       />
       <ProductHero />
-      <ProductGrid />
+      <ProductGrid categorySlug={categorySlug} />
       <StandardsSection />
       <BulkInquiry />
     </>

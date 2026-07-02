@@ -1,21 +1,29 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
-import { HelmetProvider } from 'react-helmet-async'
-import App from './App.jsx'
+import React from 'react';
+import { ViteReactSSG } from 'vite-react-ssg';
+import { HelmetProvider } from 'react-helmet-async';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { routes } from './App.jsx';
 
 // Import all legacy CSS exactly as they were to maintain 100% visual fidelity
-import './styles/lenis.css'
-import './styles/styles.css'
-import './styles/products.css'
-import './index.css'
+import './styles/lenis.css';
+import './styles/styles.css';
+import './styles/products.css';
+import './styles/theme-orchard.css';
+import './index.css';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <HelmetProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </HelmetProvider>
-  </React.StrictMode>,
-)
+const queryClient = new QueryClient();
+
+export const createRoot = ViteReactSSG(
+  { routes },
+  ({ app }) => {
+    return (
+      <React.StrictMode>
+        <HelmetProvider>
+          <QueryClientProvider client={queryClient}>
+            {app}
+          </QueryClientProvider>
+        </HelmetProvider>
+      </React.StrictMode>
+    );
+  }
+);

@@ -14,6 +14,31 @@ export default function SEO({
   const fullTitle = title ? `${title} | ${siteName}` : siteName;
   const url = canonicalUrl ? `https://www.aivaenterprises.com${canonicalUrl}` : 'https://www.aivaenterprises.com/';
 
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AIVA Enterprises",
+    "url": "https://aivaenterprises.com",
+    "logo": "https://www.aivaenterprises.com/assets/images/logo.png",
+    "description": "Your Global Sourcing Partner for premium aseptic fruit pulps, concentrates, and IQF products from India.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Immunity Group, 4th Floor, Lakhani Centrium, Sector 15",
+      "addressLocality": "CBD Belapur, Navi Mumbai",
+      "addressRegion": "Maharashtra",
+      "postalCode": "400614",
+      "addressCountry": "IN"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-88281-77533",
+      "contactType": "customer service",
+      "email": "enquire@aivaenterprises.com"
+    }
+  };
+
+  const schemas = [organizationSchema, ...jsonLd];
+
   return (
     <Helmet>
       {/* Basic HTML Meta Tags */}
@@ -37,7 +62,7 @@ export default function SEO({
       <meta name="twitter:image" content={ogImage} />
 
       {/* JSON-LD Structured Data */}
-      {jsonLd.map((schema, index) => (
+      {schemas.map((schema, index) => (
         <script key={index} type="application/ld+json">
           {JSON.stringify(schema)}
         </script>

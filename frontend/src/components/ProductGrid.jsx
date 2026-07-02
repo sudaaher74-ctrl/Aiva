@@ -3,15 +3,19 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLocation, Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
+import { productsData } from '../data/products';
 
 gsap.registerPlugin(ScrollTrigger);
 
-function ProductGrid() {
-  const [products, setProducts] = useState([]);
+function ProductGrid({ categorySlug }) {
+  // Initialize with static data for SSG
+  const [products, setProducts] = useState(productsData);
   const location = useLocation();
   const gridsRef = useRef([]);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const fetchProducts = async () => {
       try {
         const API_BASE =
@@ -22,15 +26,20 @@ function ProductGrid() {
             : '/api';
         const res = await fetch(`${API_BASE}/products`);
         const data = await res.json();
-        setProducts(data.data || []);
+        if (data.data && data.data.length > 0) {
+          // Merge or replace static data with fresh backend data
+          setProducts(data.data);
+        }
       } catch (error) {
-        console.error('Failed to load products:', error);
+        console.error('Failed to load products, using static data:', error);
       }
     };
     fetchProducts();
   }, []);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     if (products.length > 0) {
       setTimeout(() => {
         gsap.utils.toArray('.premium-prod-card').forEach((card) => {
@@ -52,9 +61,10 @@ function ProductGrid() {
         ScrollTrigger.refresh();
       }, 100);
     }
-  }, [products, location.hash]);
+  }, [products, location.hash, categorySlug]);
 
   const handleQuoteClick = (imgSource) => {
+    if (typeof window === 'undefined') return;
     const inquiryImg = document.querySelector('.inquiry-img img');
     if (inquiryImg) {
       inquiryImg.src = imgSource;
@@ -67,10 +77,18 @@ function ProductGrid() {
   };
 
   const getVisibleCategory = () => {
+    // If we have a route param (e.g. /products/aseptic), prefer it
+    if (categorySlug) {
+      if (categorySlug === 'concentrates') return 'concentrates';
+      if (categorySlug === 'iqf') return 'iqf-fruits';
+      return categorySlug;
+    }
+    
     const hash = location.hash || '#aseptic';
     if (hash === '#iqf-fruits') return 'iqf-fruits';
     if (hash === '#iqf-frozen') return 'iqf-frozen';
     if (hash === '#vegetables') return 'vegetables';
+    if (hash === '#concentrates') return 'concentrates';
     return 'aseptic';
   };
 
@@ -112,6 +130,7 @@ function ProductGrid() {
   return (
     <>
       {renderGrid('aseptic', 'Aseptic pulp/paste')}
+      {renderGrid('concentrates', 'Concentrates')}
       {renderGrid('iqf-fruits', 'IQF fruits')}
       {renderGrid('iqf-frozen', 'Frozen')}
       {renderGrid('vegetables', 'IQF Vegetables')}

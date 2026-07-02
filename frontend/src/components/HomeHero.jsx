@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from 'react-router-dom';
+import LeafDecor from './LeafDecor';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -57,6 +58,7 @@ function HomeHero() {
 
   return (
     <section className="hero" id="home" ref={heroRef}>
+      <LeafDecor variant="hero" />
       <div className="hero-bg">
         <div className="hero-gradient"></div>
         {/* Abstract Background Elements */}
@@ -76,17 +78,17 @@ function HomeHero() {
           style={{
             display: 'inline-block',
             padding: '0.5rem 1rem',
-            border: '1px solid rgba(255, 184, 0, 0.3)',
+            border: '1px solid var(--badge-border)',
             borderRadius: '50px',
             fontSize: '0.85rem',
             letterSpacing: '0.1em',
-            color: '#ffb800',
+            color: 'var(--badge-color)',
             marginBottom: '1.5rem',
-            background: 'rgba(255, 184, 0, 0.05)',
+            background: 'var(--badge-bg)',
             backdropFilter: 'blur(10px)',
           }}
         >
-          GLOBAL EXPORT QUALITY
+          <span className="badge-leaf" aria-hidden="true">🌿 </span>GLOBAL EXPORT QUALITY
         </div>
         <h1 className="hero-title" style={{ position: 'relative' }}>
           <span style={{ position: 'absolute', width: 1, height: 1, padding: 0, margin: -1, overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', whiteSpace: 'nowrap', borderWidth: 0 }}>Premium Fruit Pulp Exporter India</span>

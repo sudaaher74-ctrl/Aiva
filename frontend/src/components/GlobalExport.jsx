@@ -47,8 +47,8 @@ function GlobalExport() {
               <path d="M550,80 Q600,60 660,70 Q720,65 760,90 Q780,110 770,140 Q750,160 720,170 Q680,180 640,170 Q600,175 570,160 Q540,140 540,110 Z" />
               <path
                 d="M620,150 Q640,135 660,145 Q670,165 665,190 Q650,210 635,200 Q620,185 615,170 Z"
-                fill="rgba(255,184,0,0.15)"
-                stroke="#ffb800"
+                fill="var(--map-india-fill)"
+                stroke="var(--c-mango)"
                 strokeWidth="1.5"
               />
               <path d="M750,300 Q790,280 830,290 Q850,310 840,340 Q820,360 790,355 Q760,340 750,320 Z" />
@@ -56,42 +56,42 @@ function GlobalExport() {
             </g>
 
             <g className="trade-routes">
-              <line x1="640" y1="175" x2="280" y2="150" stroke="#ffb800" strokeWidth="1" strokeDasharray="4,4" className="map-line" opacity="0.5" />
-              <line x1="640" y1="175" x2="480" y2="110" stroke="#ffb800" strokeWidth="1" strokeDasharray="4,4" className="map-line" opacity="0.5" />
-              <line x1="640" y1="175" x2="490" y2="230" stroke="#ffb800" strokeWidth="1" strokeDasharray="4,4" className="map-line" opacity="0.5" />
-              <line x1="640" y1="175" x2="560" y2="155" stroke="#ffb800" strokeWidth="1" strokeDasharray="4,4" className="map-line" opacity="0.5" />
-              <line x1="640" y1="175" x2="800" y2="310" stroke="#ffb800" strokeWidth="1" strokeDasharray="4,4" className="map-line" opacity="0.5" />
-              <line x1="640" y1="175" x2="740" y2="110" stroke="#ffb800" strokeWidth="1" strokeDasharray="4,4" className="map-line" opacity="0.5" />
-              <line x1="640" y1="175" x2="250" y2="280" stroke="#ffb800" strokeWidth="1" strokeDasharray="4,4" className="map-line" opacity="0.5" />
+              <line x1="640" y1="175" x2="280" y2="150" stroke="var(--c-mango)" strokeWidth="1" strokeDasharray="4,4" className="map-line" opacity="0.5" />
+              <line x1="640" y1="175" x2="480" y2="110" stroke="var(--c-mango)" strokeWidth="1" strokeDasharray="4,4" className="map-line" opacity="0.5" />
+              <line x1="640" y1="175" x2="490" y2="230" stroke="var(--c-mango)" strokeWidth="1" strokeDasharray="4,4" className="map-line" opacity="0.5" />
+              <line x1="640" y1="175" x2="560" y2="155" stroke="var(--c-mango)" strokeWidth="1" strokeDasharray="4,4" className="map-line" opacity="0.5" />
+              <line x1="640" y1="175" x2="800" y2="310" stroke="var(--c-mango)" strokeWidth="1" strokeDasharray="4,4" className="map-line" opacity="0.5" />
+              <line x1="640" y1="175" x2="740" y2="110" stroke="var(--c-mango)" strokeWidth="1" strokeDasharray="4,4" className="map-line" opacity="0.5" />
+              <line x1="640" y1="175" x2="250" y2="280" stroke="var(--c-mango)" strokeWidth="1" strokeDasharray="4,4" className="map-line" opacity="0.5" />
             </g>
 
             <g className="map-dots">
-              <circle cx="640" cy="175" r="8" fill="#ffb800" opacity="0.9">
+              <circle cx="640" cy="175" r="8" fill="var(--c-mango)" opacity="0.9">
                 <animate attributeName="r" values="8;12;8" dur="2s" repeatCount="indefinite" />
               </circle>
-              <circle cx="640" cy="175" r="16" fill="none" stroke="#ffb800" strokeWidth="1" opacity="0.3">
+              <circle cx="640" cy="175" r="16" fill="none" stroke="var(--c-mango)" strokeWidth="1" opacity="0.3">
                 <animate attributeName="r" values="16;24;16" dur="2s" repeatCount="indefinite" />
                 <animate attributeName="opacity" values="0.3;0;0.3" dur="2s" repeatCount="indefinite" />
               </circle>
 
-              <circle cx="200" cy="130" r="4" fill="#000" stroke="#ffb800" strokeWidth="2" className="map-dot" />
-              <circle cx="220" cy="100" r="4" fill="#000" stroke="#ffb800" strokeWidth="2" className="map-dot" />
-              <circle cx="270" cy="310" r="4" fill="#000" stroke="#ffb800" strokeWidth="2" className="map-dot" />
-              <circle cx="450" cy="95" r="4" fill="#000" stroke="#ffb800" strokeWidth="2" className="map-dot" />
-              <circle cx="480" cy="100" r="4" fill="#000" stroke="#ffb800" strokeWidth="2" className="map-dot" />
-              <circle cx="465" cy="92" r="4" fill="#000" stroke="#ffb800" strokeWidth="2" className="map-dot" />
-              <circle cx="560" cy="160" r="4" fill="#000" stroke="#ffb800" strokeWidth="2" className="map-dot" />
-              <circle cx="545" cy="170" r="4" fill="#000" stroke="#ffb800" strokeWidth="2" className="map-dot" />
-              <circle cx="780" cy="120" r="4" fill="#000" stroke="#ffb800" strokeWidth="2" className="map-dot" />
-              <circle cx="760" cy="115" r="4" fill="#000" stroke="#ffb800" strokeWidth="2" className="map-dot" />
-              <circle cx="800" cy="330" r="4" fill="#000" stroke="#ffb800" strokeWidth="2" className="map-dot" />
-              <circle cx="490" cy="310" r="4" fill="#000" stroke="#ffb800" strokeWidth="2" className="map-dot" />
-              <circle cx="460" cy="220" r="4" fill="#000" stroke="#ffb800" strokeWidth="2" className="map-dot" />
-              <circle cx="710" cy="200" r="4" fill="#000" stroke="#ffb800" strokeWidth="2" className="map-dot" />
-              <circle cx="600" cy="75" r="4" fill="#000" stroke="#ffb800" strokeWidth="2" className="map-dot" />
+              <circle cx="200" cy="130" r="4" fill="var(--map-dot-fill)" stroke="var(--c-mango)" strokeWidth="2" className="map-dot" />
+              <circle cx="220" cy="100" r="4" fill="var(--map-dot-fill)" stroke="var(--c-mango)" strokeWidth="2" className="map-dot" />
+              <circle cx="270" cy="310" r="4" fill="var(--map-dot-fill)" stroke="var(--c-mango)" strokeWidth="2" className="map-dot" />
+              <circle cx="450" cy="95" r="4" fill="var(--map-dot-fill)" stroke="var(--c-mango)" strokeWidth="2" className="map-dot" />
+              <circle cx="480" cy="100" r="4" fill="var(--map-dot-fill)" stroke="var(--c-mango)" strokeWidth="2" className="map-dot" />
+              <circle cx="465" cy="92" r="4" fill="var(--map-dot-fill)" stroke="var(--c-mango)" strokeWidth="2" className="map-dot" />
+              <circle cx="560" cy="160" r="4" fill="var(--map-dot-fill)" stroke="var(--c-mango)" strokeWidth="2" className="map-dot" />
+              <circle cx="545" cy="170" r="4" fill="var(--map-dot-fill)" stroke="var(--c-mango)" strokeWidth="2" className="map-dot" />
+              <circle cx="780" cy="120" r="4" fill="var(--map-dot-fill)" stroke="var(--c-mango)" strokeWidth="2" className="map-dot" />
+              <circle cx="760" cy="115" r="4" fill="var(--map-dot-fill)" stroke="var(--c-mango)" strokeWidth="2" className="map-dot" />
+              <circle cx="800" cy="330" r="4" fill="var(--map-dot-fill)" stroke="var(--c-mango)" strokeWidth="2" className="map-dot" />
+              <circle cx="490" cy="310" r="4" fill="var(--map-dot-fill)" stroke="var(--c-mango)" strokeWidth="2" className="map-dot" />
+              <circle cx="460" cy="220" r="4" fill="var(--map-dot-fill)" stroke="var(--c-mango)" strokeWidth="2" className="map-dot" />
+              <circle cx="710" cy="200" r="4" fill="var(--map-dot-fill)" stroke="var(--c-mango)" strokeWidth="2" className="map-dot" />
+              <circle cx="600" cy="75" r="4" fill="var(--map-dot-fill)" stroke="var(--c-mango)" strokeWidth="2" className="map-dot" />
             </g>
 
-            <text x="640" y="215" textAnchor="middle" fill="#ffb800" fontFamily="Outfit, sans-serif" fontSize="11" fontWeight="700" letterSpacing="0.1em">
+            <text x="640" y="215" textAnchor="middle" fill="var(--c-mango)" fontFamily="Outfit, sans-serif" fontSize="11" fontWeight="700" letterSpacing="0.1em">
               INDIA
             </text>
           </svg>

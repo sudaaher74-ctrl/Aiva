@@ -2,18 +2,46 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from 'react-router-dom';
+import useTilt from '../hooks/useTilt';
+import LeafDecor from './LeafDecor';
 
 gsap.registerPlugin(ScrollTrigger);
+
+function CategoryCard({ hueClass, color, image, alt, title, desc, to }) {
+  const { ref, handlers } = useTilt();
+  return (
+    <div className="tilt-perspective">
+      <div
+        className={`product-card ${hueClass}`}
+        data-color={color}
+        ref={ref}
+        {...handlers}
+      >
+        <div className="card-bg"></div>
+        <div className="product-image-wrap" data-tilt-layer>
+          <img src={image} alt={alt} />
+        </div>
+        <div className="product-info">
+          <h3>{title}</h3>
+          <p>{desc}</p>
+          <Link to={to} className="btn-link">
+            Explore Category
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function ProductCategories() {
   const sectionRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Interactive Cards
+      // Interactive Cards (hover glow — theme-neutral)
       const cards = document.querySelectorAll('.product-card');
       cards.forEach((card) => {
-        card.addEventListener('mouseenter', (e) => {
+        card.addEventListener('mouseenter', () => {
           const color = card.getAttribute('data-color');
           gsap.to(card.querySelector('.card-bg'), {
             opacity: 1,
@@ -27,7 +55,7 @@ function ProductCategories() {
           });
         });
 
-        card.addEventListener('mouseleave', (e) => {
+        card.addEventListener('mouseleave', () => {
           gsap.to(card.querySelector('.card-bg'), {
             opacity: 0,
             duration: 0.4,
@@ -63,6 +91,7 @@ function ProductCategories() {
 
   return (
     <section className="products section-padding dark-section" id="products" ref={sectionRef}>
+      <LeafDecor variant="categories" />
       <div className="container">
         <div className="section-header text-center">
           <h4 className="section-subtitle">Our Capabilities</h4>
@@ -81,50 +110,33 @@ function ProductCategories() {
             marginRight: 'auto',
           }}
         >
-          {/* Category 1 */}
-          <div className="product-card" data-color="#ffb800">
-            <div className="card-bg"></div>
-            <div className="product-image-wrap">
-              <img src="/assets/images/products/pulp/kesarmangopulp.webp" alt="Aseptic pulp/paste" />
-            </div>
-            <div className="product-info">
-              <h3>Aseptic pulp/paste</h3>
-              <p>High-quality fruit pulps, purees, and pastes packaged under sterile conditions.</p>
-              <Link to="/products#aseptic" className="btn-link">
-                Explore Category
-              </Link>
-            </div>
-          </div>
-
-          {/* Category 2 */}
-          <div className="product-card" data-color="#ff9999">
-            <div className="card-bg"></div>
-            <div className="product-image-wrap">
-              <img src="/assets/images/products/iqf_fruites/strawberryIQF.webp" alt="IQF Products" />
-            </div>
-            <div className="product-info">
-              <h3>IQF fruits</h3>
-              <p>Individually Quick Frozen whole fruits and dices locking in pure flavor.</p>
-              <Link to="/products#iqf-fruits" className="btn-link">
-                Explore Category
-              </Link>
-            </div>
-          </div>
-
-          {/* Category 3 */}
-          <div className="product-card" data-color="#99ccff">
-            <div className="card-bg"></div>
-            <div className="product-image-wrap">
-              <img src="/assets/images/products/iqf_frozen/mint.png" alt="Frozen" />
-            </div>
-            <div className="product-info">
-              <h3>Frozen</h3>
-              <p>Premium frozen products ensuring long shelf life and consistent quality year-round.</p>
-              <Link to="/products#iqf-frozen" className="btn-link">
-                Explore Category
-              </Link>
-            </div>
-          </div>
+          <CategoryCard
+            hueClass="card-mango"
+            color="#ffb800"
+            image="/assets/images/products/pulp/kesarmangopulp.webp"
+            alt="Aseptic pulp/paste"
+            title="Aseptic pulp/paste"
+            desc="High-quality fruit pulps, purees, and pastes packaged under sterile conditions."
+            to="/products#aseptic"
+          />
+          <CategoryCard
+            hueClass="card-strawberry"
+            color="#ff9999"
+            image="/assets/images/products/iqf_fruites/strawberryIQF.webp"
+            alt="IQF Products"
+            title="IQF fruits"
+            desc="Individually Quick Frozen whole fruits and dices locking in pure flavor."
+            to="/products#iqf-fruits"
+          />
+          <CategoryCard
+            hueClass="card-mint"
+            color="#99ccff"
+            image="/assets/images/products/iqf_frozen/mint.png"
+            alt="Frozen"
+            title="Frozen"
+            desc="Premium frozen products ensuring long shelf life and consistent quality year-round."
+            to="/products#iqf-frozen"
+          />
         </div>
       </div>
     </section>

@@ -1,34 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import gsap from 'gsap';
+import { getProductBySlug } from '../data/products';
 
 function ProductDetail() {
-  const { id } = useParams();
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { slug } = useParams();
+  
+  // Try to load synchronously for SSG
+  const staticProduct = getProductBySlug(slug);
+  const [product, setProduct] = useState(staticProduct);
+  const [loading, setLoading] = useState(!staticProduct);
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '' ? 'http://localhost:5001/api' : '/api';
-        const res = await fetch(`${API_BASE}/products/${id}`);
-        const data = await res.json();
-        if (data.success) {
-          setProduct(data.data);
+    if (typeof window === 'undefined') return;
+    
+    // Only fetch if we don't have static data, or if we want to augment it.
+    // Since we need SEO and baked HTML, we rely heavily on staticProduct.
+    if (!staticProduct && slug) {
+      const fetchProduct = async () => {
+        try {
+          const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '' ? 'http://localhost:5001/api' : '/api';
+          // Fallback to backend fetch if needed, but SSG won't see this.
+          const res = await fetch(`${API_BASE}/products/${slug}`);
+          const data = await res.json();
+          if (data.success) {
+            setProduct(data.data);
+          }
+        } catch (error) {
+          console.error('Failed to load product details:', error);
+        } finally {
+          setLoading(false);
         }
-      } catch (error) {
-        console.error('Failed to load product details:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProduct();
+      };
+      fetchProduct();
+    }
+    
     window.scrollTo(0, 0);
-  }, [id]);
+  }, [slug, staticProduct]);
 
   useEffect(() => {
-    if (product) {
+    if (product && typeof window !== 'undefined') {
       gsap.fromTo(
         '.pd-animate',
         { y: 30, opacity: 0 },
@@ -39,7 +51,7 @@ function ProductDetail() {
 
   if (loading) {
     return (
-      <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#121212', color: '#D4AF37' }}>
+      <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'var(--c-dark)', color: 'var(--c-mango)' }}>
         Loading Product...
       </div>
     );
@@ -47,7 +59,7 @@ function ProductDetail() {
 
   if (!product) {
     return (
-      <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#121212', color: '#fff', flexDirection: 'column' }}>
+      <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'var(--c-dark)', color: 'var(--c-white)', flexDirection: 'column' }}>
         <h2>Product not found</h2>
         <Link to="/products" className="btn btn-primary" style={{ marginTop: '20px' }}>Back to Products</Link>
       </div>
@@ -60,12 +72,27 @@ function ProductDetail() {
     return url;
   };
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": product.name,
+    "description": product.description,
+    "category": product.category,
+    "image": getImageUrl(product.image_url || product.image),
+    "brand": {
+      "@type": "Brand",
+      "name": "AIVA Enterprises"
+    }
+  };
+
   return (
     <>
-      <Helmet>
-        <title>{product.name} | AIVA Enterprises</title>
-        <meta name="description" content={product.description || `Premium ${product.category} for global export.`} />
-      </Helmet>
+      <SEO 
+        title={product.name}
+        description={product.description || `Premium ${product.category} for global export.`}
+        canonicalUrl={`/products/${slug}`}
+        jsonLd={[jsonLd]}
+      />
       
       <section className="section-padding dark-section" style={{ paddingTop: '150px', minHeight: '100vh' }}>
         <div className="container split-layout">
@@ -80,7 +107,7 @@ function ProductDetail() {
           </div>
           <div className="split-right pd-animate">
             <h1 className="section-title text-light" style={{ fontSize: '3rem', marginBottom: '10px' }}>{product.name}</h1>
-            <p style={{ color: '#D4AF37', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600, marginBottom: '24px' }}>
+            <p style={{ color: 'var(--c-mango)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600, marginBottom: '24px' }}>
               {product.category}
             </p>
             
@@ -90,13 +117,13 @@ function ProductDetail() {
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '40px' }}>
               {product.brix && (
-                <div style={{ background: '#1A1A1A', padding: '20px', borderRadius: '8px', border: '1px solid #2A2A2A' }}>
+                <div style={{ background: 'var(--c-dark-grey)', padding: '20px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.08)' }}>
                   <p style={{ color: '#606060', fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: 600, marginBottom: '5px' }}>Brix</p>
                   <p style={{ color: '#fff', fontSize: '1.25rem', fontWeight: 500 }}>{product.brix}</p>
                 </div>
               )}
               {product.shelfLife && (
-                <div style={{ background: '#1A1A1A', padding: '20px', borderRadius: '8px', border: '1px solid #2A2A2A' }}>
+                <div style={{ background: 'var(--c-dark-grey)', padding: '20px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.08)' }}>
                   <p style={{ color: '#606060', fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: 600, marginBottom: '5px' }}>Shelf Life</p>
                   <p style={{ color: '#fff', fontSize: '1.25rem', fontWeight: 500 }}>{product.shelfLife}</p>
                 </div>

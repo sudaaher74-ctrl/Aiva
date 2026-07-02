@@ -1,39 +1,30 @@
 import React, { useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { useLocation, Outlet, useParams } from 'react-router-dom';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Preloader from './components/Preloader';
 
 import Home from './pages/Home';
 import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
 import About from './pages/About';
+import ChatbotLogin from './pages/chatbot/ChatbotLogin';
+import ChatbotApp from './pages/chatbot/ChatbotApp';
+import PublicLayout from './components/PublicLayout';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
-import MobileBottomNav from './components/MobileBottomNav';
-import PublicLayout from './components/PublicLayout';
-
-import ChatbotLogin from './pages/chatbot/ChatbotLogin';
-import ChatbotApp from './pages/chatbot/ChatbotApp';
-
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
-const queryClient = new QueryClient();
-
-function App() {
+export function AppRoot() {
   const location = useLocation();
+
   useEffect(() => {
-    // Disable Lenis on chatbot routes because it blocks inner scrolling
+    if (typeof window === 'undefined') return;
+
     if (location.pathname.startsWith('/chatbot')) {
       return;
     }
 
-    // 1. Initialize Lenis (Smooth Scrolling)
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -66,8 +57,8 @@ function App() {
     };
   }, [location.pathname]);
 
-  // Basic Analytics Tracking on route change
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     try {
       const API_BASE =
         window.location.hostname === 'localhost' ||
@@ -91,23 +82,39 @@ function App() {
   }, [location]);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Routes>
-        {/* Public Routes with Navbar and Footer */}
-        <Route element={<PublicLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/:id" element={<ProductDetail />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/products.html" element={<Products />} />
-        </Route>
-
-        {/* Standalone Chatbot Routes */}
-        <Route path="/chatbot/login" element={<ChatbotLogin />} />
-        <Route path="/chatbot" element={<ChatbotApp />} />
-      </Routes>
-    </QueryClientProvider>
+    <ThemeProvider>
+      <Outlet />
+    </ThemeProvider>
   );
 }
 
-export default App;
+const ProductRouteHandler = () => {
+  const { slug } = useParams();
+  const categories = ['aseptic', 'concentrates', 'iqf'];
+  if (categories.includes(slug)) {
+    return <Products categorySlug={slug} />;
+  }
+  return <ProductDetail />;
+};
+
+export const routes = [
+  {
+    path: '/',
+    element: <AppRoot />,
+    children: [
+      {
+        element: <PublicLayout />,
+        children: [
+          { path: '/', element: <Home /> },
+          { path: '/products', element: <Products /> },
+          { path: '/products/:slug', element: <ProductRouteHandler /> },
+          { path: '/about', element: <About /> },
+          { path: '/contact', element: <About /> }, // Uses About as fallback for Contact if none exists natively
+          { path: '/products.html', element: <Products /> },
+        ]
+      },
+      { path: '/chatbot/login', element: <ChatbotLogin /> },
+      { path: '/chatbot', element: <ChatbotApp /> },
+    ]
+  }
+];

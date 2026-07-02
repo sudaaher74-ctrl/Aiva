@@ -57,10 +57,11 @@ function BulkInquiry() {
         message: formData.message,
       };
 
-      const API_BASE =
+      const API_BASE = typeof window !== 'undefined' && (
         window.location.hostname === 'localhost' ||
         window.location.hostname === '127.0.0.1' ||
         window.location.hostname === ''
+      )
           ? 'http://localhost:5001/api'
           : '/api';
 

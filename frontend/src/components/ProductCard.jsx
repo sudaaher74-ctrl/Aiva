@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import useTilt from '../hooks/useTilt';
 
 const ProductCard = ({ product, handleQuoteClick }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const { ref: tiltRef, handlers: tiltHandlers } = useTilt();
 
   // Check if we're on a mobile device (for tap vs hover behavior)
   useEffect(() => {
@@ -66,6 +68,7 @@ const ProductCard = ({ product, handleQuoteClick }) => {
   };
 
   return (
+    <div className="tilt-perspective" ref={tiltRef} {...tiltHandlers}>
     <motion.div
       className="premium-prod-card relative w-full aspect-[4/5] overflow-hidden rounded-xl bg-[#0a0a0a] cursor-pointer group"
       onMouseEnter={() => !isMobile && setIsHovered(true)}
@@ -85,6 +88,7 @@ const ProductCard = ({ product, handleQuoteClick }) => {
       {/* Background Image with Zoom */}
       <motion.div
         className="absolute inset-0 w-full h-full"
+        data-tilt-layer
         animate={{ scale: isHovered ? 1.05 : 1 }}
         transition={{ duration: 0.4, ease: 'easeOut' }}
       >
@@ -164,6 +168,7 @@ const ProductCard = ({ product, handleQuoteClick }) => {
         )}
       </AnimatePresence>
     </motion.div>
+    </div>
   );
 };
 

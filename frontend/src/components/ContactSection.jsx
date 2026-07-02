@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import LeafDecor from './LeafDecor';
 
 function ContactSection() {
   const [formData, setFormData] = useState({
@@ -20,10 +21,11 @@ function ContactSection() {
     btn.disabled = true;
 
     try {
-      const API_BASE =
+      const API_BASE = typeof window !== 'undefined' && (
         window.location.hostname === 'localhost' ||
         window.location.hostname === '127.0.0.1' ||
         window.location.hostname === ''
+      )
           ? 'http://localhost:5001/api'
           : '/api';
 
@@ -69,6 +71,7 @@ function ContactSection() {
 
   return (
     <section className="contact section-padding dark-section" id="contact">
+      <LeafDecor variant="contact" />
       <div className="container split-layout">
         <div className="split-left contact-info">
           <h2 className="section-title text-light">Let's Talk Business</h2>
