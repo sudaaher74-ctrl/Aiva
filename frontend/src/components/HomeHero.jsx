@@ -58,7 +58,7 @@ function HomeHero() {
 
   return (
     <section className="hero" id="home" ref={heroRef}>
-      <LeafDecor variant="hero" />
+      
       <div className="hero-bg">
         <div className="hero-gradient"></div>
         {/* Abstract Background Elements */}
@@ -88,7 +88,7 @@ function HomeHero() {
             backdropFilter: 'blur(10px)',
           }}
         >
-          <span className="badge-leaf" aria-hidden="true">🌿 </span>GLOBAL EXPORT QUALITY
+          GLOBAL EXPORT QUALITY
         </div>
         <h1 className="hero-title" style={{ position: 'relative' }}>
           <span style={{ position: 'absolute', width: 1, height: 1, padding: 0, margin: -1, overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', whiteSpace: 'nowrap', borderWidth: 0 }}>Premium Fruit Pulp Exporter India</span>
