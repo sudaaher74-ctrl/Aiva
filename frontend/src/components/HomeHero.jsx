@@ -123,7 +123,7 @@ function HomeHero() {
         />
         <img
           src="/assets/images/products/pulp/papayapulp.webp"
-          className="float-item f-papaya"
+          className="float-item f-papaya theme-midnight-only"
           alt="Papaya Pulp Supplier"
           width="400"
           height="600"
@@ -136,14 +136,6 @@ function HomeHero() {
           width="800"
           height="1000"
           data-speed="0.8"
-        />
-        <img
-          src="/assets/images/products/bananatree.png"
-          className="float-item f-bananatree theme-orchard-only"
-          alt="Banana Tree Background"
-          width="700"
-          height="900"
-          data-speed="-0.5"
         />
       </div>
     </section>
