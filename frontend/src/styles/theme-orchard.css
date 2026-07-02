@@ -300,7 +300,7 @@ section,
 [data-theme="orchard"] .social-icons a:hover { background: var(--c-mango); color: #173A26; }
 
 /* ==========================================================================
-   ORCHARD THEME FLOATING TREES
+   ORCHARD THEME FLOATING TREES & LAYOUT
    ========================================================================== */
 .theme-orchard-only {
     display: none;
@@ -317,6 +317,57 @@ section,
 /* Hide LeafDecor in Orchard theme */
 [data-theme="orchard"] .leaf-decor {
     display: none !important;
+}
+
+/* Push text to bottom in Orchard theme */
+[data-theme="orchard"] .hero {
+    align-items: flex-end;
+}
+[data-theme="orchard"] .hero-content {
+    margin-top: 0;
+    margin-bottom: 10vh;
+}
+
+/* Trees */
+[data-theme="orchard"] .f-mangotree {
+    left: auto;
+    bottom: auto;
+    right: -5%;
+    top: -5%;
+    width: 60vw;
+    max-width: 800px;
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
+    filter: drop-shadow(0 20px 40px rgba(30, 86, 49, 0.2));
+}
+
+[data-theme="orchard"] .f-bananatree {
+    left: -10%;
+    bottom: -10%;
+    width: 50vw;
+    max-width: 600px;
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
+    filter: drop-shadow(0 20px 40px rgba(30, 86, 49, 0.2));
+}
+
+@media (max-width: 768px) {
+    [data-theme="orchard"] .f-mangotree {
+        width: 80vw;
+        right: -15%;
+        top: -10%;
+        left: auto;
+        bottom: auto;
+        opacity: 0.1;
+    }
+    [data-theme="orchard"] .f-bananatree {
+        width: 70vw;
+        left: -15%;
+        bottom: 5%;
+        opacity: 0.1;
+    }
 }
 
 /* ==========================================================================
