@@ -335,12 +335,12 @@ section,
 /* Trees */
 [data-theme="orchard"] .f-mangotree {
     right: auto;
-    bottom: auto;
     left: -5%;
-    top: 15%;
+    top: auto;
+    bottom: 30vh; /* Places the bottom of the tree just above the text */
     width: 60vw;
     max-width: 800px;
-    opacity: 0.15;
+    opacity: 0.45; /* Made much more clear */
     z-index: 0;
     pointer-events: none;
     filter: drop-shadow(0 20px 40px rgba(30, 86, 49, 0.2));
@@ -361,10 +361,10 @@ section,
     [data-theme="orchard"] .f-mangotree {
         width: 80vw;
         left: -15%;
-        top: -10%;
+        top: auto;
+        bottom: 35vh;
         right: auto;
-        bottom: auto;
-        opacity: 0.1;
+        opacity: 0.35;
     }
     [data-theme="orchard"] .f-bananatree {
         width: 70vw;
