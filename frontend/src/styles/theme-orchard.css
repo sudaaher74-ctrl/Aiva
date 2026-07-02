@@ -330,9 +330,9 @@ section,
 
 /* Trees */
 [data-theme="orchard"] .f-mangotree {
-    left: auto;
+    right: auto;
     bottom: auto;
-    right: -5%;
+    left: -5%;
     top: -5%;
     width: 60vw;
     max-width: 800px;
@@ -356,9 +356,9 @@ section,
 @media (max-width: 768px) {
     [data-theme="orchard"] .f-mangotree {
         width: 80vw;
-        right: -15%;
+        left: -15%;
         top: -10%;
-        left: auto;
+        right: auto;
         bottom: auto;
         opacity: 0.1;
     }
