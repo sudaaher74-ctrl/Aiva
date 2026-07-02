@@ -58,7 +58,7 @@ function HomeHero() {
 
   return (
     <section className="hero" id="home" ref={heroRef}>
-      
+      <LeafDecor variant="hero" />
       <div className="hero-bg">
         <div className="hero-gradient"></div>
         {/* Abstract Background Elements */}
@@ -88,7 +88,7 @@ function HomeHero() {
             backdropFilter: 'blur(10px)',
           }}
         >
-          GLOBAL EXPORT QUALITY
+          <span className="badge-leaf theme-midnight-only" aria-hidden="true">🌿 </span>GLOBAL EXPORT QUALITY
         </div>
         <h1 className="hero-title" style={{ position: 'relative' }}>
           <span style={{ position: 'absolute', width: 1, height: 1, padding: 0, margin: -1, overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', whiteSpace: 'nowrap', borderWidth: 0 }}>Premium Fruit Pulp Exporter India</span>
@@ -105,7 +105,6 @@ function HomeHero() {
 
       {/* Floating Parallax Elements */}
       <div className="floating-elements">
-        {/* The BIG bottle that shouldn't be removed */}
         <img
           src="/assets/images/products/pulp/Alphansomangopulp.webp"
           className="float-item f-mango"
@@ -114,10 +113,25 @@ function HomeHero() {
           height="600"
           data-speed="1.5"
         />
-        {/* The Mango tree */}
+        <img
+          src="/assets/images/products/pulp/pinkguavapulp.webp"
+          className="float-item f-guava theme-midnight-only"
+          alt="Pink Guava Pulp Manufacturer"
+          width="400"
+          height="600"
+          data-speed="-1.2"
+        />
+        <img
+          src="/assets/images/products/pulp/papayapulp.webp"
+          className="float-item f-papaya theme-midnight-only"
+          alt="Papaya Pulp Supplier"
+          width="400"
+          height="600"
+          data-speed="1.8"
+        />
         <img
           src="/assets/images/products/mangotree.png"
-          className="float-item f-mangotree"
+          className="float-item f-mangotree theme-orchard-only"
           alt="Mango Tree Background"
           width="800"
           height="1000"

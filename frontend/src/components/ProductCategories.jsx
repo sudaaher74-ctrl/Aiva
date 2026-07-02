@@ -91,6 +91,7 @@ function ProductCategories() {
 
   return (
     <section className="products section-padding dark-section" id="products" ref={sectionRef}>
+      <LeafDecor variant="categories" />
       <div className="container">
         <div className="section-header text-center">
           <h4 className="section-subtitle">Our Capabilities</h4>

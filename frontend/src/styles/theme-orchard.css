@@ -300,6 +300,26 @@ section,
 [data-theme="orchard"] .social-icons a:hover { background: var(--c-mango); color: #173A26; }
 
 /* ==========================================================================
+   ORCHARD THEME FLOATING TREES
+   ========================================================================== */
+.theme-orchard-only {
+    display: none;
+}
+
+[data-theme="orchard"] .theme-orchard-only {
+    display: block;
+}
+
+[data-theme="orchard"] .theme-midnight-only {
+    display: none !important;
+}
+
+/* Hide LeafDecor in Orchard theme */
+[data-theme="orchard"] .leaf-decor {
+    display: none !important;
+}
+
+/* ==========================================================================
    PRELOADER
    ========================================================================== */
 [data-theme="orchard"] .preloader { background-color: #F7F2E7; color: #173A26; }

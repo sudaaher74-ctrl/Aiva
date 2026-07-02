@@ -71,6 +71,7 @@ function ContactSection() {
 
   return (
     <section className="contact section-padding dark-section" id="contact">
+      <LeafDecor variant="contact" />
       <div className="container split-layout">
         <div className="split-left contact-info">
           <h2 className="section-title text-light">Let's Talk Business</h2>
