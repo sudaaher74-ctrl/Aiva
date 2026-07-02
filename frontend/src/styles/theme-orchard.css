@@ -340,6 +340,7 @@ section,
 
 /* Trees */
 [data-theme="orchard"] .f-mangotree {
+    position: absolute;
     right: auto;
     left: -5%;
     top: auto;

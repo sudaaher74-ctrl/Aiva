@@ -131,11 +131,10 @@ function HomeHero() {
         />
         <img
           src="/assets/images/products/mangotree.png"
-          className="float-item f-mangotree theme-orchard-only"
+          className="f-mangotree theme-orchard-only"
           alt="Mango Tree Background"
           width="800"
           height="1000"
-          data-speed="0.8"
         />
       </div>
     </section>
