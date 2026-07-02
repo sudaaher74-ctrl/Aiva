@@ -124,8 +124,12 @@ section,
 }
 
 /* ==========================================================================
-   NAVBAR — cream/translucent, green links, gold underline
+   NAVBAR & HERO BACKGROUND (ORCHARD THEME)
    ========================================================================== */
+[data-theme="orchard"] .hero-bg {
+    background-color: #F7F2E7; /* Match body cream background */
+}
+
 [data-theme="orchard"] .navbar {
     background: rgba(247, 242, 231, 0.72);
     backdrop-filter: blur(12px);
