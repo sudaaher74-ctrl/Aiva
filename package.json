@@ -9,5 +9,14 @@
   ],
   "scripts": {
     "build": "npm run build --workspace=frontend && npm run build --workspace=admin && mkdir -p dist && cp -r frontend/dist/* dist/ && mkdir -p dist/admin && cp -r admin/dist/* dist/admin/"
+  },
+  "overrides": {
+    "vite-react-ssg": {
+      "vite": "^8.0.12"
+    },
+    "react-helmet-async": {
+      "react": "^19.2.6",
+      "react-dom": "^19.2.6"
+    }
   }
 }
