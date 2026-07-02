@@ -341,21 +341,10 @@ section,
 }
 
 [data-theme="orchard"] .f-mangotree {
-    right: -5%;
-    top: -5%;
-    width: 60vw;
-    max-width: 800px;
-    opacity: 0.15;
-    z-index: 0;
-    pointer-events: none;
-    filter: drop-shadow(0 20px 40px rgba(30, 86, 49, 0.2));
-}
-
-[data-theme="orchard"] .f-bananatree {
     left: -10%;
     bottom: -10%;
-    width: 50vw;
-    max-width: 600px;
+    width: 60vw;
+    max-width: 800px;
     opacity: 0.15;
     z-index: 0;
     pointer-events: none;
@@ -365,12 +354,6 @@ section,
 @media (max-width: 768px) {
     [data-theme="orchard"] .f-mangotree {
         width: 80vw;
-        right: -15%;
-        top: -10%;
-        opacity: 0.1;
-    }
-    [data-theme="orchard"] .f-bananatree {
-        width: 70vw;
         left: -15%;
         bottom: 5%;
         opacity: 0.1;
