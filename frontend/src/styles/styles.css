@@ -45,9 +45,19 @@ html {
 body {
     font-family: var(--font-body);
     color: var(--c-white);
-    background-color: var(--c-black);
+    background-color: var(--c-white); /* gap color */
+    padding: 0 1.5rem; /* left and right gap */
     line-height: 1.6;
     overflow-x: hidden;
+}
+
+#root {
+    background-color: var(--c-black);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    /* optional subtle shadow for depth */
+    box-shadow: 0 0 30px rgba(0,0,0,0.05);
 }
 
 body.loading {
@@ -141,6 +151,16 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 992px) {
     .split-layout {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 0 0.5rem;
+    }
+    .navbar {
+        left: 0.5rem;
+        width: calc(100% - 1rem);
     }
 }
 
@@ -248,8 +268,8 @@ h1, h2, h3, h4, h5, h6 {
 .navbar {
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: 1.5rem;
+    width: calc(100% - 3rem);
     padding: 1rem 0;
     z-index: 100;
     transition: var(--t-fast);
@@ -922,8 +942,7 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
     padding: 2rem 0;
     position: relative;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
+    width: 100%;
     background: transparent;
     margin-top: 4rem;
     border-top: 1px solid rgba(0,0,0,0.1);
@@ -1215,7 +1234,7 @@ h1, h2, h3, h4, h5, h6 {
         position: absolute;
         top: 64px;
         left: 0;
-        width: 100vw;
+        width: 100%;
         height: 60vh;
         z-index: 1;
     }
@@ -1224,9 +1243,9 @@ h1, h2, h3, h4, h5, h6 {
         left: 0;
         right: 0;
         margin: 0;
-        width: 100vw;
+        width: 100%;
         height: 100%;
-        max-width: 100vw;
+        max-width: 100%;
         opacity: 1;
         z-index: 3;
         object-fit: cover;
