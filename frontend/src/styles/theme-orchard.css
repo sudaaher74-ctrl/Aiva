@@ -323,6 +323,59 @@ section,
     -webkit-text-fill-color: transparent; font-style: italic;
 }
 [data-theme="orchard"] .prod-hero-subtitle { color: #4A5548; }
+[data-theme="orchard"] .contact-info .social-links a:hover {
+    color: var(--card-cta-mint);
+    border-color: var(--card-cta-mint);
+    background: rgba(30, 86, 49, 0.05);
+}
+
+/* ==========================================================================
+   ORCHARD THEME FLOATING TREES
+   ========================================================================== */
+.theme-orchard-only {
+    display: none;
+}
+
+[data-theme="orchard"] .theme-orchard-only {
+    display: block;
+}
+
+[data-theme="orchard"] .f-mangotree {
+    right: -5%;
+    top: -5%;
+    width: 60vw;
+    max-width: 800px;
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
+    filter: drop-shadow(0 20px 40px rgba(30, 86, 49, 0.2));
+}
+
+[data-theme="orchard"] .f-bananatree {
+    left: -10%;
+    bottom: -10%;
+    width: 50vw;
+    max-width: 600px;
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
+    filter: drop-shadow(0 20px 40px rgba(30, 86, 49, 0.2));
+}
+
+@media (max-width: 768px) {
+    [data-theme="orchard"] .f-mangotree {
+        width: 80vw;
+        right: -15%;
+        top: -10%;
+        opacity: 0.1;
+    }
+    [data-theme="orchard"] .f-bananatree {
+        width: 70vw;
+        left: -15%;
+        bottom: 5%;
+        opacity: 0.1;
+    }
+}
 [data-theme="orchard"] .premium-badge {
     color: #1E5631;
     border: 1px solid rgba(30, 86, 49, 0.35);

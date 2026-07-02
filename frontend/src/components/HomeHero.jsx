@@ -129,6 +129,24 @@ function HomeHero() {
           height="600"
           data-speed="1.8"
         />
+        
+        {/* Theme-specific trees */}
+        <img
+          src="/assets/images/products/mangotree.png"
+          className="float-item f-mangotree theme-orchard-only"
+          alt="Mango Tree Background"
+          width="800"
+          height="1000"
+          data-speed="0.8"
+        />
+        <img
+          src="/assets/images/products/bananatree.png"
+          className="float-item f-bananatree theme-orchard-only"
+          alt="Banana Tree Background"
+          width="700"
+          height="900"
+          data-speed="-0.5"
+        />
       </div>
     </section>
   );
