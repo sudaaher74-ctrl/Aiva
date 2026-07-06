@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLocation, Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
@@ -37,7 +38,7 @@ function ProductGrid({ categorySlug }) {
     fetchProducts();
   }, []);
 
-  useEffect(() => {
+  useGSAP(() => {
     if (typeof window === 'undefined') return;
     
     if (products.length > 0) {
@@ -61,7 +62,7 @@ function ProductGrid({ categorySlug }) {
         ScrollTrigger.refresh();
       }, 100);
     }
-  }, [products, location.hash, categorySlug]);
+  }, { dependencies: [products, location.hash, categorySlug], scope: gridsRef });
 
   const handleQuoteClick = (imgSource) => {
     if (typeof window === 'undefined') return;
@@ -128,13 +129,13 @@ function ProductGrid({ categorySlug }) {
   };
 
   return (
-    <>
+    <div ref={gridsRef}>
       {renderGrid('aseptic', 'Aseptic pulp/paste')}
       {renderGrid('concentrates', 'Concentrates')}
       {renderGrid('iqf-fruits', 'IQF fruits')}
       {renderGrid('iqf-frozen', 'Frozen')}
       {renderGrid('vegetables', 'IQF Vegetables')}
-    </>
+    </div>
   );
 }
 

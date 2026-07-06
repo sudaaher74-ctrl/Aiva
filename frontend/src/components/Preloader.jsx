@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 function Preloader() {
   const preloaderRef = useRef(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     // --- 2. Preloader Animation ---
     const tlLoader = gsap.timeline({
       onComplete: () => {
@@ -39,7 +40,7 @@ function Preloader() {
         ease: 'power4.inOut',
         delay: 0.5,
       });
-  }, []);
+  }, { scope: preloaderRef });
 
   return (
     <div className="preloader" ref={preloaderRef}>

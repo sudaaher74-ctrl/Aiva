@@ -92,7 +92,7 @@ const ProductCard = ({ product, handleQuoteClick }) => {
         animate={{ scale: isHovered ? 1.05 : 1 }}
         transition={{ duration: 0.4, ease: 'easeOut' }}
       >
-        <img 
+        <img loading="lazy"
           src={imageUrl} 
           alt={product.name} 
           className="w-full h-full object-contain p-6"

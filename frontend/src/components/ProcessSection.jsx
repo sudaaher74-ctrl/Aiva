@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -7,9 +8,8 @@ gsap.registerPlugin(ScrollTrigger);
 function ProcessSection() {
   const sectionRef = useRef(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Timeline Animation
+  useGSAP(() => {
+    // Timeline Animation
       gsap.fromTo(
         '.timeline-item',
         { x: -50, opacity: 0 },
@@ -36,10 +36,7 @@ function ProcessSection() {
           scrub: 1,
         },
       });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  }, { scope: sectionRef });
 
   return (
     <section className="process section-padding dark-section" id="process" ref={sectionRef}>
@@ -78,6 +75,7 @@ function ProcessSection() {
                   src="/assets/images/products/vegetables/sweetcornIQF.webp"
                   alt="Quality Process"
                   className="floating-slow"
+                  loading="lazy"
                 />
               </div>
             </div>

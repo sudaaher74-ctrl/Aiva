@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -7,8 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 function AboutSection() {
   const sectionRef = useRef(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
+  useGSAP(() => {
       // Number Counter
       const statItems = document.querySelectorAll('.stat-num');
       statItems.forEach((stat) => {
@@ -47,10 +47,7 @@ function AboutSection() {
           }
         );
       });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  }, { scope: sectionRef });
 
   return (
     <section className="about section-padding" id="about" ref={sectionRef}>

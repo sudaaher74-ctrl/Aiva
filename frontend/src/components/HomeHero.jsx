@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from 'react-router-dom';
 
@@ -8,8 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 function HomeHero() {
   const heroRef = useRef(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
+  useGSAP(() => {
       const tlHero = gsap.timeline();
 
       // Text Reveal
@@ -50,10 +50,7 @@ function HomeHero() {
           ease: 'sine.inOut',
         });
       });
-    }, heroRef);
-
-    return () => ctx.revert();
-  }, []);
+  }, { scope: heroRef });
 
   return (
     <section className="hero" id="home" ref={heroRef}>

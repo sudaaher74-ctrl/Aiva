@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from 'react-router-dom';
 import useTilt from '../hooks/useTilt';
@@ -35,8 +36,7 @@ function CategoryCard({ hueClass, color, image, alt, title, desc, to }) {
 function ProductCategories() {
   const sectionRef = useRef(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
+  useGSAP(() => {
       // Interactive Cards (hover glow — theme-neutral)
       const cards = document.querySelectorAll('.product-card');
       cards.forEach((card) => {
@@ -83,10 +83,7 @@ function ProductCategories() {
           },
         }
       );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  }, { scope: sectionRef });
 
   return (
     <section className="products section-padding dark-section" id="products" ref={sectionRef}>

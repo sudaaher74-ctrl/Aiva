@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -15,9 +16,9 @@ function BulkInquiry() {
     qty: '',
     message: '',
   });
+  const [formStatus, setFormStatus] = useState({ text: 'Request Export Quote', disabled: false, bg: '' });
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
+  useGSAP(() => {
       gsap.utils.toArray('.massive-render').forEach((img) => {
         gsap.to(img, {
           scrollTrigger: {
@@ -30,9 +31,7 @@ function BulkInquiry() {
           ease: 'none',
         });
       });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
+  }, { scope: sectionRef });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -40,10 +39,7 @@ function BulkInquiry() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const btn = e.target.querySelector('button[type="submit"]');
-    const originalText = btn.innerHTML;
-    btn.innerHTML = 'Sending...';
-    btn.disabled = true;
+    setFormStatus({ text: 'Sending...', disabled: true, bg: '' });
 
     try {
       const payload = {
@@ -74,8 +70,7 @@ function BulkInquiry() {
       const data = await res.json();
 
       if (data.success) {
-        btn.innerHTML = 'Quote Requested!';
-        btn.style.background = '#10b981';
+        setFormStatus({ text: 'Quote Requested!', disabled: true, bg: '#10b981' });
         setFormData({
           name: '',
           company: '',
@@ -86,18 +81,14 @@ function BulkInquiry() {
           message: '',
         });
       } else {
-        btn.innerHTML = 'Error - Try Again';
-        btn.style.background = '#EF4444';
+        setFormStatus({ text: 'Error - Try Again', disabled: false, bg: '#EF4444' });
       }
     } catch (error) {
-      btn.innerHTML = 'Error - Try Again';
-      btn.style.background = '#EF4444';
+      setFormStatus({ text: 'Error - Try Again', disabled: false, bg: '#EF4444' });
     }
 
     setTimeout(() => {
-      btn.innerHTML = originalText;
-      btn.style.background = '';
-      btn.disabled = false;
+      setFormStatus((prev) => ({ ...prev, text: 'Request Export Quote', disabled: false, bg: '' }));
     }, 3000);
   };
 
@@ -184,8 +175,13 @@ function BulkInquiry() {
                 ></textarea>
                 <label htmlFor="message">Additional Message</label>
               </div>
-              <button type="submit" className="btn btn-primary w-100">
-                Request Export Quote
+              <button 
+                type="submit" 
+                className="btn btn-primary w-100"
+                disabled={formStatus.disabled}
+                style={{ background: formStatus.bg }}
+              >
+                {formStatus.text}
               </button>
             </form>
           </div>

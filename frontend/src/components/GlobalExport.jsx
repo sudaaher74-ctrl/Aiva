@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -7,8 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 function GlobalExport() {
   const sectionRef = useRef(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
+  useGSAP(() => {
       gsap.fromTo(
         '.global-map-container',
         { scale: 0.9, opacity: 0 },
@@ -23,10 +23,7 @@ function GlobalExport() {
           },
         }
       );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  }, { scope: sectionRef });
 
   return (
     <section className="export section-padding" id="export" ref={sectionRef}>

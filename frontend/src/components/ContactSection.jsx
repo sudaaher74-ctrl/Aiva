@@ -7,6 +7,7 @@ function ContactSection() {
     interest: '',
     message: '',
   });
+  const [formStatus, setFormStatus] = useState({ text: 'Send Inquiry', disabled: false, bg: '' });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -14,10 +15,7 @@ function ContactSection() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const btn = e.target.querySelector('button[type="submit"]');
-    const originalText = btn.innerHTML;
-    btn.innerHTML = 'Sending...';
-    btn.disabled = true;
+    setFormStatus({ text: 'Sending...', disabled: true, bg: '' });
 
     try {
       const API_BASE = typeof window !== 'undefined' && (
@@ -45,27 +43,19 @@ function ContactSection() {
       });
 
       if (response.ok) {
-        btn.innerHTML = 'Request Sent Successfully';
-        btn.style.background = '#10B981';
+        setFormStatus({ text: 'Request Sent Successfully', disabled: true, bg: '#10B981' });
         setFormData({ name: '', email: '', interest: '', message: '' });
-        setTimeout(() => {
-          btn.innerHTML = originalText;
-          btn.style.background = '';
-          btn.disabled = false;
-        }, 3000);
       } else {
         throw new Error('Failed to send');
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      btn.innerHTML = 'Error. Try Again.';
-      btn.style.background = '#EF4444';
-      setTimeout(() => {
-        btn.innerHTML = originalText;
-        btn.style.background = '';
-        btn.disabled = false;
-      }, 3000);
+      setFormStatus({ text: 'Error. Try Again.', disabled: false, bg: '#EF4444' });
     }
+
+    setTimeout(() => {
+      setFormStatus((prev) => ({ ...prev, text: 'Send Inquiry', disabled: false, bg: '' }));
+    }, 3000);
   };
 
   return (
@@ -148,8 +138,13 @@ function ContactSection() {
               ></textarea>
               <label htmlFor="message">Your Requirements (Volume, Specs)</label>
             </div>
-            <button type="submit" className="btn btn-primary w-100">
-              Send Inquiry
+            <button 
+              type="submit" 
+              className="btn btn-primary w-100"
+              disabled={formStatus.disabled}
+              style={{ background: formStatus.bg }}
+            >
+              {formStatus.text}
             </button>
           </form>
         </div>

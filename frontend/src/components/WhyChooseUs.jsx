@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -7,8 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 function WhyChooseUs() {
   const sectionRef = useRef(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
+  useGSAP(() => {
       gsap.fromTo(
         '.feature-card',
         { y: 30, opacity: 0 },
@@ -24,10 +24,7 @@ function WhyChooseUs() {
           },
         }
       );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  }, { scope: sectionRef });
 
   return (
     <section className="quality section-padding" id="quality" ref={sectionRef}>
