@@ -86,7 +86,7 @@ function HomeHero() {
             backdropFilter: 'blur(10px)',
           }}
         >
-          <span className="theme-midnight-only" aria-hidden="true"></span>GLOBAL EXPORT QUALITY
+          <span aria-hidden="true"></span>GLOBAL EXPORT QUALITY
         </div>
         <h1 className="hero-title" style={{ position: 'relative' }}>
           <span style={{ position: 'absolute', width: 1, height: 1, padding: 0, margin: -1, overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', whiteSpace: 'nowrap', borderWidth: 0 }}>Premium Fruit Pulp Exporter India</span>
@@ -121,18 +121,11 @@ function HomeHero() {
         />
         <img
           src="/assets/images/products/pulp/papayapulp.webp"
-          className="float-item f-papaya theme-midnight-only"
+          className="float-item f-papaya"
           alt="Papaya Pulp Supplier"
           width="400"
           height="600"
           data-speed="1.8"
-        />
-        <img
-          src="/assets/images/products/mangotree.png"
-          className="f-mangotree theme-orchard-only"
-          alt="Mango Tree Background"
-          width="800"
-          height="1000"
         />
       </div>
     </section>
