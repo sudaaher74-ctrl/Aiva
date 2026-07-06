@@ -260,7 +260,7 @@ const products = [
     description: 'Fresh coriander and green chilli blend, individually quick frozen.',
     tab: 'iqf-frozen',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/iqf_frozen/coriander&greencilli.png',
+    image_url: './assets/images/products/iqf_frozen/coriander&greenchilli.png',
     status: 'Active'
   },
   {
