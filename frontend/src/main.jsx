@@ -8,7 +8,7 @@ import { routes } from './App.jsx';
 import './styles/lenis.css';
 import './styles/styles.css';
 import './styles/products.css';
-import './styles/theme-orchard.css';
+
 import './index.css';
 
 const queryClient = new QueryClient();

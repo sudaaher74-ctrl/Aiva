@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import ThemeToggle from './ThemeToggle';
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -46,10 +45,8 @@ function Navbar() {
           </div>
           <Link to="/#about" onClick={closeMenu}>About Us</Link>
           <Link to="/#contact" onClick={closeMenu}>Contact</Link>
-          <ThemeToggle className="theme-toggle--mobile" />
         </nav>
         <div className="nav-actions">
-          <ThemeToggle className="theme-toggle--desktop" />
           <Link to="/#contact" className="btn btn-outline" onClick={closeMenu}>
             Contact Us
           </Link>

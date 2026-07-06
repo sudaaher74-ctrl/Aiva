@@ -3,7 +3,6 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from 'react-router-dom';
 import useTilt from '../hooks/useTilt';
-import LeafDecor from './LeafDecor';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -91,7 +90,6 @@ function ProductCategories() {
 
   return (
     <section className="products section-padding dark-section" id="products" ref={sectionRef}>
-      <LeafDecor variant="categories" />
       <div className="container">
         <div className="section-header text-center">
           <h4 className="section-subtitle">Our Capabilities</h4>
