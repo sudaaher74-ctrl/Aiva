@@ -56,15 +56,6 @@ function HomeHero() {
     <section className="hero" id="home" ref={heroRef}>
       <div className="hero-bg">
         <div className="hero-gradient"></div>
-        {/* Abstract Background Elements */}
-        <div
-          className="glow-orb"
-          style={{ top: '20%', left: '10%', background: 'var(--c-mango)', filter: 'blur(120px)' }}
-        ></div>
-        <div
-          className="glow-orb"
-          style={{ bottom: '10%', right: '5%', background: 'var(--c-guava)', filter: 'blur(150px)' }}
-        ></div>
       </div>
 
       <div className="container hero-content">
