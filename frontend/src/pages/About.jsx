@@ -32,8 +32,14 @@ const About = () => {
       />
 
       {/* Hero Section */}
-      <section className="about-hero" style={{ padding: '140px 20px 80px', textAlign: 'center', background: 'linear-gradient(to bottom, #0A0A0A, #111111)', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at center, rgba(212,175,55,0.05) 0%, transparent 60%)', pointerEvents: 'none' }}></div>
+      <section className="about-hero" style={{ 
+        padding: '140px 20px 80px', 
+        textAlign: 'center', 
+        background: 'linear-gradient(to bottom, rgba(10,10,10,0.7), rgba(17,17,17,0.9)), url("/assets/images/products/coverimgaboutus.png") center/cover no-repeat', 
+        position: 'relative', 
+        overflow: 'hidden' 
+      }}>
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at center, rgba(212,175,55,0.1) 0%, transparent 60%)', pointerEvents: 'none' }}></div>
         <span className="eyebrow" style={{ color: 'var(--accent-gold)', textTransform: 'uppercase', letterSpacing: '0.15em', fontSize: '0.8rem', fontWeight: 'bold' }}>Our Heritage</span>
         <h1 style={{ fontSize: '3.5rem', margin: '24px 0', color: 'var(--text-primary)', fontWeight: '300' }}>Cultivating <strong style={{ fontWeight: '700', color: 'var(--accent-gold)' }}>Excellence</strong>.</h1>
         <p style={{ color: 'var(--text-secondary)', maxWidth: '650px', margin: '0 auto', lineHeight: '1.8', fontSize: '1.125rem' }}>

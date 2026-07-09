@@ -64,35 +64,17 @@ function AboutSection() {
               justifyContent: 'center'
             }}
           >
-            {/* Background Drum 2 (Mango Pulp) */}
+            {/* About Us Cover Image */}
             <img
-              src="/assets/images/products/pulp/kesarmangopulpdrum.webp"
-              alt="Industrial Mango Pulp Drum"
+              src="/assets/images/products/coverimgaboutus.png"
+              alt="About AIVA Enterprises"
               loading="lazy"
               style={{
-                position: 'absolute',
-                width: '60%',
-                right: '5%',
-                top: '5%',
-                zIndex: 1,
-                filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.3)) blur(2px)',
-                opacity: 0.8
-              }}
-            />
-
-            {/* Foreground Drum 1 (Tomato Paste) */}
-            <img
-              src="/assets/images/products/pulp/tomatopastedrum.webp"
-              alt="Industrial Tomato Paste Drum"
-              loading="lazy"
-              style={{
-                position: 'absolute',
-                width: '65%',
-                left: '10%',
-                top: '15%',
-                zIndex: 2,
-                filter: 'drop-shadow(0 30px 40px rgba(0,0,0,0.4))',
-                opacity: 1
+                width: '100%',
+                height: 'auto',
+                borderRadius: '16px',
+                objectFit: 'cover',
+                filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.3))'
               }}
             />
           </div>
