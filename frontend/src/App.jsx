@@ -11,6 +11,7 @@ import About from './pages/About';
 import ChatbotLogin from './pages/chatbot/ChatbotLogin';
 import ChatbotApp from './pages/chatbot/ChatbotApp';
 import PublicLayout from './components/PublicLayout';
+import GlobalErrorBoundary from './components/GlobalErrorBoundary';
 import { ThemeProvider } from './contexts/ThemeContext';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -101,6 +102,7 @@ export const routes = [
   {
     path: '/',
     element: <AppRoot />,
+    errorElement: <GlobalErrorBoundary />,
     children: [
       {
         element: <PublicLayout />,
