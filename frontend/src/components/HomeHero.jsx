@@ -116,14 +116,6 @@ function HomeHero() {
           height="600"
           data-speed="-1.2"
         />
-        <img
-          src="/assets/images/products/pulp/papayapulp.webp"
-          className="float-item f-papaya"
-          alt="Papaya Pulp Supplier"
-          width="400"
-          height="600"
-          data-speed="1.8"
-        />
       </div>
     </section>
   );
