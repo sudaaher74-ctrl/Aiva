@@ -12,7 +12,7 @@ function Footer() {
           </div>
           <div className="footer-links">
             <h3>Quick Links</h3>
-            <Link to="/#about">About Us</Link>
+            <Link to="/about">About Us</Link>
             <Link to="/products">Products</Link>
             <Link to="/#quality">Certifications</Link>
             <Link to="#contact">Contact</Link>

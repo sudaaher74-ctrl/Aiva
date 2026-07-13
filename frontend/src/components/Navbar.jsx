@@ -43,7 +43,7 @@ function Navbar() {
               <Link to="/products#vegetables" onClick={closeMenu}>IQF Vegetables</Link>
             </div>
           </div>
-          <Link to="/#about" onClick={closeMenu}>About Us</Link>
+          <Link to="/about" onClick={closeMenu}>About Us</Link>
           <Link to="/#contact" onClick={closeMenu}>Contact</Link>
         </nav>
         <div className="nav-actions">
