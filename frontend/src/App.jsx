@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
 import About from './pages/About';
+import Contact from './pages/Contact';
 import ChatbotLogin from './pages/chatbot/ChatbotLogin';
 import ChatbotApp from './pages/chatbot/ChatbotApp';
 import PublicLayout from './components/PublicLayout';
@@ -111,7 +112,7 @@ export const routes = [
           { path: '/products', element: <Products /> },
           { path: '/products/:slug', element: <ProductRouteHandler /> },
           { path: '/about', element: <About /> },
-          { path: '/contact', element: <About /> }, // Uses About as fallback for Contact if none exists natively
+          { path: '/contact', element: <Contact /> },
           { path: '/products.html', element: <Products /> },
         ]
       },
