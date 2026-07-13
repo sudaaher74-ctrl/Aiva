@@ -54,7 +54,7 @@ function WhyChooseUs() {
               <i className="ph ph-globe-hemisphere-west"></i>
             </div>
             <h3>Global Compliance</h3>
-            <p>Strict adherence to FSSC, ISO, HACCP, BRC, Etc.</p>
+            <p>Strict adherence to FSSAI, APEDA, BRC, FSSC 22000, ISO 22000, ISO 14001, GLOBALG.A.P., Halal, Kosher, SGF, and AQA.</p>
           </div>
           <div className="feature-card">
             <div className="feature-icon">
