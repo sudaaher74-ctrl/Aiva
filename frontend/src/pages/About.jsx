@@ -172,16 +172,16 @@ const About = () => {
         <div className="cert-grid">
           {[
             { name: 'FSSAI', img: 'FSSAI.png' },
-            { name: 'APEDA', img: 'APEDA' },
-            { name: 'BRCGS', img: 'BRCGS' },
-            { name: 'FSSC 22000', img: 'FSSC 22000' },
-            { name: 'ISO 22000', img: 'ISO_22000.png' },
-            { name: 'ISO 14001', img: 'ISO_14001.png' },
-            { name: 'GLOBALG.A.P.', img: 'GLOBAL G.A.P.' },
-            { name: 'Halal', img: 'Halal.png' },
-            { name: 'Kosher', img: 'Kosher.png' },
-            { name: 'SGF', img: 'SGF' },
-            { name: 'AQA', img: 'AQA.png' }
+            { name: 'APEDA', img: 'apeda.png' },
+            { name: 'BRCGS', img: 'BRCGS.png' },
+            { name: 'FSSC 22000', img: 'FSSC.png' },
+            { name: 'ISO 22000', img: 'ISO22000.png' },
+            { name: 'ISO 14001', img: 'iso14001.png' },
+            { name: 'GLOBALG.A.P.', img: 'golbal gap.png' },
+            { name: 'Halal', img: 'halal.png' },
+            { name: 'Kosher', img: 'kosher.png' },
+            { name: 'SGF', img: 'sgf.png' },
+            { name: 'AQA', img: 'aqa.png' }
           ].map((cert, index) => {
             const isLocal = cert.img.endsWith('.png') || cert.img.endsWith('.svg');
             const imgSrc = isLocal
