@@ -52,49 +52,6 @@ const Contact = () => {
       {/* Main Content */}
       <section className="contact-content">
         <div className="contact-container">
-          {/* Info Side */}
-          <div className="contact-info">
-            <h2>Contact Information</h2>
-            <p>We operate globally with a strong presence in premium food markets. Reach out to us directly or fill out the form.</p>
-            
-            <div className="info-cards">
-              <div className="info-card">
-                <div className="icon-wrapper">
-                  <i className="ph ph-envelope-simple"></i>
-                </div>
-                <div>
-                  <h3>Email</h3>
-                  <a href="mailto:sales@aivaenterprises.com">sales@aivaenterprises.com</a>
-                </div>
-              </div>
-
-              <div className="info-card">
-                <div className="icon-wrapper">
-                  <i className="ph ph-phone"></i>
-                </div>
-                <div>
-                  <h3>Phone</h3>
-                  <a href="tel:+919876543210">+91 98765 43210</a>
-                </div>
-              </div>
-
-              <div className="info-card">
-                <div className="icon-wrapper">
-                  <i className="ph ph-map-pin"></i>
-                </div>
-                <div>
-                  <h3>Headquarters</h3>
-                  <p>AIVA Enterprises<br/>Industrial Area, Phase 1<br/>Mumbai, Maharashtra, India</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="business-hours">
-              <h3>Business Hours</h3>
-              <p>Monday - Friday: 9:00 AM - 6:00 PM (IST)<br/>Saturday - Sunday: Closed</p>
-            </div>
-          </div>
-
           {/* Form Side */}
           <div className="contact-form-wrapper">
             {isSubmitted ? (
