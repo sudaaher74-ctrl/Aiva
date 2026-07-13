@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
-import './About.css'; 
+import './About.css';
 
 const About = () => {
   return (
     <div className="about-page">
-      <SEO 
+      <SEO
         title="About Us | Premium Fruit Pulp Manufacturer"
         description="Learn about AIVA Enterprises, our history, our state-of-the-art facilities, and our commitment to premium global exports of fruit pulps and IQF fruits."
         canonicalUrl="/about"
@@ -133,7 +133,7 @@ const About = () => {
             <span className="eyebrow">Our Promise</span>
             <h2>Why choose AIVA</h2>
             <p>
-              AIVA Enterprises was founded on one simple belief — quality should never be compromised. As a Food Technologist with international exposure, founder Aishwarya Ingale understands the importance of safe, consistent, high-quality food ingredients. That is why we partner only with trusted manufacturers who share our commitment to excellence, ethical sourcing, and uncompromising quality.
+              AIVA Enterprises was founded on one simple belief  quality should never be compromised. As a Food Technologist with international exposure, founder Aishwarya Ingale understands the importance of safe, consistent, high-quality food ingredients. That is why we partner only with trusted manufacturers who share our commitment to excellence, ethical sourcing, and uncompromising quality.
             </p>
           </div>
           <div className="promise-features">
@@ -168,7 +168,7 @@ const About = () => {
         <p>
           Our product range is supported by globally recognized certifications and compliance standards — giving our customers the confidence to choose AIVA with trust.
         </p>
-        
+
         <div className="cert-grid">
           {[
             { name: 'FSSAI', img: 'FSSAI.png' },
@@ -184,8 +184,8 @@ const About = () => {
             { name: 'AQA', img: 'AQA.png' }
           ].map((cert, index) => {
             const isLocal = cert.img.endsWith('.png') || cert.img.endsWith('.svg');
-            const imgSrc = isLocal 
-              ? `/assets/images/certs/${cert.img}` 
+            const imgSrc = isLocal
+              ? `/assets/images/certs/${cert.img}`
               : `https://ui-avatars.com/api/?name=${cert.name}&background=fff&color=d4af37&size=128&bold=true&font-size=0.33`;
             return (
               <div key={index} className="cert-item">
@@ -206,7 +206,7 @@ const About = () => {
           <h2>Industries we serve</h2>
           <p style={{ color: '#a0a0a0', marginTop: '16px' }}>AIVA proudly supplies premium processed food ingredients across a wide range of industries and applications.</p>
         </div>
-        
+
         <div className="industries-grid">
           {[
             { name: "Food & Beverage Manufacturing", icon: "ph-factory" },
