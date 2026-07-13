@@ -170,14 +170,31 @@ const About = () => {
         </p>
         
         <div className="cert-grid">
-          {['FSSAI', 'APEDA', 'BRC', 'FSSC 22000', 'ISO 22000', 'ISO 14001', 'GLOBALG.A.P.', 'Halal', 'Kosher', 'SGF', 'AQA'].map((cert, index) => (
-            <div key={index} className="cert-item">
-              <div className="cert-circle">
-                <i className="ph ph-check-circle"></i>
-                <span>{cert}</span>
+          {[
+            { name: 'FSSAI', img: 'FSSAI.svg' },
+            { name: 'APEDA', img: 'APEDA.svg' },
+            { name: 'BRCGS', img: 'BRCGS' },
+            { name: 'FSSC 22000', img: 'FSSC 22000' },
+            { name: 'ISO 22000', img: 'ISO_22000.svg' },
+            { name: 'ISO 14001', img: 'ISO_14001.svg' },
+            { name: 'GLOBALG.A.P.', img: 'GLOBAL G.A.P.' },
+            { name: 'Halal', img: 'Halal_certification.svg' },
+            { name: 'Kosher', img: 'Kosher_certification.svg' },
+            { name: 'SGF', img: 'SGF' },
+            { name: 'AQA', img: 'AQA_certification.svg' }
+          ].map((cert, index) => {
+            const isLocal = cert.img.endsWith('.png') || cert.img.endsWith('.svg');
+            const imgSrc = isLocal 
+              ? `/assets/images/certs/${cert.img}` 
+              : `https://ui-avatars.com/api/?name=${cert.name}&background=fff&color=333&size=128&bold=true&font-size=0.3`;
+            return (
+              <div key={index} className="cert-item">
+                <div className="cert-circle">
+                  <img src={imgSrc} alt={`${cert.name} Certification`} className="cert-logo" />
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
