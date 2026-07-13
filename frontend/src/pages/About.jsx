@@ -92,13 +92,24 @@ const About = () => {
           
           <h3 style={{ fontSize: '2rem', margin: '60px 0 32px', color: 'var(--text-primary)' }}>Quality Commitment</h3>
           <p style={{ color: 'var(--text-secondary)', lineHeight: '1.8', fontSize: '1.1rem', marginBottom: '40px' }}>
-            We adhere strictly to international food safety and quality standards, ensuring that our products meet the regulatory requirements of global markets.
+            At AIVA Enterprises, quality is at the heart of every decision we make. From the products we offer to the partners we work with, we are committed to delivering ingredients that meet the highest standards of safety, consistency, and reliability. Our product range is supported by globally recognized certifications and compliance standards, including FSSAI, APEDA, BRC, FSSC 22000, ISO 22000, ISO 14001, GLOBALG.A.P., Halal, Kosher, SGF, and AQA, giving our customers the confidence to choose AIVA with trust.
           </p>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '40px', flexWrap: 'wrap' }}>
-            <div style={{ width: '120px', height: '120px', borderRadius: '50%', background: 'var(--bg-dark)', border: '1px solid var(--border-subtle)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-primary)', fontWeight: 'bold', transition: 'all 0.3s ease', cursor: 'default' }}>ISO 22000</div>
-            <div style={{ width: '120px', height: '120px', borderRadius: '50%', background: 'var(--bg-dark)', border: '1px solid var(--border-subtle)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-primary)', fontWeight: 'bold', transition: 'all 0.3s ease', cursor: 'default' }}>HACCP</div>
-            <div style={{ width: '120px', height: '120px', borderRadius: '50%', background: 'var(--bg-dark)', border: '1px solid var(--border-subtle)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-primary)', fontWeight: 'bold', transition: 'all 0.3s ease', cursor: 'default' }}>FSSAI</div>
-            <div style={{ width: '120px', height: '120px', borderRadius: '50%', background: 'var(--bg-dark)', border: '1px solid var(--border-subtle)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-primary)', fontWeight: 'bold', transition: 'all 0.3s ease', cursor: 'default' }}>FDA</div>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
+            {['FSSAI', 'APEDA', 'BRC', 'FSSC 22000', 'ISO 22000', 'ISO 14001', 'GLOBALG.A.P.', 'Halal', 'Kosher', 'SGF', 'AQA'].map((cert, index) => (
+              <div key={index} style={{ padding: '12px 24px', borderRadius: '30px', background: 'var(--bg-dark)', border: '1px solid var(--border-subtle)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-primary)', fontWeight: 'bold', transition: 'all 0.3s ease', cursor: 'default', fontSize: '0.9rem', letterSpacing: '0.05em' }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.borderColor = 'var(--accent-gold)';
+                e.currentTarget.style.color = 'var(--accent-gold)';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.borderColor = 'var(--border-subtle)';
+                e.currentTarget.style.color = 'var(--text-primary)';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}>
+                {cert}
+              </div>
+            ))}
           </div>
         </div>
       </section>
