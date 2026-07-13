@@ -178,10 +178,10 @@ const About = () => {
             { name: 'ISO 22000', img: 'ISO22000.png' },
             { name: 'ISO 14001', img: 'iso14001.png' },
             { name: 'GLOBALG.A.P.', img: 'golbal gap.png' },
-            { name: 'Halal', img: 'halal.png' },
-            { name: 'Kosher', img: 'kosher.png' },
+            { name: 'Halal', img: 'halal_cert.png' },
+            { name: 'Kosher', img: 'kosher_cert.png' },
             { name: 'SGF', img: 'sgf.png' },
-            { name: 'AQA', img: 'aqa.png' }
+            { name: 'AQA', img: 'aqa_cert.png' }
           ].map((cert, index) => {
             const isLocal = cert.img.endsWith('.png') || cert.img.endsWith('.svg');
             const imgSrc = isLocal
