@@ -13,17 +13,17 @@
     --c-grey: #888888;
     
     /* Brand Colors */
-    --c-mango: #ffb800;
+    --c-mango: #F4A300;
     --c-orange: #ff6b00;
     --c-green: #2ecc71;
     
     /* Typography */
-    --font-heading: 'Outfit', sans-serif;
-    --font-body: 'Outfit', sans-serif;
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Poppins', sans-serif;
     
     /* Spacing & Layout */
     --container-w: 1400px;
-    --section-pad: 8rem 0;
+    --section-pad: 100px 0;
     
     /* Transitions */
     --t-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -44,9 +44,11 @@ html {
 
 body {
     font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 400;
     color: var(--c-white);
     background-color: var(--c-black);
-    line-height: 1.6;
+    line-height: 1.8;
     overflow-x: hidden;
 }
 
@@ -77,33 +79,57 @@ button {
 }
 
 /* --- Typography --- */
-h1, h2, h3, h4, h5, h6 {
+h1, .hero-title, .prod-hero-title {
     font-family: var(--font-heading);
+    font-size: 72px;
+    font-weight: 800;
     line-height: 1.1;
-    font-weight: 700;
+    letter-spacing: -2px;
+    margin-bottom: 32px;
 }
 
-.section-subtitle {
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--c-mango);
+h2, .section-title {
+    font-family: var(--font-heading);
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+h3, .section-subtitle {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 700;
     margin-bottom: 1rem;
+    color: var(--c-mango);
+}
+
+h4 {
+    font-family: var(--font-heading);
+    font-size: 24px;
     font-weight: 600;
 }
 
-.section-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    margin-bottom: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
+p {
+    margin-bottom: 18px;
 }
 
-.section-desc {
-    font-size: 1.125rem;
-    color: var(--c-grey);
-    max-width: 600px;
-    margin-bottom: 2rem;
+.body-large, .hero-description, .prod-hero-subtitle, .section-desc {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.small-desc {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+.card-title, .product-name {
+    font-size: 24px;
+    font-weight: 600;
 }
 
 .text-center { text-align: center; }
@@ -149,10 +175,10 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem 2rem;
-    border-radius: 100px;
+    padding: 16px 36px;
+    border-radius: 999px;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 17px;
     transition: var(--t-fast);
     position: relative;
     overflow: hidden;
@@ -162,6 +188,8 @@ h1, h2, h3, h4, h5, h6 {
 .btn-primary {
     background-color: var(--c-mango);
     color: var(--c-black);
+    font-size: 18px;
+    padding: 18px 40px;
 }
 
 .btn-primary:hover {
@@ -169,7 +197,7 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(-2px);
 }
 
-.btn-outline {
+.btn-outline, .btn-secondary {
     border: 1px solid rgba(255,255,255,0.3);
     color: var(--c-white);
 }
@@ -293,10 +321,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-links a {
     color: var(--c-white);
-    font-size: 0.9rem;
+    font-size: 17px;
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.5px;
     position: relative;
 }
 
@@ -354,7 +382,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-dropdown .dropdown-menu a {
     padding: 0.8rem 1.5rem;
-    font-size: 0.8rem;
+    font-size: 16px;
+    font-weight: 500;
     color: rgba(255, 255, 255, 0.8);
     white-space: nowrap;
 }
@@ -1019,8 +1048,16 @@ h1, h2, h3, h4, h5, h6 {
     padding: 1rem 1.25rem;
     color: var(--c-white);
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: 16px;
+    font-weight: 500;
     transition: var(--t-fast);
+}
+
+.luxury-form input::placeholder,
+.luxury-form textarea::placeholder {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--c-grey);
 }
 
 .luxury-form input:focus, 
@@ -1035,6 +1072,8 @@ h1, h2, h3, h4, h5, h6 {
     left: 1.25rem;
     top: 1rem;
     color: var(--c-grey);
+    font-size: 16px;
+    font-weight: 500;
     transition: var(--t-fast);
     pointer-events: none;
 }
@@ -1044,7 +1083,7 @@ h1, h2, h3, h4, h5, h6 {
 .luxury-form textarea:focus ~ label,
 .luxury-form textarea:not(:placeholder-shown) ~ label {
     top: -0.5rem;
-    font-size: 0.8rem;
+    font-size: 12px;
     color: var(--c-mango);
 }
 
@@ -1086,7 +1125,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer-links h3, .footer-social h3 {
-    font-size: 1.2rem;
+    font-size: 22px;
+    font-weight: 600;
     margin-bottom: 1.5rem;
     color: var(--c-mango);
 }
@@ -1096,6 +1136,8 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--c-grey);
     margin-bottom: 1rem;
     transition: var(--t-fast);
+    font-size: 16px;
+    font-weight: 400;
 }
 
 .footer-links a:hover {
@@ -1132,7 +1174,8 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: space-between;
     align-items: center;
     color: var(--c-grey);
-    font-size: 0.9rem;
+    font-size: 14px;
+    font-weight: 400;
 }
 
 .footer-legal a {
@@ -1366,12 +1409,36 @@ h1, h2, h3, h4, h5, h6 {
         display: none;
     }
 
-    .mobile-bottom-nav .nav-item.active {
-        color: var(--c-mango);
-    }
-    
     .mobile-bottom-nav .nav-item.active i {
-        /* Add a subtle glow to the active icon */
-        text-shadow: 0 0 10px rgba(255, 184, 0, 0.5);
+        color: var(--c-mango) !important;
+        transform: scale(1.1);
     }
+}
+
+/* --- Responsive Typography Scale --- */
+
+/* Laptop (1024px - 1439px) - Reduce headings by ~10% */
+@media (max-width: 1439px) {
+    h1, .hero-title, .prod-hero-title { font-size: 64px; }
+    h2, .section-title { font-size: 43px; }
+    h3, .section-subtitle { font-size: 28px; }
+}
+
+/* Tablet (768px - 1023px) - Reduce headings by ~20% */
+@media (max-width: 1023px) {
+    .section-padding { padding: 80px 0; }
+    h1, .hero-title, .prod-hero-title { font-size: 52px; }
+    h2, .section-title { font-size: 40px; }
+    h3, .section-subtitle { font-size: 28px; }
+}
+
+/* Mobile (below 768px) */
+@media (max-width: 767px) {
+    body { font-size: 16px; }
+    .section-padding { padding: 60px 0; }
+    h1, .hero-title, .prod-hero-title { font-size: 38px; }
+    h2, .section-title { font-size: 30px; }
+    h3, .section-subtitle { font-size: 24px; }
+    .body-large, .hero-description, .prod-hero-subtitle, .section-desc { font-size: 18px; }
+    .btn { font-size: 16px; }
 }

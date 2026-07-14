@@ -63,8 +63,10 @@ body.dark-theme .btn-outline:hover {
     padding: 0.5rem 1rem;
     border: 1px solid rgba(255, 184, 0, 0.3);
     border-radius: 50px;
-    font-size: 0.85rem;
-    letter-spacing: 0.1em;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
     color: #ffb800;
     margin-bottom: 1.5rem;
     background: rgba(255, 184, 0, 0.05);
@@ -72,12 +74,7 @@ body.dark-theme .btn-outline:hover {
 }
 
 .prod-hero-title {
-    font-size: clamp(3rem, 5vw, 4.5rem);
-    line-height: 1.1;
     color: #fff;
-    margin-bottom: 1.5rem;
-    font-family: 'Outfit', sans-serif;
-    font-weight: 700;
 }
 
 .prod-hero-title .highlight {
@@ -87,11 +84,7 @@ body.dark-theme .btn-outline:hover {
 }
 
 .prod-hero-subtitle {
-    font-size: 1.125rem;
-    color: rgba(255, 255, 255, 0.7);
-    max-width: 500px;
-    margin-bottom: 2.5rem;
-    line-height: 1.6;
+    /* Styles are managed globally in styles.css */
 }
 
 .prod-hero-composition {
@@ -357,22 +350,23 @@ body.dark-theme .btn-outline:hover {
 
 .p-info h3 {
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 24px;
+    font-weight: 600;
     margin-bottom: 0.8rem;
 }
 
 .p-desc {
     color: rgba(255,255,255,0.6);
-    font-size: 0.95rem;
+    font-size: 15px;
     margin-bottom: 1.5rem;
-    line-height: 1.5;
+    line-height: 1.7;
 }
 
 .p-specs {
     list-style: none;
     padding: 0;
     margin: 0 0 1.5rem 0;
-    font-size: 0.9rem;
+    font-size: 15px;
     color: rgba(255,255,255,0.8);
     display: flex;
     flex-direction: column;
@@ -397,7 +391,7 @@ body.dark-theme .btn-outline:hover {
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 16px;
-    padding: 2rem;
+    padding: 32px;
     text-align: center;
     transition: border-color 0.3s ease, transform 0.3s ease;
 }
@@ -415,8 +409,8 @@ body.dark-theme .btn-outline:hover {
 
 .glass-panel h3 {
     color: #fff;
-    font-size: 1.1rem;
-    font-weight: 500;
+    font-size: 22px;
+    font-weight: 600;
 }
 
 /* --------------------------------------------------------
@@ -435,7 +429,7 @@ body.dark-theme .btn-outline:hover {
     color: #ffb800;
     font-weight: 700;
     letter-spacing: 0.15em;
-    font-size: 0.9rem;
+    font-size: 15px;
     text-transform: uppercase;
     display: block;
     margin-bottom: 1rem;
@@ -443,11 +437,6 @@ body.dark-theme .btn-outline:hover {
 
 .standards-title {
     color: #050505;
-    font-family: 'Outfit', sans-serif;
-    font-size: clamp(2.5rem, 4vw, 3.5rem);
-    font-weight: 800;
-    line-height: 1.2;
-    margin: 0;
 }
 
 .standards-grid {
@@ -459,7 +448,7 @@ body.dark-theme .btn-outline:hover {
 .standard-card {
     background-color: #ffffff;
     border-radius: 24px;
-    padding: 3rem 2rem;
+    padding: 32px;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -478,16 +467,15 @@ body.dark-theme .btn-outline:hover {
 
 .standard-card h3 {
     color: #050505;
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: 22px;
+    font-weight: 600;
     margin-bottom: 1rem;
-    font-family: 'Outfit', sans-serif;
 }
 
 .standard-card p {
     color: #666;
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: 15px;
+    line-height: 1.7;
     margin: 0;
 }
 
