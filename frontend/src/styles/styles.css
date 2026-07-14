@@ -114,7 +114,7 @@ p {
     margin-bottom: 18px;
 }
 
-.body-large, .hero-description, .prod-hero-subtitle, .section-desc {
+.body-large, .hero-subtitle, .hero-description, .prod-hero-subtitle, .section-desc {
     font-size: 20px;
     font-weight: 400;
     line-height: 1.8;
@@ -549,10 +549,7 @@ p {
 }
 
 .hero-subtitle {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 1.125rem;
     margin-bottom: 2.5rem;
-    line-height: 1.6;
     max-width: 500px;
 }
 
@@ -1208,15 +1205,9 @@ p {
         z-index: 10;
     }
     .hero-title {
-        font-size: 36px;
-        line-height: 1.1;
-        letter-spacing: -0.03em;
-        font-weight: 800;
         margin-top: 1rem;
     }
     .hero-subtitle {
-        font-size: 1rem;
-        line-height: 1.5;
         margin-bottom: 2rem;
         max-width: 80%;
     }
@@ -1433,6 +1424,6 @@ p {
     h1, .hero-title, .prod-hero-title { font-size: 38px; }
     h2, .section-title { font-size: 30px; }
     h3, .section-subtitle { font-size: 24px; }
-    .body-large, .hero-description, .prod-hero-subtitle, .section-desc { font-size: 18px; }
+    .body-large, .hero-subtitle, .hero-description, .prod-hero-subtitle, .section-desc { font-size: 18px; }
     .btn { font-size: 16px; }
 }
