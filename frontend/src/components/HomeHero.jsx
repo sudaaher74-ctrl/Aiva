@@ -20,6 +20,12 @@ function HomeHero() {
           { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: 'power4.out' }
         )
         .fromTo(
+          '.hero-description',
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
+          '-=0.6'
+        )
+        .fromTo(
           '.hero-buttons',
           { y: 30, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
@@ -82,6 +88,9 @@ function HomeHero() {
           <br aria-hidden="true" />
           <span className="reveal-text highlight" aria-hidden="true">The Standard.</span>
         </h1>
+        <p className="hero-description reveal-text delay-1" style={{ fontSize: '1.1rem', opacity: 0.9, maxWidth: '600px', marginBottom: '2rem', marginTop: '1.5rem', lineHeight: '1.6' }}>
+          We believe great ingredients create great products. That's why every decision we make is guided by quality, transparency, and a commitment to building long term partnerships.
+        </p>
         <div className="hero-buttons reveal-text delay-2">
           <Link to="/products" className="btn btn-primary">
             Explore Products
