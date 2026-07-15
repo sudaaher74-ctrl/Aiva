@@ -87,7 +87,7 @@ function AboutSection() {
             Quality Standards
           </h2>
           <p className="section-desc" style={{ marginBottom: '1.5rem' }}>
-            AIVA Enterprises specializes in aseptic fruit products, concentrates, purees, frozen products, and IQF fruits and vegetables, delivering reliable ingredient solutions that preserve quality, freshness, and consistency from source to supply.
+            AIVA Enterprises specializes in aseptic fruit pulps, purees, and concentrates, along with IQF and blast-frozen fruits and vegetables, delivering reliable ingredient solutions that preserve quality, freshness, and consistency from source to supply.
           </p>
 
           <div className="stats-grid">
