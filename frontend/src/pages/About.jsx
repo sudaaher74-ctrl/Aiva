@@ -58,27 +58,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Stats Bar */}
-      <section className="stats-bar">
-        <div className="stats-grid">
-          <div className="stat-item">
-            <div className="stat-number">25+</div>
-            <div className="stat-label">Countries Served</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-number">50+</div>
-            <div className="stat-label">Premium Commodities</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-number">10k+</div>
-            <div className="stat-label">Tons Shipped Annually</div>
-          </div>
-          <div className="stat-item">
-            <div className="stat-number">100%</div>
-            <div className="stat-label">Quality Guarantee</div>
-          </div>
-        </div>
-      </section>
 
       {/* Our Story */}
       <section className="story-section" id="story">
