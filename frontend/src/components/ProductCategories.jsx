@@ -92,7 +92,7 @@ function ProductCategories() {
           <h4 className="section-subtitle"></h4>
           <h2 className="section-title text-light">Product Categories</h2>
           <p className="section-desc text-light-dim">
-            Explore our diverse range of export-quality fruit processing solutions.
+            Explore our diverse range of high quality fruits & vegetable  processing solutions.
           </p>
         </div>
 
@@ -111,7 +111,7 @@ function ProductCategories() {
             image="/assets/images/products/pulp/kesarmangopulp.webp"
             alt="Aseptic pulp/paste"
             title="Aseptic pulp/paste"
-            desc="High-quality fruit pulps, purees, and pastes packaged under sterile conditions."
+            desc="High quality fruit pulp, puree, and paste packaged under sterile conditions."
             to="/products#aseptic"
           />
           <CategoryCard
@@ -120,7 +120,7 @@ function ProductCategories() {
             image="/assets/images/products/iqf_fruites/strawberryIQF.webp"
             alt="IQF Products"
             title="IQF fruits"
-            desc="Individually Quick Frozen whole fruits and dices locking in pure flavor."
+            desc="Individually Quick Frozen fruits & vegitables and locking in real flavor."
             to="/products#iqf-fruits"
           />
           <CategoryCard
@@ -129,7 +129,7 @@ function ProductCategories() {
             image="/assets/images/products/iqf_frozen/mint.png"
             alt="Frozen"
             title="Frozen"
-            desc="Premium frozen products ensuring long shelf life and consistent quality year-round."
+            desc="Premium frozen products ensuring long shelf life and consistent quality year round."
             to="/products#iqf-frozen"
           />
         </div>
