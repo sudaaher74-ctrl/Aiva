@@ -2,6 +2,15 @@
    AIVA Enterprises - Premium Export Website Styles
    ========================================================================== */
 
+/* ==========================================================================
+   ✏️  FONT — Change the font for the ENTIRE website here (one place only)
+   1. Update the Google Fonts URL below to load your new font
+   2. Update --font-heading and --font-body variables to match
+   Example: swap 'Plus+Jakarta+Sans' → 'Inter' in the URL, and
+            'Plus Jakarta Sans' → 'Inter' in the variables below
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
 /* --- Variables --- */
 :root {
     /* Color Palette */
@@ -17,7 +26,7 @@
     --c-orange: #ff6b00;
     --c-green: #2ecc71;
     
-    /* Typography */
+    /* ✏️ Typography — update these when you change the font above */
     --font-heading: 'Plus Jakarta Sans', sans-serif;
     --font-body: 'Plus Jakarta Sans', sans-serif;
     
