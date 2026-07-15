@@ -37,59 +37,59 @@ function ProductCategories() {
   const sectionRef = useRef(null);
 
   useGSAP(() => {
-      // Interactive Cards (hover glow — theme-neutral)
-      const cards = document.querySelectorAll('.product-card');
-      cards.forEach((card) => {
-        card.addEventListener('mouseenter', () => {
-          const color = card.getAttribute('data-color');
-          gsap.to(card.querySelector('.card-bg'), {
-            opacity: 1,
-            background: `radial-gradient(circle at top right, ${color}33, transparent 70%)`,
-            duration: 0.4,
-          });
-          gsap.to(card.querySelector('.product-image-wrap img'), {
-            scale: 1.05,
-            duration: 0.6,
-            ease: 'power2.out',
-          });
+    // Interactive Cards (hover glow — theme-neutral)
+    const cards = document.querySelectorAll('.product-card');
+    cards.forEach((card) => {
+      card.addEventListener('mouseenter', () => {
+        const color = card.getAttribute('data-color');
+        gsap.to(card.querySelector('.card-bg'), {
+          opacity: 1,
+          background: `radial-gradient(circle at top right, ${color}33, transparent 70%)`,
+          duration: 0.4,
         });
-
-        card.addEventListener('mouseleave', () => {
-          gsap.to(card.querySelector('.card-bg'), {
-            opacity: 0,
-            duration: 0.4,
-          });
-          gsap.to(card.querySelector('.product-image-wrap img'), {
-            scale: 1,
-            duration: 0.6,
-            ease: 'power2.out',
-          });
+        gsap.to(card.querySelector('.product-image-wrap img'), {
+          scale: 1.05,
+          duration: 0.6,
+          ease: 'power2.out',
         });
       });
 
-      // Staggered Entry
-      gsap.fromTo(
-        '.product-card',
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.1,
+      card.addEventListener('mouseleave', () => {
+        gsap.to(card.querySelector('.card-bg'), {
+          opacity: 0,
+          duration: 0.4,
+        });
+        gsap.to(card.querySelector('.product-image-wrap img'), {
+          scale: 1,
+          duration: 0.6,
           ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '.product-grid',
-            start: 'top 80%',
-          },
-        }
-      );
+        });
+      });
+    });
+
+    // Staggered Entry
+    gsap.fromTo(
+      '.product-card',
+      { y: 50, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.product-grid',
+          start: 'top 80%',
+        },
+      }
+    );
   }, { scope: sectionRef });
 
   return (
     <section className="products section-padding dark-section" id="products" ref={sectionRef}>
       <div className="container">
         <div className="section-header text-center">
-          <h4 className="section-subtitle">Our Capabilities</h4>
+          <h4 className="section-subtitle"></h4>
           <h2 className="section-title text-light">Product Categories</h2>
           <p className="section-desc text-light-dim">
             Explore our diverse range of export-quality fruit processing solutions.
