@@ -69,7 +69,7 @@ function ProductHero() {
             AIVA Enterprises delivers world-class aseptic fruit pulps, concentrates, IQF fruits, and tomato processing
             solutions to international markets.
           </p>
-          <div className="hero-buttons reveal-text delay-2">
+          <div className="hero-buttons">
             <a href="#products" className="btn btn-primary">
               Explore Products
             </a>
