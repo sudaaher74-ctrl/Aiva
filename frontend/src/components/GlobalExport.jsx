@@ -9,20 +9,20 @@ function GlobalExport() {
   const sectionRef = useRef(null);
 
   useGSAP(() => {
-      gsap.fromTo(
-        '.global-map-container',
-        { scale: 0.9, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 1,
-          duration: 1.5,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.global-map-container',
-            start: 'top 80%',
-          },
-        }
-      );
+    gsap.fromTo(
+      '.global-map-container',
+      { scale: 0.9, opacity: 0 },
+      {
+        scale: 1,
+        opacity: 1,
+        duration: 1.5,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.global-map-container',
+          start: 'top 80%',
+        },
+      }
+    );
   }, { scope: sectionRef });
 
   return (
@@ -31,7 +31,7 @@ function GlobalExport() {
         <h3 className="section-subtitle">Based in Navi Mumbai, Maharashtra</h3>
         <h2 className="section-title">Global Exporter from India</h2>
         <p style={{ maxWidth: '800px', margin: '0 auto 2rem', color: 'var(--text-secondary)' }}>
-          Operating from our strategic base in Navi Mumbai, Maharashtra, AIVA Enterprises connects the rich agricultural heritage of India with global markets. Our world-class supply chain ensures premium fruit pulps and IQF produce reach destinations worldwide with uncompromised quality.
+          Operating from our strategic base in Navi Mumbai, Maharashtra, AIVA Enterprises connects the rich agricultural heritage of India with global markets. Our world-class supply chain ensures premium fruit pulps and IQF products reaches destinations worldwide with uncompromised quality.
         </p>
 
         <div className="global-map-container reveal-scale" style={{ maxWidth: '1000px', margin: '1rem auto 0' }}>
