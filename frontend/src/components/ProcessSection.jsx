@@ -10,32 +10,32 @@ function ProcessSection() {
 
   useGSAP(() => {
     // Timeline Animation
-      gsap.fromTo(
-        '.timeline-item',
-        { x: -50, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.process-timeline',
-            start: 'top 70%',
-          },
-        }
-      );
-
-      gsap.to('.glass-panel', {
-        y: -30,
-        ease: 'none',
+    gsap.fromTo(
+      '.timeline-item',
+      { x: -50, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power3.out',
         scrollTrigger: {
-          trigger: '.process',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1,
+          trigger: '.process-timeline',
+          start: 'top 70%',
         },
-      });
+      }
+    );
+
+    gsap.to('.glass-panel', {
+      y: -30,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.process',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1,
+      },
+    });
   }, { scope: sectionRef });
 
   return (
@@ -54,17 +54,17 @@ function ProcessSection() {
               <div className="timeline-item">
                 <div className="timeline-dot"></div>
                 <h3>2. Sorting & Washing</h3>
-                <p>Multi-stage purification using advanced sorted machinery.</p>
+                <p>Multi-stage purification using advanced sorting  machinery.</p>
               </div>
               <div className="timeline-item">
                 <div className="timeline-dot"></div>
                 <h3>3. Extraction & Processing</h3>
-                <p>Cold-pressed extraction to retain color and natural vitamins.</p>
+                <p>State-of the-art aseptic , IQF & blast frezzing , technologis .</p>
               </div>
               <div className="timeline-item">
                 <div className="timeline-dot"></div>
-                <h3>4. Sterilization & Packaging</h3>
-                <p>Aseptic filling in hermetically sealed packaging.</p>
+                <h3>4. Packaging & Storage</h3>
+                <p>Aseptic drum packaging , frozen pouch packaging. thousand Empty storage capacity  respectively.</p>
               </div>
             </div>
           </div>
