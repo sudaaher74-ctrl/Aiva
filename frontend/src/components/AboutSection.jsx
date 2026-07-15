@@ -93,22 +93,22 @@ function AboutSection() {
           <div className="stats-grid">
             <div className="stat-item" style={{ display: 'flex', alignItems: 'center' }}>
               <p style={{ fontWeight: 600, fontSize: '1.1rem', color: 'var(--color-primary)' }}>
-                70 MT/Day Processing Capacity
+                70 MT/Day  Aseptice Processing Capacity
               </p>
             </div>
             <div className="stat-item" style={{ display: 'flex', alignItems: 'center' }}>
               <p style={{ fontWeight: 600, fontSize: '1.1rem', color: 'var(--color-primary)' }}>
-                IQF & Aseptic Technology-Driven Solutions
+                IQF & Blast frezzing Technology Driven Solutions
               </p>
             </div>
             <div className="stat-item" style={{ display: 'flex', alignItems: 'center' }}>
               <p style={{ fontWeight: 600, fontSize: '1.1rem', color: 'var(--color-primary)' }}>
-                Bulk Supply Industrial Packaging
+                Bulk Supply & Industrial Packaging
               </p>
             </div>
             <div className="stat-item" style={{ display: 'flex', alignItems: 'center' }}>
               <p style={{ fontWeight: 600, fontSize: '1.1rem', color: 'var(--color-primary)' }}>
-                Made to Spec Customized Requirements
+                Custom Products specification
               </p>
             </div>
           </div>
