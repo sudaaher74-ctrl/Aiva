@@ -9,51 +9,51 @@ function AboutSection() {
   const sectionRef = useRef(null);
 
   useGSAP(() => {
-      // Number Counter
-      const statItems = document.querySelectorAll('.stat-num');
-      statItems.forEach((stat) => {
-        const target = parseInt(stat.getAttribute('data-target'));
-        ScrollTrigger.create({
-          trigger: '.stats-grid',
-          start: 'top 80%',
-          onEnter: () => {
-            gsap.to(stat, {
-              innerHTML: target,
-              duration: 2,
-              snap: { innerHTML: 1 },
-              ease: 'power2.out',
-            });
-          },
-          once: true,
-        });
+    // Number Counter
+    const statItems = document.querySelectorAll('.stat-num');
+    statItems.forEach((stat) => {
+      const target = parseInt(stat.getAttribute('data-target'));
+      ScrollTrigger.create({
+        trigger: '.stats-grid',
+        start: 'top 80%',
+        onEnter: () => {
+          gsap.to(stat, {
+            innerHTML: target,
+            duration: 2,
+            snap: { innerHTML: 1 },
+            ease: 'power2.out',
+          });
+        },
+        once: true,
       });
+    });
 
-      // Scroll Reveals
-      const revealSections = document.querySelectorAll('.section-title, .section-subtitle, .section-desc');
-      revealSections.forEach((el) => {
-        gsap.fromTo(
-          el,
-          { opacity: 0, y: 50 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 85%',
-              toggleActions: 'play none none reverse',
-            },
-          }
-        );
-      });
+    // Scroll Reveals
+    const revealSections = document.querySelectorAll('.section-title, .section-subtitle, .section-desc');
+    revealSections.forEach((el) => {
+      gsap.fromTo(
+        el,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+    });
   }, { scope: sectionRef });
 
   return (
     <section className="about" id="about" ref={sectionRef} style={{ padding: '20px 0' }}>
       <div className="container split-layout" style={{ alignItems: 'center' }}>
         <div className="split-left">
-          <div 
+          <div
             className="image-composition"
             style={{
               position: 'relative',
@@ -81,7 +81,7 @@ function AboutSection() {
           </div>
         </div>
         <div className="split-right content-block">
-          <h3 className="section-subtitle" style={{ marginBottom: '0.5rem' }}>Premium Fruit Pulp Manufacturer</h3>
+          <h3 className="section-subtitle" style={{ marginBottom: '0.5rem' }}>Premium Agro Ingredients</h3>
           <h2 className="section-title" style={{ marginBottom: '1rem' }}>
             Cultivating Global <br />
             Quality Standards
