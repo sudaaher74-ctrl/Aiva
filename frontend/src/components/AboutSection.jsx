@@ -50,15 +50,15 @@ function AboutSection() {
   }, { scope: sectionRef });
 
   return (
-    <section className="about" id="about" ref={sectionRef} style={{ padding: '60px 0' }}>
-      <div className="container split-layout">
+    <section className="about" id="about" ref={sectionRef} style={{ padding: '20px 0' }}>
+      <div className="container split-layout" style={{ alignItems: 'center' }}>
         <div className="split-left">
           <div 
             className="image-composition"
             style={{
               position: 'relative',
               width: '100%',
-              minHeight: '420px',
+              minHeight: '350px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
@@ -70,22 +70,23 @@ function AboutSection() {
               alt="About AIVA Enterprises"
               loading="lazy"
               style={{
-                width: '120%',
+                width: '140%',
                 height: 'auto',
                 borderRadius: '16px',
                 objectFit: 'cover',
-                filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.5))'
+                filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.5))',
+                transform: 'scale(1.15) translateX(-8%)'
               }}
             />
           </div>
         </div>
         <div className="split-right content-block">
-          <h3 className="section-subtitle">Premium Fruit Pulp Manufacturer</h3>
-          <h2 className="section-title">
+          <h3 className="section-subtitle" style={{ marginBottom: '0.5rem' }}>Premium Fruit Pulp Manufacturer</h3>
+          <h2 className="section-title" style={{ marginBottom: '1rem' }}>
             Cultivating Global <br />
             Quality Standards
           </h2>
-          <p className="section-desc">
+          <p className="section-desc" style={{ marginBottom: '1.5rem' }}>
             AIVA Enterprises specializes in aseptic fruit products, concentrates, purees, frozen products, and IQF fruits and vegetables, delivering reliable ingredient solutions that preserve quality, freshness, and consistency from source to supply.
           </p>
 
