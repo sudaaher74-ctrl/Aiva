@@ -65,23 +65,6 @@ function HomeHero() {
       </div>
 
       <div className="container hero-content">
-        <div
-          className="premium-badge reveal-text"
-          style={{
-            display: 'inline-block',
-            padding: '0.5rem 1rem',
-            border: '1px solid var(--badge-border)',
-            borderRadius: '50px',
-            fontSize: '0.85rem',
-            letterSpacing: '0.1em',
-            color: 'var(--badge-color)',
-            marginBottom: '1.5rem',
-            background: 'var(--badge-bg)',
-            backdropFilter: 'blur(10px)',
-          }}
-        >
-          <span aria-hidden="true"></span>GLOBAL EXPORT QUALITY
-        </div>
         <h1 className="hero-title" style={{ position: 'relative' }}>
           <span style={{ position: 'absolute', width: 1, height: 1, padding: 0, margin: -1, overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', whiteSpace: 'nowrap', borderWidth: 0 }}>Premium Fruit Pulp Exporter India</span>
           <span className="reveal-text" aria-hidden="true">The Standard Behind</span>
