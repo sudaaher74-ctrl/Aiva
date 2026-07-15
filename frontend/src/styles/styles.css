@@ -712,13 +712,13 @@ p {
 .stats-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-top: 2rem;
+    gap: 1.2rem;
+    margin-top: 1rem;
 }
 
 .stat-item {
     border-top: 1px solid rgba(0,0,0,0.1);
-    padding-top: 1.5rem;
+    padding-top: 1rem;
 }
 
 .stat-num {

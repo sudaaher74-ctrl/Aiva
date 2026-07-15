@@ -50,7 +50,7 @@ function AboutSection() {
   }, { scope: sectionRef });
 
   return (
-    <section className="about section-padding" id="about" ref={sectionRef}>
+    <section className="about" id="about" ref={sectionRef} style={{ padding: '60px 0' }}>
       <div className="container split-layout">
         <div className="split-left">
           <div 
@@ -58,7 +58,7 @@ function AboutSection() {
             style={{
               position: 'relative',
               width: '100%',
-              minHeight: '550px',
+              minHeight: '420px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
@@ -70,11 +70,11 @@ function AboutSection() {
               alt="About AIVA Enterprises"
               loading="lazy"
               style={{
-                width: '100%',
+                width: '120%',
                 height: 'auto',
                 borderRadius: '16px',
                 objectFit: 'cover',
-                filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.3))'
+                filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.5))'
               }}
             />
           </div>
