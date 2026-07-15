@@ -24,7 +24,7 @@
   padding: 48px 56px;
   border-radius: 8px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-  font-family: 'Inter', 'Outfit', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   line-height: 1.5;
 }
 
@@ -177,7 +177,7 @@
 }
 .po-terms pre {
   white-space: pre-wrap;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 0.78rem;
   color: #444;
   line-height: 1.7;

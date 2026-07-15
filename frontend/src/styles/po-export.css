@@ -1,7 +1,7 @@
 /* ============================================================
    Professional Export PO Generator Styles
    ============================================================ */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
   --po-primary: #0B2C5D; /* Navy Blue */
@@ -9,8 +9,8 @@
   --po-text: #1a1a1a;
   --po-text-light: #555555;
   --po-border: #E2E8F0;
-  --po-font-body: 'Inter', sans-serif;
-  --po-font-heading: 'Montserrat', sans-serif;
+  --po-font-body: 'Plus Jakarta Sans', sans-serif;
+  --po-font-heading: 'Plus Jakarta Sans', sans-serif;
 }
 
 /* Generator Layout (Split Screen) */

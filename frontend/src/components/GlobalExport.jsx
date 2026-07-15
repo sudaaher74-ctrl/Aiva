@@ -88,7 +88,7 @@ function GlobalExport() {
               <circle cx="600" cy="75" r="4" fill="var(--map-dot-fill)" stroke="var(--c-mango)" strokeWidth="2" className="map-dot" />
             </g>
 
-            <text x="640" y="215" textAnchor="middle" fill="var(--c-mango)" fontFamily="Outfit, sans-serif" fontSize="11" fontWeight="700" letterSpacing="0.1em">
+            <text x="640" y="215" textAnchor="middle" fill="var(--c-mango)" fontFamily="'Plus Jakarta Sans', sans-serif" fontSize="11" fontWeight="700" letterSpacing="0.1em">
               INDIA
             </text>
           </svg>
