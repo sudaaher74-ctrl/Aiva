@@ -91,7 +91,7 @@ function HomeHero() {
         <p className="hero-subtitle reveal-text delay-1">
           We believe great ingredients create great products. That's why every decision we make is guided by quality, transparency, and a commitment to building long term partnerships.
         </p>
-        <div className="hero-buttons reveal-text delay-2">
+        <div className="hero-buttons">
           <Link to="/products" className="btn btn-primary">
             Explore Products
           </Link>
