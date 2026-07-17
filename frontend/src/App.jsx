@@ -21,7 +21,7 @@ gsap.registerPlugin(ScrollTrigger);
 export function AppRoot() {
   const location = useLocation();
   const [hasLaunched, setHasLaunched] = useState(
-    typeof window !== 'undefined' ? localStorage.getItem('aiva_launched') === 'true' : false
+    typeof window !== 'undefined' ? localStorage.getItem('aiva_launched_v2') === 'true' : false
   );
 
   useEffect(() => {

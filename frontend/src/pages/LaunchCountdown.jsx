@@ -136,7 +136,7 @@ export default function LaunchCountdown({ onEnter }) {
   }, [isLaunched]);
 
   const handleEnter = () => {
-    localStorage.setItem('aiva_launched', 'true');
+    localStorage.setItem('aiva_launched_v2', 'true');
     if (onEnter) onEnter();
   };
 
