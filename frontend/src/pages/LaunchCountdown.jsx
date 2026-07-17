@@ -174,6 +174,36 @@ export default function LaunchCountdown({ onEnter }) {
         style={{ width: '120px', zIndex: 10, position: 'absolute', top: '40px' }} 
       />
 
+      {!isLaunched && (
+        <button
+          onClick={handleEnter}
+          style={{
+            position: 'absolute',
+            top: '20px',
+            right: '20px',
+            backgroundColor: 'transparent',
+            color: '#888',
+            border: '1px solid #333',
+            padding: '8px 16px',
+            borderRadius: '9999px',
+            fontSize: '0.85rem',
+            cursor: 'pointer',
+            zIndex: 50,
+            transition: 'all 0.2s ease',
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.color = '#fff';
+            e.currentTarget.style.borderColor = '#666';
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.color = '#888';
+            e.currentTarget.style.borderColor = '#333';
+          }}
+        >
+          Skip &rarr;
+        </button>
+      )}
+
       {isLaunched ? (
         <div style={{ zIndex: 10, textAlign: 'center', padding: '2rem' }}>
           <canvas 
