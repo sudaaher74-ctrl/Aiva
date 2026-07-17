@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
-const LAUNCH_AT = new Date('2026-07-20T09:00:00').getTime();
+const LAUNCH_AT = new Date().getTime() + 30 * 1000;
 
 export default function LaunchCountdown({ onEnter }) {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
