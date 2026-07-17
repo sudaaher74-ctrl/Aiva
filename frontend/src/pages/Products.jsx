@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import SEO from '../components/SEO';
 import ProductHero from '../components/ProductHero';
 import ProductGrid from '../components/ProductGrid';
-import StandardsSection from '../components/StandardsSection';
+
 import BulkInquiry from '../components/BulkInquiry';
 
 function Products({ categorySlug }) {
@@ -46,7 +46,7 @@ function Products({ categorySlug }) {
       />
       <ProductHero />
       <ProductGrid categorySlug={categorySlug} />
-      <StandardsSection />
+
       <BulkInquiry />
     </>
   );
