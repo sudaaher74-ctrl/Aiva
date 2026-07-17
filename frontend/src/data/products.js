@@ -5,7 +5,7 @@ export const productsData = [
     name: 'Alphonso Mango Pulp',
     category: 'Aseptic',
     tab: 'aseptic',
-    description: 'Premium Aseptic Alphonso Mango Pulp for B2B manufacturing.',
+    description: 'Premium export-quality Alphonso Mango Pulp made from hand-picked Ratnagiri Alphonso mangoes packaged in bulk aseptic.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
     image: 'https://www.aivaenterprises.com/assets/images/products/pulp/Alphansomangopulp.webp'

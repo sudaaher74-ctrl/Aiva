@@ -36,10 +36,10 @@ const About = () => {
       <section className="about-hero">
         <div className="hero-container">
           <div className="hero-content">
-            <span className="eyebrow">About AIVA Enterprises</span>
-            <h1>Sourcing the world's finest, with <span className="italic-gold">integrity.</span></h1>
+
+            <h1>Sourcing the world's finest, with integrity.</h1>
             <p>
-              AIVA Enterprises is a global sourcing and supply company delivering premium aseptic fruit pulps, concentrates, IQF fruits & vegetables, and frozen foods — built on quality, reliability, and transparency.
+              AIVA Enterprises is a global sourcing and supply company delivering premium aseptic fruit pulps, concentrates, IQF  and  Blast frozen fruits & vegetables, built on quality, reliability, and transparency.
             </p>
             <div className="hero-buttons">
               <Link to="#story" className="btn-gold" onClick={(e) => {
@@ -74,11 +74,9 @@ const About = () => {
         </div>
         <div className="story-content">
           <p>
-            AIVA Enterprises was founded by Aishwarya Ingale, whose journey began with a Bachelor's degree in Food Technology in India and later took her to the United States to pursue a Master's in Entrepreneurial Leadership at Babson College. During her time abroad, she gained a global perspective on food quality, sourcing, and consumer expectations — inspiring her to build a company that bridges the best of global agriculture with international markets.
+            AIVA Enterprises was founded by Aishwarya Ingale, whose journey began with a Bachelor's degree in Food Technology in India and later took her to the United States to pursue a Master's in Entrepreneurial Leadership at Babson College. During her time abroad, she gained a global perspective on food quality, sourcing, and consumer expectations which inspired her to build a company that bridges the best of global agriculture with international markets.
           </p>
-          <p>
-            With a food technologist's eye for quality, Aishwarya carefully partners with manufacturers who uphold the highest standards of processing, hygiene, and consistency.
-          </p>
+
           <blockquote className="pull-quote">
             "Bring the finest products each region has to offer to the world — while proudly showcasing India's exceptional agricultural capabilities."
           </blockquote>
