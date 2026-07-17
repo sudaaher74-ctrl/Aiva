@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
-const LAUNCH_AT = new Date().getTime() + 60 * 1000;
+const LAUNCH_AT = new Date('2026-07-20T12:00:00').getTime();
 
 export default function LaunchCountdown({ onEnter }) {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -305,7 +305,7 @@ export default function LaunchCountdown({ onEnter }) {
             color: '#666',
             fontSize: '0.85rem'
           }}>
-            Going live at 9:00 &middot; Monday, July 20, 2026
+            Going live at 12:00 &middot; Monday, July 20, 2026
           </p>
         </div>
       )}
