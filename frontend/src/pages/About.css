@@ -7,12 +7,12 @@
 
 /* --- Typography Helpers --- */
 .text-gold {
-  color: var(--accent-gold, #D4AF37);
+  color: var(--c-mango);
 }
 
 .italic-gold {
   font-style: italic;
-  color: var(--accent-gold, #D4AF37);
+  color: var(--c-mango);
 }
 
 .eyebrow {
@@ -20,7 +20,7 @@
   letter-spacing: 0.15em;
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--accent-gold, #D4AF37);
+  color: var(--c-mango);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -32,7 +32,7 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background-color: var(--accent-gold, #D4AF37);
+  background-color: var(--c-mango);
 }
 
 /* --- Hero Section --- */
@@ -72,14 +72,14 @@
 }
 
 .btn-gold {
-  background-color: var(--accent-gold, #dbaa0c);
+  background-color: var(--c-mango);
   color: #000;
   padding: 14px 32px;
   border-radius: 30px;
   font-weight: 600;
   text-decoration: none;
   transition: all 0.3s ease;
-  border: 1px solid var(--accent-gold, #d58c1f);
+  border: 1px solid var(--c-mango);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -87,7 +87,7 @@
 
 .btn-gold:hover {
   background-color: transparent;
-  color: var(--accent-gold, #D4AF37);
+  color: var(--c-mango);
 }
 
 .btn-outline-dark {
@@ -130,7 +130,7 @@
   width: 140px;
   height: 140px;
   border-radius: 50%;
-  border: 1px dashed var(--accent-gold, #D4AF37);
+  border: 1px dashed var(--c-mango);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -138,7 +138,7 @@
   font-size: 0.65rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent-gold, #D4AF37);
+  color: var(--c-mango);
   z-index: 3;
   background-color: rgba(11, 11, 11, 0.8);
   backdrop-filter: blur(4px);
@@ -181,7 +181,7 @@
 
 .stat-number {
   font-size: 3.5rem;
-  color: var(--accent-gold, #D4AF37);
+  color: var(--c-mango);
   font-weight: 400;
   margin-bottom: 8px;
   line-height: 1;
@@ -232,7 +232,7 @@
 .founder-initials {
   width: 48px;
   height: 48px;
-  background-color: var(--accent-gold, #D4AF37);
+  background-color: var(--c-mango);
   color: #000;
   border-radius: 50%;
   display: flex;
@@ -269,7 +269,7 @@
 }
 
 .pull-quote {
-  border-left: 3px solid var(--accent-gold, #D4AF37);
+  border-left: 3px solid var(--c-mango);
   padding-left: 32px;
   margin-top: 40px;
   font-size: 1.6rem;
@@ -320,8 +320,8 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 1px solid var(--accent-gold, #D4AF37);
-  color: var(--accent-gold, #D4AF37);
+  border: 1px solid var(--c-mango);
+  color: var(--c-mango);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -331,7 +331,7 @@
 
 .mv-card h3 {
   font-size: 2rem;
-  color: var(--accent-gold, #D4AF37);
+  color: var(--c-mango);
   margin-bottom: 24px;
 }
 
@@ -403,7 +403,7 @@
 }
 
 .feature-box .f-icon {
-  color: var(--accent-gold, #D4AF37);
+  color: var(--c-mango);
   font-size: 1.8rem;
   margin-bottom: 24px;
   display: inline-block;
@@ -461,7 +461,7 @@
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  border: 4px solid var(--accent-gold, #D4AF37);
+  border: 4px solid var(--c-mango);
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -526,7 +526,7 @@
 }
 
 .industry-card i {
-  color: var(--accent-gold, #D4AF37);
+  color: var(--c-mango);
   font-size: 1.5rem;
 }
 
