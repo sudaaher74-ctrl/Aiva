@@ -140,10 +140,10 @@ const About = () => {
 
       {/* Quality Commitment */}
       <section className="quality-section">
-        <span className="eyebrow" style={{ justifyContent: 'center' }}>Quality Commitment</span>
+
         <h2>Certified at every standard that matters</h2>
         <p>
-          Our product range is supported by globally recognized certifications and compliance standards — giving our customers the confidence to choose AIVA with trust.
+          Our product range is supported by globally recognized certifications and compliance standards,giving our customers the confidence to choose AIVA with trust.
         </p>
 
         <div className="cert-grid">
@@ -179,7 +179,7 @@ const About = () => {
       {/* Industries We Serve */}
       <section className="industries-section">
         <div className="industries-header">
-          <span className="eyebrow" style={{ justifyContent: 'center' }}>Our Reach</span>
+
           <h2>Industries we serve</h2>
           <p style={{ color: '#a0a0a0', marginTop: '16px' }}>AIVA proudly supplies premium processed food ingredients across a wide range of industries and applications.</p>
         </div>
