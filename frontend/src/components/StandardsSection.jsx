@@ -15,7 +15,7 @@ function StandardsSection() {
               <i className="ph ph-plant"></i>
             </div>
             <h3>Farm Fresh Sourcing</h3>
-            <p>Direct partnerships with certified farmers ensuring the highest quality raw materials.</p>
+            <p>Direct partnerships with certified farmers ensuring the highest quality of raw materials.</p>
           </div>
 
           <div className="standard-card">
@@ -31,7 +31,7 @@ function StandardsSection() {
               <i className="ph ph-globe"></i>
             </div>
             <h3>Global Compliance</h3>
-            <p>Strict adherence to FSSAI, APEDA, BRC, FSSC 22000, ISO 22000, ISO 14001, GLOBALG.A.P., Halal, Kosher, SGF, and AQA.</p>
+            <p>Strict adherence to FSSAI, APEDA, BRC, FSSC 22000, ISO 22000, ISO 14001, GLOBALG.A.P., Halal, Kosher, SGF, and AQA standards.</p>
           </div>
 
           <div className="standard-card">
