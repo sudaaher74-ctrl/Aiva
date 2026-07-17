@@ -78,7 +78,7 @@ const About = () => {
           </p>
 
           <blockquote className="pull-quote">
-            "Bring the finest products each region has to offer to the world — while proudly showcasing India's exceptional agricultural capabilities."
+            "To bring the finest products each region has to offer to the world while proudly showcasing India's exceptional agricultural capabilities."
           </blockquote>
         </div>
       </section>
@@ -90,7 +90,7 @@ const About = () => {
           <div className="mv-icon"><i className="ph ph-target"></i></div>
           <h3>Mission</h3>
           <p>
-            To build a transparent and responsible food supply chain by connecting trusted manufacturers with businesses through fair sourcing, uncompromising quality, and honest partnerships. We minimize unnecessary intermediaries, support ethical sourcing, and deliver products that create lasting value for everyone — from the people who grow them to the businesses that rely on them.
+            To build a transparent and responsible food supply chain by connecting trusted manufacturers with businesses through fair sourcing, uncompromising quality, and honest partnerships. We minimize unnecessary intermediaries, support ethical sourcing, and deliver products that create lasting value for everyone from the people who grow them to the businesses that rely on them.
           </p>
         </div>
         <div className="mv-card">
@@ -98,7 +98,7 @@ const About = () => {
           <div className="mv-icon"><i className="ph ph-eye"></i></div>
           <h3>Vision</h3>
           <p>
-            To redefine food sourcing by creating a future where quality is never compromised, transparency is the standard, and every stakeholder across the supply chain is treated with fairness and respect. We envision a world where exceptional food ingredients move across borders with integrity — benefiting farmers, manufacturers, businesses, and consumers alike.
+            To redefine food sourcing by creating a future where quality is never compromised, transparency is the standard, and every stakeholder across the supply chain is treated with fairness and respect. We envision a world where exceptional food ingredients move across borders with integrity  benefiting farmers, manufacturers, businesses, and consumers alike.
           </p>
         </div>
       </section>
