@@ -59,12 +59,12 @@ function ProcessSection() {
               <div className="timeline-item">
                 <div className="timeline-dot"></div>
                 <h3>3. Extraction & Processing</h3>
-                <p>State-of the-art aseptic , IQF & blast frezzing , technologis .</p>
+                <p>State-of the-art aseptic , IQF & blast freezing , technologies .</p>
               </div>
               <div className="timeline-item">
                 <div className="timeline-dot"></div>
                 <h3>4. Packaging & Storage</h3>
-                <p>Aseptic drum packaging , frozen pouch packaging. thousand Empty storage capacity  respectively.</p>
+                <p>Aseptic drum packaging , frozen pouch packaging. thousand MT storage capacity  respectively.</p>
               </div>
             </div>
           </div>
