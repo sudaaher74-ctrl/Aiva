@@ -52,7 +52,7 @@
      This prevents Tailwind's base reset from overriding the font on
      product pages, chatbot, or any component that uses Tailwind classes. */
   html, body, * {
-    font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+    font-family: var(--font-body, 'Lora', Georgia, serif);
   }
 }
 

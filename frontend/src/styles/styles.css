@@ -9,7 +9,7 @@
    Example: swap 'Plus+Jakarta+Sans' → 'Inter' in the URL, and
             'Plus Jakarta Sans' → 'Inter' in the variables below
    ========================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 /* --- Variables --- */
 :root {
@@ -27,8 +27,17 @@
     --c-green: #2ecc71;
     
     /* ✏️ Typography — update these when you change the font above */
-    --font-heading: 'Plus Jakarta Sans', sans-serif;
-    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --font-heading: 'Lora', Georgia, serif;
+    --font-body: 'Lora', Georgia, serif;
+    
+    --fs-display: 64px;
+    --fs-h1: 44px;
+    --fs-h2: 32px;
+    --fs-h3: 24px;
+    --fs-body-lg: 20px;
+    --fs-body: 18px;
+    --fs-small: 15px;
+    --fs-caption: 13px;
     
     /* Spacing & Layout */
     --container-w: 1400px;
@@ -53,7 +62,7 @@ html {
 
 body {
     font-family: var(--font-body);
-    font-size: 18px;
+    font-size: var(--fs-body);
     font-weight: 400;
     color: var(--c-white);
     background-color: var(--c-black);
@@ -90,7 +99,7 @@ button {
 /* --- Typography --- */
 h1, .hero-title, .prod-hero-title {
     font-family: var(--font-heading);
-    font-size: 72px;
+    font-size: var(--fs-h1);
     font-weight: 800;
     line-height: 1.1;
     letter-spacing: -2px;
@@ -99,7 +108,7 @@ h1, .hero-title, .prod-hero-title {
 
 h2, .section-title {
     font-family: var(--font-heading);
-    font-size: 48px;
+    font-size: var(--fs-h2);
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 20px;
@@ -107,15 +116,15 @@ h2, .section-title {
 
 h3, .section-subtitle {
     font-family: var(--font-heading);
-    font-size: 32px;
+    font-size: var(--fs-h3);
     font-weight: 700;
     margin-bottom: 1rem;
     color: var(--c-mango);
 }
 
-h4 {
+h4, .card-title, .product-name, .p-info h3 {
     font-family: var(--font-heading);
-    font-size: 24px;
+    font-size: var(--fs-h3);
     font-weight: 600;
 }
 
@@ -124,22 +133,22 @@ p {
 }
 
 .body-large, .hero-subtitle, .hero-description, .prod-hero-subtitle, .section-desc {
-    font-size: 20px;
+    font-size: var(--fs-body-lg);
     font-weight: 400;
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.7);
 }
 
-.small-desc {
-    font-size: 15px;
+.small-desc, .p-desc, .footer-links a, .spec-val, .standard-card p {
+    font-size: var(--fs-small);
     font-weight: 400;
     line-height: 1.7;
 }
 
-.card-title, .product-name {
-    font-size: 24px;
-    font-weight: 600;
-}
+.btn, .btn-primary, .nav-links a { font-size: var(--fs-body); }
+.premium-badge, .btn-link, .spec-label, .footer-bottom, .standards-subtitle { font-size: var(--fs-caption); }
+
+/* .card-title etc moved to h4 */
 
 .text-center { text-align: center; }
 .text-center .section-desc { margin: 0 auto 3rem auto; }
@@ -187,7 +196,7 @@ p {
     padding: 16px 36px;
     border-radius: 999px;
     font-weight: 600;
-    font-size: 17px;
+    font-size: var(--fs-body);
     transition: var(--t-fast);
     position: relative;
     overflow: hidden;
@@ -197,7 +206,7 @@ p {
 .btn-primary {
     background-color: var(--c-mango);
     color: var(--c-black);
-    font-size: 18px;
+    font-size: var(--fs-body);
     padding: 18px 40px;
 }
 
@@ -330,7 +339,7 @@ p {
 
 .nav-links a {
     color: var(--c-white);
-    font-size: 17px;
+    font-size: var(--fs-body);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -816,7 +825,7 @@ p {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    font-size: 0.8rem;
+    font-size: var(--fs-caption);
     border-bottom: 1px solid transparent;
     transition: var(--t-fast);
 }
@@ -1138,7 +1147,7 @@ p {
     color: var(--c-grey);
     margin-bottom: 1rem;
     transition: var(--t-fast);
-    font-size: 16px;
+    font-size: var(--fs-small);
     font-weight: 400;
 }
 
@@ -1176,7 +1185,7 @@ p {
     justify-content: space-between;
     align-items: center;
     color: var(--c-grey);
-    font-size: 14px;
+    font-size: var(--fs-caption);
     font-weight: 400;
 }
 
@@ -1413,26 +1422,26 @@ p {
 
 /* Laptop (1024px - 1439px) - Reduce headings by ~10% */
 @media (max-width: 1439px) {
-    h1, .hero-title, .prod-hero-title { font-size: 64px; }
-    h2, .section-title { font-size: 43px; }
-    h3, .section-subtitle { font-size: 28px; }
+    h1, .hero-title, .prod-hero-title { font-size: 40px; }
+    h2, .section-title { font-size: 30px; }
+    h3, .section-subtitle { font-size: 22px; }
 }
 
 /* Tablet (768px - 1023px) - Reduce headings by ~20% */
 @media (max-width: 1023px) {
     .section-padding { padding: 80px 0; }
-    h1, .hero-title, .prod-hero-title { font-size: 52px; }
-    h2, .section-title { font-size: 40px; }
-    h3, .section-subtitle { font-size: 28px; }
+    h1, .hero-title, .prod-hero-title { font-size: 38px; }
+    h2, .section-title { font-size: 28px; }
+    h3, .section-subtitle { font-size: 22px; }
 }
 
 /* Mobile (below 768px) */
 @media (max-width: 767px) {
     body { font-size: 16px; }
     .section-padding { padding: 60px 0; }
-    h1, .hero-title, .prod-hero-title { font-size: 38px; }
-    h2, .section-title { font-size: 30px; }
-    h3, .section-subtitle { font-size: 24px; }
+    h1, .hero-title, .prod-hero-title { font-size: 32px; }
+    h2, .section-title { font-size: 26px; }
+    h3, .section-subtitle { font-size: 20px; }
     .body-large, .hero-subtitle, .hero-description, .prod-hero-subtitle, .section-desc { font-size: 18px; }
     .btn { font-size: 16px; }
 }
