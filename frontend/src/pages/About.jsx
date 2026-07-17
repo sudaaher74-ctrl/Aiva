@@ -107,10 +107,10 @@ const About = () => {
       <section className="promise-section">
         <div className="promise-container">
           <div className="promise-content">
-            <span className="eyebrow">Our Promise</span>
+
             <h2>Why choose AIVA</h2>
             <p>
-              AIVA Enterprises was founded on one simple belief  quality should never be compromised. As a Food Technologist with international exposure, founder Aishwarya Ingale understands the importance of safe, consistent, high-quality food ingredients. That is why we partner only with trusted manufacturers who share our commitment to excellence, ethical sourcing, and uncompromising quality.
+              AIVA Enterprises was founded on one simple belief  quality should never be compromised. As a Food Technologist with international exposure, founder Aishwarya Ingale understands the importance of safe, consistent, high quality food ingredients. That is why we partner only with trusted people who share our commitment to excellence, ethical sourcing, and uncompromising quality.
             </p>
           </div>
           <div className="promise-features">
@@ -122,7 +122,7 @@ const About = () => {
             <div className="feature-box">
               <i className="ph ph-handshake f-icon"></i>
               <h4>Trusted Partners</h4>
-              <p>We work only with vetted, certified manufacturers.</p>
+              <p>We work only with vetted, certified patners .</p>
             </div>
             <div className="feature-box">
               <i className="ph ph-leaf f-icon"></i>
