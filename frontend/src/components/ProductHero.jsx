@@ -91,12 +91,7 @@ function ProductHero() {
             alt="Tomato Paste"
             data-speed="-1.5"
           />
-          <img
-            src="/assets/images/products/iqf_fruits/strawberry.png?v=2"
-            className="prod-float sub-prod-2"
-            alt="Strawberry IQF"
-            data-speed="1.8"
-          />
+
           <div className="glow-orb"></div>
         </div>
       </div>
