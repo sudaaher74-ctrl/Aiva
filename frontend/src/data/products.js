@@ -8,7 +8,7 @@ export const productsData = [
     description: 'Premium export-quality Alphonso Mango Pulp made from hand-picked Ratnagiri Alphonso mangoes packaged in bulk aseptic.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: 'https://www.aivaenterprises.com/assets/images/products/pulp/Alphonsomangopulp.webp'
+    image: '/assets/images/products/pulp/Alphonsomangopulp.webp'
   },
   {
     id: 'totapuri-mango-pulp',
@@ -151,7 +151,7 @@ export const productsData = [
     description: 'IQF Banana Dices.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: 'https://www.aivaenterprises.com/assets/images/products/iqf_fruits/bananadices.png'
+    image: '/assets/images/products/iqf_fruits/bananadices.png'
   },
   {
     id: 'guava-dices',
@@ -173,7 +173,7 @@ export const productsData = [
     description: 'IQF Strawberry.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: 'https://www.aivaenterprises.com/assets/images/products/iqf_fruits/strawberry.png'
+    image: '/assets/images/products/iqf_fruits/strawberry.png'
   },
   {
     id: 'sweet-corn',
