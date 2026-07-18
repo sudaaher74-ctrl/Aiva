@@ -30,14 +30,14 @@
     --font-heading: 'Lora', Georgia, serif;
     --font-body: 'Lora', Georgia, serif;
     
-    --fs-display: 64px;
-    --fs-h1: 44px;
-    --fs-h2: 32px;
-    --fs-h3: 24px;
-    --fs-body-lg: 20px;
-    --fs-body: 18px;
-    --fs-small: 15px;
-    --fs-caption: 13px;
+    --fs-display: 72px;
+    --fs-h1: 52px;
+    --fs-h2: 40px;
+    --fs-h3: 28px;
+    --fs-body-lg: 24px;
+    --fs-body: 22px;
+    --fs-small: 18px;
+    --fs-caption: 16px;
     
     /* Spacing & Layout */
     --container-w: 1400px;
@@ -1437,11 +1437,11 @@ p {
 
 /* Mobile (below 768px) */
 @media (max-width: 767px) {
-    body { font-size: 16px; }
+    body { font-size: 18px; }
     .section-padding { padding: 60px 0; }
-    h1, .hero-title, .prod-hero-title { font-size: 32px; }
-    h2, .section-title { font-size: 26px; }
-    h3, .section-subtitle { font-size: 20px; }
-    .body-large, .hero-subtitle, .hero-description, .prod-hero-subtitle, .section-desc { font-size: 18px; }
-    .btn { font-size: 16px; }
+    h1, .hero-title, .prod-hero-title { font-size: 40px; }
+    h2, .section-title { font-size: 32px; }
+    h3, .section-subtitle { font-size: 24px; }
+    .body-large, .hero-subtitle, .hero-description, .prod-hero-subtitle, .section-desc { font-size: 20px; }
+    .btn { font-size: 18px; }
 }
