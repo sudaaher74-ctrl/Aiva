@@ -46,7 +46,7 @@ const products = [
     tab: 'aseptic',
     brix: '14-16° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/pulp/totapurimangopulpdrumm.webp',
+    image_url: './assets/images/products/pulp/totapurimangopulpdrum.webp',
     status: 'Active'
   },
   
@@ -68,7 +68,7 @@ const products = [
     tab: 'aseptic',
     brix: '24-26° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/pulp/bananaconcentratdrum.webp',
+    image_url: './assets/images/products/pulp/bananaconcentratedrum.webp',
     status: 'Active'
   },
   
@@ -79,7 +79,7 @@ const products = [
     tab: 'aseptic',
     brix: '20-22° Brix',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/pulp/gavaconcentratedrum.webp',
+    image_url: './assets/images/products/pulp/guavaconcentratedrum.webp',
     status: 'Active'
   },
   
@@ -179,7 +179,7 @@ const products = [
     description: 'Clean-cut okra frozen quickly for reliable color and texture.',
     tab: 'vegetables',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/vegetables/okraIQFfrozzen.png',
+    image_url: './assets/images/products/vegetables/okraIQFfrozen.png',
     status: 'Active'
   },
   {
@@ -188,7 +188,7 @@ const products = [
     description: 'Fresh spinach leaves, available whole or chopped.',
     tab: 'vegetables',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/vegetables/spinch.png',
+    image_url: './assets/images/products/vegetables/spinach.png',
     status: 'Active'
   },
   {
@@ -197,7 +197,7 @@ const products = [
     description: 'Blend of Green Peas, Carrot & Green Beans.',
     tab: 'vegetables',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/vegetables/mixvegitables.png',
+    image_url: './assets/images/products/vegetables/mixvegetables.png',
     status: 'Active'
   },
   {
@@ -224,7 +224,7 @@ const products = [
     description: 'Tender baby corn, individually quick frozen.',
     tab: 'vegetables',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/vegetables/babycoen.png',
+    image_url: './assets/images/products/vegetables/babycorn.png',
     status: 'Active'
   },
   {
@@ -251,7 +251,7 @@ const products = [
     description: 'Sliced or whole mushrooms, individually quick frozen.',
     tab: 'vegetables',
     shelfLife: '24 Months',
-    image_url: './assets/images/products/vegetables/mashrum.png',
+    image_url: './assets/images/products/vegetables/mushroom.png',
     status: 'Active'
   },
   {

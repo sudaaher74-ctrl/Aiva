@@ -253,7 +253,7 @@ export default function LaunchCountdown({ onEnter }) {
         <div style={{ zIndex: 10, textAlign: 'center', padding: '2rem', maxWidth: '800px', width: '100%' }}>
           
           <img 
-            src="/assets/images/products/pulp/Alphansomangopulp.webp" 
+            src="/assets/images/products/pulp/Alphonsomangopulp.webp" 
             className="countdown-float"
             alt=""
             style={{

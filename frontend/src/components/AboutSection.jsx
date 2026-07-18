@@ -93,12 +93,12 @@ function AboutSection() {
           <div className="stats-grid">
             <div className="stat-item" style={{ display: 'flex', alignItems: 'center' }}>
               <p style={{ fontWeight: 600, fontSize: '1.1rem', color: 'var(--color-primary)' }}>
-                70 MT/Day  Aseptice Processing Capacity
+                70 MT/Day  Aseptic Processing Capacity
               </p>
             </div>
             <div className="stat-item" style={{ display: 'flex', alignItems: 'center' }}>
               <p style={{ fontWeight: 600, fontSize: '1.1rem', color: 'var(--color-primary)' }}>
-                IQF & Blast frezzing Technology Driven Solutions
+                IQF & Blast freezing Technology Driven Solutions
               </p>
             </div>
             <div className="stat-item" style={{ display: 'flex', alignItems: 'center' }}>

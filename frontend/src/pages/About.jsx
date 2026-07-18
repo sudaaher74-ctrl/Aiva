@@ -122,7 +122,7 @@ const About = () => {
             <div className="feature-box">
               <i className="ph ph-handshake f-icon"></i>
               <h4>Trusted Partners</h4>
-              <p>We work only with vetted, certified patners .</p>
+              <p>We work only with vetted, certified partners.</p>
             </div>
             <div className="feature-box">
               <i className="ph ph-leaf f-icon"></i>
@@ -154,7 +154,7 @@ const About = () => {
             { name: 'FSSC 22000', img: 'FSSC.png' },
             { name: 'ISO 22000', img: 'ISO22000.png' },
             { name: 'ISO 14001', img: 'iso14001.png' },
-            { name: 'GLOBALG.A.P.', img: 'golbal gap.png' },
+            { name: 'GLOBALG.A.P.', img: 'global gap.png' },
             { name: 'Halal', img: 'halal_cert.png' },
             { name: 'Kosher', img: 'kosher_cert.png' },
             { name: 'SGF', img: 'sgf.png' },

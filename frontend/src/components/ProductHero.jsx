@@ -92,7 +92,7 @@ function ProductHero() {
             data-speed="-1.5"
           />
           <img
-            src="/assets/images/products/iqf_fruites/strawberryIQF.webp"
+            src="/assets/images/products/iqf_fruits/strawberryIQF.webp"
             className="prod-float sub-prod-2"
             alt="Strawberry IQF"
             data-speed="1.8"

@@ -84,7 +84,7 @@ function HomeHero() {
       {/* Floating Parallax Elements */}
       <div className="floating-elements">
         <img
-          src="/assets/images/products/pulp/Alphansomangopulp.webp"
+          src="/assets/images/products/pulp/Alphonsomangopulp.webp"
           className="float-item f-mango"
           alt="Premium Alphonso Mango Pulp Exporter"
           width="400"

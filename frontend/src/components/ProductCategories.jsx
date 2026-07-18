@@ -117,10 +117,10 @@ function ProductCategories() {
           <CategoryCard
             hueClass="card-strawberry"
             color="#ff9999"
-            image="/assets/images/products/iqf_fruites/strawberryIQF.webp"
+            image="/assets/images/products/iqf_fruits/strawberryIQF.webp"
             alt="IQF Products"
             title="IQF fruits"
-            desc="Individually Quick Frozen fruits & vegitables and locking in real flavor."
+            desc="Individually Quick Frozen fruits & vegetables and locking in real flavor."
             to="/products#iqf-fruits"
           />
           <CategoryCard
