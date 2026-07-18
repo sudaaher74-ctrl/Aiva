@@ -125,7 +125,7 @@ const products = [
     description: 'Individually Quick Frozen (IQF) strawberries maintaining natural texture, flavor, and color.',
     tab: 'iqf-fruits',
     shelfLife: '18 Months',
-    image_url: './assets/images/products/iqf_fruits/strawberry.png',
+    image_url: './assets/images/products/iqf_fruits/strawberry.png?v=2',
     status: 'Active'
   },
   {

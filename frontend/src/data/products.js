@@ -173,7 +173,7 @@ export const productsData = [
     description: 'IQF Strawberry.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/iqf_fruits/strawberry.png'
+    image: '/assets/images/products/iqf_fruits/strawberry.png?v=2'
   },
   {
     id: 'sweet-corn',
