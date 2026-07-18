@@ -143,6 +143,17 @@ export const productsData = [
     image: ''
   },
   {
+    id: 'banana-dices',
+    slug: 'banana-dices',
+    name: 'Banana Dices',
+    category: 'IQF',
+    tab: 'iqf-fruits',
+    description: 'IQF Banana Dices.',
+    brix: 'TODO_SPEC',
+    shelfLife: 'TODO_SPEC',
+    image: 'https://www.aivaenterprises.com/assets/images/products/iqf_fruits/bananadices.png'
+  },
+  {
     id: 'guava-dices',
     slug: 'guava-dices',
     name: 'Guava Dices',
@@ -159,10 +170,10 @@ export const productsData = [
     name: 'Strawberry',
     category: 'IQF',
     tab: 'iqf-fruits',
-    description: 'IQF Whole Strawberries.',
+    description: 'IQF Strawberry.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: ''
+    image: 'https://www.aivaenterprises.com/assets/images/products/iqf_fruits/strawberry.png'
   },
   {
     id: 'sweet-corn',

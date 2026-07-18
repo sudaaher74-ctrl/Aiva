@@ -125,7 +125,16 @@ const products = [
     description: 'Individually Quick Frozen (IQF) strawberries maintaining natural texture, flavor, and color.',
     tab: 'iqf-fruits',
     shelfLife: '18 Months',
-    image_url: './assets/images/products/iqf_fruites/strawberryIQF.webp',
+    image_url: './assets/images/products/iqf_fruits/strawberry.png',
+    status: 'Active'
+  },
+  {
+    name: 'IQF Banana Dices',
+    category: 'IQF Fruits',
+    description: 'Individually Quick Frozen (IQF) banana dices maintaining natural texture and flavor.',
+    tab: 'iqf-fruits',
+    shelfLife: '18 Months',
+    image_url: './assets/images/products/iqf_fruits/bananadices.png',
     status: 'Active'
   },
   {
