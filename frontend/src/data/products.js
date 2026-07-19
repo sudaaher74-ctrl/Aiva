@@ -30,7 +30,7 @@ export const productsData = [
     description: 'Sweet and rich Aseptic Kesar Mango Pulp.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/pulp/kesarmangopulp.png'
+    image: '/assets/images/products/pulp/kesarmangobottel.png'
   },
   {
     id: 'papaya-pulp',
@@ -63,7 +63,7 @@ export const productsData = [
     description: 'Smooth Aseptic Banana Pulp.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: ''
+    image: '/assets/images/products/pulp/banana.png'
   },
   {
     id: 'tomato-paste',
@@ -85,7 +85,7 @@ export const productsData = [
     description: 'Concentrated Totapuri Mango for beverage manufacturing.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: ''
+    image: '/assets/images/products/pulp/totapuriconcentrate.png'
   },
   {
     id: 'white-guava-concentrate',
@@ -96,7 +96,7 @@ export const productsData = [
     description: 'High Brix White Guava Concentrate.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: ''
+    image: '/assets/images/products/pulp/whiteguavaconcentrate.png'
   },
   {
     id: 'banana-concentrate',
@@ -107,7 +107,7 @@ export const productsData = [
     description: 'Pure Banana Concentrate.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: ''
+    image: '/assets/images/products/pulp/bananaconcentrate.png'
   },
   {
     id: 'totapuri-mango-dices',
