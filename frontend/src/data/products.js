@@ -8,7 +8,7 @@ export const productsData = [
     description: 'Premium export-quality Alphonso Mango Pulp made from hand-picked Ratnagiri Alphonso mangoes packaged in bulk aseptic.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/pulp/Alphonsomangopulp.webp'
+    image: '/assets/images/products/pulp/alphansso.png'
   },
   {
     id: 'totapuri-mango-pulp',
@@ -30,7 +30,7 @@ export const productsData = [
     description: 'Sweet and rich Aseptic Kesar Mango Pulp.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: ''
+    image: '/assets/images/products/pulp/kesarmangopulp.png'
   },
   {
     id: 'papaya-pulp',
@@ -41,7 +41,7 @@ export const productsData = [
     description: 'Fresh Aseptic Papaya Pulp.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: ''
+    image: '/assets/images/products/pulp/papayapulp.png'
   },
   {
     id: 'pink-white-guava-pulp',
