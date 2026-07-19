@@ -23,8 +23,15 @@ function ProductGrid({ categorySlug }) {
         const res = await fetch(`${API_BASE}/products`);
         const data = await res.json();
         if (data.data && data.data.length > 0) {
-          // Merge or replace static data with fresh backend data
-          setProducts(data.data);
+          // Merge backend data with static image paths since they were recently updated
+          const mergedData = data.data.map(backendProduct => {
+            const staticMatch = productsData.find(p => p.name === backendProduct.name);
+            if (staticMatch && staticMatch.image) {
+              return { ...backendProduct, image: staticMatch.image };
+            }
+            return backendProduct;
+          });
+          setProducts(mergedData);
         }
       } catch (error) {
         console.error('Failed to load products, using static data:', error);

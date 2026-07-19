@@ -25,7 +25,12 @@ function ProductDetail() {
           const res = await fetch(`${API_BASE}/products/${slug}`);
           const data = await res.json();
           if (data.success) {
-            setProduct(data.data);
+            const backendData = data.data;
+            const staticMatch = productsData.find(p => p.name === backendData.name);
+            if (staticMatch && staticMatch.image) {
+              backendData.image = staticMatch.image;
+            }
+            setProduct(backendData);
           }
         } catch (error) {
           console.error('Failed to load product details:', error);
