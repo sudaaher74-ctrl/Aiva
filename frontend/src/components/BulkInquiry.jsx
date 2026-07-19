@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
+import { API_BASE } from '../config';
 gsap.registerPlugin(ScrollTrigger);
 
 function BulkInquiry() {
@@ -53,13 +53,7 @@ function BulkInquiry() {
         message: formData.message,
       };
 
-      const API_BASE = typeof window !== 'undefined' && (
-        window.location.hostname === 'localhost' ||
-        window.location.hostname === '127.0.0.1' ||
-        window.location.hostname === ''
-      )
-          ? 'http://localhost:5001/api'
-          : '/api';
+
 
       const res = await fetch(`${API_BASE}/inquiries`, {
         method: 'POST',

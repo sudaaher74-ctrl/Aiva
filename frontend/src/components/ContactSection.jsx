@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { API_BASE } from '../config';
 function ContactSection() {
   const [formData, setFormData] = useState({
     name: '',
@@ -18,13 +18,7 @@ function ContactSection() {
     setFormStatus({ text: 'Sending...', disabled: true, bg: '' });
 
     try {
-      const API_BASE = typeof window !== 'undefined' && (
-        window.location.hostname === 'localhost' ||
-        window.location.hostname === '127.0.0.1' ||
-        window.location.hostname === ''
-      )
-          ? 'http://localhost:5001/api'
-          : '/api';
+
 
       const payload = {
         name: formData.name,

@@ -15,6 +15,7 @@ import PublicLayout from './components/PublicLayout';
 import GlobalErrorBoundary from './components/GlobalErrorBoundary';
 import { ThemeProvider } from './contexts/ThemeContext';
 import LaunchCountdown from './pages/LaunchCountdown';
+import { API_BASE } from './config';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,12 +67,7 @@ export function AppRoot() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     try {
-      const API_BASE =
-        window.location.hostname === 'localhost' ||
-        window.location.hostname === '127.0.0.1' ||
-        window.location.hostname === ''
-          ? 'http://localhost:5000/api'
-          : '/api';
+
       fetch(`${API_BASE}/analytics/track`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

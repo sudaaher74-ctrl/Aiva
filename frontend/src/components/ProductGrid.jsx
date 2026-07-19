@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLocation, Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import { productsData } from '../data/products';
-
+import { API_BASE } from '../config';
 gsap.registerPlugin(ScrollTrigger);
 
 function ProductGrid({ categorySlug }) {
@@ -19,12 +19,7 @@ function ProductGrid({ categorySlug }) {
 
     const fetchProducts = async () => {
       try {
-        const API_BASE =
-          window.location.hostname === 'localhost' ||
-          window.location.hostname === '127.0.0.1' ||
-          window.location.hostname === ''
-            ? 'http://localhost:5001/api'
-            : '/api';
+
         const res = await fetch(`${API_BASE}/products`);
         const data = await res.json();
         if (data.data && data.data.length > 0) {

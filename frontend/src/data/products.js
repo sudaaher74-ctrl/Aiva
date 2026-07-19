@@ -19,7 +19,7 @@ export const productsData = [
     description: 'High-quality Aseptic Totapuri Mango Pulp.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: ''
+    image: '/assets/images/products/pulp/totapurimangopulp.png'
   },
   {
     id: 'kesar-mango-pulp',
@@ -52,7 +52,7 @@ export const productsData = [
     description: 'Aseptic Pink and White Guava Pulp.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: ''
+    image: '/assets/images/products/pulp/pinkguavapulp.webp'
   },
   {
     id: 'banana-pulp',
@@ -74,7 +74,7 @@ export const productsData = [
     description: 'Rich Aseptic Tomato Paste.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: ''
+    image: '/assets/images/products/pulp/tomamtopaste.png'
   },
   {
     id: 'totapuri-mango-concentrate',

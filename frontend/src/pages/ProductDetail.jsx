@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import gsap from 'gsap';
 import { getProductBySlug } from '../data/products';
-
+import { API_BASE } from '../config';
 function ProductDetail() {
   const { slug } = useParams();
   
@@ -20,7 +20,7 @@ function ProductDetail() {
     if (!staticProduct && slug) {
       const fetchProduct = async () => {
         try {
-          const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '' ? 'http://localhost:5001/api' : '/api';
+
           // Fallback to backend fetch if needed, but SSG won't see this.
           const res = await fetch(`${API_BASE}/products/${slug}`);
           const data = await res.json();
