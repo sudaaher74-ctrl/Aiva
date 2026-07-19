@@ -19,7 +19,7 @@ export const productsData = [
     description: 'High-quality Aseptic Totapuri Mango Pulp.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/pulp/totapurimangopulp.png'
+    image: '/assets/images/products/pulp/totapurimango.png'
   },
   {
     id: 'kesar-mango-pulp',
@@ -30,7 +30,7 @@ export const productsData = [
     description: 'Sweet and rich Aseptic Kesar Mango Pulp.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/pulp/kesarmangobottel.png'
+    image: '/assets/images/products/pulp/kesarmango.png'
   },
   {
     id: 'papaya-pulp',
@@ -41,7 +41,7 @@ export const productsData = [
     description: 'Fresh Aseptic Papaya Pulp.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/pulp/papayapulp.png'
+    image: '/assets/images/products/pulp/papaya.png'
   },
   {
     id: 'pink-white-guava-pulp',
@@ -52,7 +52,7 @@ export const productsData = [
     description: 'Aseptic Pink and White Guava Pulp.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/pulp/pinkguavapulp.webp'
+    image: '/assets/images/products/pulp/pinkguava.png'
   },
   {
     id: 'banana-pulp',
