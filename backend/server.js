@@ -40,7 +40,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // Enable CORS
 app.use(cors({
-  origin: process.env.CLIENT_URL || '*',  // Use * as fallback or restrict to CLIENT_URL
+  origin: process.env.CLIENT_URL,
   methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -116,24 +116,6 @@ app.use(globalErrorHandler);
 // Connect to Database and start server
 let server;
 connectDB().then(async () => {
-  const User = require('./models/User');
-  const bcrypt = require('bcryptjs');
-  try {
-    const existingAdmin = await User.findOne({ email: 'admin@aivaenterprises.com' });
-    if (!existingAdmin) {
-      const salt = await bcrypt.genSalt(10);
-      const password_hash = await bcrypt.hash('admin123', salt);
-      await User.create({
-        name: 'Super Admin',
-        email: 'admin@aivaenterprises.com',
-        password_hash,
-        role: 'Admin'
-      });
-      console.log('✅ Default Admin created: admin@aivaenterprises.com / admin123');
-    }
-  } catch (e) {
-    console.error('Error seeding admin user:', e);
-  }
   
   // Dynamic Render Port
   const PORT = process.env.PORT || 5001;

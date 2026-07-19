@@ -2,9 +2,9 @@ const cloudinary = require('cloudinary').v2;
 const sharp = require('sharp');
 
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME || 'demo',
-  api_key: process.env.CLOUDINARY_API_KEY || '123456789',
-  api_secret: process.env.CLOUDINARY_API_SECRET || 'abcdefgh'
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 const uploadToCloudinary = async (fileBuffer, folder, resourceType = 'image') => {

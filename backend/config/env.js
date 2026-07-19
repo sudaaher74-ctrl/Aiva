@@ -4,8 +4,11 @@ const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   PORT: z.string().transform(Number).default('5001'),
   MONGODB_URI: z.string().optional(),
-  JWT_SECRET: z.string().optional(),
+  JWT_SECRET: z.string(),
   GEMINI_API_KEY: z.string().optional(),
+  CLOUDINARY_CLOUD_NAME: z.string(),
+  CLOUDINARY_API_KEY: z.string(),
+  CLOUDINARY_API_SECRET: z.string(),
 });
 
 const validateEnv = () => {

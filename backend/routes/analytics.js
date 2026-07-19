@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const AnalyticsEvent = require('../models/AnalyticsEvent');
-const { protect } = require('../middleware/auth');
+const { protect, restrictTo } = require('../middleware/auth');
 
 // @route   POST /api/analytics/track
 // @access  Public
 router.post('/track', async (req, res) => {
   try {
-    const event = await AnalyticsEvent.create(req.body);
+    const { eventType, pageUrl, countryCode } = req.body;
+    const event = await AnalyticsEvent.create({ eventType, pageUrl, countryCode });
     res.status(201).json({ success: true, data: event });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
@@ -16,7 +17,7 @@ router.post('/track', async (req, res) => {
 
 // @route   GET /api/analytics/stats
 // @access  Private
-router.get('/stats', protect, async (req, res) => {
+router.get('/stats', protect, restrictTo('Admin'), async (req, res) => {
   try {
     const totalVisits = await AnalyticsEvent.countDocuments({ eventType: 'page_view' });
     

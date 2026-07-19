@@ -9,7 +9,7 @@ const AppError = require('../utils/AppError');
 exports.forgotPassword = asyncHandler(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
   if (!user) {
-    return next(new AppError('There is no user with that email', 404));
+    return res.status(200).json({ success: true, message: 'Email sent. Check server logs if email env vars not set.' });
   }
 
   const resetToken = crypto.randomBytes(20).toString('hex');
@@ -85,7 +85,7 @@ exports.login = asyncHandler(async (req, res, next) => {
 
   const token = jwt.sign(
     { id: user._id, role: user.role },
-    process.env.JWT_SECRET || 'aiva-secret-key-2026',
+    process.env.JWT_SECRET,
     { expiresIn: '1d' }
   );
 

@@ -3,18 +3,19 @@ const router = express.Router();
 const Product = require('../models/Product');
 const Inquiry = require('../models/Inquiry');
 const PurchaseOrder = require('../models/PurchaseOrder');
-const { protect } = require('../middleware/auth');
+const { protect, restrictTo } = require('../middleware/auth');
 
 // @route   GET /api/search
 // @access  Private
-router.get('/', protect, async (req, res) => {
+router.get('/', protect, restrictTo('Admin'), async (req, res) => {
   try {
     const query = req.query.q || '';
     if (!query.trim()) {
       return res.json({ success: true, data: { products: [], inquiries: [], purchaseOrders: [] } });
     }
 
-    const regex = new RegExp(query, 'i');
+    const safeQuery = query.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+    const regex = new RegExp(safeQuery, 'i');
 
     const [products, inquiries, purchaseOrders] = await Promise.all([
       Product.find({ $or: [{ name: regex }, { category: regex }, { description: regex }] }).limit(10),

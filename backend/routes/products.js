@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product');
-const { protect } = require('../middleware/auth');
+const { protect, restrictTo } = require('../middleware/auth');
 const upload = require('../middleware/upload');
 const { uploadToCloudinary } = require('../utils/cloudinary');
 
@@ -30,7 +30,7 @@ router.get('/:id', async (req, res) => {
 
 // @route   POST /api/products
 // @access  Private (Admin/Sales)
-router.post('/', protect, upload.fields([{ name: 'image', maxCount: 1 }, { name: 'pdf_catalog', maxCount: 1 }]), async (req, res) => {
+router.post('/', protect, restrictTo('Admin'), upload.fields([{ name: 'image', maxCount: 1 }, { name: 'pdf_catalog', maxCount: 1 }]), async (req, res) => {
   try {
     const { name, category, description, status, tab, brix, shelfLife } = req.body;
     let image_url = '';
@@ -59,7 +59,7 @@ router.post('/', protect, upload.fields([{ name: 'image', maxCount: 1 }, { name:
 
 // @route   PUT /api/products/:id
 // @access  Private
-router.put('/:id', protect, upload.fields([{ name: 'image', maxCount: 1 }, { name: 'pdf_catalog', maxCount: 1 }]), async (req, res) => {
+router.put('/:id', protect, restrictTo('Admin'), upload.fields([{ name: 'image', maxCount: 1 }, { name: 'pdf_catalog', maxCount: 1 }]), async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
     if (!product) {
@@ -88,7 +88,7 @@ router.put('/:id', protect, upload.fields([{ name: 'image', maxCount: 1 }, { nam
 
 // @route   DELETE /api/products/:id
 // @access  Private
-router.delete('/:id', protect, async (req, res) => {
+router.delete('/:id', protect, restrictTo('Admin'), async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id);
     if (!product) return res.status(404).json({ success: false, message: 'Not found' });

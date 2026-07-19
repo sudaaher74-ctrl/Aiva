@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { GoogleGenerativeAI } = require('@google/generative-ai');
-const { protect } = require('../middleware/auth');
+const { protect, restrictTo } = require('../middleware/auth');
 const Conversation = require('../models/Conversation');
 
 // Models for ERP data access
@@ -328,7 +328,7 @@ async function generateAIResponse(userMessage, conversationHistory, erpContext) 
 // ============================================================
 // POST /api/ai/chat — Main AI chat endpoint
 // ============================================================
-router.post('/chat', protect, async (req, res) => {
+router.post('/chat', protect, restrictTo('Admin'), async (req, res) => {
   try {
     const { message, conversationId } = req.body;
 
@@ -387,7 +387,7 @@ router.post('/chat', protect, async (req, res) => {
 // ============================================================
 // GET /api/ai/conversations — List conversations
 // ============================================================
-router.get('/conversations', protect, async (req, res) => {
+router.get('/conversations', protect, restrictTo('Admin'), async (req, res) => {
   try {
     const conversations = await Conversation.find({ userId: req.user.id })
       .select('title pinned createdAt updatedAt messages')
@@ -414,7 +414,7 @@ router.get('/conversations', protect, async (req, res) => {
 // ============================================================
 // GET /api/ai/conversations/:id — Get single conversation
 // ============================================================
-router.get('/conversations/:id', protect, async (req, res) => {
+router.get('/conversations/:id', protect, restrictTo('Admin'), async (req, res) => {
   try {
     const conversation = await Conversation.findOne({
       _id: req.params.id,
@@ -434,7 +434,7 @@ router.get('/conversations/:id', protect, async (req, res) => {
 // ============================================================
 // PATCH /api/ai/conversations/:id — Update (pin/rename)
 // ============================================================
-router.patch('/conversations/:id', protect, async (req, res) => {
+router.patch('/conversations/:id', protect, restrictTo('Admin'), async (req, res) => {
   try {
     const { title, pinned } = req.body;
     const update = {};
@@ -460,7 +460,7 @@ router.patch('/conversations/:id', protect, async (req, res) => {
 // ============================================================
 // DELETE /api/ai/conversations/:id — Delete conversation
 // ============================================================
-router.delete('/conversations/:id', protect, async (req, res) => {
+router.delete('/conversations/:id', protect, restrictTo('Admin'), async (req, res) => {
   try {
     const conversation = await Conversation.findOneAndDelete({
       _id: req.params.id,
@@ -480,7 +480,7 @@ router.delete('/conversations/:id', protect, async (req, res) => {
 // ============================================================
 // GET /api/ai/suggestions — Quick question suggestions
 // ============================================================
-router.get('/suggestions', protect, async (req, res) => {
+router.get('/suggestions', protect, restrictTo('Admin'), async (req, res) => {
   const suggestions = [
     { icon: '🌐', text: 'Fetch the latest APEDA export updates', category: 'Live Search' },
     { icon: '🚢', text: 'Check current ocean freight rates to Dubai', category: 'Live Search' },

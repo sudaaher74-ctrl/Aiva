@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const Inquiry = require('../models/Inquiry');
-const { protect } = require('../middleware/auth');
+const { protect, restrictTo } = require('../middleware/auth');
 
 // ============================================================
 // GET /api/inquiries — List all inquiries (with filters)
 // Query params: ?status=New&search=john&limit=50&page=1
 // ============================================================
-router.get('/', protect, async (req, res) => {
+router.get('/', protect, restrictTo('Admin'), async (req, res) => {
   try {
     const { status, search, limit = 50, page = 1 } = req.query;
     const query = {};
@@ -19,12 +19,13 @@ router.get('/', protect, async (req, res) => {
 
     // Text search across name, company, email, country
     if (search) {
+      const safeSearch = search.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
       query.$or = [
-        { name: { $regex: search, $options: 'i' } },
-        { company: { $regex: search, $options: 'i' } },
-        { email: { $regex: search, $options: 'i' } },
-        { country: { $regex: search, $options: 'i' } },
-        { inquiryId: { $regex: search, $options: 'i' } }
+        { name: { $regex: safeSearch, $options: 'i' } },
+        { company: { $regex: safeSearch, $options: 'i' } },
+        { email: { $regex: safeSearch, $options: 'i' } },
+        { country: { $regex: safeSearch, $options: 'i' } },
+        { inquiryId: { $regex: safeSearch, $options: 'i' } }
       ];
     }
 
@@ -55,7 +56,7 @@ router.get('/', protect, async (req, res) => {
 // ============================================================
 // GET /api/inquiries/stats — Dashboard KPI stats
 // ============================================================
-router.get('/stats', protect, async (req, res) => {
+router.get('/stats', protect, restrictTo('Admin'), async (req, res) => {
   try {
     const [total, statusCounts, recentInquiries, todayCount] = await Promise.all([
       Inquiry.countDocuments(),
@@ -113,7 +114,7 @@ router.get('/stats', protect, async (req, res) => {
 // ============================================================
 // GET /api/inquiries/:id — Get single inquiry
 // ============================================================
-router.get('/:id', protect, async (req, res) => {
+router.get('/:id', protect, restrictTo('Admin'), async (req, res) => {
   try {
     const inquiry = await Inquiry.findById(req.params.id);
     if (!inquiry) {
@@ -130,9 +131,24 @@ const nodemailer = require('nodemailer');
 // ============================================================
 // POST /api/inquiries — Create new inquiry (from contact form)
 // ============================================================
+const escapeHtml = (unsafe) => {
+  if (!unsafe) return '';
+  return String(unsafe)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+};
+
 router.post('/', async (req, res) => {
   try {
-    const { name, company, email, phone, country, product, quantity, message, source } = req.body;
+    const { name, company, email, phone, country, product, quantity, message, source, _honeypot } = req.body;
+
+    // Honeypot check
+    if (_honeypot) {
+      return res.status(201).json({ success: true, message: 'Inquiry received' });
+    }
 
     const inquiry = await Inquiry.create({
       name,
@@ -161,14 +177,14 @@ router.post('/', async (req, res) => {
         subject: `New Bulk Inquiry from ${company || name}`,
         html: `
           <h2>New Bulk Inquiry Received</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Company:</strong> ${company || 'N/A'}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Country:</strong> ${country}</p>
-          <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
-          <p><strong>Product Interest:</strong> ${product || 'General'}</p>
-          <p><strong>Quantity:</strong> ${quantity || 'N/A'}</p>
-          <p><strong>Message:</strong><br/> ${message}</p>
+          <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+          <p><strong>Company:</strong> ${escapeHtml(company) || 'N/A'}</p>
+          <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+          <p><strong>Country:</strong> ${escapeHtml(country)}</p>
+          <p><strong>Phone:</strong> ${escapeHtml(phone) || 'N/A'}</p>
+          <p><strong>Product Interest:</strong> ${escapeHtml(product) || 'General'}</p>
+          <p><strong>Quantity:</strong> ${escapeHtml(quantity) || 'N/A'}</p>
+          <p><strong>Message:</strong><br/> ${escapeHtml(message)}</p>
         `
       };
 
@@ -194,7 +210,7 @@ router.post('/', async (req, res) => {
 // ============================================================
 // PATCH /api/inquiries/:id/status — Update inquiry status
 // ============================================================
-router.patch('/:id/status', protect, async (req, res) => {
+router.patch('/:id/status', protect, restrictTo('Admin'), async (req, res) => {
   try {
     const { status } = req.body;
     const validStatuses = ['New', 'Contacted', 'Quoted', 'Closed', 'Lost'];
@@ -225,7 +241,7 @@ router.patch('/:id/status', protect, async (req, res) => {
 // ============================================================
 // PATCH /api/inquiries/:id/notes — Update admin notes
 // ============================================================
-router.patch('/:id/notes', protect, async (req, res) => {
+router.patch('/:id/notes', protect, restrictTo('Admin'), async (req, res) => {
   try {
     const { notes } = req.body;
 
@@ -248,7 +264,7 @@ router.patch('/:id/notes', protect, async (req, res) => {
 // ============================================================
 // DELETE /api/inquiries/:id — Delete an inquiry
 // ============================================================
-router.delete('/:id', protect, async (req, res) => {
+router.delete('/:id', protect, restrictTo('Admin'), async (req, res) => {
   try {
     const inquiry = await Inquiry.findByIdAndDelete(req.params.id);
 

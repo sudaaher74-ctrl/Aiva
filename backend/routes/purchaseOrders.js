@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const PurchaseOrder = require('../models/PurchaseOrder');
-const { protect } = require('../middleware/auth');
+const { protect, restrictTo } = require('../middleware/auth');
 
 // ============================================================
 // GET /api/purchase-orders — List all POs (with filters)
 // Query: ?status=Draft&search=john&limit=50&page=1
 // ============================================================
-router.get('/', protect, async (req, res) => {
+router.get('/', protect, restrictTo('Admin'), async (req, res) => {
   try {
     const { status, search, limit = 50, page = 1 } = req.query;
     const query = {};
@@ -52,7 +52,7 @@ router.get('/', protect, async (req, res) => {
 // ============================================================
 // GET /api/purchase-orders/stats — Dashboard KPIs
 // ============================================================
-router.get('/stats', protect, async (req, res) => {
+router.get('/stats', protect, restrictTo('Admin'), async (req, res) => {
   try {
     const [total, statusCounts, recentOrders, todayCount, revenueAgg] = await Promise.all([
       PurchaseOrder.countDocuments(),
@@ -112,7 +112,7 @@ router.get('/stats', protect, async (req, res) => {
 // ============================================================
 // GET /api/purchase-orders/next-number — Get next PO number
 // ============================================================
-router.get('/next-number', protect, async (req, res) => {
+router.get('/next-number', protect, restrictTo('Admin'), async (req, res) => {
   try {
     const year = new Date().getFullYear();
     const prefix = `PO-AIVA-${year}-`;
@@ -137,7 +137,7 @@ router.get('/next-number', protect, async (req, res) => {
 // ============================================================
 // GET /api/purchase-orders/:id — Get single PO
 // ============================================================
-router.get('/:id', protect, async (req, res) => {
+router.get('/:id', protect, restrictTo('Admin'), async (req, res) => {
   try {
     const order = await PurchaseOrder.findById(req.params.id);
     if (!order) {
@@ -152,7 +152,7 @@ router.get('/:id', protect, async (req, res) => {
 // ============================================================
 // POST /api/purchase-orders — Create new PO
 // ============================================================
-router.post('/', protect, async (req, res) => {
+router.post('/', protect, restrictTo('Admin'), async (req, res) => {
   try {
     const order = await PurchaseOrder.create(req.body);
     res.status(201).json({ success: true, data: order });
@@ -168,7 +168,7 @@ router.post('/', protect, async (req, res) => {
 // ============================================================
 // PATCH /api/purchase-orders/:id — Update PO
 // ============================================================
-router.patch('/:id', protect, async (req, res) => {
+router.patch('/:id', protect, restrictTo('Admin'), async (req, res) => {
   try {
     const order = await PurchaseOrder.findById(req.params.id);
     if (!order) {
@@ -194,7 +194,7 @@ router.patch('/:id', protect, async (req, res) => {
 // ============================================================
 // PATCH /api/purchase-orders/:id/status — Update PO status
 // ============================================================
-router.patch('/:id/status', protect, async (req, res) => {
+router.patch('/:id/status', protect, restrictTo('Admin'), async (req, res) => {
   try {
     const { status } = req.body;
     const validStatuses = ['Draft', 'Pending', 'Approved', 'Processing', 'Shipped', 'Delivered'];
@@ -222,7 +222,7 @@ router.patch('/:id/status', protect, async (req, res) => {
 // ============================================================
 // DELETE /api/purchase-orders/:id — Delete PO
 // ============================================================
-router.delete('/:id', protect, async (req, res) => {
+router.delete('/:id', protect, restrictTo('Admin'), async (req, res) => {
   try {
     const order = await PurchaseOrder.findByIdAndDelete(req.params.id);
     if (!order) {
@@ -237,7 +237,7 @@ router.delete('/:id', protect, async (req, res) => {
 // ============================================================
 // POST /api/purchase-orders/:id/email — Email PO to buyer
 // ============================================================
-router.post('/:id/email', protect, async (req, res) => {
+router.post('/:id/email', protect, restrictTo('Admin'), async (req, res) => {
   try {
     const order = await PurchaseOrder.findById(req.params.id);
     if (!order) {
