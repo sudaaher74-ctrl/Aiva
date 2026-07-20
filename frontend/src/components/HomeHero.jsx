@@ -91,14 +91,7 @@ function HomeHero() {
           height="600"
           data-speed="1.5"
         />
-        <img
-          src="/assets/images/bottel1.png"
-          className="float-item f-papaya"
-          alt="Premium Fruit Pulp Bottle 1"
-          width="400"
-          height="600"
-          data-speed="0.8"
-        />
+
         <img
           src="/assets/images/bootel2.png"
           className="float-item f-guava"
