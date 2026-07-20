@@ -91,14 +91,6 @@ function HomeHero() {
           height="600"
           data-speed="1.5"
         />
-        <img
-          src="/assets/images/products/pulp/pinkguavapulp.webp"
-          className="float-item f-guava"
-          alt="Pink Guava Pulp Manufacturer"
-          width="400"
-          height="600"
-          data-speed="-1.2"
-        />
       </div>
     </section>
   );
