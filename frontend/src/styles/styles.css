@@ -145,7 +145,7 @@ p {
     line-height: 1.7;
 }
 
-.btn, .btn-primary, .nav-links a { font-size: var(--fs-body); }
+.btn, .btn-primary { font-size: var(--fs-body); }
 .premium-badge, .btn-link, .spec-label, .footer-bottom, .standards-subtitle { font-size: var(--fs-caption); }
 
 /* .card-title etc moved to h4 */
@@ -339,7 +339,7 @@ p {
 
 .nav-links a {
     color: var(--c-white);
-    font-size: var(--fs-body);
+    font-size: var(--fs-caption);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
