@@ -91,8 +91,8 @@ function BulkInquiry() {
       <div className="container split-layout align-center">
         <div className="split-left inquiry-img">
           <img
-            src="/assets/images/products/pulp/kesarmangopulpdrum.webp"
-            alt="Export Drum"
+            src="/assets/images/products/pulp/alphansso.png"
+            alt="Alphonso Mango Export Drum"
             className="float-y massive-render"
           />
           <div className="glow-orb"></div>
@@ -147,6 +147,7 @@ function BulkInquiry() {
                   <option value="" disabled>
                     Product Interest
                   </option>
+                  <option value="alphonso-mango">Alphonso Mango</option>
                   <option value="aseptic">Aseptic pulp/paste</option>
                   <option value="iqf-fruits">IQF fruits</option>
                   <option value="iqf-frozen">Frozen</option>
