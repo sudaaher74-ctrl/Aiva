@@ -164,6 +164,72 @@ export const productsData = [
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
     image: ''
+  },
+  {
+    id: '6mm-french-fries',
+    slug: '6mm-french-fries',
+    name: 'IQF 6mm French Fries',
+    category: 'IQF',
+    tab: 'iqf-frozen',
+    description: 'IQF 6mm French Fries.',
+    brix: 'TODO_SPEC',
+    shelfLife: 'TODO_SPEC',
+    image: '/assets/images/products/iqf_frozen/frenchfries6mm.png'
+  },
+  {
+    id: '9mm-french-fries',
+    slug: '9mm-french-fries',
+    name: 'IQF 9mm French Fries',
+    category: 'IQF',
+    tab: 'iqf-frozen',
+    description: 'IQF 9mm French Fries.',
+    brix: 'TODO_SPEC',
+    shelfLife: 'TODO_SPEC',
+    image: '/assets/images/products/iqf_frozen/frenchfries9mm.png'
+  },
+  {
+    id: 'coriander-green-chilli',
+    slug: 'coriander-green-chilli',
+    name: 'IQF Coriander & Green Chilli',
+    category: 'IQF',
+    tab: 'iqf-frozen',
+    description: 'IQF Coriander & Green Chilli.',
+    brix: 'TODO_SPEC',
+    shelfLife: 'TODO_SPEC',
+    image: '/assets/images/products/iqf_frozen/coriander&freenchilli.png'
+  },
+  {
+    id: 'mint',
+    slug: 'mint',
+    name: 'IQF Mint',
+    category: 'IQF',
+    tab: 'iqf-frozen',
+    description: 'IQF Mint.',
+    brix: 'TODO_SPEC',
+    shelfLife: 'TODO_SPEC',
+    image: '/assets/images/products/iqf_frozen/mint.png'
+  },
+  {
+    id: 'onion',
+    slug: 'onion',
+    name: 'IQF Onion',
+    category: 'IQF',
+    tab: 'iqf-frozen',
+    description: 'IQF Onion.',
+    brix: 'TODO_SPEC',
+    shelfLife: 'TODO_SPEC',
+    image: '/assets/images/products/iqf_frozen/onion.png'
+  },
+  {
+    id: 'tomato',
+    slug: 'tomato',
+    name: 'IQF Tomato',
+    category: 'IQF',
+    tab: 'iqf-frozen',
+    description: 'IQF Tomato.',
+    brix: 'TODO_SPEC',
+    shelfLife: 'TODO_SPEC',
+    image: '/assets/images/products/iqf_frozen/tomato.png'
   }
 ];
 
