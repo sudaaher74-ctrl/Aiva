@@ -83,22 +83,23 @@ function HomeHero() {
 
       {/* Floating Parallax Elements */}
       <div className="floating-elements">
-        <div className="hero-bottles-cluster float-item" data-speed="1.2">
-          <img
-            src="/assets/images/bottel1.png"
-            className="bottle-left"
-            alt="Totapuri Mango Pulp Bottle"
-            width="400"
-            height="600"
-          />
-          <img
-            src="/assets/images/bootel2.png"
-            className="bottle-right"
-            alt="Premium Guava Pulp Bottle"
-            width="400"
-            height="600"
-          />
-        </div>
+        <img
+          src="/assets/images/bottel1.png"
+          className="float-item f-mango"
+          alt="Premium Totapuri Mango Pulp Bottle"
+          width="400"
+          height="600"
+          data-speed="1.5"
+        />
+
+        <img
+          src="/assets/images/bootel2.png"
+          className="float-item f-guava"
+          alt="Premium Guava Pulp Bottle"
+          width="400"
+          height="600"
+          data-speed="-1.2"
+        />
       </div>
     </section>
   );
