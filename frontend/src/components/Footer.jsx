@@ -14,7 +14,7 @@ function Footer() {
             <h3>Quick Links</h3>
             <Link to="/about">About Us</Link>
             <Link to="/products">Products</Link>
-            <Link to="/#quality">Certifications</Link>
+            <Link to="/about#certifications">Certifications</Link>
             <Link to="#contact">Contact</Link>
           </div>
           <div className="footer-social">

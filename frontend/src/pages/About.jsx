@@ -1,9 +1,25 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import SEO from '../components/SEO';
 import './About.css';
 
 const About = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      setTimeout(() => {
+        const id = location.hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location.hash]);
+
   return (
     <div className="about-page">
       <SEO
@@ -139,7 +155,7 @@ const About = () => {
       </section>
 
       {/* Quality Commitment */}
-      <section className="quality-section">
+      <section className="quality-section" id="certifications">
 
         <h2>Certified at every standard that matters</h2>
         <p>
