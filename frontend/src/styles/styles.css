@@ -608,7 +608,7 @@ p {
 
 .f-guava {
     left: 55%;
-    bottom: 5%;
+    bottom: 15%;
     width: 25vw;
     max-width: 350px;
     filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5)) blur(3px);
