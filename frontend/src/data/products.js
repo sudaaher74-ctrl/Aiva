@@ -120,28 +120,7 @@ export const productsData = [
     shelfLife: 'TODO_SPEC',
     image: '/assets/images/products/iqf_fruits/totapurimangodices.png'
   },
-  {
-    id: 'papaya-dices',
-    slug: 'papaya-dices',
-    name: 'Papaya Dices',
-    category: 'IQF',
-    tab: 'iqf-fruits',
-    description: 'IQF Papaya Dices.',
-    brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
-    image: ''
-  },
-  {
-    id: 'banana-slices',
-    slug: 'banana-slices',
-    name: 'Banana Slices',
-    category: 'IQF',
-    tab: 'iqf-fruits',
-    description: 'IQF Banana Slices.',
-    brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
-    image: ''
-  },
+
   {
     id: 'banana-dices',
     slug: 'banana-dices',
