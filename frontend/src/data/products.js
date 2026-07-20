@@ -118,7 +118,7 @@ export const productsData = [
     description: 'Individually Quick Frozen Totapuri Mango Dices.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: ''
+    image: '/assets/images/products/iqf_fruits/totapurimangodices.png'
   },
   {
     id: 'papaya-dices',
@@ -162,7 +162,7 @@ export const productsData = [
     description: 'IQF Guava Dices.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: ''
+    image: '/assets/images/products/iqf_fruits/guavadices.png'
   },
   {
     id: 'strawberry',
