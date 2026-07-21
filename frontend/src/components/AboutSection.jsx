@@ -78,17 +78,17 @@ function AboutSection() {
               }}
             />
             <img
-              src="/assets/images/tomatoabout.png"
-              alt="Tomato Drum"
+              src="/assets/images/strawebbryhome.png"
+              alt="Strawberry"
               loading="lazy"
               style={{
-                width: '50%',
+                width: '45%',
                 height: 'auto',
                 objectFit: 'contain',
-                filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.5))',
-                transform: 'rotate(5deg) translateY(-10px)',
+                filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
+                transform: 'rotate(8deg) translateY(-15px)',
                 zIndex: 1,
-                marginLeft: '-10%',
+                marginLeft: '-15%',
               }}
             />
           </div>
