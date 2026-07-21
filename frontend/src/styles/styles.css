@@ -600,10 +600,13 @@ p {
 }
 
 .f-mango {
-    right: 0%;
-    top: 25%;
-    width: 50vw;
-    max-width: 750px;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: auto;
+    max-width: 60vw;
+    object-fit: contain;
+    object-position: right center;
 }
 
 .f-guava {
