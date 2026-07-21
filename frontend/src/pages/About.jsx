@@ -81,7 +81,7 @@ const About = () => {
                 src="/assets/images/totapuriabout.png"
                 alt="Totapuri Drum"
                 loading="lazy"
-                className="hero-image"
+                className="hero-image floating-slow"
                 style={{
                   width: '80%',
                   height: 'auto',
@@ -94,7 +94,7 @@ const About = () => {
                 src="/assets/images/tomatoabout.png"
                 alt="Tomato Drum"
                 loading="lazy"
-                className="hero-image"
+                className="hero-image floating-slow"
                 style={{
                   width: '70%',
                   height: 'auto',
@@ -102,6 +102,7 @@ const About = () => {
                   transform: 'rotate(8deg) translateY(-15px)',
                   zIndex: 1,
                   marginLeft: '-25%',
+                  animationDelay: '1.5s',
                 }}
               />
             </div>
