@@ -196,7 +196,7 @@ export const productsData = [
     description: 'IQF Mix Vegetables.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/vegetables/iqf-mix-veg.png'
+    image: '/assets/images/products/vegetables/mixvegitables.png'
   },
   {
     id: 'spinach',

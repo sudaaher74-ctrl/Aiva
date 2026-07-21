@@ -80,22 +80,16 @@ function ProductHero() {
 
         <div className="split-right prod-hero-composition">
           <img
-            src="/assets/images/totapuriabout.png"
+            src="/assets/images/tomatoabout.png"
             className="prod-float main-prod"
-            alt="Totapuri Mango"
+            alt="Tomato Paste"
             data-speed="1.2"
           />
           <img
-            src="/assets/images/tomatoabout.png"
+            src="/assets/images/totapuriabout.png"
             className="prod-float sub-prod-1"
-            alt="Tomato Paste"
+            alt="Totapuri Mango"
             data-speed="-1.5"
-          />
-          <img
-            src="/assets/images/strawebbryhome.png"
-            className="prod-float sub-prod-2"
-            alt="Strawberry"
-            data-speed="1.8"
           />
 
           <div className="glow-orb"></div>
