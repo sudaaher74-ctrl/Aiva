@@ -16,7 +16,10 @@ export default function GlobalErrorBoundary() {
       // Prevent infinite reload loops by checking session storage
       if (!sessionStorage.getItem('reloaded_from_error')) {
         sessionStorage.setItem('reloaded_from_error', 'true');
-        window.location.reload();
+        // Perform a cache-busting reload to bypass CDN/ServiceWorker caching of old index.html
+        const search = window.location.search;
+        const cacheBuster = search ? (search.includes('_t=') ? search : `${search}&_t=${Date.now()}`) : `?_t=${Date.now()}`;
+        window.location.href = window.location.pathname + cacheBuster + window.location.hash;
         return null;
       }
     }
