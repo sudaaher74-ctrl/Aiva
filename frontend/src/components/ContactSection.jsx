@@ -73,7 +73,7 @@ function ContactSection() {
               <i className="ph ph-phone"></i>
               <div>
                 <p className="label">Call/WhatsApp</p>
-                <a href="#"></a>
+                <a href="tel:+918828177533">+91 8828177533</a>
               </div>
             </div>
             <div className="contact-item">
