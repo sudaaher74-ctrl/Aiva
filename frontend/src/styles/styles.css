@@ -602,9 +602,9 @@ p {
 .f-mango {
     right: 0;
     top: 0;
-    height: 100vh;
+    height: 115vh;
     width: auto;
-    max-width: 60vw;
+    max-width: 70vw;
     object-fit: contain;
     object-position: right center;
 }
@@ -630,7 +630,7 @@ p {
     .f-mango {
         top: -15%;
         right: -10%;
-        width: 50vw;
+        width: 65vw;
         opacity: 0.5;
     }
     .f-guava {
