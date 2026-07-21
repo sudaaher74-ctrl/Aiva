@@ -74,7 +74,7 @@ export const productsData = [
     description: 'Rich Aseptic Tomato Paste.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/pulp/tomamtopaste.png'
+    image: '/assets/images/products/pulp/tomatopaste.png'
   },
   {
     id: 'totapuri-mango-concentrate',
