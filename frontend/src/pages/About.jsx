@@ -83,7 +83,7 @@ const About = () => {
                 loading="lazy"
                 className="hero-image"
                 style={{
-                  width: '95%',
+                  width: '80%',
                   height: 'auto',
                   objectFit: 'contain',
                   transform: 'rotate(-5deg) translateY(10px)',
@@ -96,12 +96,12 @@ const About = () => {
                 loading="lazy"
                 className="hero-image"
                 style={{
-                  width: '85%',
+                  width: '70%',
                   height: 'auto',
                   objectFit: 'contain',
                   transform: 'rotate(8deg) translateY(-15px)',
                   zIndex: 1,
-                  marginLeft: '-35%',
+                  marginLeft: '-25%',
                 }}
               />
             </div>
