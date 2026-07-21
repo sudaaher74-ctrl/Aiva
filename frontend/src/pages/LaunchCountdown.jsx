@@ -188,117 +188,6 @@ export default function LaunchCountdown({ onEnter }) {
         style={{ width: '120px', zIndex: 10, position: 'absolute', top: '40px' }} 
       />
 
-      {!isLaunched && authStep === 0 && (
-        <button
-          onClick={() => setAuthStep(1)}
-          style={{
-            position: 'absolute',
-            top: '20px',
-            right: '20px',
-            backgroundColor: 'transparent',
-            color: '#888',
-            border: '1px solid #333',
-            padding: '8px 16px',
-            borderRadius: '9999px',
-            fontSize: '0.85rem',
-            cursor: 'pointer',
-            zIndex: 50,
-            transition: 'all 0.2s ease',
-          }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.color = '#fff';
-            e.currentTarget.style.borderColor = '#666';
-          }}
-          onMouseOut={(e) => {
-            e.currentTarget.style.color = '#888';
-            e.currentTarget.style.borderColor = '#333';
-          }}
-        >
-          Bypass
-        </button>
-      )}
-
-      {!isLaunched && authStep > 0 && (
-        <form 
-          onSubmit={(e) => {
-            e.preventDefault();
-            const inputLower = authInput.toLowerCase().trim();
-            if (authStep === 1) {
-              if (inputLower === 'aishwarya') {
-                setAuthStep(2);
-                setAuthInput('');
-              } else {
-                setAuthError(true);
-                setTimeout(() => setAuthError(false), 2000);
-              }
-            } else if (authStep === 2) {
-              if (inputLower === 'sudarshan') {
-                onEnter();
-              } else {
-                setAuthError(true);
-                setTimeout(() => setAuthError(false), 2000);
-              }
-            }
-          }}
-          style={{
-            position: 'absolute',
-            top: '20px',
-            right: '20px',
-            zIndex: 50,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-end',
-            gap: '8px'
-          }}
-        >
-          <div style={{ color: '#888', fontSize: '0.85rem' }}>
-            {authStep === 1 ? 'Who is the owner of this website?' : 'Who is the developer?'}
-          </div>
-          <div style={{ display: 'flex', gap: '8px' }}>
-            <input 
-              type="text" 
-              value={authInput}
-              onChange={(e) => setAuthInput(e.target.value)}
-              placeholder="Enter name..."
-              style={{
-                backgroundColor: 'rgba(255,255,255,0.05)',
-                border: `1px solid ${authError ? '#EF4444' : '#333'}`,
-                color: '#fff',
-                padding: '6px 12px',
-                borderRadius: '4px',
-                outline: 'none',
-                fontFamily: 'inherit',
-                animation: authError ? 'shake 0.4s ease-in-out' : 'none'
-              }}
-              autoFocus
-            />
-            <button 
-              type="submit"
-              style={{
-                backgroundColor: '#F4A300',
-                color: '#050505',
-                border: 'none',
-                padding: '6px 12px',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                fontWeight: 600,
-                fontFamily: 'inherit'
-              }}
-            >
-              Enter
-            </button>
-          </div>
-          <style>{`
-            @keyframes shake {
-              0%, 100% { transform: translateX(0); }
-              25% { transform: translateX(-5px); }
-              50% { transform: translateX(5px); }
-              75% { transform: translateX(-5px); }
-            }
-          `}</style>
-        </form>
-      )}
-
       {isLaunched ? (
         <div style={{ zIndex: 10, textAlign: 'center', padding: '2rem' }}>
           <canvas 
@@ -414,15 +303,117 @@ export default function LaunchCountdown({ onEnter }) {
           </div>
 
           <p style={{ 
-            position: 'absolute',
-            bottom: '40px',
-            left: '0',
-            right: '0',
+            marginTop: '2rem',
             color: '#666',
             fontSize: '0.85rem'
           }}>
             Going live at 12:00 &middot; Thursday, July 23, 2026
           </p>
+
+          <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'center' }}>
+            {authStep === 0 && (
+              <button
+                onClick={() => setAuthStep(1)}
+                style={{
+                  backgroundColor: 'transparent',
+                  color: '#888',
+                  border: '1px solid #333',
+                  padding: '8px 16px',
+                  borderRadius: '9999px',
+                  fontSize: '0.85rem',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.color = '#fff';
+                  e.currentTarget.style.borderColor = '#666';
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.color = '#888';
+                  e.currentTarget.style.borderColor = '#333';
+                }}
+              >
+                Bypass
+              </button>
+            )}
+
+            {authStep > 0 && (
+              <form 
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const inputLower = authInput.toLowerCase().trim();
+                  if (authStep === 1) {
+                    if (inputLower === 'aishwarya') {
+                      setAuthStep(2);
+                      setAuthInput('');
+                    } else {
+                      setAuthError(true);
+                      setTimeout(() => setAuthError(false), 2000);
+                    }
+                  } else if (authStep === 2) {
+                    if (inputLower === 'sudarshan') {
+                      onEnter();
+                    } else {
+                      setAuthError(true);
+                      setTimeout(() => setAuthError(false), 2000);
+                    }
+                  }
+                }}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}
+              >
+                <div style={{ color: '#888', fontSize: '0.85rem' }}>
+                  {authStep === 1 ? 'Who is the owner of this website?' : 'Who is the developer?'}
+                </div>
+                <div style={{ display: 'flex', gap: '8px' }}>
+                  <input 
+                    type="text" 
+                    value={authInput}
+                    onChange={(e) => setAuthInput(e.target.value)}
+                    placeholder="Enter name..."
+                    style={{
+                      backgroundColor: 'rgba(255,255,255,0.05)',
+                      border: `1px solid ${authError ? '#EF4444' : '#333'}`,
+                      color: '#fff',
+                      padding: '6px 12px',
+                      borderRadius: '4px',
+                      outline: 'none',
+                      fontFamily: 'inherit',
+                      animation: authError ? 'shake 0.4s ease-in-out' : 'none'
+                    }}
+                    autoFocus
+                  />
+                  <button 
+                    type="submit"
+                    style={{
+                      backgroundColor: '#F4A300',
+                      color: '#050505',
+                      border: 'none',
+                      padding: '6px 12px',
+                      borderRadius: '4px',
+                      cursor: 'pointer',
+                      fontWeight: 600,
+                      fontFamily: 'inherit'
+                    }}
+                  >
+                    Enter
+                  </button>
+                </div>
+                <style>{`
+                  @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    25% { transform: translateX(-5px); }
+                    50% { transform: translateX(5px); }
+                    75% { transform: translateX(-5px); }
+                  }
+                `}</style>
+              </form>
+            )}
+          </div>
         </div>
       )}
     </div>
