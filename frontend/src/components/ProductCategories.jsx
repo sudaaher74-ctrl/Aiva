@@ -108,7 +108,7 @@ function ProductCategories() {
           <CategoryCard
             hueClass="card-mango"
             color="#ffb800"
-            image="/assets/images/products/pulp/kesarmangopulp.webp"
+            image="/assets/images/totapuriabout.png"
             alt="Aseptic pulp/paste"
             title="Aseptic pulp/paste"
             desc="High quality fruit pulp, puree, and paste packaged under sterile conditions."
@@ -119,7 +119,7 @@ function ProductCategories() {
             color="#ff9999"
             image="/assets/images/products/iqf_fruits/strawberry.png?v=2"
             alt="IQF Products"
-            title="IQF fruits"
+            title="IQF"
             desc="Individually Quick Frozen fruits & vegetables and locking in real flavor."
             to="/products#iqf-fruits"
           />
