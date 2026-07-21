@@ -886,7 +886,7 @@ p {
 .timeline-item {
     position: relative;
     padding-left: 3rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
 }
 
 .timeline-item:last-child {
@@ -898,7 +898,7 @@ p {
     position: absolute;
     left: 7px;
     top: 20px;
-    bottom: -3rem;
+    bottom: -1.5rem;
     width: 2px;
     background: rgba(255,255,255,0.1);
 }
@@ -919,8 +919,8 @@ p {
 }
 
 .timeline-item h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+    margin-bottom: 0.3rem;
 }
 
 .timeline-item p {

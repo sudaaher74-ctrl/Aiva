@@ -72,10 +72,11 @@ function ProcessSection() {
             <div className="glass-panel">
               <div className="glass-inner">
                 <img
-                  src="/assets/images/products/vegetables/sweetcorncoverimg.png"
+                  src="/assets/images/strawebbryhome.png"
                   alt="Quality Process"
                   className="floating-slow"
                   loading="lazy"
+                  style={{ maxWidth: '100%', height: 'auto', objectFit: 'contain' }}
                 />
               </div>
             </div>

@@ -120,7 +120,7 @@ function ProductCategories() {
             image="/assets/images/products/iqf_fruits/strawberry.png?v=2"
             alt="IQF Products"
             title="IQF"
-            desc="Individually Quick Frozen fruits & vegetables and locking in real flavor."
+            desc="Individually Quick Frozen fruits & vegetables."
             to="/products#iqf-fruits"
           />
           <CategoryCard
