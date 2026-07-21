@@ -374,15 +374,6 @@ export default function LaunchCountdown({ onEnter }) {
           }}>
             Launching Thursday, July 23
           </p>
-          <h1 style={{ 
-            fontSize: 'clamp(32px, 5vw, 62px)', 
-            fontWeight: 800, 
-            letterSpacing: '-2px',
-            lineHeight: 1.1,
-            marginBottom: '1.5rem'
-          }}>
-            Something premium is almost ripe.
-          </h1>
           <p style={{ 
             color: '#a0a0a0', 
             fontSize: '1.1rem',
