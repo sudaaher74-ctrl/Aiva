@@ -13,9 +13,12 @@ export default function GlobalErrorBoundary() {
 
   if (isChunkError) {
     if (typeof window !== 'undefined') {
-      // Prevent infinite reload loops by checking session storage
-      if (!sessionStorage.getItem('reloaded_from_error')) {
-        sessionStorage.setItem('reloaded_from_error', 'true');
+      const lastReload = sessionStorage.getItem('reloaded_from_error_time');
+      const now = Date.now();
+      
+      // If we haven't reloaded in the last 10 seconds, try cache-busting reload
+      if (!lastReload || (now - parseInt(lastReload)) > 10000) {
+        sessionStorage.setItem('reloaded_from_error_time', now.toString());
         // Perform a cache-busting reload to bypass CDN/ServiceWorker caching of old index.html
         const search = window.location.search;
         const cacheBuster = search ? (search.includes('_t=') ? search : `${search}&_t=${Date.now()}`) : `?_t=${Date.now()}`;
@@ -25,9 +28,9 @@ export default function GlobalErrorBoundary() {
     }
   }
 
-  // Clear the flag if we render the error boundary and don't reload
+  // Clear the flag if we render the error boundary and don't reload, so future clicks work
   if (typeof window !== 'undefined') {
-    sessionStorage.removeItem('reloaded_from_error');
+    sessionStorage.removeItem('reloaded_from_error_time');
   }
 
   return (
