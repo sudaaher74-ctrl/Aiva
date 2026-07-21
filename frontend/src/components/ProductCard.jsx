@@ -96,8 +96,7 @@ const ProductCard = ({ product, handleQuoteClick }) => {
           src={imageUrl} 
           alt={product.name} 
           className={`w-full h-full object-contain p-6 ${
-            product.name?.includes('Coriander') ? 'scale-[1.15]' : 
-            product.name?.includes('Tomato') ? 'scale-[0.85]' : ''
+            product.name?.includes('Coriander') ? 'scale-[1.15]' : ''
           }`}
         />
       </motion.div>
