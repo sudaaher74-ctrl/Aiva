@@ -22,7 +22,7 @@ gsap.registerPlugin(ScrollTrigger);
 export function AppRoot() {
   const location = useLocation();
   const [hasLaunched, setHasLaunched] = useState(
-    typeof window !== 'undefined' ? localStorage.getItem('aiva_launched_v2') === 'true' : false
+    typeof window !== 'undefined' ? localStorage.getItem('aiva_launch_gate_thursday') === 'true' : false
   );
 
   useEffect(() => {
@@ -83,8 +83,13 @@ export function AppRoot() {
     }
   }, [location]);
 
+  const handleLaunchEnter = () => {
+    localStorage.setItem('aiva_launch_gate_thursday', 'true');
+    setHasLaunched(true);
+  };
+
   if (!hasLaunched) {
-    return <LaunchCountdown onEnter={() => setHasLaunched(true)} />;
+    return <LaunchCountdown onEnter={handleLaunchEnter} />;
   }
 
   return (
