@@ -68,8 +68,9 @@ function AboutSection() {
               src="/assets/images/totapuriabout.png"
               alt="Totapuri Drum"
               loading="lazy"
+              className="floating-slow"
               style={{
-                width: '50%',
+                width: '80%',
                 height: 'auto',
                 objectFit: 'contain',
                 filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.5))',
@@ -81,14 +82,16 @@ function AboutSection() {
               src="/assets/images/tomatoabout.png"
               alt="Tomato Drum"
               loading="lazy"
+              className="floating-slow"
               style={{
-                width: '45%',
+                width: '70%',
                 height: 'auto',
                 objectFit: 'contain',
                 filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
                 transform: 'rotate(8deg) translateY(-15px)',
                 zIndex: 1,
-                marginLeft: '-15%',
+                marginLeft: '-25%',
+                animationDelay: '1.5s',
               }}
             />
           </div>
