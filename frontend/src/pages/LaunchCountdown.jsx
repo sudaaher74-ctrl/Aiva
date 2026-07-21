@@ -19,7 +19,7 @@ export default function LaunchCountdown({ onEnter }) {
 
   const [timeLeft, setTimeLeft] = useState(getInitialTime);
   const [isLaunched, setIsLaunched] = useState(false);
-  const [showAuth, setShowAuth] = useState(false);
+  const [authStep, setAuthStep] = useState(0); // 0: hidden, 1: owner question, 2: dev question
   const [authInput, setAuthInput] = useState('');
   const [authError, setAuthError] = useState(false);
   const containerRef = useRef(null);
@@ -188,9 +188,9 @@ export default function LaunchCountdown({ onEnter }) {
         style={{ width: '120px', zIndex: 10, position: 'absolute', top: '40px' }} 
       />
 
-      {!isLaunched && !showAuth && (
+      {!isLaunched && authStep === 0 && (
         <button
-          onClick={() => setShowAuth(true)}
+          onClick={() => setAuthStep(1)}
           style={{
             position: 'absolute',
             top: '20px',
@@ -218,15 +218,26 @@ export default function LaunchCountdown({ onEnter }) {
         </button>
       )}
 
-      {!isLaunched && showAuth && (
+      {!isLaunched && authStep > 0 && (
         <form 
           onSubmit={(e) => {
             e.preventDefault();
-            if (authInput.toLowerCase().trim() === 'aishwarya') {
-              onEnter();
-            } else {
-              setAuthError(true);
-              setTimeout(() => setAuthError(false), 2000);
+            const inputLower = authInput.toLowerCase().trim();
+            if (authStep === 1) {
+              if (inputLower === 'aishwarya') {
+                setAuthStep(2);
+                setAuthInput('');
+              } else {
+                setAuthError(true);
+                setTimeout(() => setAuthError(false), 2000);
+              }
+            } else if (authStep === 2) {
+              if (inputLower === 'sudarshan') {
+                onEnter();
+              } else {
+                setAuthError(true);
+                setTimeout(() => setAuthError(false), 2000);
+              }
             }
           }}
           style={{
@@ -240,7 +251,9 @@ export default function LaunchCountdown({ onEnter }) {
             gap: '8px'
           }}
         >
-          <div style={{ color: '#888', fontSize: '0.85rem' }}>Who is the owner of this website?</div>
+          <div style={{ color: '#888', fontSize: '0.85rem' }}>
+            {authStep === 1 ? 'Who is the owner of this website?' : 'Who is the developer?'}
+          </div>
           <div style={{ display: 'flex', gap: '8px' }}>
             <input 
               type="text" 
