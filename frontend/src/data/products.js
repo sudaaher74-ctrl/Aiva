@@ -196,7 +196,7 @@ export const productsData = [
     description: 'IQF Coriander & Green Chilli.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/iqf_frozen/coriander&freenchilli.png'
+    image: '/assets/images/products/iqf_frozen/coriander-green-chilli.png'
   },
   {
     id: 'mint',
