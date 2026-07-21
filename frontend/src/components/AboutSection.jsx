@@ -64,18 +64,31 @@ function AboutSection() {
               justifyContent: 'center'
             }}
           >
-            {/* About Us Cover Image */}
             <img
-              src="/assets/images/products/coverimgaboutus.png"
-              alt="About AIVA Enterprises"
+              src="/assets/images/totapuriabout.png"
+              alt="Totapuri Drum"
               loading="lazy"
               style={{
-                width: '140%',
+                width: '50%',
                 height: 'auto',
-                borderRadius: '16px',
-                objectFit: 'cover',
+                objectFit: 'contain',
                 filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.5))',
-                transform: 'scale(1.15) translateX(-8%)'
+                transform: 'rotate(-5deg) translateY(10px)',
+                zIndex: 2,
+              }}
+            />
+            <img
+              src="/assets/images/tomatoabout.png"
+              alt="Tomato Drum"
+              loading="lazy"
+              style={{
+                width: '50%',
+                height: 'auto',
+                objectFit: 'contain',
+                filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.5))',
+                transform: 'rotate(5deg) translateY(-10px)',
+                zIndex: 1,
+                marginLeft: '-10%',
               }}
             />
           </div>
