@@ -203,7 +203,7 @@ export default function LaunchCountdown({ onEnter }) {
             e.currentTarget.style.borderColor = '#333';
           }}
         >
-          Skip &rarr;
+          Bypass
         </button>
       )}
 
