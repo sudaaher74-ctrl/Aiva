@@ -600,10 +600,10 @@ p {
 }
 
 .f-mango {
-    right: 5%;
-    top: 5%;
-    width: 45vw;
-    max-width: 550px;
+    right: 0%;
+    top: 25%;
+    width: 50vw;
+    max-width: 750px;
 }
 
 .f-guava {
