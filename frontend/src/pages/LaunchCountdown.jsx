@@ -6,7 +6,18 @@ import { useGSAP } from '@gsap/react';
 const LAUNCH_AT = new Date('2026-07-23T12:00:00+05:30').getTime();
 
 export default function LaunchCountdown({ onEnter }) {
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const getInitialTime = () => {
+    const distance = LAUNCH_AT - new Date().getTime();
+    if (distance <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    return {
+      days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+      minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+      seconds: Math.floor((distance % (1000 * 60)) / 1000),
+    };
+  };
+
+  const [timeLeft, setTimeLeft] = useState(getInitialTime);
   const [isLaunched, setIsLaunched] = useState(false);
   const [showAuth, setShowAuth] = useState(false);
   const [authInput, setAuthInput] = useState('');
