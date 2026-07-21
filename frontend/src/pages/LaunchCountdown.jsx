@@ -3,11 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
-const LAUNCH_AT = new Date().getTime() + 5 * 60 * 1000;
+const LAUNCH_AT = new Date('2026-07-23T12:00:00+05:30').getTime();
 
 export default function LaunchCountdown({ onEnter }) {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [isLaunched, setIsLaunched] = useState(false);
+  const [showAuth, setShowAuth] = useState(false);
+  const [authInput, setAuthInput] = useState('');
+  const [authError, setAuthError] = useState(false);
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const requestRef = useRef();
@@ -174,9 +177,9 @@ export default function LaunchCountdown({ onEnter }) {
         style={{ width: '120px', zIndex: 10, position: 'absolute', top: '40px' }} 
       />
 
-      {!isLaunched && (
+      {!isLaunched && !showAuth && (
         <button
-          onClick={handleEnter}
+          onClick={() => setShowAuth(true)}
           style={{
             position: 'absolute',
             top: '20px',
@@ -202,6 +205,74 @@ export default function LaunchCountdown({ onEnter }) {
         >
           Skip &rarr;
         </button>
+      )}
+
+      {!isLaunched && showAuth && (
+        <form 
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (authInput.toLowerCase().trim() === 'aishwarya') {
+              onEnter();
+            } else {
+              setAuthError(true);
+              setTimeout(() => setAuthError(false), 2000);
+            }
+          }}
+          style={{
+            position: 'absolute',
+            top: '20px',
+            right: '20px',
+            zIndex: 50,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-end',
+            gap: '8px'
+          }}
+        >
+          <div style={{ color: '#888', fontSize: '0.85rem' }}>Who is the owner of this website?</div>
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <input 
+              type="text" 
+              value={authInput}
+              onChange={(e) => setAuthInput(e.target.value)}
+              placeholder="Enter name..."
+              style={{
+                backgroundColor: 'rgba(255,255,255,0.05)',
+                border: `1px solid ${authError ? '#EF4444' : '#333'}`,
+                color: '#fff',
+                padding: '6px 12px',
+                borderRadius: '4px',
+                outline: 'none',
+                fontFamily: 'inherit',
+                animation: authError ? 'shake 0.4s ease-in-out' : 'none'
+              }}
+              autoFocus
+            />
+            <button 
+              type="submit"
+              style={{
+                backgroundColor: '#F4A300',
+                color: '#050505',
+                border: 'none',
+                padding: '6px 12px',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                fontWeight: 600,
+                fontFamily: 'inherit'
+              }}
+            >
+              Enter
+            </button>
+          </div>
+          <style>{`
+            @keyframes shake {
+              0%, 100% { transform: translateX(0); }
+              25% { transform: translateX(-5px); }
+              50% { transform: translateX(5px); }
+              75% { transform: translateX(-5px); }
+            }
+          `}</style>
+        </form>
       )}
 
       {isLaunched ? (
@@ -290,7 +361,7 @@ export default function LaunchCountdown({ onEnter }) {
             marginBottom: '1rem',
             fontSize: '0.9rem'
           }}>
-            Launching Monday, July 20
+            Launching Thursday, July 23
           </p>
           <h1 style={{ 
             fontSize: 'clamp(32px, 5vw, 62px)', 
@@ -335,7 +406,7 @@ export default function LaunchCountdown({ onEnter }) {
             color: '#666',
             fontSize: '0.85rem'
           }}>
-            Going live at 12:00 &middot; Monday, July 20, 2026
+            Going live at 12:00 &middot; Thursday, July 23, 2026
           </p>
         </div>
       )}
