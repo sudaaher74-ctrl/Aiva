@@ -70,7 +70,7 @@ function AboutSection() {
               loading="lazy"
               className="floating-slow"
               style={{
-                width: '80%',
+                width: '50%',
                 height: 'auto',
                 objectFit: 'contain',
                 filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.5))',
@@ -84,13 +84,13 @@ function AboutSection() {
               loading="lazy"
               className="floating-slow"
               style={{
-                width: '70%',
+                width: '45%',
                 height: 'auto',
                 objectFit: 'contain',
                 filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
                 transform: 'rotate(8deg) translateY(-15px)',
                 zIndex: 1,
-                marginLeft: '-25%',
+                marginLeft: '-15%',
                 animationDelay: '1.5s',
               }}
             />
