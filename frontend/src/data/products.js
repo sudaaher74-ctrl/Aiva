@@ -8,7 +8,7 @@ export const productsData = [
     description: 'Premium export-quality Alphonso Mango Pulp made from hand-picked Ratnagiri Alphonso mangoes packaged in bulk aseptic.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/pulp/alphansso.png'
+    image: '/assets/images/products/pulp/alphonso.png'
   },
   {
     id: 'totapuri-mango-pulp',
