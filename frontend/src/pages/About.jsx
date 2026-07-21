@@ -69,7 +69,45 @@ const About = () => {
             <div className="premium-stamp">
               <span>Premium Sourcing • Global Export •</span>
             </div>
-            <img src="/assets/images/products/coverimgaboutus.png" alt="Premium Mango Pulp" className="hero-image" />
+            <div
+              className="image-composition"
+              style={{
+                position: 'relative',
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              <img
+                src="/assets/images/totapuriabout.png"
+                alt="Totapuri Drum"
+                loading="lazy"
+                className="hero-image"
+                style={{
+                  width: '60%',
+                  height: 'auto',
+                  objectFit: 'contain',
+                  transform: 'rotate(-5deg) translateY(10px)',
+                  zIndex: 2,
+                }}
+              />
+              <img
+                src="/assets/images/strawebbryhome.png"
+                alt="Strawberry"
+                loading="lazy"
+                className="hero-image"
+                style={{
+                  width: '50%',
+                  height: 'auto',
+                  objectFit: 'contain',
+                  transform: 'rotate(8deg) translateY(-15px)',
+                  zIndex: 1,
+                  marginLeft: '-20%',
+                }}
+              />
+            </div>
           </div>
         </div>
       </section>
