@@ -66,7 +66,7 @@ function ProductHero() {
             <span className="reveal-text highlight">Processing Products</span>
           </h1>
           <p className="prod-hero-subtitle reveal-text delay-1">
-            AIVA Enterprises delivers world-class aseptic fruit pulps, purees, and concentrates, along with IQF and blast-frozen fruits and vegetables to international markets.
+            AIVA Enterprises delivers world-class aseptic fruit pulps, purees, and concentrates, along with IQF and blast frozen fruits and vegetables to international markets.
           </p>
           <div className="hero-buttons">
             <a href="#products" className="btn btn-primary">
