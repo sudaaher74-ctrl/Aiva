@@ -94,8 +94,8 @@ const About = () => {
                 }}
               />
               <img
-                src="/assets/images/strawebbryhome.png"
-                alt="Strawberry"
+                src="/assets/images/tomatoabout.png"
+                alt="Tomato Drum"
                 loading="lazy"
                 className="hero-image"
                 style={{
