@@ -163,7 +163,62 @@ export const productsData = [
     description: 'IQF Sweet Corn Kernels.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: ''
+    image: '/assets/images/products/vegetables/sweetcorn.png'
+  },
+  {
+    id: 'mushroom',
+    slug: 'mushroom',
+    name: 'IQF Mushroom',
+    category: 'IQF',
+    tab: 'vegetables',
+    description: 'IQF Mushroom.',
+    brix: 'TODO_SPEC',
+    shelfLife: 'TODO_SPEC',
+    image: '/assets/images/products/vegetables/mushroom.png'
+  },
+  {
+    id: 'green-peas',
+    slug: 'green-peas',
+    name: 'IQF Green Peas',
+    category: 'IQF',
+    tab: 'vegetables',
+    description: 'IQF Green Peas.',
+    brix: 'TODO_SPEC',
+    shelfLife: 'TODO_SPEC',
+    image: '/assets/images/products/vegetables/green-peas.png'
+  },
+  {
+    id: 'mix-vegetables',
+    slug: 'mix-vegetables',
+    name: 'IQF Mix Vegetables',
+    category: 'IQF',
+    tab: 'vegetables',
+    description: 'IQF Mix Vegetables.',
+    brix: 'TODO_SPEC',
+    shelfLife: 'TODO_SPEC',
+    image: '/assets/images/products/vegetables/mix-vegetables.png'
+  },
+  {
+    id: 'spinach',
+    slug: 'spinach',
+    name: 'IQF Spinach',
+    category: 'IQF',
+    tab: 'vegetables',
+    description: 'IQF Spinach.',
+    brix: 'TODO_SPEC',
+    shelfLife: 'TODO_SPEC',
+    image: '/assets/images/products/vegetables/spinach.png'
+  },
+  {
+    id: 'okra',
+    slug: 'okra',
+    name: 'IQF Okra',
+    category: 'IQF',
+    tab: 'vegetables',
+    description: 'IQF Okra.',
+    brix: 'TODO_SPEC',
+    shelfLife: 'TODO_SPEC',
+    image: '/assets/images/products/vegetables/okra.png'
   },
   {
     id: '6mm-french-fries',
