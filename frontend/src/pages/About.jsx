@@ -66,9 +66,6 @@ const About = () => {
             </div>
           </div>
           <div className="hero-image-wrapper">
-            <div className="premium-stamp">
-              <span>Premium Sourcing • Global Export •</span>
-            </div>
             <div
               className="image-composition"
               style={{
@@ -86,7 +83,7 @@ const About = () => {
                 loading="lazy"
                 className="hero-image"
                 style={{
-                  width: '60%',
+                  width: '95%',
                   height: 'auto',
                   objectFit: 'contain',
                   transform: 'rotate(-5deg) translateY(10px)',
@@ -99,12 +96,12 @@ const About = () => {
                 loading="lazy"
                 className="hero-image"
                 style={{
-                  width: '50%',
+                  width: '85%',
                   height: 'auto',
                   objectFit: 'contain',
                   transform: 'rotate(8deg) translateY(-15px)',
                   zIndex: 1,
-                  marginLeft: '-20%',
+                  marginLeft: '-35%',
                 }}
               />
             </div>
