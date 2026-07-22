@@ -39,7 +39,7 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
 
   if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
     await transporter.sendMail(mailOptions);
-  } else {
+  } else if (process.env.NODE_ENV === 'development') {
     console.log(`Email simulated. Reset Token: ${resetToken}`);
   }
 

@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "test": "node --test"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
@@ -26,7 +27,6 @@
     "multer": "^2.1.1",
     "nodemailer": "^9.0.1",
     "sharp": "^0.35.2",
-    "xss-clean": "^0.1.4",
     "zod": "^4.4.3"
   }
 }
