@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useLocation, Outlet, useParams } from 'react-router-dom';
 import Lenis from 'lenis';
 import gsap from 'gsap';
@@ -14,16 +14,14 @@ import ChatbotApp from './pages/chatbot/ChatbotApp';
 import PublicLayout from './components/PublicLayout';
 import GlobalErrorBoundary from './components/GlobalErrorBoundary';
 import { ThemeProvider } from './contexts/ThemeContext';
-import LaunchCountdown from './pages/LaunchCountdown';
+
 import { API_BASE } from './config';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function AppRoot() {
   const location = useLocation();
-  const [hasLaunched, setHasLaunched] = useState(
-    typeof window !== 'undefined' ? localStorage.getItem('aiva_launch_gate_thursday') === 'true' : false
-  );
+
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -83,14 +81,6 @@ export function AppRoot() {
     }
   }, [location]);
 
-  const handleLaunchEnter = () => {
-    localStorage.setItem('aiva_launch_gate_thursday', 'true');
-    setHasLaunched(true);
-  };
-
-  if (!hasLaunched) {
-    return <LaunchCountdown onEnter={handleLaunchEnter} />;
-  }
 
   return (
     <ThemeProvider>
