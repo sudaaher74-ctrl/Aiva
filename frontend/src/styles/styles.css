@@ -1209,10 +1209,10 @@ p {
         padding: 0 16px;
     }
     .hero {
-        min-height: 100vh;
+        min-height: auto;
         height: auto;
-        padding-top: 80px;
-        padding-bottom: 6rem;
+        padding-top: 120px;
+        padding-bottom: 80px;
         display: flex;
         flex-direction: column;
         justify-content: center;
