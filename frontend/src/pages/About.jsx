@@ -116,11 +116,21 @@ const About = () => {
         <div className="story-heading">
           <span className="eyebrow">Our Story</span>
           <h2>From a food technologist's vision to a global partner.</h2>
-          <div className="founder-badge">
-            <div className="founder-initials">AI</div>
-            <div className="founder-info">
-              <h4>Aishwarya Ingale</h4>
-              <p>Founder, AIVA Enterprises</p>
+          <div className="founder-badge-wrapper">
+            <div className="founder-badge-inner">
+              <div className="founder-badge-front">
+                <div className="founder-badge">
+                  <div className="founder-initials">AI</div>
+                  <div className="founder-info">
+                    <h4>Aishwarya Ingale</h4>
+                    <p>Founder, AIVA Enterprises</p>
+                  </div>
+                </div>
+              </div>
+              <div className="founder-badge-back">
+                <a href="#" className="founder-social"><i className="ph ph-linkedin-logo"></i></a>
+                <a href="#" className="founder-social"><i className="ph ph-whatsapp-logo"></i></a>
+              </div>
             </div>
           </div>
         </div>
