@@ -52,6 +52,12 @@
   align-items: center;
 }
 
+@media (min-width: 1025px) {
+  .about-page .hero-content {
+    transform: translateY(-60px);
+  }
+}
+
 .about-page .hero-content h1 {
   margin: 24px 0;
   color: #fff;
