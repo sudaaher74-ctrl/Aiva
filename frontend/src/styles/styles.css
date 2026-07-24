@@ -1211,11 +1211,11 @@ p {
     .hero {
         min-height: 100vh;
         height: auto;
-        padding-top: 64px;
-        padding-bottom: 2rem;
+        padding-top: 80px;
+        padding-bottom: 6rem;
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
+        justify-content: center;
     }
     .hero-content {
         display: block;
@@ -1313,28 +1313,28 @@ p {
 /* Products / Categories Mobile Grid */
 @media (max-width: 768px) {
     .product-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 1rem;
+        grid-template-columns: 1fr !important;
+        gap: 2rem;
     }
     .premium-product-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 1rem;
+        grid-template-columns: 1fr !important;
+        gap: 2rem;
     }
     .product-card .product-info h3,
     .premium-prod-card .p-info h3 {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
         margin-bottom: 0.5rem;
     }
     .product-card .product-info p,
     .premium-prod-card .p-desc {
-        font-size: 0.85rem;
-        line-height: 1.4;
+        font-size: 1rem;
+        line-height: 1.5;
     }
     .product-card .product-image-wrap {
-        height: 150px;
+        height: 250px;
     }
     .premium-prod-card .p-img-box {
-        height: 150px;
+        height: 250px;
     }
 }
 .global-map-container {
@@ -1367,7 +1367,7 @@ p {
     
     .mobile-bottom-nav-wrapper {
         position: fixed;
-        bottom: 20px;
+        bottom: calc(20px + env(safe-area-inset-bottom));
         left: 50%;
         transform: translateX(-50%);
         width: 90%;
@@ -1439,11 +1439,11 @@ p {
 
 /* Mobile (below 768px) */
 @media (max-width: 767px) {
-    body { font-size: 18px; }
+    body { font-size: 16px; }
     .section-padding { padding: 60px 0; }
-    h1, .hero-title, .prod-hero-title { font-size: 40px; }
-    h2, .section-title { font-size: 32px; }
-    h3, .section-subtitle { font-size: 24px; }
-    .body-large, .hero-subtitle, .hero-description, .prod-hero-subtitle, .section-desc { font-size: 20px; }
-    .btn { font-size: 18px; }
+    h1, .hero-title, .prod-hero-title { font-size: 34px; margin-bottom: 24px; }
+    h2, .section-title { font-size: 28px; }
+    h3, .section-subtitle { font-size: 20px; }
+    .body-large, .hero-subtitle, .hero-description, .prod-hero-subtitle, .section-desc { font-size: 16px; line-height: 1.6; }
+    .btn { font-size: 16px; padding: 12px 28px; }
 }
