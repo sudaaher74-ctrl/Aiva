@@ -89,6 +89,20 @@ async function gatherERPContext(userMessage) {
       dataPackets.purchaseOrders = { totalPOs, statusAgg, totalRevenue: totalRevenue.length > 0 ? totalRevenue[0].total : 0 };
     }
 
+    if (lowerMsg.match(/quote|quotation|price|pricing|estimate/)) {
+      const [totalQuotes, recentQuotes, statusAgg] = await Promise.all([
+        Quotation.countDocuments(),
+        Quotation.find().sort({ createdAt: -1 }).limit(5).populate('customer_id', 'name company').lean(),
+        Quotation.aggregate([{ $group: { _id: '$status', count: { $sum: 1 } } }])
+      ]);
+
+      context += `\n--- QUOTATIONS DATA ---\n`;
+      context += `Total Quotes: ${totalQuotes}\n`;
+      context += `Status Breakdown: ${JSON.stringify(statusAgg)}\n`;
+      context += `Recent Quotes: ${JSON.stringify(recentQuotes.map(q => ({ quoteId: q._id, customer: q.customer_id?.company || q.customer_id?.name, totalAmount: q.total_amount, status: q.status, date: q.createdAt })))}\n`;
+      dataPackets.quotations = { totalQuotes, statusAgg };
+    }
+
     if (!context) {
       const [totalLeads, totalCustomers, totalProducts, totalPOs] = await Promise.all([
         Inquiry.countDocuments(),

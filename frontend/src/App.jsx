@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import { useLocation, Outlet, useParams } from 'react-router-dom';
 import Lenis from 'lenis';
 import gsap from 'gsap';
@@ -9,9 +9,10 @@ import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import ChatbotLogin from './pages/chatbot/ChatbotLogin';
-import ChatbotApp from './pages/chatbot/ChatbotApp';
 import PublicLayout from './components/PublicLayout';
+
+const ChatbotLogin = lazy(() => import('./pages/chatbot/ChatbotLogin'));
+const ChatbotApp = lazy(() => import('./pages/chatbot/ChatbotApp'));
 import GlobalErrorBoundary from './components/GlobalErrorBoundary';
 import { ThemeProvider } from './contexts/ThemeContext';
 
@@ -115,8 +116,22 @@ export const routes = [
           { path: '/products.html', element: <Products /> },
         ]
       },
-      { path: '/chatbot/login', element: <ChatbotLogin /> },
-      { path: '/chatbot', element: <ChatbotApp /> },
+      { 
+        path: '/chatbot/login', 
+        element: (
+          <Suspense fallback={<div style={{height:'100vh', display:'flex', justifyContent:'center', alignItems:'center', background:'#050505', color:'#fff'}}>Loading...</div>}>
+            <ChatbotLogin />
+          </Suspense>
+        ) 
+      },
+      { 
+        path: '/chatbot', 
+        element: (
+          <Suspense fallback={<div style={{height:'100vh', display:'flex', justifyContent:'center', alignItems:'center', background:'#050505', color:'#fff'}}>Loading...</div>}>
+            <ChatbotApp />
+          </Suspense>
+        ) 
+      },
     ]
   }
 ];

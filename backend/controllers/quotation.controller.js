@@ -7,6 +7,14 @@ exports.getQuotations = asyncHandler(async (req, res, next) => {
   res.json({ success: true, data: quotations });
 });
 
+exports.getQuotationById = asyncHandler(async (req, res, next) => {
+  const quotation = await Quotation.findById(req.params.id).populate('customer_id').populate('items.product_id');
+  if (!quotation) {
+    return next(new AppError('Quotation not found', 404));
+  }
+  res.json({ success: true, data: quotation });
+});
+
 exports.createQuotation = asyncHandler(async (req, res, next) => {
   const quotation = await Quotation.create(req.body);
   res.status(201).json({ success: true, data: quotation });

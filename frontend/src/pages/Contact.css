@@ -242,7 +242,7 @@
 
 @media (max-width: 768px) {
   .contact-hero {
-    padding: 120px 5% 60px;
+    padding: 100px 5% 60px;
   }
 
   .contact-content {
@@ -251,5 +251,20 @@
 
   .contact-form-wrapper {
     padding: 30px 20px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 14px;
+    font-size: 16px; /* Prevents iOS zoom */
+  }
+
+  .submit-btn {
+    padding: 14px 24px;
+    font-size: 1rem;
+  }
+
+  .contact-info h2 {
+    font-size: 1.8rem;
   }
 }

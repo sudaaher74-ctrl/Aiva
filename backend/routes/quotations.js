@@ -6,6 +6,7 @@ const validate = require('../middleware/validate');
 const { quotationSchema } = require('../validators');
 
 router.get('/', protect, restrictTo('Admin'), quotationController.getQuotations);
+router.get('/:id', protect, restrictTo('Admin'), quotationController.getQuotationById);
 router.post('/', protect, restrictTo('Admin'), validate(quotationSchema), quotationController.createQuotation);
 router.patch('/:id/status', protect, restrictTo('Admin'), quotationController.updateQuotationStatus);
 router.delete('/:id', protect, restrictTo('Admin'), quotationController.deleteQuotation);
