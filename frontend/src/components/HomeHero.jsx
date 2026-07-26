@@ -84,9 +84,9 @@ function HomeHero() {
       {/* Floating Parallax Elements */}
       <div className="floating-elements">
         <img
-          src="/assets/images/products/pulp/mangopulphome.png"
+          src="/assets/images/home.png"
           className="float-item f-mango"
-          alt="Mango Pulp in Glass Bottle"
+          alt="Premium Fruit Pulp Bottles"
           width="550"
           height="800"
           data-speed="1.2"
