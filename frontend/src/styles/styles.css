@@ -157,7 +157,7 @@ p {
     line-height: 1.7;
 }
 
-.btn, .btn-primary { font-size: var(--fs-body); }
+.btn, .btn-primary { font-size: 15px; }
 .premium-badge, .btn-link, .spec-label, .footer-bottom, .standards-subtitle { font-size: var(--fs-caption); }
 
 /* .card-title etc moved to h4 */
@@ -205,21 +205,22 @@ p {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 16px 36px;
+    padding: 12px 28px;
     border-radius: 999px;
     font-weight: 600;
-    font-size: var(--fs-body);
+    font-size: 15px;
     transition: var(--t-fast);
     position: relative;
     overflow: hidden;
     z-index: 1;
+    white-space: nowrap;
 }
 
 .btn-primary {
     background-color: var(--c-mango);
     color: var(--c-black);
-    font-size: var(--fs-body);
-    padding: 18px 40px;
+    font-size: 15px;
+    padding: 13px 30px;
 }
 
 .btn-primary:hover {
@@ -240,8 +241,12 @@ p {
 .btn-text {
     background: none;
     color: var(--c-white);
-    padding: 1rem 0;
+    padding: 0.75rem 0;
     gap: 0.5rem;
+    font-size: 15px;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
 }
 
 .btn-text i {
@@ -590,9 +595,10 @@ p {
 
 .hero-buttons {
     display: flex;
-    gap: 3rem;
+    gap: 1.5rem;
     align-items: center;
     margin-top: 2rem;
+    flex-wrap: wrap;
 }
 
 .reveal-text {
