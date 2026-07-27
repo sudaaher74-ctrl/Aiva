@@ -644,9 +644,9 @@ p {
         position: absolute;
     }
     .f-mango {
-        width: 92vw;
-        height: 44vh;
-        max-height: 450px;
+        width: 90vw;
+        height: 36vh;
+        max-height: 380px;
         opacity: 1;
         top: 64px;
         bottom: auto;
@@ -1253,8 +1253,8 @@ p {
         text-align: center;
     }
     .hero-title {
-        margin-top: calc(44vh + 64px + 24px);
-        font-size: 40px !important;
+        margin-top: 38vh;
+        font-size: 38px !important;
         line-height: 1.05 !important;
         font-weight: 800;
         text-align: center;
@@ -1262,26 +1262,22 @@ p {
     .hero-subtitle {
         margin-top: 16px;
         margin-bottom: 0;
-        max-width: 85%;
+        max-width: 90%;
         font-size: 16px !important;
-        line-height: 28px !important;
+        line-height: 1.5 !important;
         color: #CFCFCF;
         text-align: center;
-        display: -webkit-box;
-        -webkit-line-clamp: 4;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
     }
     .premium-badge {
         font-size: 0.75rem !important;
         padding: 0.4rem 0.8rem !important;
     }
     .hero-buttons {
-        margin-top: 28px;
+        margin-top: 24px;
         flex-direction: column;
         align-items: center;
         width: 100%;
-        margin-bottom: calc(100px + env(safe-area-inset-bottom));
+        margin-bottom: 80px;
         padding-bottom: 0;
         position: relative;
         z-index: 20;
