@@ -53,11 +53,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 html {
     font-size: 16px;
     scroll-behavior: auto; /* Managed by Lenis */
+    overscroll-behavior: none;
 }
 
 body {
@@ -68,6 +70,14 @@ body {
     background-color: var(--c-black);
     line-height: 1.8;
     overflow-x: hidden;
+    overscroll-behavior: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+/* Re-enable text selection for readable content */
+p, h1, h2, h3, h4, h5, h6, span, input, textarea {
+    user-select: auto;
+    -webkit-user-select: auto;
 }
 
 body.loading {
@@ -77,6 +87,7 @@ body.loading {
 a {
     text-decoration: none;
     color: inherit;
+    touch-action: manipulation;
 }
 
 ul {
@@ -94,6 +105,7 @@ button {
     border: none;
     cursor: pointer;
     font-family: inherit;
+    touch-action: manipulation;
 }
 
 /* --- Typography --- */
