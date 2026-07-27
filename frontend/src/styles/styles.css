@@ -626,11 +626,26 @@ p {
 }
 
 @media (max-width: 768px) {
+    .floating-elements {
+        position: relative;
+        height: auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2rem;
+        z-index: 5;
+    }
+    .float-item {
+        position: relative;
+    }
     .f-mango {
-        top: -15%;
-        right: -10%;
-        width: 65vw;
-        opacity: 0.5;
+        width: 80vw;
+        max-width: 300px;
+        height: auto;
+        opacity: 1;
+        top: 0;
+        right: 0;
     }
     .f-guava {
         left: 60%;
