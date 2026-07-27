@@ -1,5 +1,4 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 
 export default function SEO({
   title,
@@ -40,7 +39,7 @@ export default function SEO({
   const schemas = [organizationSchema, ...jsonLd];
 
   return (
-    <Helmet>
+    <>
       {/* Basic HTML Meta Tags */}
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
@@ -63,10 +62,8 @@ export default function SEO({
 
       {/* JSON-LD Structured Data */}
       {schemas.map((schema, index) => (
-        <script key={index} type="application/ld+json">
-          {JSON.stringify(schema)}
-        </script>
+        <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       ))}
-    </Helmet>
+    </>
   );
 }
