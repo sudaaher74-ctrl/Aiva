@@ -121,12 +121,6 @@ function ProductDetail() {
             </p>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '40px' }}>
-              {product.brix && (
-                <div style={{ background: 'var(--c-dark-grey)', padding: '20px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.08)' }}>
-                  <p style={{ color: '#606060', fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: 600, marginBottom: '5px' }}>Brix</p>
-                  <p style={{ color: '#fff', fontSize: '1.25rem', fontWeight: 500 }}>{product.brix}</p>
-                </div>
-              )}
               {product.shelfLife && (
                 <div style={{ background: 'var(--c-dark-grey)', padding: '20px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.08)' }}>
                   <p style={{ color: '#606060', fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: 600, marginBottom: '5px' }}>Shelf Life</p>

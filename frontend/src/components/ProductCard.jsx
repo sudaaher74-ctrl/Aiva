@@ -132,11 +132,6 @@ const ProductCard = ({ product, handleQuoteClick }) => {
                 </motion.p>
 
                 <div className="mt-4 space-y-1">
-                  {product.brix && (
-                    <motion.div variants={textVariants} className="text-sm text-gray-400">
-                      <span className="text-gray-500">Brix:</span> {product.brix}
-                    </motion.div>
-                  )}
                   {product.shelfLife && (
                     <motion.div variants={textVariants} className="text-sm text-gray-400">
                       <span className="text-gray-500">Shelf Life:</span> {product.shelfLife}
