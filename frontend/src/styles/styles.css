@@ -1461,9 +1461,13 @@ p {
 @media (max-width: 767px) {
     body { font-size: 16px; }
     .section-padding { padding: 60px 0; }
-    h1, .hero-title, .prod-hero-title { font-size: 34px; margin-bottom: 24px; }
-    h2, .section-title { font-size: 28px; }
-    h3, .section-subtitle { font-size: 20px; }
-    .body-large, .hero-subtitle, .hero-description, .prod-hero-subtitle, .section-desc { font-size: 16px; line-height: 1.6; }
+    h1, .hero-title, .prod-hero-title { font-size: 34px; margin-bottom: 24px; text-align: center; }
+    h2, .section-title { font-size: 28px; text-align: center; }
+    h3, .section-subtitle { font-size: 20px; text-align: center; }
+    p, .body-large, .hero-subtitle, .hero-description, .prod-hero-subtitle, .section-desc { font-size: 16px; line-height: 1.6; text-align: center; }
     .btn { font-size: 16px; padding: 12px 28px; }
+    
+    /* Force center alignment for all standard text blocks on mobile */
+    .container { text-align: center; }
+    ul, li { text-align: center; list-style-position: inside; }
 }
