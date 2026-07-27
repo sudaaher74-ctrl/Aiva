@@ -127,7 +127,7 @@ export const productsData = [
     name: 'Banana Dices',
     category: 'IQF',
     tab: 'iqf-fruits',
-    description: 'IQF Banana Dices.',
+    description: 'Banana Dices.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
     image: '/assets/images/products/iqf_fruits/bananadices.png'
@@ -138,7 +138,7 @@ export const productsData = [
     name: 'Guava Dices',
     category: 'IQF',
     tab: 'iqf-fruits',
-    description: 'IQF Guava Dices.',
+    description: 'Guava Dices.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
     image: '/assets/images/products/iqf_fruits/guavadices.png'
@@ -149,7 +149,7 @@ export const productsData = [
     name: 'Strawberry',
     category: 'IQF',
     tab: 'iqf-fruits',
-    description: 'IQF Strawberry.',
+    description: 'Strawberry.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
     image: '/assets/images/products/iqf_fruits/strawberry.png?v=2'
@@ -160,7 +160,7 @@ export const productsData = [
     name: 'Sweet Corn',
     category: 'IQF',
     tab: 'vegetables',
-    description: 'IQF Sweet Corn Kernels.',
+    description: 'Sweet Corn Kernels.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
     image: '/assets/images/products/vegetables/sweetcorn.png'
@@ -168,10 +168,10 @@ export const productsData = [
   {
     id: 'mushroom',
     slug: 'mushroom',
-    name: 'IQF Mushroom',
+    name: 'Mushroom',
     category: 'IQF',
     tab: 'vegetables',
-    description: 'IQF Mushroom.',
+    description: 'Mushroom.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
     image: '/assets/images/products/vegetables/mushroom.png'
@@ -179,10 +179,10 @@ export const productsData = [
   {
     id: 'green-peas',
     slug: 'green-peas',
-    name: 'IQF Green Peas',
+    name: 'Green Peas',
     category: 'IQF',
     tab: 'vegetables',
-    description: 'IQF Green Peas.',
+    description: 'Green Peas.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
     image: '/assets/images/products/vegetables/green-peas.png'
@@ -190,10 +190,10 @@ export const productsData = [
   {
     id: 'mix-vegetables',
     slug: 'mix-vegetables',
-    name: 'IQF Mix Vegetables',
+    name: 'Mix Vegetables',
     category: 'IQF',
     tab: 'vegetables',
-    description: 'IQF Mix Vegetables.',
+    description: 'Mix Vegetables.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
     image: '/assets/images/products/vegetables/iqf-mix-vegetables-new.png'
@@ -201,10 +201,10 @@ export const productsData = [
   {
     id: 'spinach',
     slug: 'spinach',
-    name: 'IQF Spinach',
+    name: 'Spinach',
     category: 'IQF',
     tab: 'vegetables',
-    description: 'IQF Spinach.',
+    description: 'Spinach.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
     image: '/assets/images/products/vegetables/spinach.png'
@@ -212,10 +212,10 @@ export const productsData = [
   {
     id: 'okra',
     slug: 'okra',
-    name: 'IQF Okra',
+    name: 'Okra',
     category: 'IQF',
     tab: 'vegetables',
-    description: 'IQF Okra.',
+    description: 'Okra.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
     image: '/assets/images/products/vegetables/okra.png'
@@ -223,10 +223,10 @@ export const productsData = [
   {
     id: '6mm-french-fries',
     slug: '6mm-french-fries',
-    name: 'IQF 6mm French Fries',
+    name: '6mm French Fries',
     category: 'IQF',
     tab: 'iqf-frozen',
-    description: 'IQF 6mm French Fries.',
+    description: '6mm French Fries.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
     image: '/assets/images/products/iqf_frozen/frenchfries6mm.png'
@@ -234,10 +234,10 @@ export const productsData = [
   {
     id: '9mm-french-fries',
     slug: '9mm-french-fries',
-    name: 'IQF 9mm French Fries',
+    name: '9mm French Fries',
     category: 'IQF',
     tab: 'iqf-frozen',
-    description: 'IQF 9mm French Fries.',
+    description: '9mm French Fries.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
     image: '/assets/images/products/iqf_frozen/frenchfries9mm.png'
@@ -245,10 +245,10 @@ export const productsData = [
   {
     id: 'coriander-green-chilli',
     slug: 'coriander-green-chilli',
-    name: 'IQF Coriander & Green Chilli',
+    name: 'Coriander & Green Chilli',
     category: 'IQF',
     tab: 'iqf-frozen',
-    description: 'IQF Coriander & Green Chilli.',
+    description: 'Coriander & Green Chilli.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
     image: '/assets/images/products/iqf_frozen/coriander-green-chilli.png'
@@ -256,10 +256,10 @@ export const productsData = [
   {
     id: 'mint',
     slug: 'mint',
-    name: 'IQF Mint',
+    name: 'Mint',
     category: 'IQF',
     tab: 'iqf-frozen',
-    description: 'IQF Mint.',
+    description: 'Mint.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
     image: '/assets/images/products/iqf_frozen/mint.png'
@@ -267,10 +267,10 @@ export const productsData = [
   {
     id: 'onion',
     slug: 'onion',
-    name: 'IQF Onion',
+    name: 'Onion',
     category: 'IQF',
     tab: 'iqf-frozen',
-    description: 'IQF Onion.',
+    description: 'Onion.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
     image: '/assets/images/products/iqf_frozen/onion.png'
@@ -278,10 +278,10 @@ export const productsData = [
   {
     id: 'tomato',
     slug: 'tomato',
-    name: 'IQF Tomato',
+    name: 'Tomato',
     category: 'IQF',
     tab: 'iqf-frozen',
-    description: 'IQF Tomato.',
+    description: 'Tomato.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
     image: '/assets/images/products/iqf_frozen/tomato.png'
