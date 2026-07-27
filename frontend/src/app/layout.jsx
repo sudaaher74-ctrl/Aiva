@@ -1,5 +1,7 @@
-import '../index.css';
+import '../styles/lenis.css';
 import '../styles/styles.css';
+import '../styles/products.css';
+import '../index.css';
 import ClientLayout from './ClientLayout';
 
 export const metadata = {
