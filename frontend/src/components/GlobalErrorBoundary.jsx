@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRouteError } from 'react-router-dom';
+import {  useRouteError  } from 'next/navigation';
 
 export default function GlobalErrorBoundary() {
   const error = useRouteError();
@@ -22,7 +22,7 @@ export default function GlobalErrorBoundary() {
         // Perform a cache-busting reload to bypass CDN/ServiceWorker caching of old index.html
         const search = window.location.search;
         const cacheBuster = search ? (search.includes('_t=') ? search : `${search}&_t=${Date.now()}`) : `?_t=${Date.now()}`;
-        window.location.href = window.location.pathname + cacheBuster + window.location.hash;
+        window.location.href = window.pathname + cacheBuster + window.location.hash;
         return null;
       }
     }

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -75,7 +75,7 @@ function HomeHero() {
           We believe great ingredients create great products. That's why every decision we make is guided by quality, transparency, and a commitment to building long term partnerships.
         </p>
         <div className="hero-buttons">
-          <Link to="/products" className="btn btn-primary">
+          <Link href="/products" className="btn btn-primary">
             Explore Products
           </Link>
         </div>

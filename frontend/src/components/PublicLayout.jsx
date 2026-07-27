@@ -1,16 +1,17 @@
+"use client";
+
 import React from 'react';
-import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import Preloader from './Preloader';
 import MobileBottomNav from './MobileBottomNav';
 
-const PublicLayout = () => {
+const PublicLayout = ({ children }) => {
   return (
     <>
       <Preloader />
       <Navbar />
-      <Outlet />
+      {children}
       <Footer />
       <MobileBottomNav />
     </>

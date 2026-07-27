@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 function Footer() {
   return (
@@ -12,10 +12,10 @@ function Footer() {
           </div>
           <div className="footer-links">
             <h3>Quick Links</h3>
-            <Link to="/about">About Us</Link>
-            <Link to="/products">Products</Link>
-            <Link to="/about#certifications">Certifications</Link>
-            <Link to="#contact">Contact</Link>
+            <Link href="/about">About Us</Link>
+            <Link href="/products">Products</Link>
+            <Link href="/about#certifications">Certifications</Link>
+            <Link href="#contact">Contact</Link>
           </div>
           <div className="footer-social">
             <h3>Connect</h3>

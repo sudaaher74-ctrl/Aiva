@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import useTilt from '../hooks/useTilt';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -24,7 +24,7 @@ function CategoryCard({ hueClass, color, image, alt, title, desc, to }) {
         <div className="product-info">
           <h3>{title}</h3>
           <p>{desc}</p>
-          <Link to={to} className="btn-link">
+          <Link href={to} className="btn-link">
             Explore Category
           </Link>
         </div>

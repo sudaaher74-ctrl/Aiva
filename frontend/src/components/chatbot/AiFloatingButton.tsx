@@ -1,15 +1,17 @@
-import { Link, useLocation } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { Sparkles } from 'lucide-react'
+"use client";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { motion } from 'framer-motion';
+import { Sparkles } from 'lucide-react';
 
 export default function AiFloatingButton() {
-  const location = useLocation()
+  const pathname = usePathname();
 
   // Don't show on AI Chat page itself
-  if (location.pathname === '/ai-chat') return null
+  if (pathname === '/ai-chat') return null;
 
   return (
-    <Link to="/ai-chat">
+    <Link href="/chatbot">
       <motion.div
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
@@ -22,5 +24,5 @@ export default function AiFloatingButton() {
         <span className="hidden sm:inline">Ask AI</span>
       </motion.div>
     </Link>
-  )
+  );
 }

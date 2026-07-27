@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import useTilt from '../hooks/useTilt';
 
 const ProductCard = ({ product, handleQuoteClick }) => {
@@ -153,7 +153,7 @@ const ProductCard = ({ product, handleQuoteClick }) => {
                   Get Quote
                 </a>
                 <Link 
-                  to={`/products/${product._id || product.id}`}
+                  href={`/products/${product._id || product.id}`}
                   onClick={(e) => isMobile && e.stopPropagation()}
                   className="w-full py-3 px-4 bg-transparent border border-[#D4AF37] text-[#D4AF37] text-center font-semibold rounded-lg hover:bg-[#D4AF37]/10 transition-colors"
                 >

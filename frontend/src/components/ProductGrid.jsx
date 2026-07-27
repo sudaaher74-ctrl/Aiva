@@ -1,8 +1,10 @@
+"use client";
 import React, { useEffect, useState, useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useLocation, Link } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import ProductCard from './ProductCard';
 import { productsData } from '../data/products';
 import { API_BASE } from '../config';
@@ -11,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 function ProductGrid({ categorySlug }) {
   // Initialize with static data for SSG
   const [products, setProducts] = useState(productsData);
-  const location = useLocation();
+  const location = usePathname();
   const gridsRef = useRef([]);
 
   useEffect(() => {
