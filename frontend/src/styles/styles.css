@@ -1483,3 +1483,502 @@ p {
     .container { text-align: center; }
     ul, li { text-align: center; list-style-position: inside; }
 }
+
+/* ==========================================================================
+   PREMIUM MOBILE UI — ALL PAGES (max-width: 768px)
+   Same app-like feel as the home screen across Products, About, Contact
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+    /* ===========================
+       PRODUCTS PAGE — HERO
+    =========================== */
+    .prod-hero {
+        min-height: 100svh;
+        height: auto;
+        padding-top: 56px;
+        padding-bottom: 100px;
+        display: flex;
+        align-items: flex-start;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .prod-hero-content {
+        flex-direction: column !important;
+        gap: 0 !important;
+        padding: 0;
+    }
+
+    .prod-hero .split-left {
+        order: 2;
+        width: 100%;
+        padding: 20px 20px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .prod-hero .split-right {
+        order: 1;
+        width: 100%;
+        min-height: 260px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        position: relative;
+        padding-top: 16px;
+    }
+
+    .prod-hero-composition {
+        position: relative;
+        width: 100%;
+        min-height: 240px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+
+    .prod-hero-composition .main-prod {
+        width: 80vw;
+        max-width: 340px;
+        height: auto;
+        object-fit: contain;
+        position: relative;
+        transform: none !important;
+        filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
+    }
+
+    .prod-hero-composition .sub-prod-1 {
+        position: absolute;
+        width: 45vw;
+        max-width: 180px;
+        bottom: 0;
+        right: 8vw;
+        transform: none !important;
+        opacity: 0.85;
+        filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+    }
+
+    .prod-hero .glow-orb {
+        width: 220px;
+        height: 220px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(circle, rgba(255,184,0,0.15) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+
+    .prod-hero-title {
+        font-size: 36px !important;
+        line-height: 1.1 !important;
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 16px;
+    }
+
+    .prod-hero-subtitle {
+        font-size: 15px !important;
+        line-height: 1.6 !important;
+        color: #CFCFCF;
+        text-align: center;
+        max-width: 90%;
+        margin: 0 auto 24px;
+    }
+
+    .prod-hero .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 12px;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .prod-hero .hero-buttons .btn-primary {
+        width: 90%;
+        height: 56px;
+        background: linear-gradient(90deg, #ffb800, #ff8a00);
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        font-weight: 700;
+        box-shadow: 0 6px 20px rgba(255,184,0,0.2);
+    }
+
+    .prod-hero .hero-buttons .btn-text {
+        width: 90%;
+        justify-content: center;
+        background: rgba(255,255,255,0.05);
+        border-radius: 14px;
+        border: 1px solid rgba(255,255,255,0.1);
+        padding: 14px 1rem;
+        font-size: 0.95rem !important;
+        backdrop-filter: blur(10px);
+        color: var(--c-white) !important;
+    }
+
+    /* ===========================
+       PRODUCTS PAGE — GRID
+    =========================== */
+    .products-page-section {
+        padding: 40px 0 120px;
+    }
+
+    /* Horizontal scrolling category tabs on mobile */
+    .product-tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        white-space: nowrap;
+        padding: 0 16px;
+        gap: 10px;
+        justify-content: flex-start !important;
+    }
+
+    .product-tabs::-webkit-scrollbar { display: none; }
+
+    .tab-btn {
+        flex-shrink: 0;
+        font-size: 14px !important;
+        padding: 10px 18px !important;
+        border-radius: 40px !important;
+        white-space: nowrap;
+    }
+
+    /* 2-column compact card grid on mobile */
+    .premium-product-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 14px !important;
+        padding: 0 12px;
+    }
+
+    .premium-prod-card {
+        border-radius: 16px !important;
+        padding: 0 0 12px 0 !important;
+    }
+
+    .premium-prod-card .p-img-box {
+        height: 160px !important;
+        border-radius: 14px 14px 0 0 !important;
+    }
+
+    .premium-prod-card .p-img-box img {
+        object-fit: cover;
+    }
+
+    .premium-prod-card .p-info {
+        padding: 10px 12px 0 !important;
+    }
+
+    .premium-prod-card .p-info h3 {
+        font-size: 14px !important;
+        margin-bottom: 4px !important;
+        line-height: 1.3;
+        text-align: left;
+    }
+
+    .premium-prod-card .p-desc {
+        font-size: 12px !important;
+        line-height: 1.4 !important;
+        text-align: left;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .premium-prod-card .p-category-tag {
+        font-size: 11px !important;
+        text-align: left;
+    }
+
+    /* ===========================
+       PRODUCT DETAIL PAGE
+    =========================== */
+    .split-layout.pd-layout {
+        flex-direction: column !important;
+        gap: 24px;
+    }
+
+    .split-layout .split-left,
+    .split-layout .split-right {
+        width: 100% !important;
+        padding: 0 16px;
+    }
+
+    .p-img-box.pd-animate {
+        height: 280px !important;
+        border-radius: 20px !important;
+    }
+
+    /* ===========================
+       ABOUT PAGE
+    =========================== */
+    .about-hero,
+    .prod-hero ~ section {
+        padding-top: 80px;
+    }
+
+    /* Story / Split section */
+    .about-story .split-layout,
+    .split-layout {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .about-story .split-left,
+    .about-story .split-right {
+        width: 100%;
+        padding: 0 16px;
+    }
+
+    /* About page stats grid */
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: 24px;
+    }
+
+    .stat-item {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 16px;
+        padding: 16px;
+        border-top: none;
+        padding-top: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .stat-num {
+        font-size: 2rem;
+        margin-bottom: 4px;
+    }
+
+    /* Timeline — stacked cards on mobile */
+    .timeline {
+        padding-left: 0;
+    }
+
+    .timeline-item {
+        padding-left: 0;
+        border-left: none;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 16px;
+        padding: 20px;
+        margin-bottom: 16px;
+        text-align: center;
+    }
+
+    .timeline-item::before {
+        display: none;
+    }
+
+    /* Certifications grid */
+    .certifications-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 16px;
+    }
+
+    .cert-card {
+        border-radius: 16px;
+        padding: 20px 12px !important;
+        text-align: center;
+    }
+
+    /* Quality / standards section */
+    .standards-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+    }
+
+    /* Team section */
+    .team-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 16px;
+    }
+
+    /* ===========================
+       CONTACT PAGE
+    =========================== */
+    .contact-split {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .contact-split .split-left,
+    .contact-split .split-right {
+        width: 100%;
+        padding: 0 16px;
+    }
+
+    .contact-item {
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .luxury-form {
+        padding: 20px 16px;
+        border-radius: 20px;
+    }
+
+    .luxury-form h2, .luxury-form .section-title {
+        text-align: center;
+    }
+
+    /* ===========================
+       ALL PAGES — SECTIONS
+    =========================== */
+
+    /* Section headers */
+    .section-header {
+        text-align: center;
+        padding: 0 16px;
+    }
+
+    .section-label {
+        text-align: center;
+        font-size: 12px !important;
+    }
+
+    /* Why Choose Us cards */
+    .why-grid,
+    .features-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 14px;
+    }
+
+    .why-card,
+    .feature-card {
+        border-radius: 18px;
+        padding: 20px 14px !important;
+        text-align: center;
+    }
+
+    /* Export / Marquee */
+    .marquee-container {
+        margin-top: 2rem;
+    }
+
+    /* Process section */
+    .process-step {
+        text-align: center;
+        align-items: center;
+    }
+
+    /* BulkInquiry / CTA section */
+    .bulk-inquiry-section,
+    .cta-section {
+        padding: 40px 16px !important;
+        border-radius: 24px;
+        margin: 0 12px;
+        text-align: center;
+    }
+
+    .bulk-inquiry-section h2,
+    .cta-section h2 {
+        font-size: 26px !important;
+        text-align: center;
+    }
+
+    .bulk-inquiry-section .btn,
+    .cta-section .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Standards / certifications badge row */
+    .standards-row {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .standard-badge {
+        font-size: 13px;
+        padding: 8px 14px;
+    }
+
+    /* ===========================
+       FOOTER — MOBILE
+    =========================== */
+    .footer {
+        padding: 48px 0 calc(80px + env(safe-area-inset-bottom));
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        text-align: center;
+    }
+
+    .footer-brand p {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .footer-links a {
+        font-size: 15px;
+        margin-bottom: 12px;
+    }
+
+    .footer-links a:hover {
+        transform: none;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    .footer-legal {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+    }
+
+    .footer-legal a {
+        margin: 0;
+    }
+
+    /* ===========================
+       GLOBAL PAGE PADDING FIX
+       (accounts for fixed nav + bottom nav)
+    =========================== */
+    section:first-of-type,
+    .prod-hero,
+    .about-hero {
+        scroll-margin-top: 56px;
+    }
+
+    /* Remove any unwanted horizontal overflow on inner pages */
+    .container {
+        overflow-x: hidden;
+    }
+
+    /* Smooth image rendering */
+    img {
+        -webkit-font-smoothing: antialiased;
+        image-rendering: -webkit-optimize-contrast;
+    }
+}
