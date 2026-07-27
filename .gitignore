@@ -16,3 +16,8 @@ yarn-error.log*
 
 # Server cache
 server/node_modules/.cache/
+
+# Build artifacts
+dist/
+.next/
+out/
