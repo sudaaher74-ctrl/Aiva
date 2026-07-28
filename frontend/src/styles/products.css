@@ -556,6 +556,9 @@ body.dark-theme .btn-outline:hover {
 }
 
 @media (max-width: 768px) {
+    .premium-badge {
+        display: none;
+    }
     .prod-hero {
         padding-top: 100px;
     }
