@@ -28,12 +28,21 @@ function ProductGrid({ categorySlug }) {
           // Merge backend data with static image paths since they were recently updated
           const mergedData = data.data.map(backendProduct => {
             const staticMatch = productsData.find(p => p.name === backendProduct.name);
-            if (staticMatch && staticMatch.image) {
-              return { ...backendProduct, image: staticMatch.image };
+            if (staticMatch) {
+              return { 
+                ...backendProduct, 
+                image: staticMatch.image || backendProduct.image,
+                tab: backendProduct.tab || staticMatch.tab 
+              };
             }
             return backendProduct;
           });
-          setProducts(mergedData);
+          
+          // Append any static products that might not be in the backend yet (like the new Frozen products)
+          const backendNames = new Set(data.data.map(p => p.name));
+          const missingStatic = productsData.filter(p => !backendNames.has(p.name));
+          
+          setProducts([...mergedData, ...missingStatic]);
         }
       } catch (error) {
         console.error('Failed to load products, using static data:', error);
