@@ -124,7 +124,7 @@ const ProductCard = ({ product, handleQuoteClick }) => {
                   {product.category}
                 </motion.span>
                 <motion.h3 variants={textVariants} className="text-2xl font-bold text-white leading-tight">
-                  {product.name}
+                  {product.name ? product.name.replace(/^IQF\s+/i, '') : ''}
                 </motion.h3>
                 
                 <motion.p variants={textVariants} className="text-gray-300 text-sm mt-2 line-clamp-3">

@@ -82,10 +82,12 @@ function ProductDetail() {
     return url;
   };
 
+  const displayName = product.name ? product.name.replace(/^IQF\s+/i, '') : '';
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
-    "name": product.name,
+    "name": displayName,
     "description": product.description,
     "category": product.category,
     "image": getImageUrl(product.image_url || product.image),
@@ -98,7 +100,7 @@ function ProductDetail() {
   return (
     <>
       <SEO 
-        title={product.name}
+        title={displayName}
         description={product.description || `Premium ${product.category} for global export.`}
         canonicalUrl={`/products/${slug}`}
         jsonLd={[jsonLd]}
@@ -110,13 +112,13 @@ function ProductDetail() {
             <div className="p-img-box pd-animate" style={{ width: '100%', borderRadius: '12px', overflow: 'hidden', height: '500px', backgroundColor: '#000' }}>
               <img 
                 src={getImageUrl(product.image_url || product.image)} 
-                alt={product.name} 
+                alt={displayName} 
                 style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85 }}
               />
             </div>
           </div>
           <div className="split-right pd-animate">
-            <h1 className="section-title text-light" style={{ fontSize: '3rem', marginBottom: '10px' }}>{product.name}</h1>
+            <h1 className="section-title text-light" style={{ fontSize: '3rem', marginBottom: '10px' }}>{displayName}</h1>
             <p style={{ color: 'var(--c-mango)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600, marginBottom: '24px' }}>
               {product.category}
             </p>
