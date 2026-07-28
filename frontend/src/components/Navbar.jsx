@@ -22,6 +22,14 @@ function Navbar() {
 
   const closeMenu = () => setIsOpen(false);
 
+  const handleNavClick = (e, hash) => {
+    closeMenu();
+    if (typeof window !== 'undefined' && window.location.pathname === '/products') {
+      e.preventDefault();
+      window.location.hash = hash;
+    }
+  };
+
   return (
     <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="container nav-container">
@@ -39,10 +47,11 @@ function Navbar() {
               Products <i className="ph ph-caret-down"></i>
             </Link>
             <div className="dropdown-menu">
-              <Link href="/products#aseptic" onClick={closeMenu}>Aseptic pulp/paste</Link>
-              <Link href="/products#iqf-fruits" onClick={closeMenu}>IQF fruits</Link>
-              <Link href="/products#iqf-frozen" onClick={closeMenu}>Frozen</Link>
-              <Link href="/products#vegetables" onClick={closeMenu}>IQF Vegetables</Link>
+              <Link href="/products#aseptic" onClick={(e) => handleNavClick(e, '#aseptic')}>Aseptic pulp/paste</Link>
+              <Link href="/products#concentrates" onClick={(e) => handleNavClick(e, '#concentrates')}>Concentrates</Link>
+              <Link href="/products#iqf-fruits" onClick={(e) => handleNavClick(e, '#iqf-fruits')}>IQF fruits</Link>
+              <Link href="/products#iqf-frozen" onClick={(e) => handleNavClick(e, '#iqf-frozen')}>Frozen</Link>
+              <Link href="/products#vegetables" onClick={(e) => handleNavClick(e, '#vegetables')}>IQF Vegetables</Link>
             </div>
           </div>
           <Link href="/about" onClick={closeMenu}>About Us</Link>

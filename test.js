@@ -31,7 +31,13 @@ try {
     return !isMatched;
   });
 
-  console.log("Success! Merged:", mergedData.length, "Missing:", missingStatic.length);
+  const all = [...mergedData, ...missingStatic];
+  
+  const tabs = {};
+  all.forEach(p => {
+    tabs[p.tab] = (tabs[p.tab] || 0) + 1;
+  });
+  console.log("Tabs:", tabs);
 } catch (e) {
   console.error("Error:", e);
 }
