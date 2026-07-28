@@ -76,6 +76,7 @@ const ProductCard = ({ product, handleQuoteClick }) => {
       onClick={handleInteraction}
       whileHover={!isMobile ? { y: -10, boxShadow: '0 20px 40px rgba(0,0,0,0.5)' } : {}}
       animate={{
+        y: 0,
         boxShadow: isHovered && !isMobile ? '0 20px 40px rgba(0,0,0,0.5)' : '0 4px 6px rgba(0,0,0,0.1)'
       }}
       transition={{ duration: 0.3 }}
