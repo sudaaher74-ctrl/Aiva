@@ -730,11 +730,18 @@
   .story-section,
   .quality-section,
   .partner-cta {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 60px 20px;
   }
   
   .feature-box {
     padding: 40px 20px;
+  }
+  
+  .about-hero {
+    padding: 120px 20px 40px;
+  }
+
+  .about-page .hero-image-wrapper {
+    display: none;
   }
 }
