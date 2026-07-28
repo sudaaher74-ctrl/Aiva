@@ -24,9 +24,14 @@ function Navbar() {
 
   const handleNavClick = (e, hash) => {
     closeMenu();
-    if (typeof window !== 'undefined' && window.location.pathname === '/products') {
-      e.preventDefault();
-      window.location.hash = hash;
+    if (typeof window !== 'undefined') {
+      const path = window.location.pathname;
+      const isBaseProductsPage = path === '/products' || path === '/products/';
+      
+      if (isBaseProductsPage) {
+        e.preventDefault();
+        window.location.hash = hash;
+      }
     }
   };
 

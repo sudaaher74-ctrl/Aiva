@@ -609,22 +609,43 @@ body.dark-theme .btn-outline:hover {
         padding: 2rem 1.5rem;
     }
     
-    .product-category-tabs {
-        justify-content: flex-start;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        padding: 1.5rem 1rem 0;
-        scroll-snap-type: x mandatory;
-        scrollbar-width: none;
-    }
-    .product-category-tabs::-webkit-scrollbar {
-        display: none;
-    }
-    .category-tab {
-        flex-shrink: 0;
-        scroll-snap-align: start;
-        white-space: nowrap;
-        font-size: 0.95rem;
-        padding: 0.6rem 1.2rem;
-    }
+}
+
+/* Product Category Tabs (Unified Mobile & Desktop) */
+.product-category-tabs {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 1.5rem 1rem 0;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    margin-bottom: 2rem;
+}
+.product-category-tabs::-webkit-scrollbar {
+    display: none;
+}
+.category-tab {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    white-space: nowrap;
+    font-size: 0.95rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.category-tab:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.category-tab.active {
+    background: #D4AF37;
+    color: #000;
+    border-color: #D4AF37;
 }
