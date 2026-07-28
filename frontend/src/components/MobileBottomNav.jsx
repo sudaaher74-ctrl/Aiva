@@ -28,13 +28,12 @@ function MobileBottomNav() {
           <i className="ph ph-package"></i>
         </Link>
 
-        {/* Using a clipboard/file icon for Quote to match the request */}
-        <Link href="/#contact" className={`nav-item ${isActive('#contact') ? 'active' : ''}`} title="Quote">
-          <i className="ph ph-clipboard-text"></i>
+        <Link href="/about" className={`nav-item ${isActive('/about') ? 'active' : ''}`} title="About Us">
+          <i className="ph ph-info"></i>
         </Link>
 
         {/* Contact icon */}
-        <Link href="/#contact" className={`nav-item ${isActive('#contact') ? 'active' : ''}`} title="Contact">
+        <Link href="/contact" className={`nav-item ${isActive('/contact') ? 'active' : ''}`} title="Contact">
           <i className="ph ph-user"></i>
         </Link>
       </nav>
