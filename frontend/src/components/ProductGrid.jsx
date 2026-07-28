@@ -29,8 +29,8 @@ function ProductGrid({ categorySlug }) {
           const mergedData = data.data.map(backendProduct => {
             const staticMatch = productsData.find(p => 
               p.name === backendProduct.name || 
-              backendProduct.name.includes(p.name) || 
-              p.name.includes(backendProduct.name.replace('IQF ', '').trim())
+              (backendProduct.name && backendProduct.name.includes(p.name)) || 
+              (p.name && backendProduct.name && p.name.includes(backendProduct.name.replace('IQF ', '').trim()))
             );
             if (staticMatch) {
               return { 
@@ -46,8 +46,8 @@ function ProductGrid({ categorySlug }) {
           const missingStatic = productsData.filter(staticProd => {
             const isMatched = data.data.some(backendProduct => 
               staticProd.name === backendProduct.name || 
-              backendProduct.name.includes(staticProd.name) || 
-              staticProd.name.includes(backendProduct.name.replace('IQF ', '').trim())
+              (backendProduct.name && backendProduct.name.includes(staticProd.name)) || 
+              (staticProd.name && backendProduct.name && staticProd.name.includes(backendProduct.name.replace('IQF ', '').trim()))
             );
             return !isMatched;
           });
@@ -95,23 +95,17 @@ function ProductGrid({ categorySlug }) {
     
     if (products.length > 0) {
       setTimeout(() => {
-        gsap.utils.toArray('.premium-prod-card').forEach((card) => {
-          gsap.fromTo(
-            card,
-            { y: 60, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.8,
-              ease: 'power3.out',
-              scrollTrigger: {
-                trigger: card,
-                start: 'top 85%',
-              },
-            }
-          );
-        });
-        ScrollTrigger.refresh();
+        gsap.fromTo(
+          '.premium-prod-card',
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.5,
+            stagger: 0.1,
+            ease: 'power2.out',
+          }
+        );
       }, 100);
     }
   }, { dependencies: [products, activeCategory, categorySlug], scope: gridsRef });
