@@ -32,7 +32,7 @@ function ProductGrid({ categorySlug }) {
               return { 
                 ...backendProduct, 
                 image: staticMatch.image || backendProduct.image,
-                tab: backendProduct.tab || staticMatch.tab 
+                tab: staticMatch.tab || backendProduct.tab 
               };
             }
             return backendProduct;
