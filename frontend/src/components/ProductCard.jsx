@@ -76,20 +76,19 @@ const ProductCard = ({ product, handleQuoteClick }) => {
       onClick={handleInteraction}
       whileHover={!isMobile ? { y: -10, boxShadow: '0 20px 40px rgba(0,0,0,0.5)' } : {}}
       animate={{
-        y: isHovered && isMobile ? -10 : 0,
-        boxShadow: isHovered && isMobile ? '0 20px 40px rgba(0,0,0,0.5)' : '0 4px 6px rgba(0,0,0,0.1)'
+        boxShadow: isHovered && !isMobile ? '0 20px 40px rgba(0,0,0,0.5)' : '0 4px 6px rgba(0,0,0,0.1)'
       }}
       transition={{ duration: 0.3 }}
       style={{
         border: isHovered ? '1px solid rgba(212, 175, 55, 0.5)' : '1px solid rgba(255,255,255,0.05)',
-        boxShadow: isHovered ? '0 0 20px rgba(212, 175, 55, 0.15)' : 'none'
+        boxShadow: isHovered && !isMobile ? '0 0 20px rgba(212, 175, 55, 0.15)' : 'none'
       }}
     >
       {/* Background Image with Zoom */}
       <motion.div
         className="absolute inset-0 w-full h-full"
         data-tilt-layer
-        animate={{ scale: isHovered ? 1.05 : 1 }}
+        animate={{ scale: isHovered && !isMobile ? 1.05 : 1 }}
         transition={{ duration: 0.4, ease: 'easeOut' }}
       >
         <img loading="lazy"

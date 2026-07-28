@@ -27,7 +27,7 @@ const products = [
     image_url: './assets/alphonsomangodrum.png',
     status: 'Active'
   },
-  
+
   {
     name: 'Kesar Mango Pulp',
     category: 'Fruit Pulp',
@@ -38,7 +38,7 @@ const products = [
     image_url: './assets/images/products/pulp/kesarmangopulpdrum.webp',
     status: 'Active'
   },
-  
+
   {
     name: 'Totapuri Mango Pulp',
     category: 'Fruit Pulp',
@@ -49,7 +49,7 @@ const products = [
     image_url: './assets/images/products/pulp/totapurimangopulpdrum.webp',
     status: 'Active'
   },
-  
+
   {
     name: 'Mango Concentrate',
     category: 'Concentrate',
@@ -60,7 +60,7 @@ const products = [
     image_url: './assets/images/products/pulp/mangoconcentrate.webp',
     status: 'Active'
   },
-  
+
   {
     name: 'Banana Concentrate',
     category: 'Concentrate',
@@ -71,7 +71,7 @@ const products = [
     image_url: './assets/images/products/pulp/bananaconcentratedrum.webp',
     status: 'Active'
   },
-  
+
   {
     name: 'Guava Concentrate',
     category: 'Concentrate',
@@ -82,7 +82,7 @@ const products = [
     image_url: './assets/images/products/pulp/guavaconcentratedrum.webp',
     status: 'Active'
   },
-  
+
   {
     name: 'Pink Guava Pulp',
     category: 'Fruit Pulp',
@@ -93,7 +93,7 @@ const products = [
     image_url: './assets/images/products/pulp/pinkguavapulpdrum.png',
     status: 'Active'
   },
-  
+
 
   {
     name: 'Papaya Pulp',
@@ -105,7 +105,7 @@ const products = [
     image_url: './assets/images/products/pulp/papayapulpdrum1.png',
     status: 'Active'
   },
-  
+
   {
     name: 'Tomato Paste',
     category: 'Paste',
@@ -116,7 +116,7 @@ const products = [
     image_url: './assets/images/products/pulp/tomatopastedrum.webp',
     status: 'Active'
   },
-  
+
 
   // IQF (Individually Quick Frozen)
   {
@@ -173,7 +173,7 @@ const products = [
     image_url: './assets/images/products/vegetables/sweetcorn.png',
     status: 'Active'
   }
-  ,{
+  , {
     name: 'IQF Green Peas',
     category: 'IQF Vegetables',
     description: 'Tender and sweet individually quick frozen green peas.',
@@ -264,7 +264,7 @@ const products = [
     status: 'Active'
   },
   {
-    name: 'IQF Coriander & Green Chilli',
+    name: 'Coriander & Green Chilli',
     category: 'IQF Vegetables',
     description: 'Fresh coriander and green chilli blend, individually quick frozen.',
     tab: 'iqf-frozen',
@@ -273,7 +273,7 @@ const products = [
     status: 'Active'
   },
   {
-    name: 'IQF Mint',
+    name: ' Mint',
     category: 'IQF Vegetables',
     description: 'Fresh mint leaves, individually quick frozen.',
     tab: 'iqf-frozen',
@@ -282,7 +282,7 @@ const products = [
     status: 'Active'
   },
   {
-    name: 'IQF Onion',
+    name: ' Onion',
     category: 'IQF Vegetables',
     description: 'Diced or sliced onions, individually quick frozen.',
     tab: 'iqf-frozen',
@@ -291,7 +291,7 @@ const products = [
     status: 'Active'
   },
   {
-    name: 'IQF Tomato',
+    name: ' Tomato',
     category: 'IQF Vegetables',
     description: 'Diced tomatoes, individually quick frozen.',
     tab: 'iqf-frozen',
@@ -300,7 +300,7 @@ const products = [
     status: 'Active'
   },
   {
-    name: 'IQF 6mm French Fries',
+    name: '6mm French Fries',
     category: 'IQF Frozen',
     description: 'Premium 6mm straight cut French fries, individually quick frozen.',
     tab: 'iqf-frozen',
@@ -309,7 +309,7 @@ const products = [
     status: 'Active'
   },
   {
-    name: 'IQF 9mm French Fries',
+    name: ' 9mm French Fries',
     category: 'IQF Frozen',
     description: 'Premium 9mm straight cut French fries, individually quick frozen.',
     tab: 'iqf-frozen',
