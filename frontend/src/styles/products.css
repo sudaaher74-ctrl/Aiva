@@ -563,11 +563,11 @@ body.dark-theme .btn-outline:hover {
         font-size: clamp(2.5rem, 8vw, 3rem);
     }
     .prod-hero-composition {
-        height: 300px;
-        margin-top: 2rem;
+        height: 240px;
+        margin-top: 1rem;
     }
-    .main-prod { width: 250px; }
-    .sub-prod-1 { width: 120px; }
+    .main-prod { width: 180px; }
+    .sub-prod-1 { width: 110px; }
     .sub-prod-2 { width: 100px; }
     
     .form-row { flex-direction: column; }
