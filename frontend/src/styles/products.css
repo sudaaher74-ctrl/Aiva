@@ -569,9 +569,9 @@ body.dark-theme .btn-outline:hover {
         height: 240px;
         margin-top: 1rem;
     }
-    .main-prod { width: 180px; }
-    .sub-prod-1 { width: 110px; }
-    .sub-prod-2 { width: 100px; }
+    .main-prod { width: 160px; z-index: 3; }
+    .sub-prod-1 { width: 110px; left: 5%; top: 25%; z-index: 2; opacity: 1; }
+    .sub-prod-2 { width: 100px; right: 5%; bottom: 20%; z-index: 4; opacity: 1; }
     
     .form-row { flex-direction: column; }
     .w-50 { width: 100%; }
