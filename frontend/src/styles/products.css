@@ -584,6 +584,19 @@ body.dark-theme .btn-outline:hover {
     .form-row { flex-direction: column; }
     .w-50 { width: 100%; }
     
+    .glass-form-container {
+        padding: 1.5rem;
+    }
+    .luxury-form input,
+    .luxury-form select,
+    .luxury-form textarea {
+        padding: 0.8rem 1rem;
+    }
+    .luxury-form label {
+        left: 1rem;
+        font-size: 14px;
+    }
+    
     .specs-grid { grid-template-columns: 1fr; }
 
     .standards-section {

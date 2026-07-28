@@ -61,11 +61,10 @@ const Contact = () => {
                 <p>Thank you for reaching out. One of our representatives will get back to you within 24 hours.</p>
               </div>
             ) : (
-              <form className="contact-form" onSubmit={handleSubmit}>
-                <h2>Send us a message</h2>
+              <form className="luxury-form" onSubmit={handleSubmit}>
+                <h2 className="form-title" style={{ textAlign: 'center', marginBottom: '2rem' }}>Send us a message</h2>
                 
                 <div className="form-group">
-                  <label htmlFor="name">Full Name</label>
                   <input 
                     type="text" 
                     id="name" 
@@ -73,12 +72,12 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required 
-                    placeholder="John Doe"
+                    placeholder=" "
                   />
+                  <label htmlFor="name">Full Name</label>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">Email Address</label>
                   <input 
                     type="email" 
                     id="email" 
@@ -86,24 +85,24 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required 
-                    placeholder="john@company.com"
+                    placeholder=" "
                   />
+                  <label htmlFor="email">Email Address</label>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="company">Company Name</label>
                   <input 
                     type="text" 
                     id="company" 
                     name="company" 
                     value={formData.company}
                     onChange={handleChange}
-                    placeholder="Company Ltd."
+                    placeholder=" "
                   />
+                  <label htmlFor="company">Company Name</label>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="message">Message</label>
                   <textarea 
                     id="message" 
                     name="message" 
@@ -111,8 +110,9 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    placeholder="How can we help you?"
+                    placeholder=" "
                   ></textarea>
+                  <label htmlFor="message">Message</label>
                 </div>
 
                 <button type="submit" className="submit-btn">
