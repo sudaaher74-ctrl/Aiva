@@ -608,4 +608,23 @@ body.dark-theme .btn-outline:hover {
     .standard-card {
         padding: 2rem 1.5rem;
     }
+    
+    .product-category-tabs {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 1.5rem 1rem 0;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+    }
+    .product-category-tabs::-webkit-scrollbar {
+        display: none;
+    }
+    .category-tab {
+        flex-shrink: 0;
+        scroll-snap-align: start;
+        white-space: nowrap;
+        font-size: 0.95rem;
+        padding: 0.6rem 1.2rem;
+    }
 }

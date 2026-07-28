@@ -42,6 +42,35 @@ function ProductGrid({ categorySlug }) {
     fetchProducts();
   }, []);
 
+
+
+  const [activeCategory, setActiveCategory] = useState('aseptic');
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const getHashCategory = () => {
+      if (categorySlug) {
+        if (categorySlug === 'concentrates') return 'concentrates';
+        if (categorySlug === 'iqf') return 'iqf-fruits';
+        return categorySlug;
+      }
+      const hash = window.location.hash || '#aseptic';
+      if (hash === '#iqf-fruits') return 'iqf-fruits';
+      if (hash === '#iqf-frozen') return 'iqf-frozen';
+      if (hash === '#vegetables') return 'vegetables';
+      if (hash === '#concentrates') return 'concentrates';
+      return 'aseptic';
+    };
+
+    setActiveCategory(getHashCategory());
+
+    const handleHashChange = () => {
+      setActiveCategory(getHashCategory());
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, [categorySlug]);
+
   useGSAP(() => {
     if (typeof window === 'undefined') return;
     
@@ -66,7 +95,7 @@ function ProductGrid({ categorySlug }) {
         ScrollTrigger.refresh();
       }, 100);
     }
-  }, { dependencies: [products, location.hash, categorySlug], scope: gridsRef });
+  }, { dependencies: [products, activeCategory, categorySlug], scope: gridsRef });
 
   const handleQuoteClick = (imgSource) => {
     if (typeof window === 'undefined') return;
@@ -81,30 +110,27 @@ function ProductGrid({ categorySlug }) {
     }
   };
 
-  const getVisibleCategory = () => {
-    // If we have a route param (e.g. /products/aseptic), prefer it
-    if (categorySlug) {
-      if (categorySlug === 'concentrates') return 'concentrates';
-      if (categorySlug === 'iqf') return 'iqf-fruits';
-      return categorySlug;
-    }
-    
-    const hash = location.hash || '#aseptic';
-    if (hash === '#iqf-fruits') return 'iqf-fruits';
-    if (hash === '#iqf-frozen') return 'iqf-frozen';
-    if (hash === '#vegetables') return 'vegetables';
-    if (hash === '#concentrates') return 'concentrates';
-    return 'aseptic';
-  };
+  const categoriesList = [
+    { id: 'aseptic', label: 'Aseptic pulp/paste' },
+    { id: 'concentrates', label: 'Concentrates' },
+    { id: 'iqf-fruits', label: 'IQF fruits' },
+    { id: 'iqf-frozen', label: 'Frozen' },
+    { id: 'vegetables', label: 'IQF Vegetables' },
+  ];
 
-  const visibleCategory = getVisibleCategory();
+  const handleTabClick = (id) => {
+    setActiveCategory(id);
+    if (typeof window !== 'undefined') {
+      window.history.pushState(null, '', `#${id}`);
+    }
+  };
 
   const renderGrid = (category, title) => {
     const filtered = products.filter((p) => {
       if (category === 'iqf-fruits') return p.tab === 'iqf-fruits' || p.tab === 'iqf';
       return p.tab === category;
     });
-    if (visibleCategory !== category) return null;
+    if (activeCategory !== category) return null;
 
     const getImageUrl = (url) => {
       if (!url) return '';
@@ -134,6 +160,17 @@ function ProductGrid({ categorySlug }) {
 
   return (
     <div ref={gridsRef}>
+      <div className="product-category-tabs">
+        {categoriesList.map(cat => (
+          <button 
+            key={cat.id} 
+            className={`category-tab ${activeCategory === cat.id ? 'active' : ''}`}
+            onClick={() => handleTabClick(cat.id)}
+          >
+            {cat.label}
+          </button>
+        ))}
+      </div>
       {renderGrid('aseptic', 'Aseptic pulp/paste')}
       {renderGrid('concentrates', 'Concentrates')}
       {renderGrid('iqf-fruits', 'IQF fruits')}

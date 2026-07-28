@@ -12,18 +12,18 @@ function Products({ categorySlug }) {
 
   useEffect(() => {
     // If there's a hash in the URL, try to scroll to it
-    if (location.hash) {
+    if (typeof window !== 'undefined' && window.location.hash) {
       setTimeout(() => {
-        const id = location.hash.replace('#', '');
+        const id = window.location.hash.replace('#', '');
         const element = document.getElementById(id);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
         }
       }, 500); // Wait for products to load
-    } else {
+    } else if (typeof window !== 'undefined') {
       window.scrollTo(0, 0);
     }
-  }, [location.hash]);
+  }, []);
 
   return (
     <>
