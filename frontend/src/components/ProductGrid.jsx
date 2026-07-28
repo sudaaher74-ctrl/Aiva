@@ -27,7 +27,11 @@ function ProductGrid({ categorySlug }) {
         if (data.data && data.data.length > 0) {
           // Merge backend data with static image paths since they were recently updated
           const mergedData = data.data.map(backendProduct => {
-            const staticMatch = productsData.find(p => p.name === backendProduct.name);
+            const staticMatch = productsData.find(p => 
+              p.name === backendProduct.name || 
+              backendProduct.name.includes(p.name) || 
+              p.name.includes(backendProduct.name.replace('IQF ', '').trim())
+            );
             if (staticMatch) {
               return { 
                 ...backendProduct, 
@@ -38,9 +42,15 @@ function ProductGrid({ categorySlug }) {
             return backendProduct;
           });
           
-          // Append any static products that might not be in the backend yet (like the new Frozen products)
-          const backendNames = new Set(data.data.map(p => p.name));
-          const missingStatic = productsData.filter(p => !backendNames.has(p.name));
+          // Append any static products that might not be in the backend yet
+          const missingStatic = productsData.filter(staticProd => {
+            const isMatched = data.data.some(backendProduct => 
+              staticProd.name === backendProduct.name || 
+              backendProduct.name.includes(staticProd.name) || 
+              staticProd.name.includes(backendProduct.name.replace('IQF ', '').trim())
+            );
+            return !isMatched;
+          });
           
           setProducts([...mergedData, ...missingStatic]);
         }
