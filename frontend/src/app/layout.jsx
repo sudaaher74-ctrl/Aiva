@@ -1,8 +1,21 @@
+import { Inter, Fraunces } from 'next/font/google';
 import '../styles/lenis.css';
 import '../styles/styles.css';
 import '../styles/products.css';
 import '../index.css';
 import ClientLayout from './ClientLayout';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  variable: '--font-fraunces',
+  display: 'swap',
+});
 
 export const metadata = {
   title: 'AIVA Enterprises - Premium Food Sourcing',
@@ -23,7 +36,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
       <head>
         <link rel="preconnect" href="https://unpkg.com" />
         <link rel="dns-prefetch" href="https://unpkg.com" />
