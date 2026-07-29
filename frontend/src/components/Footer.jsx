@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer hidden md:block">
       <div className="container">
         <div className="footer-top">
           <div className="footer-brand">
