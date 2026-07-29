@@ -78,26 +78,7 @@ export default function HomeMobile({ setActiveTab }) {
         </motion.div>
       </section>
 
-      {/* Stats Cards */}
-      <section className="px-5 pb-6 grid grid-cols-3 gap-3">
-        {[
-          { stat: '70 MT', label: 'Aseptic capacity per day' },
-          { stat: '11', label: 'Global certifications' },
-          { stat: '25+', label: 'Export-ready SKUs' }
-        ].map((item, i) => (
-          <motion.div 
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
-            className="bg-white rounded-3xl p-4 shadow-[0_4px_12px_rgba(0,0,0,0.02)] flex flex-col items-start justify-center aspect-[4/3]"
-          >
-            <h3 className="font-serif font-black text-mobile-orange text-[22px] mb-1">{item.stat}</h3>
-            <p className="font-sans text-[9px] text-mobile-green/60 leading-[1.2] font-semibold pr-2">{item.label}</p>
-          </motion.div>
-        ))}
-      </section>
+
 
       {/* Categories Horizontal Scroll */}
       <section className="pt-8 pb-4">
