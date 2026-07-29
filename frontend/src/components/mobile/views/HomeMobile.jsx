@@ -5,9 +5,6 @@ import { motion } from 'framer-motion';
 import { Globe } from 'lucide-react';
 import Image from 'next/image';
 
-// We import the hero image if it's in src, or use a path if it's in public. We'll use a relative path if needed.
-import heroImage from '../../../assets/hero.png'; 
-
 export default function HomeMobile({ setActiveTab }) {
   
   const categories = [
@@ -64,7 +61,7 @@ export default function HomeMobile({ setActiveTab }) {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <Image src={heroImage} alt="AIVA Products" className="w-[110%] max-w-[400px] object-contain drop-shadow-xl" />
+          <img src="/assets/images/home.png" alt="AIVA Products" className="w-[110%] max-w-[400px] object-contain drop-shadow-xl" />
         </motion.div>
       </section>
 
