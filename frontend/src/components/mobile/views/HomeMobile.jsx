@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Globe } from 'lucide-react';
 
 export default function HomeMobile({ setActiveTab }) {
   const [formData, setFormData] = useState({
@@ -42,9 +43,17 @@ export default function HomeMobile({ setActiveTab }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex items-center justify-center mb-8 mt-2"
+          className="flex items-center justify-between mb-10"
         >
-          <img src="/assets/images/products/newlogo.webp" alt="AIVA Enterprises" className="h-20 w-auto object-contain drop-shadow-sm" />
+          <div className="flex flex-col items-start justify-center">
+            <img src="/assets/images/products/newlogo.webp" alt="AIVA Logo" className="h-10 w-auto object-contain object-left mb-1 drop-shadow-sm" />
+            <p className="font-sans text-[9px] text-mobile-green/50 font-bold uppercase tracking-widest mt-1">
+              NAVI MUMBAI · INDIA
+            </p>
+          </div>
+          <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm text-mobile-orange shrink-0">
+            <Globe size={18} strokeWidth={2.5} />
+          </div>
         </motion.div>
 
         <motion.div
@@ -69,12 +78,12 @@ export default function HomeMobile({ setActiveTab }) {
 
         {/* Hero Image */}
         <motion.div 
-          className="mt-10 relative w-full flex justify-center items-center"
+          className="mt-8 relative w-[calc(100%+3rem)] -mx-6 flex justify-center items-center overflow-visible"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <img src="/assets/images/home.png" alt="AIVA Products" className="w-[100%] max-w-[340px] object-contain drop-shadow-xl" />
+          <img src="/assets/images/home.png" alt="AIVA Products" className="w-full object-cover drop-shadow-xl" />
         </motion.div>
       </section>
 
