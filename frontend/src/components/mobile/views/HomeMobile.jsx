@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Globe } from 'lucide-react';
 
 export default function HomeMobile({ setActiveTab }) {
   const [formData, setFormData] = useState({
@@ -43,17 +42,9 @@ export default function HomeMobile({ setActiveTab }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex items-center justify-between mb-10"
+          className="flex items-center justify-center mb-10"
         >
-          <div>
-            <h1 className="font-serif font-black text-mobile-green text-xl tracking-tight leading-none">AIVA Enterprises</h1>
-            <p className="font-sans text-[9px] text-mobile-green/50 font-bold uppercase tracking-widest mt-1">
-              NAVI MUMBAI · INDIA
-            </p>
-          </div>
-          <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm text-mobile-orange">
-            <Globe size={18} strokeWidth={2.5} />
-          </div>
+          <img src="/assets/images/products/newlogo.webp" alt="AIVA Enterprises" className="h-10 object-contain drop-shadow-sm" />
         </motion.div>
 
         <motion.div
