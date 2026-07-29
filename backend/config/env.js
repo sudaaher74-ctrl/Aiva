@@ -19,18 +19,45 @@ const validateEnv = () => {
   const parsed = envSchema.safeParse(process.env);
   
   if (!parsed.success) {
-    console.error('\n❌ STARTUP FAILED: Invalid or Missing Environment Variables:\n');
+    console.error('\n❌ Missing Environment Variables\n');
     
-    // Developer friendly formatting
-    parsed.error.issues.forEach(issue => {
-      let message = issue.message;
-      if (message.includes("expected string, received undefined") || message.includes("Required")) {
-        message = "Variable is missing from the environment. Please add it to your Render settings.";
+    const varDescriptions = {
+      MONGODB_URI: {
+        desc: "Used for connecting to the MongoDB database.",
+        example: "MONGODB_URI=mongodb+srv://<user>:<password>@cluster..."
+      },
+      JWT_SECRET: {
+        desc: "Used for signing JWT authentication tokens.",
+        example: "JWT_SECRET=your-secret-key"
+      },
+      CLOUDINARY_CLOUD_NAME: {
+        desc: "Used to connect to Cloudinary for image storage.",
+        example: "CLOUDINARY_CLOUD_NAME=your_cloud_name"
+      },
+      CLOUDINARY_API_KEY: {
+        desc: "API Key for Cloudinary image uploads.",
+        example: "CLOUDINARY_API_KEY=your_api_key"
+      },
+      CLOUDINARY_API_SECRET: {
+        desc: "API Secret for Cloudinary image uploads.",
+        example: "CLOUDINARY_API_SECRET=your_api_secret"
       }
-      console.error(`  - ${issue.path.join('.')}: ${message}`);
+    };
+    
+    parsed.error.issues.forEach(issue => {
+      const varName = issue.path[0];
+      const details = varDescriptions[varName] || {
+        desc: "Required environment variable.",
+        example: `${varName}=your_value`
+      };
+      
+      console.error(`${varName}\n`);
+      console.error(`Description:\n${details.desc}\n`);
+      console.error(`How to Fix:\nAdd ${varName} to Render → Environment Variables.\n`);
+      console.error(`Example:\n${details.example}\n`);
+      console.error(`-------------------------------------------------\n`);
     });
     
-    console.error('\nPlease add these variables to your Render Environment settings.\n');
     process.exit(1);
   }
   
