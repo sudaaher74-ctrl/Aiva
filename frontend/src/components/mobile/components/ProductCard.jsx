@@ -8,7 +8,7 @@ export default function ProductCard({ product, onClick }) {
     <motion.div
       onClick={onClick}
       whileTap={{ scale: 0.98 }}
-      className="bg-[#121212] rounded-[32px] p-4 flex flex-col items-center justify-between shadow-[0_10px_30px_rgba(0,0,0,0.05)] aspect-[4/5] relative overflow-hidden cursor-pointer"
+      className="bg-[var(--c-dark)] rounded-[32px] p-4 flex flex-col items-center justify-between shadow-[0_10px_30px_rgba(0,0,0,0.05)] aspect-[4/5] relative overflow-hidden cursor-pointer"
     >
       <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-[rgba(255,255,255,0.15)] to-transparent pointer-events-none" />
       
@@ -24,10 +24,10 @@ export default function ProductCard({ product, onClick }) {
       </div>
 
       <div className="w-full mt-auto">
-        <p className="text-[10px] font-sans font-bold text-[#ffffff]/50 uppercase tracking-widest mb-1">
+        <p className="text-[10px] font-sans font-bold text-[var(--c-white)]/50 uppercase tracking-widest mb-1">
           {product.category}
         </p>
-        <h3 className="font-serif font-bold text-[#ffffff] text-sm leading-tight text-balance">
+        <h3 className="font-serif font-bold text-[var(--c-white)] text-sm leading-tight text-balance">
           {product.name}
         </h3>
       </div>

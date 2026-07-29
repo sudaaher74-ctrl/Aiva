@@ -31,14 +31,14 @@ export default function ProductDetailMobile({ product, onBack }) {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: '100%' }}
       transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-      className="fixed inset-0 z-40 bg-[#050505] overflow-y-auto pb-32"
+      className="fixed inset-0 z-40 bg-[var(--c-black)] overflow-y-auto pb-32"
     >
       <div className="px-6 pt-14 pb-8">
         
         {/* Back Button */}
         <button 
           onClick={onBack}
-          className="bg-[#121212] hover:bg-gray-50 flex items-center gap-1.5 px-4 py-2 rounded-full shadow-sm text-[#ffffff] font-sans font-bold text-[11px] uppercase tracking-wider mb-8 transition-colors active:scale-95"
+          className="bg-[var(--c-dark)] hover:bg-gray-50 flex items-center gap-1.5 px-4 py-2 rounded-full shadow-sm text-[var(--c-white)] font-sans font-bold text-[11px] uppercase tracking-wider mb-8 transition-colors active:scale-95"
         >
           <ChevronLeft size={14} strokeWidth={3} />
           Catalogue
@@ -52,7 +52,7 @@ export default function ProductDetailMobile({ product, onBack }) {
           className="w-full flex justify-center mb-10 relative"
         >
           {/* Subtle glow behind the image */}
-          <div className="absolute inset-0 bg-[#121212]/40 blur-3xl rounded-full scale-75" />
+          <div className="absolute inset-0 bg-[var(--c-dark)]/40 blur-3xl rounded-full scale-75" />
           <img 
             src={product.image} 
             alt={product.name} 
@@ -71,31 +71,31 @@ export default function ProductDetailMobile({ product, onBack }) {
             {product.category || 'ASEPTIC'}
           </div>
 
-          <h1 className="font-serif font-black text-4xl text-[#ffffff] leading-[1.05] mb-4 tracking-tight">
+          <h1 className="font-serif font-black text-4xl text-[var(--c-white)] leading-[1.05] mb-4 tracking-tight">
             {product.name}
           </h1>
 
-          <p className="font-sans text-[#ffffff]/60 text-[13px] font-medium leading-relaxed pr-4 mb-8 text-balance">
+          <p className="font-sans text-[var(--c-white)]/60 text-[13px] font-medium leading-relaxed pr-4 mb-8 text-balance">
             {product.description}
           </p>
 
           {/* Grid Specifications */}
           <div className="grid grid-cols-2 gap-3 mb-8">
-            <div className="bg-[#121212] rounded-[20px] p-4 shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
-              <p className="font-sans text-[9px] font-bold text-[#ffffff]/40 uppercase tracking-widest mb-1">BRIX</p>
-              <p className="font-sans text-sm font-black text-[#ffffff]">16–18°</p>
+            <div className="bg-[var(--c-dark)] rounded-[20px] p-4 shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
+              <p className="font-sans text-[9px] font-bold text-[var(--c-white)]/40 uppercase tracking-widest mb-1">BRIX</p>
+              <p className="font-sans text-sm font-black text-[var(--c-white)]">16–18°</p>
             </div>
-            <div className="bg-[#121212] rounded-[20px] p-4 shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
-              <p className="font-sans text-[9px] font-bold text-[#ffffff]/40 uppercase tracking-widest mb-1">PACKING</p>
-              <p className="font-sans text-sm font-black text-[#ffffff]">215 kg drum</p>
+            <div className="bg-[var(--c-dark)] rounded-[20px] p-4 shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
+              <p className="font-sans text-[9px] font-bold text-[var(--c-white)]/40 uppercase tracking-widest mb-1">PACKING</p>
+              <p className="font-sans text-sm font-black text-[var(--c-white)]">215 kg drum</p>
             </div>
-            <div className="bg-[#121212] rounded-[20px] p-4 shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
-              <p className="font-sans text-[9px] font-bold text-[#ffffff]/40 uppercase tracking-widest mb-1">SHELF LIFE</p>
-              <p className="font-sans text-sm font-black text-[#ffffff]">18–24 months</p>
+            <div className="bg-[var(--c-dark)] rounded-[20px] p-4 shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
+              <p className="font-sans text-[9px] font-bold text-[var(--c-white)]/40 uppercase tracking-widest mb-1">SHELF LIFE</p>
+              <p className="font-sans text-sm font-black text-[var(--c-white)]">18–24 months</p>
             </div>
-            <div className="bg-[#121212] rounded-[20px] p-4 shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
-              <p className="font-sans text-[9px] font-bold text-[#ffffff]/40 uppercase tracking-widest mb-1">ORIGIN</p>
-              <p className="font-sans text-sm font-black text-[#ffffff]">India</p>
+            <div className="bg-[var(--c-dark)] rounded-[20px] p-4 shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
+              <p className="font-sans text-[9px] font-bold text-[var(--c-white)]/40 uppercase tracking-widest mb-1">ORIGIN</p>
+              <p className="font-sans text-sm font-black text-[var(--c-white)]">India</p>
             </div>
           </div>
 
@@ -104,7 +104,7 @@ export default function ProductDetailMobile({ product, onBack }) {
             <p className="font-sans text-[10px] font-bold text-[#C67139] uppercase tracking-widest mb-3">CERTIFIED UNDER</p>
             <div className="flex flex-wrap gap-2">
               {['FSSAI', 'APEDA', 'BRC', 'FSSC 22000', 'ISO 22000', 'ISO 14001', 'GLOBALG.A.P.', 'Halal', 'Kosher', 'SGF', 'AQA'].map((cert, i) => (
-                <div key={i} className="bg-[#121212] px-3 py-1.5 rounded-full font-sans font-bold text-[10px] text-[#ffffff] shadow-sm">
+                <div key={i} className="bg-[var(--c-dark)] px-3 py-1.5 rounded-full font-sans font-bold text-[10px] text-[var(--c-white)] shadow-sm">
                   {cert}
                 </div>
               ))}
@@ -121,7 +121,7 @@ export default function ProductDetailMobile({ product, onBack }) {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   onClick={() => setShowContactForm(true)}
-                  className="w-full bg-[#C67139] hover:bg-[#b0612f] text-white py-4 rounded-full font-sans font-bold text-[13px] shadow-[0_4px_15px_rgba(198,113,57,0.3)] active:scale-95 transition-all"
+                  className="w-full bg-[#C67139] hover:bg-[#b0612f] text-[var(--c-white)] py-4 rounded-full font-sans font-bold text-[13px] shadow-[0_4px_15px_rgba(198,113,57,0.3)] active:scale-95 transition-all"
                 >
                   Talk to the export desk
                 </motion.button>
@@ -131,19 +131,19 @@ export default function ProductDetailMobile({ product, onBack }) {
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="bg-[#1a1a1a] rounded-[32px] p-6 shadow-xl text-white overflow-hidden"
+                  className="bg-[var(--c-dark-grey)] rounded-[32px] p-6 shadow-xl text-[var(--c-white)] overflow-hidden"
                 >
                   <div className="flex justify-between items-center mb-4">
                     <h3 className="font-serif font-black text-2xl">Contact Us</h3>
-                    <button onClick={() => setShowContactForm(false)} className="text-[rgba(255,255,255,0.7)] hover:text-white bg-[#121212]/10 rounded-full p-1">
+                    <button onClick={() => setShowContactForm(false)} className="text-[rgba(255,255,255,0.7)] hover:text-[var(--c-white)] bg-[var(--c-dark)]/10 rounded-full p-1">
                       <X size={16} strokeWidth={3} />
                     </button>
                   </div>
                   
                   {isSubmitted ? (
-                    <div className="bg-[#121212]/10 rounded-2xl p-6 text-center my-4">
+                    <div className="bg-[var(--c-dark)]/10 rounded-2xl p-6 text-center my-4">
                       <div className="w-12 h-12 bg-[#C67139] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <span className="text-white text-xl">✓</span>
+                        <span className="text-[var(--c-white)] text-xl">✓</span>
                       </div>
                       <h3 className="font-serif font-black text-xl mb-2">Message Sent</h3>
                       <p className="font-sans text-[13px] text-[rgba(255,255,255,0.7)]">Thank you for reaching out.</p>
@@ -157,7 +157,7 @@ export default function ProductDetailMobile({ product, onBack }) {
                         required
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.2)] text-[#ffffff] placeholder:text-[#888888] px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:border-[#F4A300] transition-all"
+                        className="w-full bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.2)] text-[var(--c-white)] placeholder:text-[var(--c-grey)] px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:border-[var(--c-mango)] transition-all"
                       />
                       <input 
                         type="email" 
@@ -166,7 +166,7 @@ export default function ProductDetailMobile({ product, onBack }) {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.2)] text-[#ffffff] placeholder:text-[#888888] px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:border-[#F4A300] transition-all"
+                        className="w-full bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.2)] text-[var(--c-white)] placeholder:text-[var(--c-grey)] px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:border-[var(--c-mango)] transition-all"
                       />
                       <textarea 
                         name="message" 
@@ -175,12 +175,12 @@ export default function ProductDetailMobile({ product, onBack }) {
                         rows="3"
                         value={formData.message}
                         onChange={handleChange}
-                        className="w-full bg-[#121212]/10 border border-[rgba(255,255,255,0.06)] text-white placeholder-white/50 px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:bg-[#121212]/15 focus:border-[rgba(255,255,255,0.2)] transition-all resize-none"
+                        className="w-full bg-[var(--c-dark)]/10 border border-[rgba(255,255,255,0.06)] text-[var(--c-white)] placeholder-white/50 px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:bg-[var(--c-dark)]/15 focus:border-[rgba(255,255,255,0.2)] transition-all resize-none"
                       ></textarea>
                       <div className="pt-2">
                         <button 
                           type="submit" 
-                          className="w-full bg-[#C67139] text-white py-4 rounded-full font-sans font-bold text-sm shadow-[0_4px_15px_rgba(198,113,57,0.4)] active:scale-95 transition-transform"
+                          className="w-full bg-[#C67139] text-[var(--c-white)] py-4 rounded-full font-sans font-bold text-sm shadow-[0_4px_15px_rgba(198,113,57,0.4)] active:scale-95 transition-transform"
                         >
                           Send Message
                         </button>

@@ -21,11 +21,11 @@ export default function BottomNav({ activeTab, setActiveTab }) {
             key={item.id}
             onClick={() => setActiveTab(item.id)}
             className={`flex flex-col items-center justify-center w-16 h-14 rounded-full transition-all duration-300 relative ${
-              isActive ? 'text-[#F4A300]' : 'text-[rgba(255,255,255,0.6)] hover:text-white'
+              isActive ? 'text-[var(--c-mango)]' : 'text-[rgba(255,255,255,0.6)] hover:text-[var(--c-white)]'
             }`}
           >
             {isActive && (
-              <div className="absolute inset-0 border-[1.5px] border-[#F4A300] rounded-full opacity-100" />
+              <div className="absolute inset-0 border-[1.5px] border-[var(--c-mango)] rounded-full opacity-100" />
             )}
             <Icon size={20} strokeWidth={isActive ? 2.5 : 2} className="mb-1" />
             <span className="text-[10px] font-sans font-medium tracking-wide">{item.label}</span>

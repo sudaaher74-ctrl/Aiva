@@ -31,11 +31,11 @@ export default function ProcessMobile() {
   ];
 
   return (
-    <div className="flex flex-col w-full bg-[#050505] min-h-screen">
+    <div className="flex flex-col w-full bg-[var(--c-black)] min-h-screen">
       
       {/* Hero */}
-      <section className="bg-[#1a1a1a] px-6 pt-12 pb-16 text-white rounded-b-[40px] relative overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[#121212]/5 rounded-full blur-3xl pointer-events-none" />
+      <section className="bg-[var(--c-dark-grey)] px-6 pt-12 pb-16 text-[var(--c-white)] rounded-b-[40px] relative overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[var(--c-dark)]/5 rounded-full blur-3xl pointer-events-none" />
         
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <p className="font-sans text-[10px] font-bold text-[rgba(255,255,255,0.7)] uppercase tracking-widest mb-2">
@@ -65,11 +65,11 @@ export default function ProcessMobile() {
               viewport={{ once: true, margin: "-100px" }}
               className="relative pl-8"
             >
-              <div className="absolute -left-[18px] top-0 w-9 h-9 bg-[linear-gradient(90deg,#ffb800,#ff8a00)] rounded-full flex items-center justify-center text-[#050505] font-serif font-bold text-sm shadow-md ring-4 ring-[#050505]">
+              <div className="absolute -left-[18px] top-0 w-9 h-9 bg-[linear-gradient(90deg,#ffb800,#ff8a00)] rounded-full flex items-center justify-center text-[var(--c-black)] font-serif font-bold text-sm shadow-md ring-4 ring-[var(--c-black)]">
                 {i + 1}
               </div>
-              <h3 className="font-serif font-black text-xl text-[#ffffff] mb-2">{step.title}</h3>
-              <p className="font-sans text-sm text-[#ffffff]/70 leading-relaxed">{step.desc}</p>
+              <h3 className="font-serif font-black text-xl text-[var(--c-white)] mb-2">{step.title}</h3>
+              <p className="font-sans text-sm text-[var(--c-white)]/70 leading-relaxed">{step.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -77,7 +77,7 @@ export default function ProcessMobile() {
 
       {/* Why buyers stay */}
       <section className="px-6 pb-24">
-        <h2 className="font-serif font-black text-3xl text-[#ffffff] mb-8">Why buyers stay</h2>
+        <h2 className="font-serif font-black text-3xl text-[var(--c-white)] mb-8">Why buyers stay</h2>
         
         <div className="space-y-4">
           {reasons.map((reason, i) => (
@@ -86,15 +86,15 @@ export default function ProcessMobile() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-[#121212] rounded-[24px] p-5 shadow-sm"
+              className="bg-[var(--c-dark)] rounded-[24px] p-5 shadow-sm"
             >
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-[#1a1a1a]/10 flex items-center justify-center text-[#ffffff] font-serif font-bold shrink-0">
+                <div className="w-10 h-10 rounded-full bg-[var(--c-dark-grey)]/10 flex items-center justify-center text-[var(--c-white)] font-serif font-bold shrink-0">
                   0{i + 1}
                 </div>
                 <div>
-                  <h4 className="font-sans font-bold text-[#ffffff] text-sm mb-1">{reason.title}</h4>
-                  <p className="font-sans text-[13px] text-[#ffffff]/60 leading-relaxed">{reason.desc}</p>
+                  <h4 className="font-sans font-bold text-[var(--c-white)] text-sm mb-1">{reason.title}</h4>
+                  <p className="font-sans text-[13px] text-[var(--c-white)]/60 leading-relaxed">{reason.desc}</p>
                 </div>
               </div>
             </motion.div>

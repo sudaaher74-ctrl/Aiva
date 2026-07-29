@@ -38,7 +38,7 @@ export default function HomeMobile({ setActiveTab }) {
   return (
     <div className="flex flex-col w-full h-full pb-8">
       {/* Hero Section */}
-      <section className="px-6 pt-12 pb-8 relative overflow-hidden bg-gradient-to-b from-[#050505] to-[#121212]">
+      <section className="px-6 pt-12 pb-8 relative overflow-hidden bg-gradient-to-b from-[var(--c-black)] to-[var(--c-dark)]">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -47,7 +47,7 @@ export default function HomeMobile({ setActiveTab }) {
         >
           <img src="/assets/images/products/newlogo.webp" alt="AIVA Logo" className="h-24 w-auto object-contain object-left drop-shadow-sm -mt-2 -ml-8 scale-110 origin-left" />
           <div className="flex flex-col items-end justify-center h-full">
-            <p className="font-sans text-xs text-[#ffffff]/60 font-bold uppercase tracking-widest text-right">
+            <p className="font-sans text-xs text-[var(--c-white)]/60 font-bold uppercase tracking-widest text-right">
               NAVI MUMBAI · INDIA
             </p>
           </div>
@@ -68,7 +68,7 @@ export default function HomeMobile({ setActiveTab }) {
           
           <button 
             onClick={() => setActiveTab('catalogue')}
-            className="bg-[#C67139] text-white px-7 py-3.5 rounded-full font-sans font-bold text-sm shadow-[0_4px_14px_rgba(198,113,57,0.3)] active:scale-95 transition-transform"
+            className="bg-[#C67139] text-[var(--c-white)] px-7 py-3.5 rounded-full font-sans font-bold text-sm shadow-[0_4px_14px_rgba(198,113,57,0.3)] active:scale-95 transition-transform"
           >
             Explore the range
           </button>
@@ -90,8 +90,8 @@ export default function HomeMobile({ setActiveTab }) {
       {/* Categories Horizontal Scroll */}
       <section className="pt-8 pb-4">
         <div className="flex justify-between items-end px-6 mb-6">
-          <h3 className="font-serif font-black text-3xl text-[#ffffff] tracking-tight">Categories</h3>
-          <button onClick={() => setActiveTab('catalogue')} className="font-sans text-[#F4A300] font-bold text-sm pb-1">See all</button>
+          <h3 className="font-serif font-black text-3xl text-[var(--c-white)] tracking-tight">Categories</h3>
+          <button onClick={() => setActiveTab('catalogue')} className="font-sans text-[var(--c-mango)] font-bold text-sm pb-1">See all</button>
         </div>
         
         <div className="flex overflow-x-auto gap-4 px-6 pb-8 snap-x snap-mandatory hide-scrollbar">
@@ -100,8 +100,8 @@ export default function HomeMobile({ setActiveTab }) {
                <div className="w-full aspect-[4/5] bg-[#0A0A0A] rounded-2xl mb-4 p-2 flex items-center justify-center overflow-hidden relative">
                   <img src={c.image} alt={c.name} className="w-full h-full object-contain" />
                </div>
-               <h4 className="font-sans font-bold text-[#ffffff] text-[13px] leading-tight mb-1">{c.name}</h4>
-               <p className="font-sans text-[10px] text-[#ffffff]/50 font-semibold">{c.count}</p>
+               <h4 className="font-sans font-bold text-[var(--c-white)] text-[13px] leading-tight mb-1">{c.name}</h4>
+               <p className="font-sans text-[10px] text-[var(--c-white)]/50 font-semibold">{c.count}</p>
             </div>
           ))}
         </div>
@@ -113,7 +113,7 @@ export default function HomeMobile({ setActiveTab }) {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-[#1a1a1a] rounded-[32px] p-7 text-white relative overflow-hidden"
+          className="bg-[var(--c-dark-grey)] rounded-[32px] p-7 text-[var(--c-white)] relative overflow-hidden"
         >
           {/* Decorative subtle circle */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#4A5539] rounded-full -translate-y-1/3 translate-x-1/4" />
@@ -127,17 +127,17 @@ export default function HomeMobile({ setActiveTab }) {
             <div className="space-y-4 mb-8">
               {['Harvesting & selection', 'Sorting & washing', 'Extraction & processing', 'Packaging & storage'].map((step, i) => (
                 <div key={i} className="flex items-center gap-3">
-                  <div className="w-6 h-6 rounded-full bg-[#121212]/10 flex items-center justify-center font-serif text-[11px] font-bold text-[rgba(255,255,255,0.7)]">
+                  <div className="w-6 h-6 rounded-full bg-[var(--c-dark)]/10 flex items-center justify-center font-serif text-[11px] font-bold text-[rgba(255,255,255,0.7)]">
                     {i + 1}
                   </div>
-                  <span className="font-sans text-[13px] font-medium text-[#ffffff]">{step}</span>
+                  <span className="font-sans text-[13px] font-medium text-[var(--c-white)]">{step}</span>
                 </div>
               ))}
             </div>
 
             <button 
               onClick={() => setActiveTab('process')}
-              className="bg-[#F5EAD8] text-[#2F2923] px-6 py-3 rounded-full font-sans font-bold text-[13px] hover:bg-[#121212] active:scale-95 transition-all shadow-sm"
+              className="bg-[#F5EAD8] text-[#2F2923] px-6 py-3 rounded-full font-sans font-bold text-[13px] hover:bg-[var(--c-dark)] active:scale-95 transition-all shadow-sm"
             >
               See how it works
             </button>
@@ -148,17 +148,17 @@ export default function HomeMobile({ setActiveTab }) {
       {/* In Season Header */}
       <section className="px-6 pb-12">
         <div className="flex justify-between items-end mb-6">
-          <h3 className="font-serif font-black text-3xl text-[#ffffff] tracking-tight">In season</h3>
-          <button onClick={() => setActiveTab('catalogue')} className="font-sans text-[#F4A300] font-bold text-sm pb-1">Catalogue</button>
+          <h3 className="font-serif font-black text-3xl text-[var(--c-white)] tracking-tight">In season</h3>
+          <button onClick={() => setActiveTab('catalogue')} className="font-sans text-[var(--c-mango)] font-bold text-sm pb-1">Catalogue</button>
         </div>
-        <div className="bg-[#121212] rounded-[32px] p-6 shadow-sm h-32 flex items-center justify-center text-[#ffffff]/40 font-sans text-sm font-medium">
+        <div className="bg-[var(--c-dark)] rounded-[32px] p-6 shadow-sm h-32 flex items-center justify-center text-[var(--c-white)]/40 font-sans text-sm font-medium">
            Products will appear here
         </div>
       </section>
 
       {/* Why Choose Us */}
       <section className="px-6 pb-12">
-        <h3 className="font-serif font-black text-3xl text-[#ffffff] mb-6 tracking-tight">The AIVA Standard</h3>
+        <h3 className="font-serif font-black text-3xl text-[var(--c-white)] mb-6 tracking-tight">The AIVA Standard</h3>
         <div className="space-y-4">
           {[
             { title: 'Farm Fresh Sourcing', desc: 'Direct partnerships with farmers ensuring the highest quality raw materials.' },
@@ -172,7 +172,7 @@ export default function HomeMobile({ setActiveTab }) {
                whileInView={{ opacity: 1, y: 0 }}
                viewport={{ once: true }}
                transition={{ delay: i * 0.1 }}
-               className="bg-[#121212] rounded-3xl p-6 shadow-[0_4px_12px_rgba(0,0,0,0.02)]"
+               className="bg-[var(--c-dark)] rounded-3xl p-6 shadow-[0_4px_12px_rgba(0,0,0,0.02)]"
              >
                 <h4 className="font-serif font-black text-[#C67139] text-xl mb-2">{item.title}</h4>
                 <p className="font-sans text-sm text-[#7A756C] font-medium">{item.desc}</p>
@@ -189,14 +189,14 @@ export default function HomeMobile({ setActiveTab }) {
             viewport={{ once: true }}
             className="bg-[#EBE0CF] rounded-[32px] p-8 text-center shadow-[inset_0_2px_10px_rgba(255,255,255,0.3)] relative overflow-hidden"
           >
-             <p className="font-sans text-[10px] font-bold text-[#ffffff]/50 uppercase tracking-widest mb-2">
+             <p className="font-sans text-[10px] font-bold text-[var(--c-white)]/50 uppercase tracking-widest mb-2">
                GLOBAL REACH
              </p>
-             <h3 className="font-serif font-black text-[26px] leading-tight text-[#ffffff] mb-8">Exporting from <br/>Navi Mumbai <br/>to the world</h3>
-             <div className="w-28 h-28 mx-auto rounded-full border border-[#F4A300]/20 flex items-center justify-center relative">
-               <div className="absolute inset-0 rounded-full border border-[#F4A300]/40 scale-75" />
+             <h3 className="font-serif font-black text-[26px] leading-tight text-[var(--c-white)] mb-8">Exporting from <br/>Navi Mumbai <br/>to the world</h3>
+             <div className="w-28 h-28 mx-auto rounded-full border border-[var(--c-mango)]/20 flex items-center justify-center relative">
+               <div className="absolute inset-0 rounded-full border border-[var(--c-mango)]/40 scale-75" />
                <div className="absolute inset-0 rounded-full bg-[rgba(244,163,0,0.12)] scale-50" />
-               <div className="w-14 h-14 bg-[#C67139] rounded-full flex items-center justify-center text-white font-sans font-bold text-[11px] z-10 shadow-lg">
+               <div className="w-14 h-14 bg-[#C67139] rounded-full flex items-center justify-center text-[var(--c-white)] font-sans font-bold text-[11px] z-10 shadow-lg">
                  INDIA
                </div>
              </div>
@@ -209,7 +209,7 @@ export default function HomeMobile({ setActiveTab }) {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-[#1a1a1a] rounded-[32px] p-7 shadow-xl text-white"
+          className="bg-[var(--c-dark-grey)] rounded-[32px] p-7 shadow-xl text-[var(--c-white)]"
         >
           <h2 className="font-serif font-black text-[32px] leading-tight mb-3">Let's talk<br/>business</h2>
           <p className="font-sans text-sm text-[rgba(255,255,255,0.7)] mb-8 leading-relaxed">
@@ -217,9 +217,9 @@ export default function HomeMobile({ setActiveTab }) {
           </p>
 
           {isSubmitted ? (
-            <div className="bg-[#121212]/10 rounded-2xl p-6 text-center my-6">
+            <div className="bg-[var(--c-dark)]/10 rounded-2xl p-6 text-center my-6">
               <div className="w-12 h-12 bg-[#C67139] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-white text-xl">✓</span>
+                <span className="text-[var(--c-white)] text-xl">✓</span>
               </div>
               <h3 className="font-serif font-black text-xl mb-2">Message Sent</h3>
               <p className="font-sans text-[13px] text-[rgba(255,255,255,0.7)]">Thank you for reaching out. We will get back to you shortly.</p>
@@ -233,7 +233,7 @@ export default function HomeMobile({ setActiveTab }) {
                 required
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.2)] text-[#ffffff] placeholder:text-[#888888] px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:border-[#F4A300] transition-all"
+                className="w-full bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.2)] text-[var(--c-white)] placeholder:text-[var(--c-grey)] px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:border-[var(--c-mango)] transition-all"
               />
               <input 
                 type="email" 
@@ -242,7 +242,7 @@ export default function HomeMobile({ setActiveTab }) {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.2)] text-[#ffffff] placeholder:text-[#888888] px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:border-[#F4A300] transition-all"
+                className="w-full bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.2)] text-[var(--c-white)] placeholder:text-[var(--c-grey)] px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:border-[var(--c-mango)] transition-all"
               />
               <textarea 
                 name="message" 
@@ -251,13 +251,13 @@ export default function HomeMobile({ setActiveTab }) {
                 rows="3"
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full bg-[#121212]/10 border border-[rgba(255,255,255,0.06)] text-white placeholder-white/50 px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:bg-[#121212]/15 focus:border-[rgba(255,255,255,0.2)] transition-all resize-none"
+                className="w-full bg-[var(--c-dark)]/10 border border-[rgba(255,255,255,0.06)] text-[var(--c-white)] placeholder-white/50 px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:bg-[var(--c-dark)]/15 focus:border-[rgba(255,255,255,0.2)] transition-all resize-none"
               ></textarea>
               
               <div className="pt-3">
                 <button 
                   type="submit" 
-                  className="w-full bg-[#C67139] text-white py-4 rounded-full font-sans font-bold text-sm shadow-[0_4px_15px_rgba(198,113,57,0.4)] active:scale-95 transition-transform"
+                  className="w-full bg-[#C67139] text-[var(--c-white)] py-4 rounded-full font-sans font-bold text-sm shadow-[0_4px_15px_rgba(198,113,57,0.4)] active:scale-95 transition-transform"
                 >
                   Send Message
                 </button>
