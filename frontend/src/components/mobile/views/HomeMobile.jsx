@@ -1,12 +1,34 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Globe } from 'lucide-react';
-import Image from 'next/image';
 
 export default function HomeMobile({ setActiveTab }) {
-  
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    message: ''
+  });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+    setTimeout(() => {
+      setIsSubmitted(false);
+      setFormData({ name: '', email: '', company: '', message: '' });
+    }, 5000);
+  };
+
   const categories = [
     { id: 'aseptic', name: 'Aseptic pulp & paste', count: '5 products', image: '/assets/images/products/pulp/totapurimango.png' },
     { id: 'iqf', name: 'IQF fruit', count: '2 products', image: '/assets/images/products/iqf_fruits/strawberry.png' },
@@ -215,20 +237,54 @@ export default function HomeMobile({ setActiveTab }) {
             Sample requests, specification sheets and bulk enquiries go straight to the export desk.
           </p>
 
-          <div className="space-y-4 mb-8">
-            <div className="bg-white/10 rounded-2xl p-4">
-              <p className="font-sans text-[10px] font-bold text-white/50 uppercase tracking-widest mb-1">EMAIL</p>
-              <p className="font-sans text-[13px] font-medium">Enquire@aivaenterprises.com</p>
+          {isSubmitted ? (
+            <div className="bg-white/10 rounded-2xl p-6 text-center my-6">
+              <div className="w-12 h-12 bg-[#C67139] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <span className="text-white text-xl">✓</span>
+              </div>
+              <h3 className="font-serif font-black text-xl mb-2">Message Sent</h3>
+              <p className="font-sans text-[13px] text-white/70">Thank you for reaching out. We will get back to you shortly.</p>
             </div>
-            <div className="bg-white/10 rounded-2xl p-4">
-              <p className="font-sans text-[10px] font-bold text-white/50 uppercase tracking-widest mb-1">CALL / WHATSAPP</p>
-              <p className="font-sans text-[13px] font-medium">+91 88281 77533</p>
-            </div>
-          </div>
-
-          <button className="w-full bg-[#C67139] text-white py-4 rounded-full font-sans font-bold text-sm shadow-[0_4px_15px_rgba(198,113,57,0.4)] active:scale-95 transition-transform">
-            Request a sample
-          </button>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-3 mb-2">
+              <input 
+                type="text" 
+                name="name" 
+                placeholder="Full Name" 
+                required
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full bg-white/10 border border-white/5 text-white placeholder-white/50 px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:bg-white/15 focus:border-white/20 transition-all"
+              />
+              <input 
+                type="email" 
+                name="email" 
+                placeholder="Email Address" 
+                required
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full bg-white/10 border border-white/5 text-white placeholder-white/50 px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:bg-white/15 focus:border-white/20 transition-all"
+              />
+              <textarea 
+                name="message" 
+                placeholder="Your Message / Request" 
+                required
+                rows="3"
+                value={formData.message}
+                onChange={handleChange}
+                className="w-full bg-white/10 border border-white/5 text-white placeholder-white/50 px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:bg-white/15 focus:border-white/20 transition-all resize-none"
+              ></textarea>
+              
+              <div className="pt-3">
+                <button 
+                  type="submit" 
+                  className="w-full bg-[#C67139] text-white py-4 rounded-full font-sans font-bold text-sm shadow-[0_4px_15px_rgba(198,113,57,0.4)] active:scale-95 transition-transform"
+                >
+                  Send Message
+                </button>
+              </div>
+            </form>
+          )}
         </motion.div>
       </section>
       
