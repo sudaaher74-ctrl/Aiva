@@ -64,6 +64,43 @@ export default function AboutMobile() {
         </motion.div>
       </section>
 
+      {/* Our Story / Founder */}
+      <section className="px-6 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-white rounded-[32px] p-8 shadow-sm relative overflow-hidden"
+        >
+          <div className="absolute top-0 right-0 w-32 h-32 bg-[#EBE0CF] rounded-bl-[100px] -z-10 opacity-50"></div>
+          
+          <p className="font-sans text-[10px] font-bold text-mobile-orange uppercase tracking-widest mb-3">
+            OUR STORY
+          </p>
+          <h2 className="font-serif font-black text-2xl text-mobile-green mb-6 leading-tight">
+            From a food technologist's vision to a global partner.
+          </h2>
+          
+          <div className="flex items-center gap-4 mb-6 bg-[#F5EAD8] p-4 rounded-2xl">
+            <div className="w-12 h-12 bg-[#C67139] rounded-full flex items-center justify-center text-white font-serif font-black text-lg shrink-0 shadow-md">
+              AI
+            </div>
+            <div>
+              <h4 className="font-sans font-bold text-[15px] text-mobile-green">Aishwarya Ingale</h4>
+              <p className="font-sans text-[11px] font-bold text-mobile-green/60 uppercase tracking-wider">Founder</p>
+            </div>
+          </div>
+
+          <p className="font-sans text-sm text-[#7A756C] leading-relaxed mb-6 font-medium">
+            AIVA Enterprises was founded by Aishwarya Ingale, whose journey began with a Bachelor's degree in Food Technology in India and later took her to the United States to pursue a Master's in Entrepreneurial Leadership at Babson College. During her time abroad, she gained a global perspective on food quality, sourcing, and consumer expectations.
+          </p>
+
+          <blockquote className="border-l-2 border-mobile-orange pl-4 font-serif text-[17px] italic text-mobile-green/80 font-medium leading-relaxed">
+            "To bring the finest products each region has to offer to the world while proudly showcasing India's exceptional agricultural capabilities."
+          </blockquote>
+        </motion.div>
+      </section>
+
       {/* Certifications */}
       <section className="px-6 py-12">
         <h2 className="font-serif font-black text-3xl text-mobile-green mb-6">Certifications</h2>
