@@ -38,6 +38,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
       <head>
+        <meta name="theme-color" content="#F5EAD8" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
         <link rel="preconnect" href="https://unpkg.com" />
         <link rel="dns-prefetch" href="https://unpkg.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
