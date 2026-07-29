@@ -17,8 +17,10 @@ process.on('uncaughtException', err => {
   process.exit(1);
 });
 
-// Load environment variables
-dotenv.config();
+// Load environment variables if not in production
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config();
+}
 
 // Validate Environment Variables
 validateEnv();
