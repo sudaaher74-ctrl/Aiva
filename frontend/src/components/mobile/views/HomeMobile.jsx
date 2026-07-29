@@ -43,16 +43,16 @@ export default function HomeMobile({ setActiveTab }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex items-center justify-between mb-10"
+          className="flex items-start justify-between mb-10"
         >
-          <div className="flex flex-col items-start justify-center">
-            <img src="/assets/images/products/newlogo.webp" alt="AIVA Logo" className="h-10 w-auto object-contain object-left mb-1 drop-shadow-sm" />
-            <p className="font-sans text-[9px] text-mobile-green/50 font-bold uppercase tracking-widest mt-1">
+          <img src="/assets/images/products/newlogo.webp" alt="AIVA Logo" className="h-10 w-auto object-contain object-left drop-shadow-sm mt-1" />
+          <div className="flex flex-col items-end">
+            <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm text-mobile-orange shrink-0 mb-2">
+              <Globe size={18} strokeWidth={2.5} />
+            </div>
+            <p className="font-sans text-[9px] text-mobile-green/50 font-bold uppercase tracking-widest text-right">
               NAVI MUMBAI · INDIA
             </p>
-          </div>
-          <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm text-mobile-orange shrink-0">
-            <Globe size={18} strokeWidth={2.5} />
           </div>
         </motion.div>
 
@@ -60,11 +60,12 @@ export default function HomeMobile({ setActiveTab }) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
+          className="text-left"
         >
-          <h2 className="font-serif font-black text-[42px] leading-[1.05] text-[#2F2923] mb-5 tracking-tight">
+          <h2 className="font-serif font-black text-[42px] leading-[1.05] text-[#2F2923] mb-5 tracking-tight text-left">
             The standard <br />behind <span className="text-[#C67139]">the</span><br /><span className="text-[#C67139]">standard.</span>
           </h2>
-          <p className="font-sans text-[#7A756C] text-sm leading-relaxed mb-8 max-w-[280px] font-medium">
+          <p className="font-sans text-[#7A756C] text-sm leading-relaxed mb-8 max-w-[280px] font-medium text-left">
             Aseptic pulps, purées, concentrates and IQF produce — grown in India, shipped in bulk to the world.
           </p>
           
