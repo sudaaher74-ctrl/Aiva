@@ -42,9 +42,9 @@ export default function HomeMobile({ setActiveTab }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex items-center justify-center mb-10"
+          className="flex items-center justify-center mb-8 mt-2"
         >
-          <img src="/assets/images/products/newlogo.webp" alt="AIVA Enterprises" className="h-10 object-contain drop-shadow-sm" />
+          <img src="/assets/images/products/newlogo.webp" alt="AIVA Enterprises" className="h-20 w-auto object-contain drop-shadow-sm" />
         </motion.div>
 
         <motion.div
