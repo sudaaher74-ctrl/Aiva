@@ -46,7 +46,7 @@ export default function HomeMobile({ setActiveTab }) {
           className="flex items-center justify-between mb-10"
         >
           <div>
-            <img src="/assets/images/products/newlogo.webp" alt="AIVA Enterprises" className="h-8 object-contain" />
+            <h1 className="font-serif font-black text-mobile-green text-xl tracking-tight leading-none">AIVA Enterprises</h1>
             <p className="font-sans text-[9px] text-mobile-green/50 font-bold uppercase tracking-widest mt-1">
               NAVI MUMBAI · INDIA
             </p>
@@ -64,7 +64,7 @@ export default function HomeMobile({ setActiveTab }) {
           <h2 className="font-serif font-black text-[42px] leading-[1.05] text-[#2F2923] mb-5 tracking-tight">
             The standard <br />behind <span className="text-[#C67139]">the</span><br /><span className="text-[#C67139]">standard.</span>
           </h2>
-          <p className="font-sans text-[#7A756C] text-sm leading-relaxed mb-7 max-w-[280px] font-medium">
+          <p className="font-sans text-[#7A756C] text-sm leading-relaxed mb-8 max-w-[280px] font-medium">
             Aseptic pulps, purées, concentrates and IQF produce — grown in India, shipped in bulk to the world.
           </p>
           
@@ -78,12 +78,12 @@ export default function HomeMobile({ setActiveTab }) {
 
         {/* Hero Image */}
         <motion.div 
-          className="mt-8 relative w-full flex justify-center items-center"
+          className="mt-10 relative w-full flex justify-center items-center"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <img src="/assets/images/home.png" alt="AIVA Products" className="w-[110%] max-w-[400px] object-contain drop-shadow-xl" />
+          <img src="/assets/images/home.png" alt="AIVA Products" className="w-[100%] max-w-[340px] object-contain drop-shadow-xl" />
         </motion.div>
       </section>
 
