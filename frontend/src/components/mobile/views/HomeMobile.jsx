@@ -43,14 +43,11 @@ export default function HomeMobile({ setActiveTab }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex items-start justify-between mb-10"
+          className="flex items-center justify-between mb-8"
         >
-          <img src="/assets/images/products/newlogo.webp" alt="AIVA Logo" className="h-10 w-auto object-contain object-left drop-shadow-sm mt-1" />
-          <div className="flex flex-col items-end">
-            <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm text-mobile-orange shrink-0 mb-2">
-              <Globe size={18} strokeWidth={2.5} />
-            </div>
-            <p className="font-sans text-[9px] text-mobile-green/50 font-bold uppercase tracking-widest text-right">
+          <img src="/assets/images/products/newlogo.webp" alt="AIVA Logo" className="h-24 w-auto object-contain object-left drop-shadow-sm -mt-2" />
+          <div className="flex flex-col items-end justify-center h-full">
+            <p className="font-sans text-xs text-mobile-green/60 font-bold uppercase tracking-widest text-right">
               NAVI MUMBAI · INDIA
             </p>
           </div>
