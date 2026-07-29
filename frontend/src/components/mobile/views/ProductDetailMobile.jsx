@@ -1,10 +1,28 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ChevronLeft } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, X } from 'lucide-react';
 
 export default function ProductDetailMobile({ product, onBack }) {
+  const [showContactForm, setShowContactForm] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+    setTimeout(() => {
+      setIsSubmitted(false);
+      setFormData({ name: '', email: '', message: '' });
+      setShowContactForm(false);
+    }, 3000);
+  };
+
   if (!product) return null;
 
   return (
@@ -93,14 +111,85 @@ export default function ProductDetailMobile({ product, onBack }) {
             </div>
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex flex-col gap-3">
-            <button className="w-full bg-[#C67139] hover:bg-[#b0612f] text-white py-4 rounded-full font-sans font-bold text-[13px] shadow-[0_4px_15px_rgba(198,113,57,0.3)] active:scale-95 transition-all">
-              Request specification sheet
-            </button>
-            <button className="w-full bg-transparent border-2 border-[#EAE0D3] hover:bg-[#EAE0D3] text-mobile-green py-4 rounded-full font-serif font-black text-[15px] tracking-tight active:scale-95 transition-all">
-              Talk to the export desk
-            </button>
+          {/* Action Buttons & Contact Form */}
+          <div className="flex flex-col gap-3 mt-4">
+            <AnimatePresence mode="wait">
+              {!showContactForm ? (
+                <motion.button 
+                  key="button"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  onClick={() => setShowContactForm(true)}
+                  className="w-full bg-[#C67139] hover:bg-[#b0612f] text-white py-4 rounded-full font-sans font-bold text-[13px] shadow-[0_4px_15px_rgba(198,113,57,0.3)] active:scale-95 transition-all"
+                >
+                  Talk to the export desk
+                </motion.button>
+              ) : (
+                <motion.div 
+                  key="form"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="bg-mobile-green rounded-[32px] p-6 shadow-xl text-white overflow-hidden"
+                >
+                  <div className="flex justify-between items-center mb-4">
+                    <h3 className="font-serif font-black text-2xl">Contact Us</h3>
+                    <button onClick={() => setShowContactForm(false)} className="text-white/60 hover:text-white bg-white/10 rounded-full p-1">
+                      <X size={16} strokeWidth={3} />
+                    </button>
+                  </div>
+                  
+                  {isSubmitted ? (
+                    <div className="bg-white/10 rounded-2xl p-6 text-center my-4">
+                      <div className="w-12 h-12 bg-[#C67139] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <span className="text-white text-xl">✓</span>
+                      </div>
+                      <h3 className="font-serif font-black text-xl mb-2">Message Sent</h3>
+                      <p className="font-sans text-[13px] text-white/70">Thank you for reaching out.</p>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleSubmit} className="space-y-3">
+                      <input 
+                        type="text" 
+                        name="name" 
+                        placeholder="Full Name" 
+                        required
+                        value={formData.name}
+                        onChange={handleChange}
+                        className="w-full bg-white/10 border border-white/5 text-white placeholder-white/50 px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:bg-white/15 focus:border-white/20 transition-all"
+                      />
+                      <input 
+                        type="email" 
+                        name="email" 
+                        placeholder="Email Address" 
+                        required
+                        value={formData.email}
+                        onChange={handleChange}
+                        className="w-full bg-white/10 border border-white/5 text-white placeholder-white/50 px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:bg-white/15 focus:border-white/20 transition-all"
+                      />
+                      <textarea 
+                        name="message" 
+                        placeholder="Your Message / Request" 
+                        required
+                        rows="3"
+                        value={formData.message}
+                        onChange={handleChange}
+                        className="w-full bg-white/10 border border-white/5 text-white placeholder-white/50 px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:bg-white/15 focus:border-white/20 transition-all resize-none"
+                      ></textarea>
+                      <div className="pt-2">
+                        <button 
+                          type="submit" 
+                          className="w-full bg-[#C67139] text-white py-4 rounded-full font-sans font-bold text-sm shadow-[0_4px_15px_rgba(198,113,57,0.4)] active:scale-95 transition-transform"
+                        >
+                          Send Message
+                        </button>
+                      </div>
+                    </form>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
           
         </motion.div>
