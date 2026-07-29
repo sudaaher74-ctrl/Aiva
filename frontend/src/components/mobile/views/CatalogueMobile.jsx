@@ -30,22 +30,22 @@ export default function CatalogueMobile({ onProductClick }) {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <p className="font-sans text-[10px] font-bold text-mobile-orange uppercase tracking-widest mb-2">
+        <p className="font-sans text-[10px] font-bold text-[#F4A300] uppercase tracking-widest mb-2">
           {filteredProducts.length} PRODUCTS
         </p>
-        <h1 className="font-serif font-black text-5xl text-mobile-green mb-6">Catalogue</h1>
+        <h1 className="font-serif font-black text-5xl text-[#ffffff] mb-6">Catalogue</h1>
 
         {/* Search */}
         <div className="relative mb-6">
           <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-            <Search size={18} className="text-mobile-green/40" />
+            <Search size={18} className="text-[#ffffff]/40" />
           </div>
           <input
             type="text"
             placeholder="Search mango, guava, IQF..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-white rounded-full py-4 pl-12 pr-4 font-sans text-sm text-mobile-green placeholder:text-mobile-green/40 outline-none shadow-sm focus:shadow-md transition-shadow"
+            className="w-full bg-[#121212] rounded-full py-4 pl-12 pr-4 font-sans text-sm text-[#ffffff] placeholder:text-[#ffffff]/40 outline-none shadow-sm focus:shadow-md transition-shadow"
           />
         </div>
 
@@ -57,8 +57,8 @@ export default function CatalogueMobile({ onProductClick }) {
               onClick={() => setFilter(f.id)}
               className={`whitespace-nowrap px-6 py-2.5 rounded-full font-sans text-sm font-bold transition-all ${
                 filter === f.id
-                  ? 'bg-mobile-orange text-white shadow-md'
-                  : 'bg-white text-mobile-green hover:bg-white/80'
+                  ? 'bg-[linear-gradient(90deg,#ffb800,#ff8a00)] text-white shadow-md'
+                  : 'bg-[#121212] text-[#ffffff] hover:bg-[#121212]/80'
               }`}
             >
               {f.label}

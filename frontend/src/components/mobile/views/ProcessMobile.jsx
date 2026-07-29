@@ -31,32 +31,32 @@ export default function ProcessMobile() {
   ];
 
   return (
-    <div className="flex flex-col w-full bg-mobile-bg min-h-screen">
+    <div className="flex flex-col w-full bg-[#050505] min-h-screen">
       
       {/* Hero */}
-      <section className="bg-mobile-green px-6 pt-12 pb-16 text-white rounded-b-[40px] relative overflow-hidden shadow-premium">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-white/5 rounded-full blur-3xl pointer-events-none" />
+      <section className="bg-[#1a1a1a] px-6 pt-12 pb-16 text-white rounded-b-[40px] relative overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[#121212]/5 rounded-full blur-3xl pointer-events-none" />
         
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <p className="font-sans text-[10px] font-bold text-white/50 uppercase tracking-widest mb-2">
+          <p className="font-sans text-[10px] font-bold text-[rgba(255,255,255,0.7)] uppercase tracking-widest mb-2">
             THE AIVA STANDARD
           </p>
           <h1 className="font-serif font-black text-4xl mb-4 leading-tight">
             From orchard to ocean
           </h1>
-          <p className="font-sans text-sm text-white/80 leading-relaxed mb-8">
+          <p className="font-sans text-sm text-[rgba(255,255,255,0.85)] leading-relaxed mb-8">
             Four controlled stages between the tree and the container — every batch traceable back to its grower.
           </p>
 
           <div className="relative w-full aspect-square max-h-[300px] flex items-center justify-center">
-            <img src="/assets/images/products/pulp/totapurimango.png" alt="Aseptic Drum" className="w-2/3 object-contain drop-shadow-2xl" />
+            <img src="/assets/images/products/pulp/totapurimango.png" alt="Aseptic Drum" className="w-2/3 object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]" />
           </div>
         </motion.div>
       </section>
 
       {/* Process Steps */}
       <section className="px-6 py-12">
-        <div className="relative border-l border-mobile-green/20 ml-5 space-y-10">
+        <div className="relative border-l border-[rgba(255,255,255,0.2)] ml-5 space-y-10">
           {steps.map((step, i) => (
             <motion.div 
               key={i}
@@ -65,11 +65,11 @@ export default function ProcessMobile() {
               viewport={{ once: true, margin: "-100px" }}
               className="relative pl-8"
             >
-              <div className="absolute -left-[18px] top-0 w-9 h-9 bg-mobile-orange rounded-full flex items-center justify-center text-white font-serif font-bold text-sm shadow-md ring-4 ring-mobile-bg">
+              <div className="absolute -left-[18px] top-0 w-9 h-9 bg-[linear-gradient(90deg,#ffb800,#ff8a00)] rounded-full flex items-center justify-center text-[#050505] font-serif font-bold text-sm shadow-md ring-4 ring-[#050505]">
                 {i + 1}
               </div>
-              <h3 className="font-serif font-black text-xl text-mobile-green mb-2">{step.title}</h3>
-              <p className="font-sans text-sm text-mobile-green/70 leading-relaxed">{step.desc}</p>
+              <h3 className="font-serif font-black text-xl text-[#ffffff] mb-2">{step.title}</h3>
+              <p className="font-sans text-sm text-[#ffffff]/70 leading-relaxed">{step.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -77,7 +77,7 @@ export default function ProcessMobile() {
 
       {/* Why buyers stay */}
       <section className="px-6 pb-24">
-        <h2 className="font-serif font-black text-3xl text-mobile-green mb-8">Why buyers stay</h2>
+        <h2 className="font-serif font-black text-3xl text-[#ffffff] mb-8">Why buyers stay</h2>
         
         <div className="space-y-4">
           {reasons.map((reason, i) => (
@@ -86,15 +86,15 @@ export default function ProcessMobile() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white rounded-[24px] p-5 shadow-sm"
+              className="bg-[#121212] rounded-[24px] p-5 shadow-sm"
             >
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-mobile-green/10 flex items-center justify-center text-mobile-green font-serif font-bold shrink-0">
+                <div className="w-10 h-10 rounded-full bg-[#1a1a1a]/10 flex items-center justify-center text-[#ffffff] font-serif font-bold shrink-0">
                   0{i + 1}
                 </div>
                 <div>
-                  <h4 className="font-sans font-bold text-mobile-green text-sm mb-1">{reason.title}</h4>
-                  <p className="font-sans text-[13px] text-mobile-green/60 leading-relaxed">{reason.desc}</p>
+                  <h4 className="font-sans font-bold text-[#ffffff] text-sm mb-1">{reason.title}</h4>
+                  <p className="font-sans text-[13px] text-[#ffffff]/60 leading-relaxed">{reason.desc}</p>
                 </div>
               </div>
             </motion.div>

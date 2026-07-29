@@ -12,7 +12,7 @@ export default function BottomNav({ activeTab, setActiveTab }) {
   ];
 
   return (
-    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] max-w-[360px] bg-white/95 backdrop-blur-xl rounded-full shadow-premium flex items-center justify-between px-2 py-2 z-50 border border-white/20">
+    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] max-w-[360px] bg-[rgba(15,15,15,0.98)] backdrop-blur-[20px] rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex items-center justify-between px-2 py-2 z-50 border border-[rgba(255,255,255,0.15)]">
       {navItems.map((item) => {
         const isActive = activeTab === item.id;
         const Icon = item.icon;
@@ -21,11 +21,11 @@ export default function BottomNav({ activeTab, setActiveTab }) {
             key={item.id}
             onClick={() => setActiveTab(item.id)}
             className={`flex flex-col items-center justify-center w-16 h-14 rounded-full transition-all duration-300 relative ${
-              isActive ? 'text-mobile-orange' : 'text-mobile-green/50 hover:text-mobile-green'
+              isActive ? 'text-[#F4A300]' : 'text-[rgba(255,255,255,0.6)] hover:text-white'
             }`}
           >
             {isActive && (
-              <div className="absolute inset-0 border-[1.5px] border-mobile-orange rounded-full opacity-100" />
+              <div className="absolute inset-0 border-[1.5px] border-[#F4A300] rounded-full opacity-100" />
             )}
             <Icon size={20} strokeWidth={isActive ? 2.5 : 2} className="mb-1" />
             <span className="text-[10px] font-sans font-medium tracking-wide">{item.label}</span>

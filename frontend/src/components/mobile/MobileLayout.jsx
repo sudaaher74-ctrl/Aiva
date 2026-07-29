@@ -14,7 +14,7 @@ export default function MobileLayout() {
   const [activeProduct, setActiveProduct] = useState(null);
 
   return (
-    <div className="bg-mobile-bg min-h-screen text-mobile-green font-sans relative selection:bg-mobile-orange/20 overflow-x-hidden">
+    <div className="bg-[#050505] min-h-screen text-[#ffffff] font-sans relative selection:bg-[linear-gradient(90deg,#ffb800,#ff8a00)]/20 overflow-x-hidden">
       
       {/* Dynamic View Rendering */}
       <main className="pb-28">
