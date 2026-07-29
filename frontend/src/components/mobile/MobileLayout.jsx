@@ -1,14 +1,17 @@
 'use client';
 
 import React, { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import BottomNav from './BottomNav';
 import HomeMobile from './views/HomeMobile';
 import CatalogueMobile from './views/CatalogueMobile';
 import ProcessMobile from './views/ProcessMobile';
 import AboutMobile from './views/AboutMobile';
+import ProductDetailMobile from './views/ProductDetailMobile';
 
 export default function MobileLayout() {
   const [activeTab, setActiveTab] = useState('home');
+  const [activeProduct, setActiveProduct] = useState(null);
 
   return (
     <div className="bg-mobile-bg min-h-screen text-mobile-green font-sans relative selection:bg-mobile-orange/20 overflow-x-hidden">
@@ -16,10 +19,20 @@ export default function MobileLayout() {
       {/* Dynamic View Rendering */}
       <main className="pb-28">
         {activeTab === 'home' && <HomeMobile setActiveTab={setActiveTab} />}
-        {activeTab === 'catalogue' && <CatalogueMobile />}
+        {activeTab === 'catalogue' && <CatalogueMobile onProductClick={setActiveProduct} />}
         {activeTab === 'process' && <ProcessMobile setActiveTab={setActiveTab} />}
         {activeTab === 'about' && <AboutMobile />}
       </main>
+
+      {/* Product Detail Overlay */}
+      <AnimatePresence>
+        {activeProduct && (
+          <ProductDetailMobile 
+            product={activeProduct} 
+            onBack={() => setActiveProduct(null)} 
+          />
+        )}
+      </AnimatePresence>
 
       {/* Floating Bottom Navigation */}
       <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />

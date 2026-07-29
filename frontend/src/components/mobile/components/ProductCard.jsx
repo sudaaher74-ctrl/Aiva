@@ -3,11 +3,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, onClick }) {
   return (
     <motion.div
+      onClick={onClick}
       whileTap={{ scale: 0.98 }}
-      className="bg-white rounded-[32px] p-4 flex flex-col items-center justify-between shadow-[0_10px_30px_rgba(0,0,0,0.05)] aspect-[4/5] relative overflow-hidden"
+      className="bg-white rounded-[32px] p-4 flex flex-col items-center justify-between shadow-[0_10px_30px_rgba(0,0,0,0.05)] aspect-[4/5] relative overflow-hidden cursor-pointer"
     >
       <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/50 to-transparent pointer-events-none" />
       

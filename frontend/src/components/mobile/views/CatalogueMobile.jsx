@@ -6,7 +6,7 @@ import { productsData } from '../../../data/products';
 import ProductCard from '../components/ProductCard';
 import { Search } from 'lucide-react';
 
-export default function CatalogueMobile() {
+export default function CatalogueMobile({ onProductClick }) {
   const [filter, setFilter] = useState('all');
   const [search, setSearch] = useState('');
 
@@ -82,7 +82,7 @@ export default function CatalogueMobile() {
               transition={{ duration: 0.3 }}
               key={p.id}
             >
-              <ProductCard product={p} />
+              <ProductCard product={p} onClick={() => onProductClick && onProductClick(p)} />
             </motion.div>
           ))}
         </AnimatePresence>
