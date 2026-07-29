@@ -6,6 +6,10 @@ import { usePathname } from 'next/navigation';
 function MobileBottomNav() {
   const pathname = usePathname();
 
+  if (pathname === '/') {
+    return null;
+  }
+
   // Helper to check if a path is active
   const isActive = (path) => {
     if (path === '/') {

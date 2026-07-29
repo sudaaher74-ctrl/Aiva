@@ -36,7 +36,7 @@ function Navbar() {
   };
 
   return (
-    <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <header className={`navbar hidden md:block ${scrolled ? 'scrolled' : ''}`}>
       <div className="container nav-container">
         <Link href="/" className="logo" onClick={closeMenu}>
           <img
