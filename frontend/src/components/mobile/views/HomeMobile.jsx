@@ -145,7 +145,7 @@ export default function HomeMobile({ setActiveTab }) {
       </section>
 
       {/* In Season Header */}
-      <section className="px-6 pb-24">
+      <section className="px-6 pb-12">
         <div className="flex justify-between items-end mb-6">
           <h3 className="font-serif font-black text-3xl text-mobile-green tracking-tight">In season</h3>
           <button onClick={() => setActiveTab('catalogue')} className="font-sans text-mobile-orange font-bold text-sm pb-1">Catalogue</button>
@@ -153,6 +153,83 @@ export default function HomeMobile({ setActiveTab }) {
         <div className="bg-white rounded-[32px] p-6 shadow-sm h-32 flex items-center justify-center text-mobile-green/40 font-sans text-sm font-medium">
            Products will appear here
         </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="px-6 pb-12">
+        <h3 className="font-serif font-black text-3xl text-mobile-green mb-6 tracking-tight">The AIVA Standard</h3>
+        <div className="space-y-4">
+          {[
+            { title: 'Farm Fresh Sourcing', desc: 'Direct partnerships with farmers ensuring the highest quality raw materials.' },
+            { title: 'Aseptic Processing', desc: 'State-of-the-art sterilization techniques that lock in freshness without preservatives.' },
+            { title: 'Global Compliance', desc: 'Strict adherence to global food safety standards.' },
+            { title: 'Bulk Shipping', desc: 'Secure logistics and custom packaging sizes from drums to bag-in-box.' }
+          ].map((item, i) => (
+             <motion.div 
+               key={i}
+               initial={{ opacity: 0, y: 20 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true }}
+               transition={{ delay: i * 0.1 }}
+               className="bg-white rounded-3xl p-6 shadow-[0_4px_12px_rgba(0,0,0,0.02)]"
+             >
+                <h4 className="font-serif font-black text-[#C67139] text-xl mb-2">{item.title}</h4>
+                <p className="font-sans text-sm text-[#7A756C] font-medium">{item.desc}</p>
+             </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Global Export */}
+      <section className="px-6 pb-12">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="bg-[#EBE0CF] rounded-[32px] p-8 text-center shadow-[inset_0_2px_10px_rgba(255,255,255,0.3)] relative overflow-hidden"
+          >
+             <p className="font-sans text-[10px] font-bold text-mobile-green/50 uppercase tracking-widest mb-2">
+               GLOBAL REACH
+             </p>
+             <h3 className="font-serif font-black text-[26px] leading-tight text-mobile-green mb-8">Exporting from <br/>Navi Mumbai <br/>to the world</h3>
+             <div className="w-28 h-28 mx-auto rounded-full border border-mobile-orange/20 flex items-center justify-center relative">
+               <div className="absolute inset-0 rounded-full border border-mobile-orange/40 scale-75" />
+               <div className="absolute inset-0 rounded-full bg-[#C67139]/10 scale-50" />
+               <div className="w-14 h-14 bg-[#C67139] rounded-full flex items-center justify-center text-white font-sans font-bold text-[11px] z-10 shadow-lg">
+                 INDIA
+               </div>
+             </div>
+          </motion.div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="px-6 pb-28">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-mobile-green rounded-[32px] p-7 shadow-xl text-white"
+        >
+          <h2 className="font-serif font-black text-[32px] leading-tight mb-3">Let's talk<br/>business</h2>
+          <p className="font-sans text-sm text-white/70 mb-8 leading-relaxed">
+            Sample requests, specification sheets and bulk enquiries go straight to the export desk.
+          </p>
+
+          <div className="space-y-4 mb-8">
+            <div className="bg-white/10 rounded-2xl p-4">
+              <p className="font-sans text-[10px] font-bold text-white/50 uppercase tracking-widest mb-1">EMAIL</p>
+              <p className="font-sans text-[13px] font-medium">Enquire@aivaenterprises.com</p>
+            </div>
+            <div className="bg-white/10 rounded-2xl p-4">
+              <p className="font-sans text-[10px] font-bold text-white/50 uppercase tracking-widest mb-1">CALL / WHATSAPP</p>
+              <p className="font-sans text-[13px] font-medium">+91 88281 77533</p>
+            </div>
+          </div>
+
+          <button className="w-full bg-[#C67139] text-white py-4 rounded-full font-sans font-bold text-sm shadow-[0_4px_15px_rgba(198,113,57,0.4)] active:scale-95 transition-transform">
+            Request a sample
+          </button>
+        </motion.div>
       </section>
       
       <style jsx global>{`
