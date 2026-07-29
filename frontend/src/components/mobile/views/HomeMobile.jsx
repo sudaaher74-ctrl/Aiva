@@ -24,7 +24,7 @@ export default function HomeMobile({ setActiveTab }) {
           className="flex items-center justify-between mb-10"
         >
           <div>
-            <h1 className="font-serif font-black text-mobile-green text-xl tracking-tight leading-none">AIVA Enterprises</h1>
+            <img src="/assets/images/products/newlogo.webp" alt="AIVA Enterprises" className="h-8 object-contain" />
             <p className="font-sans text-[9px] text-mobile-green/50 font-bold uppercase tracking-widest mt-1">
               NAVI MUMBAI · INDIA
             </p>
