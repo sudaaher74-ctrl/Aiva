@@ -2,7 +2,8 @@
 // Shared API helper for the AIVA Admin Portal
 // ============================================================
 
-export { API_BASE } from '../config';
+import { API_BASE } from '../config';
+export { API_BASE };
 
 const authHeaders = () => {
   const token = localStorage.getItem('adminToken');
