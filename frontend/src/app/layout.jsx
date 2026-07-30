@@ -48,7 +48,7 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
       </head>
-      <body className="loading dark-theme">
+      <body className="dark-theme">
         <ClientLayout>
           {children}
         </ClientLayout>

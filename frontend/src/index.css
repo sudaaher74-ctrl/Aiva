@@ -70,6 +70,10 @@
     html.snap-active {
       scroll-snap-type: y mandatory;
       scroll-behavior: smooth;
+      overflow-y: auto !important;
+    }
+    html.snap-active body {
+      overflow-y: visible !important;
     }
     
     .snap-section {
