@@ -94,6 +94,17 @@ function ProductCategories() {
           <p className="section-desc text-light-dim">
             Explore our diverse range of high quality fruits & vegetable  processing solutions.
           </p>
+          <div style={{ marginTop: '24px' }}>
+            <a 
+              href="/assets/images/Presentation%20-%20AIVA%20Enterprises%20Brochure.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="btn btn-outline" 
+              download="AIVA_Enterprises_Brochure.pdf"
+            >
+              <i className="ph ph-download-simple" style={{marginRight: '8px'}}></i> Download Brochure
+            </a>
+          </div>
         </div>
 
         <div

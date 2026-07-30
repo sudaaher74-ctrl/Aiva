@@ -98,6 +98,10 @@ app.use('/api/search', require('./routes/search'));
 app.use('/api/ai', require('./routes/ai'));
 
 // Base Health Check endpoints (Requested)
+app.get('/', (req, res) => {
+  res.status(200).send('OK');
+});
+
 app.get('/api', (req, res) => {
   res.status(200).json({
     success: true,
@@ -130,7 +134,8 @@ connectDB().then(async () => {
   
   // Dynamic Render Port
   const PORT = process.env.PORT || 5001;
-  server = app.listen(PORT, () => {
+  // Bind to 0.0.0.0 for containerized environments
+  server = app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server running on port ${PORT}`);
   });
 
@@ -138,6 +143,33 @@ connectDB().then(async () => {
   console.error('Failed to connect to database', err);
   process.exit(1);
 });
+
+// Graceful Shutdown on SIGTERM/SIGINT (Render sends SIGTERM)
+const gracefulShutdown = () => {
+  console.log('Received kill signal, shutting down gracefully');
+  if (server) {
+    server.close(async () => {
+      console.log('Closed out remaining connections');
+      const mongoose = require('mongoose');
+      if (mongoose.connection.readyState === 1) {
+        await mongoose.connection.close();
+        console.log('MongoDB connection closed');
+      }
+      process.exit(0);
+    });
+    
+    // Force close after 10s
+    setTimeout(() => {
+      console.error('Could not close connections in time, forcefully shutting down');
+      process.exit(1);
+    }, 10000);
+  } else {
+    process.exit(0);
+  }
+};
+
+process.on('SIGTERM', gracefulShutdown);
+process.on('SIGINT', gracefulShutdown);
 
 // Handle Unhandled Promise Rejections (e.g. database connection issues after startup)
 process.on('unhandledRejection', err => {

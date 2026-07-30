@@ -57,6 +57,17 @@ function Navbar() {
               <Link href="/products#iqf-fruits" onClick={(e) => handleNavClick(e, '#iqf-fruits')}>IQF fruits</Link>
               <Link href="/products#iqf-frozen" onClick={(e) => handleNavClick(e, '#iqf-frozen')}>Frozen</Link>
               <Link href="/products#vegetables" onClick={(e) => handleNavClick(e, '#vegetables')}>IQF Vegetables</Link>
+              <div style={{ height: '1px', background: 'rgba(255,255,255,0.1)', margin: '8px 0' }}></div>
+              <a 
+                href="/assets/images/Presentation%20-%20AIVA%20Enterprises%20Brochure.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                onClick={closeMenu}
+                download="AIVA_Enterprises_Brochure.pdf"
+                style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#F4A300' }}
+              >
+                <i className="ph ph-download-simple"></i> Download Brochure
+              </a>
             </div>
           </div>
           <Link href="/about" onClick={closeMenu}>About Us</Link>
