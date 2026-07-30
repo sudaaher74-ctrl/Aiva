@@ -67,19 +67,19 @@
 
 @layer utilities {
   @media (min-width: 768px) {
-    html.snap-active {
-      scroll-snap-type: y mandatory;
-      scroll-behavior: smooth;
-      overflow-y: auto !important;
-    }
-    html.snap-active body {
-      overflow-y: visible !important;
+    .fullscreen-section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     
-    .snap-section {
-      scroll-snap-align: start;
-      height: 100dvh;
-      overflow-y: auto;
+    /* Ensure the inner sections fill the wrapper if they are smaller */
+    .fullscreen-section > section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
   }
 }

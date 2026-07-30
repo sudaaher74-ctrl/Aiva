@@ -15,7 +15,6 @@ export default function ClientLayout({ children }) {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    if (pathname && (pathname === '/' || pathname.startsWith('/chatbot'))) return;
 
     const lenis = new Lenis({
       duration: 1.2,
