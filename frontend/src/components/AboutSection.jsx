@@ -70,7 +70,7 @@ function AboutSection() {
               loading="lazy"
               className="floating-slow"
               style={{
-                width: '50%',
+                width: '75%',
                 height: 'auto',
                 objectFit: 'contain',
                 filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.5))',
@@ -84,46 +84,46 @@ function AboutSection() {
               loading="lazy"
               className="floating-slow"
               style={{
-                width: '45%',
+                width: '65%',
                 height: 'auto',
                 objectFit: 'contain',
                 filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.4))',
                 transform: 'rotate(8deg) translateY(-15px)',
                 zIndex: 1,
-                marginLeft: '-15%',
+                marginLeft: '-25%',
                 animationDelay: '1.5s',
               }}
             />
           </div>
         </div>
         <div className="split-right content-block">
-          <h3 className="section-subtitle" style={{ marginBottom: '0.2rem' }}>Premium Agro Ingredients</h3>
-          <h2 className="section-title" style={{ marginBottom: '0.5rem', fontSize: 'clamp(2rem, 4vw, 2.8rem)', lineHeight: '1.2' }}>
+          <h3 className="section-subtitle" style={{ marginBottom: '1rem', fontSize: 'clamp(1rem, 1.5vw, 1.2rem)' }}>Premium Agro Ingredients</h3>
+          <h2 className="section-title" style={{ marginBottom: '1.5rem', fontSize: 'clamp(2.5rem, 5vw, 4rem)', lineHeight: '1.1' }}>
             Cultivating Global <br />
             Quality Standards
           </h2>
-          <p className="section-desc" style={{ marginBottom: '1rem', fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)', lineHeight: '1.6' }}>
+          <p className="section-desc" style={{ marginBottom: '2rem', fontSize: 'clamp(1rem, 1.8vw, 1.3rem)', lineHeight: '1.7', color: 'rgba(255,255,255,0.85)' }}>
             AIVA Enterprises specializes in aseptic fruit pulps, purees, and concentrates, along with IQF and blast-frozen fruits and vegetables, delivering reliable ingredient solutions that preserve quality, freshness, and consistency from source to supply.
           </p>
 
-          <div className="stats-grid" style={{ gap: '0.8rem', marginTop: '0.5rem' }}>
-            <div className="stat-item" style={{ display: 'flex', alignItems: 'center', paddingTop: '0.8rem' }}>
-              <p style={{ fontWeight: 600, fontSize: '1rem', color: 'var(--color-primary)', margin: 0, lineHeight: '1.4' }}>
+          <div className="stats-grid" style={{ gap: '1.2rem', marginTop: '1rem' }}>
+            <div className="stat-item" style={{ display: 'flex', alignItems: 'center', paddingTop: '1rem' }}>
+              <p style={{ fontWeight: 600, fontSize: '1.15rem', color: 'var(--color-primary)', margin: 0, lineHeight: '1.5' }}>
                 70 MT/Day  Aseptic Processing Capacity
               </p>
             </div>
-            <div className="stat-item" style={{ display: 'flex', alignItems: 'center', paddingTop: '0.8rem' }}>
-              <p style={{ fontWeight: 600, fontSize: '1rem', color: 'var(--color-primary)', margin: 0, lineHeight: '1.4' }}>
+            <div className="stat-item" style={{ display: 'flex', alignItems: 'center', paddingTop: '1rem' }}>
+              <p style={{ fontWeight: 600, fontSize: '1.15rem', color: 'var(--color-primary)', margin: 0, lineHeight: '1.5' }}>
                 IQF & Blast freezing Technology Driven Solutions
               </p>
             </div>
-            <div className="stat-item" style={{ display: 'flex', alignItems: 'center', paddingTop: '0.8rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-              <p style={{ fontWeight: 600, fontSize: '1rem', color: 'var(--color-primary)', margin: 0, lineHeight: '1.4' }}>
+            <div className="stat-item" style={{ display: 'flex', alignItems: 'center', paddingTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+              <p style={{ fontWeight: 600, fontSize: '1.15rem', color: 'var(--color-primary)', margin: 0, lineHeight: '1.5' }}>
                 Bulk Supply & Industrial Packaging
               </p>
             </div>
-            <div className="stat-item" style={{ display: 'flex', alignItems: 'center', paddingTop: '0.8rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-              <p style={{ fontWeight: 600, fontSize: '1rem', color: 'var(--color-primary)', margin: 0, lineHeight: '1.4' }}>
+            <div className="stat-item" style={{ display: 'flex', alignItems: 'center', paddingTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+              <p style={{ fontWeight: 600, fontSize: '1.15rem', color: 'var(--color-primary)', margin: 0, lineHeight: '1.5' }}>
                 Custom Products specification
               </p>
             </div>
