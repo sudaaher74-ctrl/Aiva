@@ -59,7 +59,7 @@ function Navbar() {
               <Link href="/products#vegetables" onClick={(e) => handleNavClick(e, '#vegetables')}>IQF Vegetables</Link>
               <div style={{ height: '1px', background: 'rgba(255,255,255,0.1)', margin: '8px 0' }}></div>
               <a 
-                href="/assets/images/Presentation%20-%20AIVA%20Enterprises%20Brochure.pdf" 
+                href="/assets/images/AIVA_Enterprises_Brochure.pdf" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 onClick={closeMenu}

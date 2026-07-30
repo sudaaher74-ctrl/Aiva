@@ -96,7 +96,7 @@ function ProductCategories() {
           </p>
           <div style={{ marginTop: '24px' }}>
             <a 
-              href="/assets/images/Presentation%20-%20AIVA%20Enterprises%20Brochure.pdf" 
+              href="/assets/images/AIVA_Enterprises_Brochure.pdf" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="btn btn-outline" 
