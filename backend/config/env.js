@@ -5,6 +5,7 @@ const envSchema = z.object({
   PORT: z.string().transform(Number).default('5001'),
   MONGODB_URI: z.string({ required_error: "MONGODB_URI is completely missing from the environment", invalid_type_error: "MONGODB_URI must be a string" }).min(1, "MongoDB URI cannot be empty"),
   JWT_SECRET: z.string({ required_error: "JWT_SECRET is completely missing from the environment", invalid_type_error: "JWT_SECRET must be a string" }).min(10, "JWT Secret must be at least 10 characters"),
+  JWT_EXPIRES_IN: z.string().default('1d'),
   GEMINI_API_KEY: z.string().optional(),
   CLOUDINARY_CLOUD_NAME: z.string({ required_error: "CLOUDINARY_CLOUD_NAME is completely missing from the environment", invalid_type_error: "CLOUDINARY_CLOUD_NAME must be a string" }).min(1, "Cloudinary Cloud Name cannot be empty"),
   CLOUDINARY_API_KEY: z.string({ required_error: "CLOUDINARY_API_KEY is completely missing from the environment", invalid_type_error: "CLOUDINARY_API_KEY must be a string" }).min(1, "Cloudinary API Key cannot be empty"),
@@ -19,7 +20,7 @@ const validateEnv = () => {
   const parsed = envSchema.safeParse(process.env);
   
   if (!parsed.success) {
-    console.error('\n❌ Missing Environment Variables\n');
+    console.error('\n');
     
     const varDescriptions = {
       MONGODB_URI: {
@@ -29,6 +30,10 @@ const validateEnv = () => {
       JWT_SECRET: {
         desc: "Used for signing JWT authentication tokens.",
         example: "JWT_SECRET=your-secret-key"
+      },
+      JWT_EXPIRES_IN: {
+        desc: "Expiration time for JWT authentication tokens.",
+        example: "JWT_EXPIRES_IN=1d"
       },
       CLOUDINARY_CLOUD_NAME: {
         desc: "Used to connect to Cloudinary for image storage.",
@@ -51,9 +56,11 @@ const validateEnv = () => {
         example: `${varName}=your_value`
       };
       
-      console.error(`${varName}\n`);
-      console.error(`Description:\n${details.desc}\n`);
-      console.error(`How to Fix:\nAdd ${varName} to Render → Environment Variables.\n`);
+      console.error(`❌ Missing Environment Variable\n`);
+      console.error(`Variable:\n${varName}\n`);
+      console.error(`Purpose:\n${details.desc}\n`);
+      console.error(`Current Value:\nUndefined\n`);
+      console.error(`How to Fix:\nRender Dashboard\n→ Environment\n→ Add ${varName}\n`);
       console.error(`Example:\n${details.example}\n`);
       console.error(`-------------------------------------------------\n`);
     });
