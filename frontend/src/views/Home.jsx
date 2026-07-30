@@ -14,6 +14,13 @@ function Home() {
   const location = usePathname();
 
   useEffect(() => {
+    document.documentElement.classList.add('snap-active');
+    return () => {
+      document.documentElement.classList.remove('snap-active');
+    };
+  }, []);
+
+  useEffect(() => {
     if (location.hash) {
       setTimeout(() => {
         const id = location.hash.replace('#', '');
@@ -56,13 +63,13 @@ function Home() {
           }
         ]}
       />
-      <HomeHero />
-      <AboutSection />
-      <ProductCategories />
-      <WhyChooseUs />
-      <ProcessSection />
-      <GlobalExport />
-      <ContactSection />
+      <div className="snap-section"><HomeHero /></div>
+      <div className="snap-section"><AboutSection /></div>
+      <div className="snap-section"><ProductCategories /></div>
+      <div className="snap-section"><WhyChooseUs /></div>
+      <div className="snap-section"><ProcessSection /></div>
+      <div className="snap-section"><GlobalExport /></div>
+      <div className="snap-section"><ContactSection /></div>
     </>
   );
 }

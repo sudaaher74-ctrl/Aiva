@@ -64,3 +64,19 @@
     @apply border-border;
   }
 }
+
+@layer utilities {
+  @media (min-width: 768px) {
+    html.snap-active {
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+    
+    .snap-section {
+      scroll-snap-align: start;
+      height: 100dvh;
+      overflow-y: auto;
+      overscroll-behavior-y: contain;
+    }
+  }
+}
