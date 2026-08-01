@@ -91,7 +91,7 @@ function BulkInquiry() {
       <div className="container split-layout align-center">
         <div className="split-left inquiry-img">
           <img
-            src="/assets/images/products/pulp/alphonso.png"
+            src="/assets/images/pulp/alphansomangopullp.png"
             alt="Alphonso Mango Export Drum"
             className="float-y massive-render"
           />

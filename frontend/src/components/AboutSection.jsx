@@ -65,7 +65,7 @@ function AboutSection() {
             }}
           >
             <img
-              src="/assets/images/totapuriabout.png"
+              src="/assets/images/pulp/totapurimangopulp.png"
               alt="Totapuri Drum"
               loading="lazy"
               className="floating-slow"

@@ -86,7 +86,7 @@ function ProductHero() {
             data-speed="1.2"
           />
           <img
-            src="/assets/images/totapuriabout.png"
+            src="/assets/images/pulp/totapurimangopulp.png"
             className="prod-float sub-prod-1"
             alt="Totapuri Mango"
             data-speed="-1.5"

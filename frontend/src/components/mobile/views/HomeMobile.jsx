@@ -30,7 +30,7 @@ export default function HomeMobile({ setActiveTab }) {
   };
 
   const categories = [
-    { id: 'aseptic', name: 'Aseptic pulp & paste', count: '5 products', image: '/assets/images/products/pulp/totapurimango.png' },
+    { id: 'aseptic', name: 'Aseptic pulp & paste', count: '5 products', image: '/assets/images/pulp/totapurimangopulp.png' },
     { id: 'iqf', name: 'IQF fruit', count: '2 products', image: '/assets/images/products/iqf_fruits/strawberry.png' },
     { id: 'vegetables', name: 'Vegetables', count: '2 products', image: '/assets/images/products/vegetables/green-peas.png' }
   ];
