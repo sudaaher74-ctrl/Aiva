@@ -59,10 +59,10 @@ export default function HomeMobile({ setActiveTab }) {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="text-left"
         >
-          <h2 className="font-serif font-black text-[42px] leading-[1.05] text-[#2F2923] mb-5 tracking-tight text-left">
+          <h2 className="font-serif font-black text-[42px] leading-[1.05] text-[var(--c-white)] mb-5 tracking-tight text-left">
             The standard <br />behind <span className="text-[var(--c-mango)]">the</span><br /><span className="text-[var(--c-mango)]">standard.</span>
           </h2>
-          <p className="font-sans text-[#7A756C] text-sm leading-relaxed mb-8 max-w-[280px] font-medium text-left">
+          <p className="font-sans text-[var(--c-white)]/60 text-sm leading-relaxed mb-8 max-w-[280px] font-medium text-left">
             Aseptic pulps, purées, concentrates and IQF produce — grown in India, shipped in bulk to the world.
           </p>
           
@@ -96,7 +96,7 @@ export default function HomeMobile({ setActiveTab }) {
         
         <div className="flex overflow-x-auto gap-4 px-6 pb-8 snap-x snap-mandatory hide-scrollbar">
           {categories.map((c, i) => (
-            <div key={c.id} className="min-w-[150px] w-[150px] snap-center bg-[#EBE0CF] rounded-[32px] p-5 flex flex-col shadow-[inset_0_2px_10px_rgba(255,255,255,0.3)]">
+            <div key={c.id} className="min-w-[150px] w-[150px] snap-center bg-[var(--c-dark)] rounded-[32px] p-5 flex flex-col shadow-[inset_0_2px_10px_rgba(255,255,255,0.05)]">
                <div className="w-full aspect-[4/5] bg-[#0A0A0A] rounded-2xl mb-4 p-2 flex items-center justify-center overflow-hidden relative">
                   <img src={c.image} alt={c.name} className="w-full h-full object-contain" />
                </div>
@@ -116,7 +116,7 @@ export default function HomeMobile({ setActiveTab }) {
           className="bg-[var(--c-dark-grey)] rounded-[32px] p-7 text-[var(--c-white)] relative overflow-hidden"
         >
           {/* Decorative subtle circle */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#4A5539] rounded-full -translate-y-1/3 translate-x-1/4" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--c-mango)]/20 blur-[50px] rounded-full -translate-y-1/3 translate-x-1/4" />
           
           <div className="relative z-10">
             <p className="font-sans text-[9px] font-bold tracking-widest text-[rgba(255,255,255,0.7)] mb-3 uppercase">OUR PROCESS</p>
@@ -175,7 +175,7 @@ export default function HomeMobile({ setActiveTab }) {
                className="bg-[var(--c-dark)] rounded-3xl p-6 shadow-[0_4px_12px_rgba(0,0,0,0.02)]"
              >
                 <h4 className="font-serif font-black text-[var(--c-mango)] text-xl mb-2">{item.title}</h4>
-                <p className="font-sans text-sm text-[#7A756C] font-medium">{item.desc}</p>
+                <p className="font-sans text-sm text-[var(--c-white)]/60 font-medium">{item.desc}</p>
              </motion.div>
           ))}
         </div>
@@ -187,7 +187,7 @@ export default function HomeMobile({ setActiveTab }) {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-[#EBE0CF] rounded-[32px] p-8 text-center shadow-[inset_0_2px_10px_rgba(255,255,255,0.3)] relative overflow-hidden"
+            className="bg-[var(--c-dark)] rounded-[32px] p-8 text-center shadow-[inset_0_2px_10px_rgba(255,255,255,0.05)] relative overflow-hidden"
           >
              <p className="font-sans text-[10px] font-bold text-[var(--c-white)]/50 uppercase tracking-widest mb-2">
                GLOBAL REACH

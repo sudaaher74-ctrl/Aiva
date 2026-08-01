@@ -67,7 +67,7 @@ export default function ProductDetailMobile({ product, onBack }) {
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           {/* Category Pill */}
-          <div className="inline-block bg-[#E5F1E9] text-[#4A6451] px-3 py-1 rounded-full font-sans font-extrabold text-[9px] uppercase tracking-widest mb-4">
+          <div className="inline-block bg-[var(--c-mango)]/10 text-[var(--c-mango)] px-3 py-1 rounded-full font-sans font-extrabold text-[9px] uppercase tracking-widest mb-4">
             {product.category || 'ASEPTIC'}
           </div>
 
@@ -100,7 +100,7 @@ export default function ProductDetailMobile({ product, onBack }) {
           </div>
 
           {/* Certifications Block */}
-          <div className="bg-[#EAE0D3] rounded-[24px] p-5 shadow-inner mb-8">
+          <div className="bg-[var(--c-dark-grey)] rounded-[24px] p-5 shadow-inner mb-8">
             <p className="font-sans text-[10px] font-bold text-[var(--c-mango)] uppercase tracking-widest mb-3">CERTIFIED UNDER</p>
             <div className="flex flex-wrap gap-2">
               {['FSSAI', 'APEDA', 'BRC', 'FSSC 22000', 'ISO 22000', 'ISO 14001', 'GLOBALG.A.P.', 'Halal', 'Kosher', 'SGF', 'AQA'].map((cert, i) => (

@@ -72,7 +72,7 @@ export default function AboutMobile() {
           viewport={{ once: true }}
           className="bg-[var(--c-dark)] rounded-[32px] p-8 shadow-sm relative overflow-hidden"
         >
-          <div className="absolute top-0 right-0 w-32 h-32 bg-[#EBE0CF] rounded-bl-[100px] -z-10 opacity-50"></div>
+          <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--c-dark)] rounded-bl-[100px] -z-10 opacity-50"></div>
           
           <p className="font-sans text-[10px] font-bold text-[var(--c-mango)] uppercase tracking-widest mb-3">
             OUR STORY
@@ -81,7 +81,7 @@ export default function AboutMobile() {
             From a food technologist's vision to a global partner.
           </h2>
           
-          <div className="flex items-center gap-4 mb-6 bg-[var(--c-dark)] p-4 rounded-2xl">
+          <div className="flex items-center gap-4 mb-6 bg-[var(--c-dark-grey)] p-4 rounded-2xl">
             <div className="w-12 h-12 bg-[var(--c-mango)] rounded-full flex items-center justify-center text-[var(--c-black)] font-serif font-black text-lg shrink-0 shadow-md">
               AI
             </div>
@@ -91,7 +91,7 @@ export default function AboutMobile() {
             </div>
           </div>
 
-          <p className="font-sans text-sm text-[#7A756C] leading-relaxed mb-6 font-medium">
+          <p className="font-sans text-sm text-[var(--c-white)]/60 leading-relaxed mb-6 font-medium">
             AIVA Enterprises was founded by Aishwarya Ingale, whose journey began with a Bachelor's degree in Food Technology in India and later took her to the United States to pursue a Master's in Entrepreneurial Leadership at Babson College. During her time abroad, she gained a global perspective on food quality, sourcing, and consumer expectations.
           </p>
 
