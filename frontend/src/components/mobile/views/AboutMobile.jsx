@@ -81,8 +81,8 @@ export default function AboutMobile() {
             From a food technologist's vision to a global partner.
           </h2>
           
-          <div className="flex items-center gap-4 mb-6 bg-[#F5EAD8] p-4 rounded-2xl">
-            <div className="w-12 h-12 bg-[#C67139] rounded-full flex items-center justify-center text-[var(--c-white)] font-serif font-black text-lg shrink-0 shadow-md">
+          <div className="flex items-center gap-4 mb-6 bg-[var(--c-dark)] p-4 rounded-2xl">
+            <div className="w-12 h-12 bg-[var(--c-mango)] rounded-full flex items-center justify-center text-[var(--c-black)] font-serif font-black text-lg shrink-0 shadow-md">
               AI
             </div>
             <div>
@@ -150,7 +150,7 @@ export default function AboutMobile() {
             </div>
           </div>
 
-          <button className="w-full bg-[linear-gradient(90deg,#ffb800,#ff8a00)] text-[var(--c-black)] py-4 rounded-full font-sans font-bold text-sm shadow-[0_4px_15px_rgba(198,113,57,0.4)] active:scale-95 transition-transform">
+          <button className="w-full bg-[var(--c-mango)] text-[var(--c-black)] py-4 rounded-full font-sans font-bold text-sm shadow-[0_4px_15px_rgba(244,163,0,0.4)] active:scale-95 transition-transform">
             Request a sample
           </button>
         </motion.div>

@@ -38,7 +38,7 @@ export default function ProductDetailMobile({ product, onBack }) {
         {/* Back Button */}
         <button 
           onClick={onBack}
-          className="bg-[var(--c-dark)] hover:bg-gray-50 flex items-center gap-1.5 px-4 py-2 rounded-full shadow-sm text-[var(--c-white)] font-sans font-bold text-[11px] uppercase tracking-wider mb-8 transition-colors active:scale-95"
+          className="bg-[var(--c-dark)] hover:bg-[var(--c-white)] hover:text-[var(--c-black)] flex items-center gap-1.5 px-4 py-2 rounded-full shadow-sm text-[var(--c-white)] border border-[rgba(255,255,255,0.3)] font-sans font-bold text-[11px] uppercase tracking-wider mb-8 transition-colors active:scale-95"
         >
           <ChevronLeft size={14} strokeWidth={3} />
           Catalogue
@@ -101,7 +101,7 @@ export default function ProductDetailMobile({ product, onBack }) {
 
           {/* Certifications Block */}
           <div className="bg-[#EAE0D3] rounded-[24px] p-5 shadow-inner mb-8">
-            <p className="font-sans text-[10px] font-bold text-[#C67139] uppercase tracking-widest mb-3">CERTIFIED UNDER</p>
+            <p className="font-sans text-[10px] font-bold text-[var(--c-mango)] uppercase tracking-widest mb-3">CERTIFIED UNDER</p>
             <div className="flex flex-wrap gap-2">
               {['FSSAI', 'APEDA', 'BRC', 'FSSC 22000', 'ISO 22000', 'ISO 14001', 'GLOBALG.A.P.', 'Halal', 'Kosher', 'SGF', 'AQA'].map((cert, i) => (
                 <div key={i} className="bg-[var(--c-dark)] px-3 py-1.5 rounded-full font-sans font-bold text-[10px] text-[var(--c-white)] shadow-sm">
@@ -121,7 +121,7 @@ export default function ProductDetailMobile({ product, onBack }) {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   onClick={() => setShowContactForm(true)}
-                  className="w-full bg-[#C67139] hover:bg-[#b0612f] text-[var(--c-white)] py-4 rounded-full font-sans font-bold text-[13px] shadow-[0_4px_15px_rgba(198,113,57,0.3)] active:scale-95 transition-all"
+                  className="w-full bg-[var(--c-mango)] hover:bg-[var(--c-orange)] text-[var(--c-black)] py-4 rounded-full font-sans font-bold text-[13px] shadow-[0_4px_15px_rgba(244,163,0,0.3)] active:scale-95 transition-all"
                 >
                   Talk to the export desk
                 </motion.button>
@@ -142,8 +142,8 @@ export default function ProductDetailMobile({ product, onBack }) {
                   
                   {isSubmitted ? (
                     <div className="bg-[var(--c-dark)]/10 rounded-2xl p-6 text-center my-4">
-                      <div className="w-12 h-12 bg-[#C67139] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                        <span className="text-[var(--c-white)] text-xl">✓</span>
+                      <div className="w-12 h-12 bg-[var(--c-mango)] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                        <span className="text-[var(--c-black)] text-xl">✓</span>
                       </div>
                       <h3 className="font-serif font-black text-xl mb-2">Message Sent</h3>
                       <p className="font-sans text-[13px] text-[rgba(255,255,255,0.7)]">Thank you for reaching out.</p>
@@ -180,7 +180,7 @@ export default function ProductDetailMobile({ product, onBack }) {
                       <div className="pt-2">
                         <button 
                           type="submit" 
-                          className="w-full bg-[#C67139] text-[var(--c-white)] py-4 rounded-full font-sans font-bold text-sm shadow-[0_4px_15px_rgba(198,113,57,0.4)] active:scale-95 transition-transform"
+                          className="w-full bg-[var(--c-mango)] text-[var(--c-black)] py-4 rounded-full font-sans font-bold text-sm shadow-[0_4px_15px_rgba(244,163,0,0.4)] active:scale-95 transition-transform"
                         >
                           Send Message
                         </button>

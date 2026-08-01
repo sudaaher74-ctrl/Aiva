@@ -60,7 +60,7 @@ export default function HomeMobile({ setActiveTab }) {
           className="text-left"
         >
           <h2 className="font-serif font-black text-[42px] leading-[1.05] text-[#2F2923] mb-5 tracking-tight text-left">
-            The standard <br />behind <span className="text-[#C67139]">the</span><br /><span className="text-[#C67139]">standard.</span>
+            The standard <br />behind <span className="text-[var(--c-mango)]">the</span><br /><span className="text-[var(--c-mango)]">standard.</span>
           </h2>
           <p className="font-sans text-[#7A756C] text-sm leading-relaxed mb-8 max-w-[280px] font-medium text-left">
             Aseptic pulps, purées, concentrates and IQF produce — grown in India, shipped in bulk to the world.
@@ -68,7 +68,7 @@ export default function HomeMobile({ setActiveTab }) {
           
           <button 
             onClick={() => setActiveTab('catalogue')}
-            className="bg-[#C67139] text-[var(--c-white)] px-7 py-3.5 rounded-full font-sans font-bold text-sm shadow-[0_4px_14px_rgba(198,113,57,0.3)] active:scale-95 transition-transform"
+            className="bg-[var(--c-mango)] text-[var(--c-black)] px-7 py-3.5 rounded-full font-sans font-bold text-sm shadow-[0_4px_14px_rgba(244,163,0,0.3)] active:scale-95 transition-transform"
           >
             Explore the range
           </button>
@@ -137,7 +137,7 @@ export default function HomeMobile({ setActiveTab }) {
 
             <button 
               onClick={() => setActiveTab('process')}
-              className="bg-[#F5EAD8] text-[#2F2923] px-6 py-3 rounded-full font-sans font-bold text-[13px] hover:bg-[var(--c-dark)] active:scale-95 transition-all shadow-sm"
+              className="bg-[var(--c-mango)] text-[var(--c-black)] px-6 py-3 rounded-full font-sans font-bold text-[13px] hover:bg-[var(--c-orange)] hover:text-[var(--c-black)] active:scale-95 transition-all shadow-sm"
             >
               See how it works
             </button>
@@ -174,7 +174,7 @@ export default function HomeMobile({ setActiveTab }) {
                transition={{ delay: i * 0.1 }}
                className="bg-[var(--c-dark)] rounded-3xl p-6 shadow-[0_4px_12px_rgba(0,0,0,0.02)]"
              >
-                <h4 className="font-serif font-black text-[#C67139] text-xl mb-2">{item.title}</h4>
+                <h4 className="font-serif font-black text-[var(--c-mango)] text-xl mb-2">{item.title}</h4>
                 <p className="font-sans text-sm text-[#7A756C] font-medium">{item.desc}</p>
              </motion.div>
           ))}
@@ -196,7 +196,7 @@ export default function HomeMobile({ setActiveTab }) {
              <div className="w-28 h-28 mx-auto rounded-full border border-[var(--c-mango)]/20 flex items-center justify-center relative">
                <div className="absolute inset-0 rounded-full border border-[var(--c-mango)]/40 scale-75" />
                <div className="absolute inset-0 rounded-full bg-[rgba(244,163,0,0.12)] scale-50" />
-               <div className="w-14 h-14 bg-[#C67139] rounded-full flex items-center justify-center text-[var(--c-white)] font-sans font-bold text-[11px] z-10 shadow-lg">
+               <div className="w-14 h-14 bg-[var(--c-mango)] rounded-full flex items-center justify-center text-[var(--c-black)] font-sans font-bold text-[11px] z-10 shadow-lg">
                  INDIA
                </div>
              </div>
@@ -218,8 +218,8 @@ export default function HomeMobile({ setActiveTab }) {
 
           {isSubmitted ? (
             <div className="bg-[var(--c-dark)]/10 rounded-2xl p-6 text-center my-6">
-              <div className="w-12 h-12 bg-[#C67139] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-[var(--c-white)] text-xl">✓</span>
+              <div className="w-12 h-12 bg-[var(--c-mango)] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <span className="text-[var(--c-black)] text-xl">✓</span>
               </div>
               <h3 className="font-serif font-black text-xl mb-2">Message Sent</h3>
               <p className="font-sans text-[13px] text-[rgba(255,255,255,0.7)]">Thank you for reaching out. We will get back to you shortly.</p>
@@ -257,7 +257,7 @@ export default function HomeMobile({ setActiveTab }) {
               <div className="pt-3">
                 <button 
                   type="submit" 
-                  className="w-full bg-[#C67139] text-[var(--c-white)] py-4 rounded-full font-sans font-bold text-sm shadow-[0_4px_15px_rgba(198,113,57,0.4)] active:scale-95 transition-transform"
+                  className="w-full bg-[var(--c-mango)] text-[var(--c-black)] py-4 rounded-full font-sans font-bold text-sm shadow-[0_4px_15px_rgba(244,163,0,0.4)] active:scale-95 transition-transform"
                 >
                   Send Message
                 </button>

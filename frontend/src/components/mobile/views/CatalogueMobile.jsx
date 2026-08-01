@@ -57,7 +57,7 @@ export default function CatalogueMobile({ onProductClick }) {
               onClick={() => setFilter(f.id)}
               className={`whitespace-nowrap px-6 py-2.5 rounded-full font-sans text-sm font-bold transition-all ${
                 filter === f.id
-                  ? 'bg-[linear-gradient(90deg,#ffb800,#ff8a00)] text-[var(--c-white)] shadow-md'
+                  ? 'bg-[var(--c-mango)] text-[var(--c-black)] shadow-md'
                   : 'bg-[var(--c-dark)] text-[var(--c-white)] hover:bg-[var(--c-dark)]/80'
               }`}
             >
