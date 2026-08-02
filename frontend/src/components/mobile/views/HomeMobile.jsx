@@ -196,7 +196,7 @@ export default function HomeMobile({ setActiveTab }) {
       </section>
 
       {/* Contact Section */}
-      <section className="px-6 pb-28">
+      <section className="px-6 pb-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -243,7 +243,7 @@ export default function HomeMobile({ setActiveTab }) {
                 rows="3"
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full bg-[var(--c-dark)]/10 border border-[rgba(255,255,255,0.06)] text-[var(--c-white)] placeholder-white/50 px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:bg-[var(--c-dark)]/15 focus:border-[rgba(255,255,255,0.2)] transition-all resize-none"
+                className="w-full bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.2)] text-[var(--c-white)] placeholder:text-[var(--c-grey)] px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:border-[var(--c-mango)] transition-all resize-none"
               ></textarea>
 
               <div className="pt-3">

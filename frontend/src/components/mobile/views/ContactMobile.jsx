@@ -29,7 +29,7 @@ export default function ContactMobile() {
   };
 
   return (
-    <div className="flex flex-col w-full min-h-screen pt-12 pb-8 px-6 bg-[var(--c-black)]">
+    <div className="flex flex-col w-full min-h-screen pt-12 pb-4 px-6 bg-[var(--c-black)]">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -86,7 +86,7 @@ export default function ContactMobile() {
               rows="4"
               value={formData.message}
               onChange={handleChange}
-              className="w-full bg-[var(--c-dark)]/10 border border-[rgba(255,255,255,0.06)] text-[var(--c-white)] placeholder-white/50 px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:bg-[var(--c-dark)]/15 focus:border-[rgba(255,255,255,0.2)] transition-all resize-none"
+              className="w-full bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.2)] text-[var(--c-white)] placeholder:text-[var(--c-grey)] px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:border-[var(--c-mango)] transition-all resize-none"
             ></textarea>
 
             <div className="pt-3">
