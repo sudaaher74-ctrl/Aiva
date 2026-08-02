@@ -6,6 +6,7 @@ import BottomNav from './BottomNav';
 import HomeMobile from './views/HomeMobile';
 import CatalogueMobile from './views/CatalogueMobile';
 import ProcessMobile from './views/ProcessMobile';
+import ContactMobile from './views/ContactMobile';
 import AboutMobile from './views/AboutMobile';
 import ProductDetailMobile from './views/ProductDetailMobile';
 
@@ -21,6 +22,7 @@ export default function MobileLayout() {
         {activeTab === 'home' && <HomeMobile setActiveTab={setActiveTab} />}
         {activeTab === 'catalogue' && <CatalogueMobile onProductClick={setActiveProduct} />}
         {activeTab === 'process' && <ProcessMobile setActiveTab={setActiveTab} />}
+        {activeTab === 'contact' && <ContactMobile />}
         {activeTab === 'about' && <AboutMobile />}
       </main>
 

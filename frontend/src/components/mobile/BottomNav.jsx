@@ -1,13 +1,13 @@
 'use client';
 
 import React from 'react';
-import { Home, LayoutGrid, BarChart2, Info } from 'lucide-react';
+import { Home, LayoutGrid, Mail, Info } from 'lucide-react';
 
 export default function BottomNav({ activeTab, setActiveTab }) {
   const navItems = [
     { id: 'home', label: 'Home', icon: Home },
     { id: 'catalogue', label: 'Catalogue', icon: LayoutGrid },
-    { id: 'process', label: 'Process', icon: BarChart2 },
+    { id: 'contact', label: 'Contact', icon: Mail },
     { id: 'about', label: 'About', icon: Info },
   ];
 
