@@ -95,14 +95,14 @@ function ProductCategories() {
             Explore our diverse range of high quality fruits & vegetable  processing solutions.
           </p>
           <div style={{ marginTop: '24px' }}>
-            <a 
-              href="/assets/images/AIVA_Enterprises_Brochure.pdf" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="btn btn-outline" 
+            <a
+              href="/assets/images/AIVA_Enterprises_Brochure.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-outline"
               download="AIVA_Enterprises_Brochure.pdf"
             >
-              <i className="ph ph-download-simple" style={{marginRight: '8px'}}></i> Download Brochure
+              <i className="ph ph-download-simple" style={{ marginRight: '8px' }}></i> Download Brochure
             </a>
           </div>
         </div>
@@ -122,7 +122,7 @@ function ProductCategories() {
             image="/assets/images/pulp/mangopulphome.png"
             alt="Aseptic pulp/paste"
             title="Aseptic pulp/paste"
-            desc="High quality fruit pulp, puree, and paste packaged under sterile conditions."
+            desc="High quality fruit pulp, puree, and paste."
             to="/products#aseptic"
           />
           <CategoryCard
@@ -140,7 +140,7 @@ function ProductCategories() {
             image="/assets/images/products/iqf_frozen/mint.png"
             alt="Frozen"
             title="Frozen"
-            desc="Premium frozen products ensuring long shelf life and consistent quality year round."
+            desc="Premium frozen products ."
             to="/products#iqf-frozen"
           />
         </div>

@@ -18,6 +18,8 @@
     { "handle": "filesystem" },
     { "src": "/admin/?", "dest": "/admin/index.html" },
     { "src": "/admin/(.*)", "dest": "/admin/index.html" },
-    { "src": "/(.*)", "dest": "/index.html" }
+    { "src": "/(.+?)/?", "dest": "/$1.html", "continue": true },
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/404.html", "status": 404 }
   ]
 }
