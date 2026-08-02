@@ -7,8 +7,8 @@ export default function BottomNav({ activeTab, setActiveTab }) {
   const navItems = [
     { id: 'home', label: 'Home', icon: Home },
     { id: 'catalogue', label: 'Catalogue', icon: LayoutGrid },
+    { id: 'about', label: 'About Us', icon: Info },
     { id: 'contact', label: 'Contact', icon: Mail },
-    { id: 'about', label: 'About', icon: Info },
   ];
 
   return (

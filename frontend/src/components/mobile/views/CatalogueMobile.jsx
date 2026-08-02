@@ -13,8 +13,8 @@ export default function CatalogueMobile({ onProductClick }) {
   const filters = [
     { id: 'all', label: 'All' },
     { id: 'aseptic', label: 'Aseptic' },
-    { id: 'iqf', label: 'iqf' },
-    { id: 'frozzen', label: 'frozzen' },
+    { id: 'iqf', label: 'IQF' },
+    { id: 'frozzen', label: 'Frozen' },
   ];
 
   const filteredProducts = productsData.filter((p) => {
