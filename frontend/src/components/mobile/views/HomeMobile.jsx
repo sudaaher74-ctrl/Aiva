@@ -103,8 +103,7 @@ export default function HomeMobile({ setActiveTab }) {
               <div className="w-full aspect-[4/5] bg-[#0A0A0A] rounded-2xl mb-4 p-2 flex items-center justify-center overflow-hidden relative">
                 <img src={c.image} alt={c.name} className="w-full h-full object-contain" />
               </div>
-              <h4 className="font-sans font-bold text-[var(--c-white)] text-[13px] leading-tight mb-1">{c.name}</h4>
-              <p className="font-sans text-[10px] text-[var(--c-white)]/50 font-semibold">{c.count}</p>
+              <h4 className="font-sans font-bold text-[var(--c-white)] text-[14px] leading-tight text-center capitalize">{c.name}</h4>
             </div>
           ))}
         </div>
