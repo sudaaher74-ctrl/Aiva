@@ -29,7 +29,7 @@ export default function ContactMobile() {
   };
 
   return (
-    <div className="flex flex-col w-full min-h-screen pt-12 pb-4 px-6 bg-[var(--c-black)]">
+    <div className="flex flex-col w-full min-h-screen pt-12 pb-0 px-6 bg-[var(--c-black)]">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -44,7 +44,7 @@ export default function ContactMobile() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="bg-[var(--c-dark-grey)] rounded-[32px] p-7 shadow-xl text-[var(--c-white)] mt-4"
+        className="bg-[var(--c-dark-grey)] rounded-t-[32px] p-7 pb-32 shadow-xl text-[var(--c-white)] mt-4 flex-1"
       >
         <h2 className="font-serif font-black text-[32px] leading-tight mb-3">Let's talk<br />business</h2>
         <p className="font-sans text-sm text-[rgba(255,255,255,0.7)] mb-8 leading-relaxed">
@@ -86,7 +86,7 @@ export default function ContactMobile() {
               rows="4"
               value={formData.message}
               onChange={handleChange}
-              className="w-full bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.2)] text-[var(--c-white)] placeholder:text-[var(--c-grey)] px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:border-[var(--c-mango)] transition-all resize-none"
+              className="w-full appearance-none bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.2)] text-[var(--c-white)] placeholder:text-[var(--c-grey)] px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:border-[var(--c-mango)] transition-all resize-none"
             ></textarea>
 
             <div className="pt-3">

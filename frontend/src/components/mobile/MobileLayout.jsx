@@ -18,7 +18,7 @@ export default function MobileLayout() {
     <div className="bg-[var(--c-black)] min-h-screen text-[var(--c-white)] font-sans relative selection:bg-[linear-gradient(90deg,#ffb800,#ff8a00)]/20 overflow-x-hidden">
       
       {/* Dynamic View Rendering */}
-      <main className="pb-28">
+      <main className="w-full flex-1">
         {activeTab === 'home' && <HomeMobile setActiveTab={setActiveTab} />}
         {activeTab === 'catalogue' && <CatalogueMobile onProductClick={setActiveProduct} />}
         {activeTab === 'process' && <ProcessMobile setActiveTab={setActiveTab} />}

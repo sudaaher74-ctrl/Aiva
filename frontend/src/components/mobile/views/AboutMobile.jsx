@@ -121,12 +121,12 @@ export default function AboutMobile() {
       </section>
 
       {/* Contact Form */}
-      <section className="px-6 pb-24">
+      <section className="px-6 pb-0">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-[var(--c-dark-grey)] rounded-[32px] p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)] text-[var(--c-white)]"
+          className="bg-[var(--c-dark-grey)] rounded-t-[32px] p-6 pb-32 shadow-[0_10px_30px_rgba(0,0,0,0.5)] text-[var(--c-white)]"
         >
           <h2 className="font-serif font-black text-3xl mb-2">Let's talk business</h2>
           <p className="font-sans text-sm text-[rgba(255,255,255,0.7)] mb-6 leading-relaxed">

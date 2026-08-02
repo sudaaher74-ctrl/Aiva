@@ -79,7 +79,7 @@ export default function CatalogueMobile({ onProductClick }) {
       {/* Grid */}
       <motion.div
         layout
-        className="grid grid-cols-2 gap-4 pb-12"
+        className="grid grid-cols-2 gap-4 pb-32"
       >
         <AnimatePresence>
           {filteredProducts.map((p) => (

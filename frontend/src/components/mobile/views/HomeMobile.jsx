@@ -30,9 +30,9 @@ export default function HomeMobile({ setActiveTab }) {
   };
 
   const categories = [
-    { id: 'aseptic', name: 'Aseptic', count: '5 products', image: '/assets/images/pulp/totapurimangopulp.png' },
-    { id: 'iqf', name: 'iqf', count: '4 products', image: '/assets/images/products/iqf_fruits/strawberry.png' },
-    { id: 'frozzen', name: 'frozzen', count: '12 products', image: '/assets/images/products/iqf_frozen/frenchfries9mm.png' }
+    { id: 'Aseptic', name: 'Aseptic', count: '5 products', image: '/assets/images/pulp/totapurimangopulp.png' },
+    { id: 'IQF', name: 'IQF', count: '4 products', image: '/assets/images/products/iqf_fruits/strawberry.png' },
+    { id: 'Frozen', name: 'Frozen', count: '12 products', image: '/assets/images/products/iqf_frozen/frenchfries9mm.png' }
   ];
 
   return (
@@ -196,12 +196,12 @@ export default function HomeMobile({ setActiveTab }) {
       </section>
 
       {/* Contact Section */}
-      <section className="px-6 pb-6">
+      <section className="px-6 pb-0">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-[var(--c-dark-grey)] rounded-[32px] p-7 shadow-xl text-[var(--c-white)]"
+          className="bg-[var(--c-dark-grey)] rounded-t-[32px] p-7 pb-32 shadow-xl text-[var(--c-white)]"
         >
           <h2 className="font-serif font-black text-[32px] leading-tight mb-3">Let's talk<br />business</h2>
           <p className="font-sans text-sm text-[rgba(255,255,255,0.7)] mb-8 leading-relaxed">
@@ -243,7 +243,7 @@ export default function HomeMobile({ setActiveTab }) {
                 rows="3"
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.2)] text-[var(--c-white)] placeholder:text-[var(--c-grey)] px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:border-[var(--c-mango)] transition-all resize-none"
+                className="w-full appearance-none bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.2)] text-[var(--c-white)] placeholder:text-[var(--c-grey)] px-5 py-4 rounded-2xl font-sans text-[13px] outline-none focus:border-[var(--c-mango)] transition-all resize-none"
               ></textarea>
 
               <div className="pt-3">
