@@ -13,19 +13,29 @@ export default function CatalogueMobile({ onProductClick }) {
   const filters = [
     { id: 'all', label: 'All' },
     { id: 'aseptic', label: 'Aseptic' },
-    { id: 'iqf-fruits', label: 'IQF fruit' },
-    { id: 'vegetables', label: 'Vegetables' },
+    { id: 'iqf', label: 'iqf' },
+    { id: 'frozzen', label: 'frozzen' },
   ];
 
   const filteredProducts = productsData.filter((p) => {
-    const matchesFilter = filter === 'all' || p.tab === filter || p.category.toLowerCase() === filter;
+    let matchesFilter = false;
+    if (filter === 'all') {
+      matchesFilter = true;
+    } else if (filter === 'aseptic') {
+      matchesFilter = p.category === 'Aseptic' || p.category === 'Concentrates';
+    } else if (filter === 'iqf') {
+      matchesFilter = p.tab === 'iqf-fruits';
+    } else if (filter === 'frozzen') {
+      matchesFilter = p.tab === 'vegetables' || p.tab === 'iqf-frozen';
+    }
+    
     const matchesSearch = p.name.toLowerCase().includes(search.toLowerCase());
     return matchesFilter && matchesSearch;
   });
 
   return (
     <div className="flex flex-col w-full min-h-screen pt-12 pb-8 px-6">
-      
+
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -55,11 +65,10 @@ export default function CatalogueMobile({ onProductClick }) {
             <button
               key={f.id}
               onClick={() => setFilter(f.id)}
-              className={`whitespace-nowrap px-6 py-2.5 rounded-full font-sans text-sm font-bold transition-all ${
-                filter === f.id
+              className={`whitespace-nowrap px-6 py-2.5 rounded-full font-sans text-sm font-bold transition-all ${filter === f.id
                   ? 'bg-[var(--c-mango)] text-[var(--c-black)] shadow-md'
                   : 'bg-[var(--c-dark)] text-[var(--c-white)] hover:bg-[var(--c-dark)]/80'
-              }`}
+                }`}
             >
               {f.label}
             </button>
@@ -68,7 +77,7 @@ export default function CatalogueMobile({ onProductClick }) {
       </motion.div>
 
       {/* Grid */}
-      <motion.div 
+      <motion.div
         layout
         className="grid grid-cols-2 gap-4 pb-12"
       >
@@ -87,7 +96,7 @@ export default function CatalogueMobile({ onProductClick }) {
           ))}
         </AnimatePresence>
       </motion.div>
-      
+
     </div>
   );
 }
