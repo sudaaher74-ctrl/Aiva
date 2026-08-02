@@ -47,9 +47,12 @@ export default function HomeMobile({ setActiveTab }) {
         >
           <img src="/assets/images/products/newlogo.webp" alt="AIVA Logo" className="h-24 w-auto object-contain object-left drop-shadow-sm -mt-2 -ml-8 scale-110 origin-left" />
           <div className="flex flex-col items-end justify-center h-full">
-            <p className="font-sans text-xs text-[var(--c-white)]/60 font-bold uppercase tracking-widest text-right">
-              NAVI MUMBAI · INDIA
-            </p>
+            <button
+              onClick={() => setActiveTab('contact')}
+              className="bg-[var(--c-mango)] text-[var(--c-black)] px-4 py-2 rounded-full font-sans font-bold text-[11px] uppercase tracking-wider hover:bg-[var(--c-orange)] transition-all shadow-sm"
+            >
+              Contact Us
+            </button>
           </div>
         </motion.div>
 
@@ -145,16 +148,6 @@ export default function HomeMobile({ setActiveTab }) {
         </motion.div>
       </section>
 
-      {/* In Season Header */}
-      <section className="px-6 pb-12">
-        <div className="flex justify-between items-end mb-6">
-          <h3 className="font-serif font-black text-3xl text-[var(--c-white)] tracking-tight">In season</h3>
-          <button onClick={() => setActiveTab('catalogue')} className="font-sans text-[var(--c-mango)] font-bold text-sm pb-1">Catalogue</button>
-        </div>
-        <div className="bg-[var(--c-dark)] rounded-[32px] p-6 shadow-sm h-32 flex items-center justify-center text-[var(--c-white)]/40 font-sans text-sm font-medium">
-          Products will appear here
-        </div>
-      </section>
 
       {/* Why Choose Us */}
       <section className="px-6 pb-12">
