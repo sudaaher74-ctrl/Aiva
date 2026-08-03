@@ -26,9 +26,6 @@ function Footer() {
               <a href="#">
                 <i className="ph ph-instagram-logo"></i>
               </a>
-              <a href="https://wa.me/918828177533" target="_blank" rel="noopener noreferrer">
-                <i className="ph ph-whatsapp-logo"></i>
-              </a>
             </div>
           </div>
         </div>
