@@ -119,7 +119,7 @@ function ProductCategories() {
           <CategoryCard
             hueClass="card-mango"
             color="#ffb800"
-            image="/assets/images/pulp/totapurimangopulp.png"
+            image="/assets/images/pulp/tomatopast.png"
             alt="Aseptic pulp/paste"
             title="Aseptic pulp/paste"
             desc="High quality fruit pulp, puree, and paste."
