@@ -130,7 +130,7 @@ const About = () => {
                 </div>
               </div>
               <div className="founder-badge-back">
-                <a href="#" className="founder-social"><i className="ph ph-linkedin-logo"></i></a>
+                <a href="https://www.linkedin.com/in/aishwarya-ingale1105/" target="_blank" rel="noopener noreferrer" className="founder-social"><i className="ph ph-linkedin-logo"></i></a>
                 <a href="#" className="founder-social"><i className="ph ph-whatsapp-logo"></i></a>
               </div>
             </div>

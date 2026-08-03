@@ -20,7 +20,7 @@ function Footer() {
           <div className="footer-social">
             <h3>Connect</h3>
             <div className="social-icons">
-              <a href="#">
+              <a href="https://www.linkedin.com/in/aishwarya-ingale1105/" target="_blank" rel="noopener noreferrer">
                 <i className="ph ph-linkedin-logo"></i>
               </a>
               <a href="#">
