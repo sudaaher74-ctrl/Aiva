@@ -30,7 +30,7 @@ export default function HomeMobile({ setActiveTab }) {
   };
 
   const categories = [
-    { id: 'Aseptic', name: 'Aseptic', count: '5 products', image: '/assets/images/pulp/totapurimangopulp.png' },
+    { id: 'Aseptic', name: 'Aseptic', count: '5 products', image: '/assets/images/pulp/tomatopast.png' },
     { id: 'IQF', name: 'IQF', count: '4 products', image: '/assets/images/products/iqf_fruits/strawberry.png' },
     { id: 'Frozen', name: 'Frozen', count: '12 products', image: '/assets/images/products/iqf_frozen/frenchfries9mm.png' }
   ];
@@ -69,12 +69,23 @@ export default function HomeMobile({ setActiveTab }) {
             Aseptic pulps, purées, concentrates and IQF produce — grown in India, shipped in bulk to the world.
           </p>
 
-          <button
-            onClick={() => setActiveTab('catalogue')}
-            className="bg-[var(--c-mango)] text-[var(--c-black)] px-7 py-3.5 rounded-full font-sans font-bold text-sm shadow-[0_4px_14px_rgba(244,163,0,0.3)] active:scale-95 transition-transform"
-          >
-            Explore products
-          </button>
+          <div className="flex flex-wrap items-center gap-3">
+            <button
+              onClick={() => setActiveTab('catalogue')}
+              className="bg-[var(--c-mango)] text-[var(--c-black)] px-7 py-3.5 rounded-full font-sans font-bold text-sm shadow-[0_4px_14px_rgba(244,163,0,0.3)] active:scale-95 transition-transform"
+            >
+              Explore products
+            </button>
+            <a
+              href="/assets/images/AIVA_Enterprises_Brochure.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              download="AIVA_Enterprises_Brochure.pdf"
+              className="border border-[var(--c-white)]/25 text-[var(--c-white)] px-6 py-3.5 rounded-full font-sans font-bold text-sm active:scale-95 transition-transform"
+            >
+              Download Brochure
+            </a>
+          </div>
         </motion.div>
 
         {/* Hero Image */}
