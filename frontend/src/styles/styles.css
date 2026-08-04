@@ -73,7 +73,10 @@ body {
     background-color: var(--c-black);
     line-height: 1.8;
     overflow-x: hidden;
-    overscroll-behavior: none;
+    /* Only suppress horizontal overscroll. `overscroll-behavior: none` also
+       blocks scroll *chaining*, so any nested scroll container that reaches its
+       end swallows the gesture instead of passing it to the page. */
+    overscroll-behavior-x: none;
     user-select: none;
     -webkit-user-select: none;
 }
@@ -1650,6 +1653,9 @@ p {
     /* Horizontal scrolling category tabs on mobile */
     .product-tabs {
         overflow-x: auto;
+    /* Horizontal-only: without this, `overflow-x:auto` forces overflow-y to
+       `auto`, trapping vertical swipes that begin inside this strip. */
+    overflow-y: hidden;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
         white-space: nowrap;
@@ -1986,9 +1992,13 @@ p {
         scroll-margin-top: 56px;
     }
 
-    /* Remove any unwanted horizontal overflow on inner pages */
+    /* Horizontal overflow is already contained by `html`/`body`. Do NOT set
+       `overflow-x: hidden` here: per the CSS overflow spec, a non-visible value
+       on one axis forces the other axis from `visible` to `auto`, which turns
+       .container into a vertical scroll container. Swipes then scroll that
+       container instead of the page, and stop dead at its end. */
     .container {
-        overflow-x: hidden;
+        overflow-x: visible;
     }
 
     /* Smooth image rendering */

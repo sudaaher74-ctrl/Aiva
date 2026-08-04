@@ -143,6 +143,9 @@ body.dark-theme .btn-outline:hover {
     display: flex;
     gap: 2rem;
     overflow-x: auto;
+    /* Horizontal-only: without this, `overflow-x:auto` forces overflow-y to
+       `auto`, trapping vertical swipes that begin inside this strip. */
+    overflow-y: hidden;
     padding: 2rem 0;
     scroll-snap-type: x mandatory;
     scrollbar-width: none; /* Firefox */
@@ -617,6 +620,9 @@ body.dark-theme .btn-outline:hover {
     justify-content: flex-start;
     flex-wrap: nowrap;
     overflow-x: auto;
+    /* Horizontal-only: without this, `overflow-x:auto` forces overflow-y to
+       `auto`, trapping vertical swipes that begin inside this strip. */
+    overflow-y: hidden;
     padding: 1.5rem 1rem 0;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
