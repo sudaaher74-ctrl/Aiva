@@ -28,6 +28,9 @@ export default function ClientLayout({ children }) {
       infinite: false,
     });
 
+    // Exposed so the home page's section snapping can drive it directly.
+    window.lenis = lenis;
+
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -45,6 +48,7 @@ export default function ClientLayout({ children }) {
     return () => {
       lenis.destroy();
       gsap.ticker.remove(lenis.raf);
+      if (window.lenis === lenis) delete window.lenis;
     };
   }, [pathname]);
 

@@ -9,9 +9,12 @@ import WhyChooseUs from '../components/WhyChooseUs';
 import ProcessSection from '../components/ProcessSection';
 import GlobalExport from '../components/GlobalExport';
 import ContactSection from '../components/ContactSection';
+import useSectionSnap from '../hooks/useSectionSnap';
 
 function Home() {
   const location = usePathname();
+
+  useSectionSnap();
 
   useEffect(() => {
     if (location.hash) {
