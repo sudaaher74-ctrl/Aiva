@@ -4,6 +4,7 @@ import '../styles/styles.css';
 import '../styles/products.css';
 import '../index.css';
 import ClientLayout from './ClientLayout';
+import { DEBUG_OVERLAY } from './debugOverlay';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -47,6 +48,7 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+        <script dangerouslySetInnerHTML={{ __html: DEBUG_OVERLAY }} />
       </head>
       <body className="dark-theme">
         <ClientLayout>
