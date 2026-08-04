@@ -65,7 +65,7 @@ function AboutSection() {
             }}
           >
             <img
-              src="/assets/images/pulp/totapurimangopulp.png"
+              src="/assets/images/pulp/totapurimangopulp.webp"
               alt="Totapuri Drum"
               loading="lazy"
               className="floating-slow"
@@ -79,7 +79,7 @@ function AboutSection() {
               }}
             />
             <img
-              src="/assets/images/tomatoabout.png"
+              src="/assets/images/tomatoabout.webp"
               alt="Tomato Drum"
               loading="lazy"
               className="floating-slow"

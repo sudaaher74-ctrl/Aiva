@@ -19,7 +19,7 @@ function CategoryCard({ hueClass, color, image, alt, title, desc, to }) {
       >
         <div className="card-bg"></div>
         <div className="product-image-wrap" data-tilt-layer>
-          <img src={image} alt={alt} />
+          <img loading="lazy" decoding="async" src={image} alt={alt} />
         </div>
         <div className="product-info">
           <h3>{title}</h3>
@@ -119,7 +119,7 @@ function ProductCategories() {
           <CategoryCard
             hueClass="card-mango"
             color="#ffb800"
-            image="/assets/images/pulp/tomatopast.png"
+            image="/assets/images/pulp/tomatopast.webp"
             alt="Aseptic pulp/paste"
             title="Aseptic pulp/paste"
             desc="High quality fruit pulp, puree, and paste."
@@ -128,7 +128,7 @@ function ProductCategories() {
           <CategoryCard
             hueClass="card-strawberry"
             color="#ff9999"
-            image="/assets/images/products/iqf_fruits/strawberry.png?v=2"
+            image="/assets/images/products/iqf_fruits/strawberry.webp?v=2"
             alt="IQF Products"
             title="IQF"
             desc="Individually Quick Frozen fruits & vegetables."
@@ -137,7 +137,7 @@ function ProductCategories() {
           <CategoryCard
             hueClass="card-mint"
             color="#99ccff"
-            image="/assets/images/products/iqf_frozen/mint.png"
+            image="/assets/images/products/iqf_frozen/mint.webp"
             alt="Frozen"
             title="Frozen"
             desc="Premium frozen products ."

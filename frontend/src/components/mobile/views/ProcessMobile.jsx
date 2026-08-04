@@ -49,7 +49,7 @@ export default function ProcessMobile() {
           </p>
 
           <div className="relative w-full aspect-square max-h-[300px] flex items-center justify-center">
-            <img src="/assets/images/pulp/totapurimangopulp.png" alt="Aseptic Drum" className="w-2/3 object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]" />
+            <img loading="lazy" decoding="async" src="/assets/images/pulp/totapurimangopulp.webp" alt="Aseptic Drum" className="w-2/3 object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]" />
           </div>
         </motion.div>
       </section>

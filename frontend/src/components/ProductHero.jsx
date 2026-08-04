@@ -79,14 +79,14 @@ function ProductHero() {
         </div>
 
         <div className="split-right prod-hero-composition">
-          <img
-            src="/assets/images/tomatoabout.png"
+          <img loading="lazy" decoding="async"
+            src="/assets/images/tomatoabout.webp"
             className="prod-float main-prod"
             alt="Tomato Paste"
             data-speed="1.2"
           />
-          <img
-            src="/assets/images/pulp/totapurimangopulp.png"
+          <img loading="lazy" decoding="async"
+            src="/assets/images/pulp/totapurimangopulp.webp"
             className="prod-float sub-prod-1"
             alt="Totapuri Mango"
             data-speed="-1.5"

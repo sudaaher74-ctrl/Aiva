@@ -36,7 +36,7 @@ function Products({ categorySlug }) {
             "@context": "https://schema.org",
             "@type": "Product",
             "name": "Alphonso Mango Pulp",
-            "image": "https://www.aivaenterprises.com/assets/images/products/pulp/Alphonsomangopulp.webp",
+            "image": "https://www.aivaenterprises.com/assets/images/pulp/alphansomangopullp.webp",
             "description": "Premium Aseptic Alphonso Mango Pulp for B2B manufacturing.",
             "brand": {
               "@type": "Brand",

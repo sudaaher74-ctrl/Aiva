@@ -30,9 +30,9 @@ export default function HomeMobile({ setActiveTab }) {
   };
 
   const categories = [
-    { id: 'Aseptic', name: 'Aseptic', count: '5 products', image: '/assets/images/pulp/tomatopast.png' },
-    { id: 'IQF', name: 'IQF', count: '4 products', image: '/assets/images/products/iqf_fruits/strawberry.png' },
-    { id: 'Frozen', name: 'Frozen', count: '12 products', image: '/assets/images/products/iqf_frozen/frenchfries9mm.png' }
+    { id: 'Aseptic', name: 'Aseptic', count: '5 products', image: '/assets/images/pulp/tomatopast.webp' },
+    { id: 'IQF', name: 'IQF', count: '4 products', image: '/assets/images/products/iqf_fruits/strawberry.webp' },
+    { id: 'Frozen', name: 'Frozen', count: '12 products', image: '/assets/images/products/iqf_frozen/frenchfries9mm.webp' }
   ];
 
   return (
@@ -45,7 +45,7 @@ export default function HomeMobile({ setActiveTab }) {
           transition={{ duration: 0.8 }}
           className="flex items-center justify-between mb-8"
         >
-          <img src="/assets/images/products/newlogo.webp" alt="AIVA Logo" className="h-24 w-auto object-contain object-left drop-shadow-sm -mt-2 -ml-8 scale-110 origin-left" />
+          <img loading="lazy" decoding="async" src="/assets/images/products/newlogo.webp" alt="AIVA Logo" className="h-24 w-auto object-contain object-left drop-shadow-sm -mt-2 -ml-8 scale-110 origin-left" />
           <div className="flex flex-col items-end justify-center h-full">
             <button
               onClick={() => setActiveTab('contact')}
@@ -95,7 +95,7 @@ export default function HomeMobile({ setActiveTab }) {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <img src="/assets/images/home.png" alt="AIVA Products" className="w-full object-cover drop-shadow-xl" />
+          <img loading="lazy" decoding="async" src="/assets/images/home.webp" alt="AIVA Products" className="w-full object-cover drop-shadow-xl" />
         </motion.div>
       </section>
 
@@ -112,7 +112,7 @@ export default function HomeMobile({ setActiveTab }) {
           {categories.map((c, i) => (
             <div key={c.id} className="min-w-[150px] w-[150px] snap-center bg-[var(--c-dark)] rounded-[32px] p-5 flex flex-col shadow-[inset_0_2px_10px_rgba(255,255,255,0.05)]">
               <div className="w-full aspect-[4/5] bg-[#0A0A0A] rounded-2xl mb-4 p-2 flex items-center justify-center overflow-hidden relative">
-                <img src={c.image} alt={c.name} className="w-full h-full object-contain" />
+                <img loading="lazy" decoding="async" src={c.image} alt={c.name} className="w-full h-full object-contain" />
               </div>
               <h4 className="font-sans font-bold text-[var(--c-white)] text-[14px] leading-tight text-center capitalize">{c.name}</h4>
             </div>

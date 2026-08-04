@@ -8,7 +8,7 @@ export const productsData = [
     description: 'Premium export-quality Alphonso Mango Pulp made from hand-picked Ratnagiri Alphonso mangoes packaged in bulk aseptic.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/pulp/alphansomangopullp.png'
+    image: '/assets/images/pulp/alphansomangopullp.webp'
   },
   {
     id: 'totapuri-mango-pulp',
@@ -19,7 +19,7 @@ export const productsData = [
     description: 'High-quality Aseptic Totapuri Mango Pulp.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/pulp/totapurimangopulp.png'
+    image: '/assets/images/pulp/totapurimangopulp.webp'
   },
   {
     id: 'kesar-mango-pulp',
@@ -30,7 +30,7 @@ export const productsData = [
     description: 'Sweet and rich Aseptic Kesar Mango Pulp.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/pulp/kesarmangopulp.png'
+    image: '/assets/images/pulp/kesarmangopulp.webp'
   },
   {
     id: 'papaya-pulp',
@@ -41,7 +41,7 @@ export const productsData = [
     description: 'Fresh Aseptic Papaya Pulp.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/pulp/papayapulp.png'
+    image: '/assets/images/pulp/papayapulp.webp'
   },
   {
     id: 'pink-white-guava-pulp',
@@ -52,7 +52,7 @@ export const productsData = [
     description: 'Aseptic Pink and White Guava Pulp.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/pulp/pinkguavapulp.png'
+    image: '/assets/images/pulp/pinkguavapulp.webp'
   },
   {
     id: 'banana-pulp',
@@ -63,7 +63,7 @@ export const productsData = [
     description: 'Smooth Aseptic Banana Pulp.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/pulp/bananapulp.png'
+    image: '/assets/images/pulp/bananapulp.webp'
   },
   {
     id: 'tomato-paste',
@@ -74,7 +74,7 @@ export const productsData = [
     description: 'Rich Aseptic Tomato Paste.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/pulp/tomatopast.png'
+    image: '/assets/images/pulp/tomatopast.webp'
   },
   {
     id: 'totapuri-mango-concentrate',
@@ -85,7 +85,7 @@ export const productsData = [
     description: 'Concentrated Totapuri Mango for beverage manufacturing.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/pulp/totapuripconcentrate.png'
+    image: '/assets/images/pulp/totapuripconcentrate.webp'
   },
   {
     id: 'white-guava-concentrate',
@@ -96,7 +96,7 @@ export const productsData = [
     description: 'High Brix White Guava Concentrate.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/pulp/whiteguavapulp.png'
+    image: '/assets/images/pulp/whiteguavapulp.webp'
   },
   {
     id: 'banana-concentrate',
@@ -107,7 +107,7 @@ export const productsData = [
     description: 'Pure Banana Concentrate.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/pulp/bananaconcentarte.png'
+    image: '/assets/images/pulp/bananaconcentarte.webp'
   },
   {
     id: 'totapuri-mango-dices',
@@ -118,7 +118,7 @@ export const productsData = [
     description: 'Individually Quick Frozen Totapuri Mango Dices.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/iqf_fruits/totapurimangodices.png'
+    image: '/assets/images/products/iqf_fruits/totapurimangodices.webp'
   },
 
   {
@@ -130,7 +130,7 @@ export const productsData = [
     description: 'Banana Dices.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/iqf_fruits/bananadices.png'
+    image: '/assets/images/products/iqf_fruits/bananadices.webp'
   },
   {
     id: 'guava-dices',
@@ -141,7 +141,7 @@ export const productsData = [
     description: 'Guava Dices.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/iqf_fruits/guavadices.png'
+    image: '/assets/images/products/iqf_fruits/guavadices.webp'
   },
   {
     id: 'strawberry',
@@ -152,7 +152,7 @@ export const productsData = [
     description: 'Strawberry.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/iqf_fruits/strawberry.png?v=2'
+    image: '/assets/images/products/iqf_fruits/strawberry.webp?v=2'
   },
   {
     id: 'sweet-corn',
@@ -163,7 +163,7 @@ export const productsData = [
     description: 'Sweet Corn Kernels.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/vegetables/sweetcorn.png'
+    image: '/assets/images/products/vegetables/sweetcorn.webp'
   },
   {
     id: 'mushroom',
@@ -174,7 +174,7 @@ export const productsData = [
     description: 'Mushroom.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/vegetables/mushroom.png'
+    image: '/assets/images/products/vegetables/mushroom.webp'
   },
   {
     id: 'green-peas',
@@ -185,7 +185,7 @@ export const productsData = [
     description: 'Green Peas.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/vegetables/green-peas.png'
+    image: '/assets/images/products/vegetables/green-peas.webp'
   },
   {
     id: 'mix-vegetables',
@@ -196,7 +196,7 @@ export const productsData = [
     description: 'Mix Vegetables.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/vegetables/iqf-mix-vegetables-new.png'
+    image: '/assets/images/products/vegetables/iqf-mix-vegetables-new.webp'
   },
   {
     id: 'spinach',
@@ -207,7 +207,7 @@ export const productsData = [
     description: 'Spinach.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/vegetables/spinach.png'
+    image: '/assets/images/products/vegetables/spinach.webp'
   },
   {
     id: 'okra',
@@ -218,7 +218,7 @@ export const productsData = [
     description: 'Okra.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/vegetables/okra.png'
+    image: '/assets/images/products/vegetables/okra.webp'
   },
   {
     id: '6mm-french-fries',
@@ -229,7 +229,7 @@ export const productsData = [
     description: '6mm French Fries.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/iqf_frozen/frenchfries6mm.png'
+    image: '/assets/images/products/iqf_frozen/frenchfries6mm.webp'
   },
   {
     id: '9mm-french-fries',
@@ -240,7 +240,7 @@ export const productsData = [
     description: '9mm French Fries.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/iqf_frozen/frenchfries9mm.png'
+    image: '/assets/images/products/iqf_frozen/frenchfries9mm.webp'
   },
   {
     id: 'coriander-green-chilli',
@@ -251,7 +251,7 @@ export const productsData = [
     description: 'Coriander & Green Chilli.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/iqf_frozen/coriander-green-chilli.png'
+    image: '/assets/images/products/iqf_frozen/coriander-green-chilli.webp'
   },
   {
     id: 'mint',
@@ -262,7 +262,7 @@ export const productsData = [
     description: 'Mint.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/iqf_frozen/mint.png'
+    image: '/assets/images/products/iqf_frozen/mint.webp'
   },
   {
     id: 'onion',
@@ -273,7 +273,7 @@ export const productsData = [
     description: 'Onion.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/iqf_frozen/onion.png'
+    image: '/assets/images/products/iqf_frozen/onion.webp'
   },
   {
     id: 'tomato',
@@ -284,7 +284,7 @@ export const productsData = [
     description: 'Tomato.',
     brix: 'TODO_SPEC',
     shelfLife: 'TODO_SPEC',
-    image: '/assets/images/products/iqf_frozen/tomato.png'
+    image: '/assets/images/products/iqf_frozen/tomato.webp'
   }
 ];
 

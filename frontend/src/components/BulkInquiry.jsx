@@ -90,8 +90,8 @@ function BulkInquiry() {
     <section className="inquiry-section section-padding" id="contact" ref={sectionRef}>
       <div className="container split-layout align-center">
         <div className="split-left inquiry-img">
-          <img
-            src="/assets/images/pulp/alphansomangopullp.png"
+          <img loading="lazy" decoding="async"
+            src="/assets/images/pulp/alphansomangopullp.webp"
             alt="Alphonso Mango Export Drum"
             className="float-y massive-render"
           />

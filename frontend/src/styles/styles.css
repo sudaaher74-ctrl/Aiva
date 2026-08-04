@@ -1997,3 +1997,44 @@ p {
         image-rendering: -webkit-optimize-contrast;
     }
 }
+
+/* ===========================================================
+   Mobile compositing budget
+   -----------------------------------------------------------
+   backdrop-filter is cheap on iOS but very expensive in Chrome
+   on Android: each blurred layer forces the compositor to
+   re-sample everything behind it on every frame. The bottom nav
+   is fixed and permanently on screen, so that cost was being
+   paid for the whole page on every scroll frame — which is what
+   made the site scroll briefly and then lock up on Android.
+   The backgrounds below are already ~98% opaque, so dropping the
+   blur costs almost nothing visually.
+   =========================================================== */
+@media (max-width: 1024px) {
+    .mobile-bottom-nav,
+    .nav-links,
+    .navbar.scrolled,
+    .glass-card,
+    .filter-bar,
+    .prod-card-overlay {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    .mobile-bottom-nav {
+        background: rgb(15, 15, 15) !important;
+    }
+
+    .nav-links {
+        background: rgb(5, 5, 5) !important;
+    }
+}
+
+/* Users who ask for reduced motion get no scroll-driven animation at all. */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

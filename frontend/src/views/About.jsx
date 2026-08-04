@@ -80,7 +80,7 @@ const About = () => {
               }}
             >
               <img
-                src="/assets/images/pulp/totapurimangopulp.png"
+                src="/assets/images/pulp/totapurimangopulp.webp"
                 alt="Totapuri Drum"
                 loading="lazy"
                 className="hero-image floating-slow"
@@ -93,7 +93,7 @@ const About = () => {
                 }}
               />
               <img
-                src="/assets/images/tomatoabout.png"
+                src="/assets/images/tomatoabout.webp"
                 alt="Tomato Drum"
                 loading="lazy"
                 className="hero-image floating-slow"
@@ -211,25 +211,25 @@ const About = () => {
         <div className="cert-grid">
           {[
             { name: 'FSSAI', img: 'FSSAI.png' },
-            { name: 'APEDA', img: 'apeda.png' },
-            { name: 'BRCGS', img: 'BRCGS.png' },
-            { name: 'FSSC 22000', img: 'FSSC.png' },
-            { name: 'ISO 22000', img: 'ISO22000.png' },
-            { name: 'ISO 14001', img: 'iso14001.png' },
-            { name: 'GLOBALG.A.P.', img: 'global gap.png' },
-            { name: 'Halal', img: 'halal_cert.png' },
-            { name: 'Kosher', img: 'kosher_cert.png' },
-            { name: 'SGF', img: 'sgf.png' },
-            { name: 'AQA', img: 'aqa_cert.png' }
+            { name: 'APEDA', img: 'apeda.webp' },
+            { name: 'BRCGS', img: 'BRCGS.webp' },
+            { name: 'FSSC 22000', img: 'FSSC.webp' },
+            { name: 'ISO 22000', img: 'ISO22000.webp' },
+            { name: 'ISO 14001', img: 'iso14001.webp' },
+            { name: 'GLOBALG.A.P.', img: 'global gap.webp' },
+            { name: 'Halal', img: 'halal_cert.webp' },
+            { name: 'Kosher', img: 'kosher_cert.webp' },
+            { name: 'SGF', img: 'sgf.webp' },
+            { name: 'AQA', img: 'aqa_cert.webp' }
           ].map((cert, index) => {
-            const isLocal = cert.img.endsWith('.png') || cert.img.endsWith('.svg');
+            const isLocal = /\.(webp|png|svg)$/i.test(cert.img);
             const imgSrc = isLocal
               ? `/assets/images/certs/${cert.img}`
               : `https://ui-avatars.com/api/?name=${cert.name}&background=fff&color=d4af37&size=128&bold=true&font-size=0.33`;
             return (
               <div key={index} className="cert-item">
                 <div className="cert-circle">
-                  <img src={imgSrc} alt={`${cert.name} Certification`} className="cert-logo" />
+                  <img loading="lazy" decoding="async" src={imgSrc} alt={`${cert.name} Certification`} className="cert-logo" />
                 </div>
                 <span>{cert.name}</span>
               </div>

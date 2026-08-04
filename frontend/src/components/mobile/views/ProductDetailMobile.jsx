@@ -53,7 +53,7 @@ export default function ProductDetailMobile({ product, onBack }) {
         >
           {/* Subtle glow behind the image */}
           <div className="absolute inset-0 bg-[var(--c-dark)]/40 blur-3xl rounded-full scale-75" />
-          <img 
+          <img loading="lazy" decoding="async" 
             src={product.image} 
             alt={product.name} 
             className="w-[85%] max-w-[320px] object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] relative z-10"

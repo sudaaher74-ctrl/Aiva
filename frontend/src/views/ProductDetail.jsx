@@ -110,7 +110,7 @@ function ProductDetail() {
         <div className="container split-layout">
           <div className="split-left">
             <div className="p-img-box pd-animate" style={{ width: '100%', borderRadius: '12px', overflow: 'hidden', height: '500px', backgroundColor: '#000' }}>
-              <img 
+              <img loading="lazy" decoding="async" 
                 src={getImageUrl(product.image_url || product.image)} 
                 alt={displayName} 
                 style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85 }}

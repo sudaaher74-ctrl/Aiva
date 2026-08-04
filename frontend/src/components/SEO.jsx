@@ -18,7 +18,7 @@ export default function SEO({
     "@type": "Organization",
     "name": "AIVA Enterprises",
     "url": "https://aivaenterprises.com",
-    "logo": "https://www.aivaenterprises.com/assets/images/logo.png",
+    "logo": "https://www.aivaenterprises.com/assets/images/products/newlogo.webp",
     "description": "Your Global Sourcing Partner for premium aseptic fruit pulps, concentrates, and IQF products from India.",
     "address": {
       "@type": "PostalAddress",
