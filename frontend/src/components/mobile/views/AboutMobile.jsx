@@ -26,7 +26,7 @@ export default function AboutMobile() {
           <p className="font-sans text-[10px] font-bold text-[var(--c-mango)] uppercase tracking-widest mb-2">
             PREMIUM AGRO INGREDIENTS
           </p>
-          <h1 className="font-serif font-black text-4xl text-[var(--c-white)] mb-4 leading-tight">
+          <h1 className="font-serif font-black text-3xl text-[var(--c-white)] mb-4 leading-tight">
             Cultivating global quality standards
           </h1>
           <p className="font-sans text-sm text-[var(--c-white)]/70 leading-relaxed mb-8">

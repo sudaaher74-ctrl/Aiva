@@ -98,7 +98,7 @@ function AboutSection() {
         </div>
         <div className="split-right content-block">
           <h3 className="section-subtitle" style={{ marginBottom: '1rem', fontSize: 'clamp(1rem, 1.5vw, 1.2rem)' }}>Premium Agro Ingredients</h3>
-          <h2 className="section-title" style={{ marginBottom: '1.5rem', fontSize: 'clamp(2.5rem, 5vw, 4rem)', lineHeight: '1.1' }}>
+          <h2 className="section-title" style={{ marginBottom: '1.5rem', fontSize: 'clamp(2rem, 3.8vw, 3rem)', lineHeight: '1.1' }}>
             Cultivating Global <br />
             Quality Standards
           </h2>
