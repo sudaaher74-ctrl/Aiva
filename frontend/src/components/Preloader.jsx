@@ -1,15 +1,28 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
 function Preloader() {
   const preloaderRef = useRef(null);
+  const [done, setDone] = useState(false);
+
+  // Safety net: if the timeline below never reaches its end (stalled rAF, a
+  // throttled background tab, a GSAP failure), tear the overlay down anyway so
+  // it can't sit on top of the page.
+  useEffect(() => {
+    const t = setTimeout(() => {
+      document.body.classList.remove('loading');
+      setDone(true);
+    }, 6000);
+    return () => clearTimeout(t);
+  }, []);
 
   useGSAP(() => {
     // --- 2. Preloader Animation ---
     const tlLoader = gsap.timeline({
       onComplete: () => {
         document.body.classList.remove('loading');
+        setDone(true);
       },
     });
 
@@ -41,6 +54,8 @@ function Preloader() {
         delay: 0.5,
       });
   }, { scope: preloaderRef });
+
+  if (done) return null;
 
   return (
     <div className="preloader" ref={preloaderRef}>

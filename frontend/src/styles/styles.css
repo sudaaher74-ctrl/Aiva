@@ -59,8 +59,10 @@
 html {
     font-size: 16px;
     scroll-behavior: auto; /* Managed by Lenis */
-    overscroll-behavior: none;
-    overflow-x: hidden;
+    /* `overflow-x: hidden` here turns <html> into its own scroll container on
+       Chrome/Android and can kill vertical touch scrolling. `clip` contains the
+       same horizontal overflow without creating a scroll container. */
+    overflow-x: clip;
 }
 
 body {
@@ -268,6 +270,9 @@ p {
     height: 100vh;
     background-color: var(--c-black);
     z-index: 9999;
+    /* Once it has played it must never intercept touches, even if the
+       timeline that slides it away stalls on a slow device. */
+    pointer-events: none;
     display: flex;
     flex-direction: column;
     align-items: center;
