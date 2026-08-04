@@ -17,34 +17,28 @@ export default function ClientLayout({ children }) {
     if (typeof window === 'undefined') return;
 
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 0.9,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
-      gestureDirection: 'vertical',
-      smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      syncTouch: false,
+      touchMultiplier: 1.5,
       infinite: false,
     });
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
     lenis.on('scroll', ScrollTrigger.update);
 
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-
+    // Single driver for Lenis — the GSAP ticker. Driving it from a separate
+    // requestAnimationFrame loop as well double-steps the easing each frame.
+    const update = (time) => lenis.raf(time * 1000);
+    gsap.ticker.add(update);
     gsap.ticker.lagSmoothing(0);
 
     return () => {
+      gsap.ticker.remove(update);
       lenis.destroy();
-      gsap.ticker.remove(lenis.raf);
     };
   }, [pathname]);
 
