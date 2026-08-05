@@ -7,7 +7,7 @@ export const productsData = [
     tab: 'aseptic',
     description: 'Premium export-quality Alphonso Mango Pulp made from hand-picked Ratnagiri Alphonso mangoes packaged in bulk aseptic.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/pulp/alphansomangopullp.webp'
   },
   {
@@ -18,7 +18,7 @@ export const productsData = [
     tab: 'aseptic',
     description: 'High-quality Aseptic Totapuri Mango Pulp.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/pulp/totapurimangopulp.webp'
   },
   {
@@ -29,7 +29,7 @@ export const productsData = [
     tab: 'aseptic',
     description: 'Sweet and rich Aseptic Kesar Mango Pulp.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/pulp/kesarmangopulp.webp'
   },
   {
@@ -40,7 +40,7 @@ export const productsData = [
     tab: 'aseptic',
     description: 'Fresh Aseptic Papaya Pulp.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/pulp/papayapulp.webp'
   },
   {
@@ -51,7 +51,7 @@ export const productsData = [
     tab: 'aseptic',
     description: 'Aseptic Pink and White Guava Pulp.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/pulp/pinkguavapulp.webp'
   },
   {
@@ -62,7 +62,7 @@ export const productsData = [
     tab: 'aseptic',
     description: 'Smooth Aseptic Banana Pulp.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/pulp/bananapulp.webp'
   },
   {
@@ -73,7 +73,7 @@ export const productsData = [
     tab: 'aseptic',
     description: 'Rich Aseptic Tomato Paste.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/pulp/tomatopast.webp'
   },
   {
@@ -84,7 +84,7 @@ export const productsData = [
     tab: 'concentrates',
     description: 'Concentrated Totapuri Mango for beverage manufacturing.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/pulp/totapuripconcentrate.webp'
   },
   {
@@ -95,7 +95,7 @@ export const productsData = [
     tab: 'concentrates',
     description: 'High Brix White Guava Concentrate.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/pulp/whiteguavapulp.webp'
   },
   {
@@ -106,7 +106,7 @@ export const productsData = [
     tab: 'concentrates',
     description: 'Pure Banana Concentrate.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/pulp/bananaconcentarte.webp'
   },
   {
@@ -117,7 +117,7 @@ export const productsData = [
     tab: 'iqf-fruits',
     description: 'Individually Quick Frozen Totapuri Mango Dices.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/products/iqf_fruits/totapurimangodices.webp'
   },
 
@@ -129,7 +129,7 @@ export const productsData = [
     tab: 'iqf-fruits',
     description: 'Banana Dices.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/products/iqf_fruits/bananadices.webp'
   },
   {
@@ -140,7 +140,7 @@ export const productsData = [
     tab: 'iqf-fruits',
     description: 'Guava Dices.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/products/iqf_fruits/guavadices.webp'
   },
   {
@@ -151,7 +151,7 @@ export const productsData = [
     tab: 'iqf-fruits',
     description: 'Strawberry.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/products/iqf_fruits/strawberry.webp?v=2'
   },
   {
@@ -162,7 +162,7 @@ export const productsData = [
     tab: 'vegetables',
     description: 'Sweet Corn Kernels.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/products/vegetables/sweetcorn.webp'
   },
   {
@@ -173,7 +173,7 @@ export const productsData = [
     tab: 'vegetables',
     description: 'Mushroom.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/products/vegetables/mushroom.webp'
   },
   {
@@ -184,7 +184,7 @@ export const productsData = [
     tab: 'vegetables',
     description: 'Green Peas.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/products/vegetables/green-peas.webp'
   },
   {
@@ -195,7 +195,7 @@ export const productsData = [
     tab: 'vegetables',
     description: 'Mix Vegetables.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/products/vegetables/iqf-mix-vegetables-new.webp'
   },
   {
@@ -206,7 +206,7 @@ export const productsData = [
     tab: 'vegetables',
     description: 'Spinach.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/products/vegetables/spinach.webp'
   },
   {
@@ -217,7 +217,7 @@ export const productsData = [
     tab: 'vegetables',
     description: 'Okra.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/products/vegetables/okra.webp'
   },
   {
@@ -228,7 +228,7 @@ export const productsData = [
     tab: 'iqf-frozen',
     description: '6mm French Fries.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/products/iqf_frozen/frenchfries6mm.webp'
   },
   {
@@ -239,7 +239,7 @@ export const productsData = [
     tab: 'iqf-frozen',
     description: '9mm French Fries.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/products/iqf_frozen/frenchfries9mm.webp'
   },
   {
@@ -250,7 +250,7 @@ export const productsData = [
     tab: 'iqf-frozen',
     description: 'Coriander & Green Chilli.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/products/iqf_frozen/coriander-green-chilli.webp'
   },
   {
@@ -261,7 +261,7 @@ export const productsData = [
     tab: 'iqf-frozen',
     description: 'Mint.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/products/iqf_frozen/mint.webp'
   },
   {
@@ -272,7 +272,7 @@ export const productsData = [
     tab: 'iqf-frozen',
     description: 'Onion.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/products/iqf_frozen/onion.webp'
   },
   {
@@ -283,7 +283,7 @@ export const productsData = [
     tab: 'iqf-frozen',
     description: 'Tomato.',
     brix: 'TODO_SPEC',
-    shelfLife: 'TODO_SPEC',
+    shelfLife: '24 Months',
     image: '/assets/images/products/iqf_frozen/tomato.webp'
   }
 ];
