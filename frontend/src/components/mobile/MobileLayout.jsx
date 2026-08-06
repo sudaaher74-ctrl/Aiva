@@ -14,14 +14,19 @@ export default function MobileLayout() {
   const [activeTab, setActiveTab] = useState('home');
   const [activeProduct, setActiveProduct] = useState(null);
 
+  const handleTabChange = (tab) => {
+    setActiveProduct(null);
+    setActiveTab(tab);
+  };
+
   return (
     <div className="bg-[var(--c-black)] min-h-screen text-[var(--c-white)] font-sans relative selection:bg-[linear-gradient(90deg,#ffb800,#ff8a00)]/20 overflow-x-hidden">
       
       {/* Dynamic View Rendering */}
       <main className="w-full flex-1">
-        {activeTab === 'home' && <HomeMobile setActiveTab={setActiveTab} />}
+        {activeTab === 'home' && <HomeMobile setActiveTab={handleTabChange} />}
         {activeTab === 'catalogue' && <CatalogueMobile onProductClick={setActiveProduct} />}
-        {activeTab === 'process' && <ProcessMobile setActiveTab={setActiveTab} />}
+        {activeTab === 'process' && <ProcessMobile setActiveTab={handleTabChange} />}
         {activeTab === 'contact' && <ContactMobile />}
         {activeTab === 'about' && <AboutMobile />}
       </main>
@@ -37,7 +42,7 @@ export default function MobileLayout() {
       </AnimatePresence>
 
       {/* Floating Bottom Navigation */}
-      <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
+      <BottomNav activeTab={activeTab} setActiveTab={handleTabChange} />
     </div>
   );
 }
