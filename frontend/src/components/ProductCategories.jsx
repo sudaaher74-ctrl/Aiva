@@ -123,7 +123,7 @@ function ProductCategories() {
             alt="Aseptic pulp/paste"
             title="Aseptic pulp/paste"
             desc="High quality fruit pulp, puree, and paste."
-            to="/products#aseptic"
+            to="/products/aseptic"
           />
           <CategoryCard
             hueClass="card-strawberry"
@@ -132,7 +132,7 @@ function ProductCategories() {
             alt="IQF Products"
             title="IQF"
             desc="Individually Quick Frozen fruits & vegetables."
-            to="/products#iqf-fruits"
+            to="/products/iqf-fruits"
           />
           <CategoryCard
             hueClass="card-mint"
@@ -141,7 +141,7 @@ function ProductCategories() {
             alt="Frozen"
             title="Frozen"
             desc="Premium frozen products ."
-            to="/products#iqf-frozen"
+            to="/products/iqf-frozen"
           />
         </div>
       </div>

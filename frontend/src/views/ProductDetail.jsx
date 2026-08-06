@@ -99,12 +99,7 @@ function ProductDetail() {
 
   return (
     <>
-      <SEO 
-        title={displayName}
-        description={product.description || `Premium ${product.category} for global export.`}
-        canonicalUrl={`/products/${slug}`}
-        jsonLd={[jsonLd]}
-      />
+      <SEO jsonLd={[jsonLd]} />
       
       <section className="section-padding dark-section" style={{ paddingTop: '150px', minHeight: '100vh' }}>
         <div className="container split-layout">
@@ -137,7 +132,7 @@ function ProductDetail() {
             </div>
 
             <div className="pd-animate">
-              <Link href={`/products#${product.tab || 'aseptic'}`} className="btn btn-outline" style={{ marginRight: '15px' }}>
+              <Link href={`/products/${product.tab || 'aseptic'}`} className="btn btn-outline" style={{ marginRight: '15px' }}>
                 Back to Grid
               </Link>
               <a href={`/products#contact`} className="btn btn-primary">

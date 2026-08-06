@@ -19,20 +19,63 @@ const fraunces = Fraunces({
 });
 
 export const metadata = {
+  metadataBase: new URL('https://www.aivaenterprises.com'),
   title: 'AIVA Enterprises - Premium Food Sourcing',
   description: 'AIVA Enterprises is a global sourcing and supply company delivering premium aseptic fruit pulps, concentrates, and IQF fruits.',
   openGraph: {
     title: 'AIVA Enterprises - Premium Food Sourcing',
     description: 'AIVA Enterprises is a global sourcing and supply company delivering premium aseptic fruit pulps, concentrates, and IQF fruits.',
-    images: ['/assets/images/og-image.jpg'],
+    images: ['/assets/images/products/newlogo.webp'],
     type: 'website',
+    siteName: 'AIVA Enterprises',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'AIVA Enterprises - Premium Food Sourcing',
     description: 'AIVA Enterprises is a global sourcing and supply company delivering premium aseptic fruit pulps, concentrates, and IQF fruits.',
-    images: ['/assets/images/og-image.jpg'],
+    images: ['/assets/images/products/newlogo.webp'],
   },
+};
+
+const CERTIFICATIONS = [
+  'FSSAI', 'APEDA', 'BRCGS', 'FSSC 22000', 'ISO 22000', 'ISO 14001',
+  'GLOBALG.A.P.', 'Halal', 'Kosher', 'SGF', 'AQA',
+];
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": ["Organization", "LocalBusiness"],
+  "name": "AIVA Enterprises",
+  "url": "https://www.aivaenterprises.com",
+  "logo": "https://www.aivaenterprises.com/assets/images/products/newlogo.webp",
+  "image": "https://www.aivaenterprises.com/assets/images/products/newlogo.webp",
+  "description": "AIVA Enterprises is a global sourcing and supply company delivering premium aseptic fruit pulps, concentrates, and IQF fruits.",
+  "founder": {
+    "@type": "Person",
+    "name": "Aishwarya Ingale",
+    "sameAs": "https://www.linkedin.com/in/aishwarya-ingale1105/",
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Immunity Group, 4th Floor, Lakhani Centrium, Sector 15",
+    "addressLocality": "CBD Belapur, Navi Mumbai",
+    "addressRegion": "Maharashtra",
+    "postalCode": "400614",
+    "addressCountry": "IN",
+  },
+  "email": "enquire@aivaenterprises.com",
+  "telephone": "+91-88281-77533",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91-88281-77533",
+    "contactType": "customer service",
+    "email": "enquire@aivaenterprises.com",
+  },
+  "sameAs": ["https://www.linkedin.com/in/aishwarya-ingale1105/"],
+  "hasCredential": CERTIFICATIONS.map((name) => ({
+    "@type": "Certification",
+    "name": name,
+  })),
 };
 
 export default function RootLayout({ children }) {
@@ -49,6 +92,10 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
         <script dangerouslySetInnerHTML={{ __html: DEBUG_OVERLAY }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
       </head>
       <body className="dark-theme">
         <ClientLayout>

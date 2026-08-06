@@ -25,9 +25,6 @@ const About = () => {
   return (
     <div className="about-page">
       <SEO
-        title="About Us | Premium Fruit Pulp Manufacturer"
-        description="Learn about AIVA Enterprises, our history, our state-of-the-art facilities, and our commitment to premium global exports of fruit pulps and IQF fruits."
-        canonicalUrl="/about"
         jsonLd={[
           {
             "@context": "https://schema.org",

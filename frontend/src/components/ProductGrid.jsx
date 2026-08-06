@@ -63,16 +63,18 @@ function ProductGrid({ categorySlug }) {
 
 
 
-  const [activeCategory, setActiveCategory] = useState('aseptic');
+  // categorySlug (when present) is the canonical, already-resolved category for
+  // this route — initialize synchronously so the static-exported HTML for each
+  // /products/{category} page renders that category's grid, not a default.
+  const [activeCategory, setActiveCategory] = useState(() => categorySlug || 'aseptic');
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
+    if (categorySlug) {
+      setActiveCategory(categorySlug);
+      return;
+    }
     const getHashCategory = () => {
-      if (categorySlug) {
-        if (categorySlug === 'concentrates') return 'concentrates';
-        if (categorySlug === 'iqf') return 'iqf-fruits';
-        return categorySlug;
-      }
       const hash = window.location.hash || '#aseptic';
       if (hash === '#iqf-fruits') return 'iqf-fruits';
       if (hash === '#iqf-frozen') return 'iqf-frozen';

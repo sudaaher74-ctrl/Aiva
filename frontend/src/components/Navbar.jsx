@@ -1,12 +1,9 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const location = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,19 +18,6 @@ function Navbar() {
   }, []);
 
   const closeMenu = () => setIsOpen(false);
-
-  const handleNavClick = (e, hash) => {
-    closeMenu();
-    if (typeof window !== 'undefined') {
-      const path = window.location.pathname;
-      const isBaseProductsPage = path === '/products' || path === '/products/';
-      
-      if (isBaseProductsPage) {
-        e.preventDefault();
-        window.location.hash = hash;
-      }
-    }
-  };
 
   return (
     <header className={`navbar hidden md:block ${scrolled ? 'scrolled' : ''}`}>
@@ -52,11 +36,11 @@ function Navbar() {
               Products <i className="ph ph-caret-down"></i>
             </Link>
             <div className="dropdown-menu">
-              <Link href="/products#aseptic" onClick={(e) => handleNavClick(e, '#aseptic')}>Aseptic pulp/paste</Link>
-              <Link href="/products#concentrates" onClick={(e) => handleNavClick(e, '#concentrates')}>Concentrates</Link>
-              <Link href="/products#iqf-fruits" onClick={(e) => handleNavClick(e, '#iqf-fruits')}>IQF fruits</Link>
-              <Link href="/products#iqf-frozen" onClick={(e) => handleNavClick(e, '#iqf-frozen')}>Frozen</Link>
-              <Link href="/products#vegetables" onClick={(e) => handleNavClick(e, '#vegetables')}>IQF Vegetables</Link>
+              <Link href="/products/aseptic" onClick={closeMenu}>Aseptic pulp/paste</Link>
+              <Link href="/products/concentrates" onClick={closeMenu}>Concentrates</Link>
+              <Link href="/products/iqf-fruits" onClick={closeMenu}>IQF fruits</Link>
+              <Link href="/products/iqf-frozen" onClick={closeMenu}>Frozen</Link>
+              <Link href="/products/vegetables" onClick={closeMenu}>IQF Vegetables</Link>
               <div style={{ height: '1px', background: 'rgba(255,255,255,0.1)', margin: '8px 0' }}></div>
               <a 
                 href="/assets/images/AIVA_Enterprises_Brochure.pdf" 

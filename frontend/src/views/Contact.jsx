@@ -1,5 +1,6 @@
+"use client";
+
 import React, { useState } from 'react';
-import SEO from '../components/SEO';
 import './Contact.css';
 
 const Contact = () => {
@@ -30,12 +31,6 @@ const Contact = () => {
 
   return (
     <div className="contact-page">
-      <SEO 
-        title="Contact Us | AIVA Enterprises"
-        description="Get in touch with the AIVA Enterprises sales and support team. We supply premium fruit pulps and IQF fruits to global markets."
-        canonicalUrl="/contact"
-      />
-      
       {/* Hero Section */}
       <section className="contact-hero">
         <div className="hero-container">
