@@ -48,6 +48,23 @@ export default async function ProductDynamicPage({ params }) {
   if (categorySlug) {
     return <Products categorySlug={categorySlug} />;
   }
+    const jsonLdProduct = {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Tomato",
+      "description": "Tomato.",
+      "brand": {
+        "@type": "Brand",
+        "name": "AIVA"
+      },
+      "manufacturer": {
+        "@type": "Brand",
+        "name": "AIVA"
+      }
+    };
 
-  return <ProductDetail />;
+  return <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdProduct) }} />
+    <ProductDetail />
+  </>;
 }
