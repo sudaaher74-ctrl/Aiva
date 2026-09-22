@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom"
 import Sidebar from "@/components/Sidebar"
-import { Bell, Search, UserCircle } from "lucide-react"
+import { Bell, Search, LogOut } from "lucide-react"
 import { useQuery } from "@tanstack/react-query"
 import { api } from "@/lib/axios"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
@@ -10,7 +10,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 export default function DashboardLayout() {
-  const { user } = useAuth()
+  const { user, logout } = useAuth()
   const navigate = useNavigate()
   const [searchQuery, setSearchQuery] = useState("")
 
@@ -86,12 +86,19 @@ export default function DashboardLayout() {
               </PopoverContent>
             </Popover>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <div className="flex flex-col text-right">
-                <span className="text-sm font-medium leading-none">{user?.name || "Admin"}</span>
-                <span className="text-xs text-muted-foreground">{user?.email || "admin@aivaenterprises.com"}</span>
+                <span className="text-sm font-semibold leading-none text-slate-800">{user?.name || "Super Admin"}</span>
+                <span className="text-xs text-muted-foreground">{user?.email || "Aivaenterprises11@gmail.com"}</span>
               </div>
-              <UserCircle className="h-8 w-8 text-muted-foreground" />
+              <button
+                type="button"
+                onClick={logout}
+                title="Sign Out"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 transition-colors border border-transparent hover:border-red-100"
+              >
+                <LogOut className="h-4 w-4" />
+              </button>
             </div>
           </div>
         </header>

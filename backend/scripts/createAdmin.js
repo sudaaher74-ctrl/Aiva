@@ -10,23 +10,27 @@ const createAdmin = async () => {
   await connectDB();
   
   try {
-    const existingAdmin = await User.findOne({ email: 'admin@aivaenterprises.com' });
+    const targetEmail = 'aivaenterprises11@gmail.com';
+    const existingAdmin = await User.findOne({ email: targetEmail });
+    const salt = await bcrypt.genSalt(10);
+    const password_hash = await bcrypt.hash('cabin7', salt);
+
     if (existingAdmin) {
-      console.log('Admin user already exists.');
+      existingAdmin.password_hash = password_hash;
+      existingAdmin.role = 'Admin';
+      await existingAdmin.save();
+      console.log(`Admin user password updated successfully: ${targetEmail} / cabin7`);
       process.exit(0);
     }
 
-    const salt = await bcrypt.genSalt(10);
-    const password_hash = await bcrypt.hash('admin123', salt);
-
     await User.create({
       name: 'Super Admin',
-      email: 'admin@aivaenterprises.com',
+      email: targetEmail,
       password_hash,
       role: 'Admin'
     });
 
-    console.log('Admin user created successfully: admin@aivaenterprises.com / admin123');
+    console.log(`Admin user created successfully: ${targetEmail} / cabin7`);
   } catch (error) {
     console.error('Error creating admin:', error);
   }

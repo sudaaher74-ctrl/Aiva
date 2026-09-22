@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom"
 import { cn } from "@/lib/utils"
-import { LayoutDashboard, Users, Package, Settings, FileText, ShoppingCart, ClipboardList, BarChart3, Building2 } from "lucide-react"
+import { LayoutDashboard, Users, Package, Settings, FileText, ShoppingCart, ClipboardList, BarChart3, Building2, LogOut } from "lucide-react"
+import { useAuth } from "@/contexts/AuthContext"
 
 const navItems = [
   {
@@ -47,6 +48,7 @@ const navItems = [
 
 export default function Sidebar() {
   const location = useLocation()
+  const { logout } = useAuth()
 
   return (
     <div className="flex h-full w-64 flex-col border-r border-zinc-800 bg-gradient-to-b from-zinc-950 to-zinc-900 text-white shadow-2xl z-20 shrink-0">
@@ -83,11 +85,19 @@ export default function Sidebar() {
       </nav>
 
       {/* Bottom Actions */}
-      <div className="border-t border-zinc-800/50 p-4 bg-black/10">
-        <Link to="/settings" className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-zinc-400 transition-all duration-300 hover:bg-white/5 hover:text-zinc-50 hover:scale-[1.02]">
-          <Settings className="h-5 w-5" />
+      <div className="border-t border-zinc-800/50 p-4 bg-black/10 space-y-1">
+        <Link to="/settings" className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium text-zinc-400 transition-all duration-300 hover:bg-white/5 hover:text-zinc-50 hover:scale-[1.02]">
+          <Settings className="h-4 w-4" />
           Settings
         </Link>
+        <button
+          type="button"
+          onClick={logout}
+          className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium text-red-400/80 transition-all duration-300 hover:bg-red-500/10 hover:text-red-400 hover:scale-[1.02]"
+        >
+          <LogOut className="h-4 w-4" />
+          Sign Out
+        </button>
       </div>
     </div>
   )

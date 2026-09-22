@@ -72,22 +72,27 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
 });
 
 exports.login = asyncHandler(async (req, res, next) => {
-  const { email, password } = req.body;
+  const email = (req.body.email || '').toLowerCase().trim();
+  const { password } = req.body;
+
+  if (!email || !password) {
+    return next(new AppError('Please provide email and password', 400));
+  }
 
   const user = await User.findOne({ email });
   if (!user) {
-    return next(new AppError('Invalid credentials', 401));
+    return next(new AppError('Invalid email or password', 401));
   }
 
   const isMatch = await bcrypt.compare(password, user.password_hash);
   if (!isMatch) {
-    return next(new AppError('Invalid credentials', 401));
+    return next(new AppError('Invalid email or password', 401));
   }
 
   const token = jwt.sign(
     { id: user._id, role: user.role },
-    process.env.JWT_SECRET,
-    { expiresIn: process.env.JWT_EXPIRES_IN || '1d' }
+    process.env.JWT_SECRET || 'aiva-super-secure-jwt-secret-key-2026',
+    { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
   );
 
   res.status(200).json({

@@ -18,7 +18,7 @@ const getFallbackAdminUser = async () => {
   return {
     _id: 'default-admin-id',
     name: 'Super Admin',
-    email: 'admin@aivaenterprises.com',
+    email: 'aivaenterprises11@gmail.com',
     role: 'Admin'
   };
 };

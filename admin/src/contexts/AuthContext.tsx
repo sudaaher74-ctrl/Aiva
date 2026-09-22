@@ -1,6 +1,6 @@
-import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
+import { createContext, useContext, useState, type ReactNode } from 'react';
 
-interface User {
+export interface User {
   id: string;
   name: string;
   email: string;
@@ -18,36 +18,33 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-const DEFAULT_ADMIN_USER: User = {
-  id: 'admin',
-  name: 'Super Admin',
-  email: 'admin@aivaenterprises.com',
-  role: 'Admin'
-};
-
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User>(() => {
+  const [token, setToken] = useState<string | null>(() => {
+    const t = localStorage.getItem('token');
+    // Clean up old mock bypass sessions
+    if (t === 'admin-session') {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      return null;
+    }
+    return t;
+  });
+
+  const [user, setUser] = useState<User | null>(() => {
     try {
+      const storedToken = localStorage.getItem('token');
+      if (!storedToken || storedToken === 'admin-session') return null;
       const storedUser = localStorage.getItem('user');
       if (storedUser) {
         return JSON.parse(storedUser);
       }
     } catch {
-      // fallback
+      // ignore
     }
-    return DEFAULT_ADMIN_USER;
+    return null;
   });
-  const [token, setToken] = useState<string | null>(() => localStorage.getItem('token') || 'admin-session');
 
-  useEffect(() => {
-    // Ensure default admin is set in localStorage if empty
-    if (!localStorage.getItem('token')) {
-      localStorage.setItem('token', 'admin-session');
-    }
-    if (!localStorage.getItem('user')) {
-      localStorage.setItem('user', JSON.stringify(DEFAULT_ADMIN_USER));
-    }
-  }, []);
+  const [isLoading] = useState(false);
 
   const login = (newToken: string, newUser: User) => {
     setToken(newToken);
@@ -57,8 +54,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const logout = () => {
-    // Keep user logged in as default admin
-    setUser(DEFAULT_ADMIN_USER);
+    setToken(null);
+    setUser(null);
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
   };
 
   return (
@@ -67,8 +66,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       token,
       login,
       logout,
-      isAuthenticated: true,
-      isLoading: false
+      isAuthenticated: Boolean(token && user),
+      isLoading
     }}>
       {children}
     </AuthContext.Provider>
