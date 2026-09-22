@@ -27,11 +27,13 @@ async function generatePONumber() {
 // ============================================================
 const lineItemSchema = new mongoose.Schema({
   productName: { type: String, required: true },
-  quantity: { type: Number, required: true },
-  unit: { type: String, default: 'MT', enum: ['MT', 'Kg', 'Cartons', 'Drums', 'Bags'] },
+  hsnCode: { type: String, default: '' },
+  specification: { type: String, default: '' },
   packaging: { type: String, default: '' },
+  quantity: { type: Number, required: true },
+  unit: { type: String, default: 'MT', enum: ['MT', 'Kg', 'Cartons', 'Drums', 'Bags', 'PCS'] },
   unitPrice: { type: Number, required: true },
-  currency: { type: String, default: 'USD', enum: ['USD', 'EUR', 'GBP', 'INR', 'AED'] },
+  currency: { type: String, default: 'USD', enum: ['USD', 'INR', 'EUR', 'GBP', 'AED'] },
   storageCondition: { type: String, default: '' },
   shelfLife: { type: String, default: '' },
   amount: { type: Number, default: 0 }  // quantity * unitPrice
@@ -147,13 +149,38 @@ const purchaseOrderSchema = new mongoose.Schema({
   },
   currency: {
     type: String,
+    enum: ['USD', 'INR', 'EUR', 'GBP', 'AED'],
     default: 'USD'
   },
 
-  // --- Terms & Notes ---
+  // --- Terms & Conditions ---
+  paymentTerms: {
+    type: String,
+    default: '30% Advance / 70% Against Documents'
+  },
+  validity: {
+    type: String,
+    default: '30 Days'
+  },
+  supplierGstin: {
+    type: String,
+    default: ''
+  },
+  supplierFssai: {
+    type: String,
+    default: ''
+  },
+  shipToName: {
+    type: String,
+    default: 'AIVA Enterprises – Export Warehouse'
+  },
+  shipToAddress: {
+    type: String,
+    default: 'Navi Mumbai, Maharashtra, India'
+  },
   termsAndConditions: {
     type: String,
-    default: `1. Payment: 30% advance, 70% against Bill of Lading.\n2. Quality: As per mutually agreed specifications and samples.\n3. Validity: This Purchase Order is valid for 30 days from the date of issue.\n4. Inspection: Goods subject to inspection at the port of loading.\n5. Packaging: Export-grade packaging as per international standards.\n6. Documents: Commercial Invoice, Packing List, Bill of Lading, Certificate of Origin, Phytosanitary Certificate.\n7. Force Majeure: Neither party shall be liable for delays due to force majeure events.\n8. Jurisdiction: Any disputes shall be subject to the jurisdiction of Indian courts.`
+    default: `1. Goods must strictly comply with agreed specifications and quality standards.\n2. Batch-wise Certificate of Analysis (COA) and phytosanitary certificates required prior to dispatch.\n3. Payment terms as stated above: balance payable against presentation of original shipping documents.\n4. Delivery and shipment schedules must be adhered to as per the agreed Incoterms.\n5. Export-grade packaging as per international standards with proper markings.\n6. Any deviation requires prior written approval from AIVA Enterprises.\n7. All disputes subject to Navi Mumbai / Mumbai jurisdiction.`
   },
   internalNotes: {
     type: String,

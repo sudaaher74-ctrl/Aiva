@@ -76,6 +76,8 @@ const productSchema = z.object({
 const purchaseOrderItemSchema = z.object({
   productName: z.string().min(1, 'Product name is required'),
   category: z.string().optional(),
+  hsnCode: z.string().optional(),
+  specification: z.string().optional(),
   packaging: z.string().optional(),
   netWeightKg: z.coerce.number().optional(),
   quantity: z.coerce.number().positive('Quantity must be greater than 0'),
@@ -100,6 +102,10 @@ const purchaseOrderSchema = z.object({
     buyerEmail: z.string().email('Invalid email address').optional().or(z.literal('')),
     buyerPhone: z.string().optional(),
     buyerAddress: z.string().optional(),
+    supplierGstin: z.string().optional(),
+    supplierFssai: z.string().optional(),
+    shipToName: z.string().optional(),
+    shipToAddress: z.string().optional(),
     consignee: z.string().optional(),
     shippingAddress: z.string().optional(),
     portOfLoading: z.string().optional(),
@@ -117,6 +123,7 @@ const purchaseOrderSchema = z.object({
     totalAmountUSD: z.coerce.number().optional(),
     currency: z.string().optional(),
     paymentTerms: z.string().optional(),
+    validity: z.string().optional(),
     termsAndConditions: z.string().optional(),
     internalNotes: z.string().optional(),
     status: z.enum([

@@ -143,7 +143,7 @@ export default function PurchaseOrders() {
                   <div className="text-xs text-muted-foreground">{order.buyerName}</div>
                 </TableCell>
                 <TableCell>{order.buyerCountry}</TableCell>
-                <TableCell>${order.totalAmount?.toLocaleString()}</TableCell>
+                <TableCell>{order.currency === 'INR' ? '₹' : '$'}{order.totalAmount?.toLocaleString()}</TableCell>
                 <TableCell>
                   <Badge variant={getStatusBadgeVariant(order.status)}>{order.status}</Badge>
                 </TableCell>

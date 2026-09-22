@@ -9,336 +9,603 @@ export const downloadPurchaseOrderPDF = (order: any) => {
     format: 'a4'
   })
 
-  // --- Constants ---
-  const pageWidth = doc.internal.pageSize.getWidth()
-  const pageHeight = doc.internal.pageSize.getHeight()
-  const margin = 14
-  const contentWidth = pageWidth - margin * 2
+  // --- Dimensions & Measurements ---
+  const pageWidth = doc.internal.pageSize.getWidth() // 210mm
+  const pageHeight = doc.internal.pageSize.getHeight() // 297mm
+  const margin = 10
+  const contentWidth = pageWidth - margin * 2 // 190mm
 
-  // --- Colors ---
+  // --- Palette Matching the Reference Design ---
   const colors = {
-    primary: [212, 175, 55] as [number, number, number], // #D4AF37
-    textDark: [17, 24, 39] as [number, number, number], // #111827
-    textLight: [100, 116, 139] as [number, number, number], // #64748B
-    border: [226, 232, 240] as [number, number, number], // #E2E8F0
-    bgLight: [248, 250, 252] as [number, number, number], // #F8FAFC
+    cardBlack: [12, 12, 12] as [number, number, number],      // #0C0C0C Pitch Black
+    tableHead: [20, 20, 20] as [number, number, number],      // #141414
+    goldAccent: [212, 175, 55] as [number, number, number],   // #D4AF37
+    goldBanner: [229, 178, 93] as [number, number, number],   // #E5B25D
+    bannerBg: [250, 246, 240] as [number, number, number],    // #FAF6F0 Cream
+    textDark: [17, 24, 39] as [number, number, number],       // #111827
+    textMuted: [100, 116, 139] as [number, number, number],   // #64748B
+    border: [209, 213, 219] as [number, number, number],      // #D1D5DB
+    lightBorder: [226, 232, 240] as [number, number, number], // #E2E8F0
   }
 
-  // --- Helper Functions ---
-  const setFontTitle = () => { doc.setFont("helvetica", "bold"); doc.setFontSize(22); doc.setTextColor(...colors.primary); }
-  const setFontHeading = () => { doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.setTextColor(...colors.textDark); }
-  const setFontNormal = () => { doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...colors.textDark); }
-  const setFontMuted = () => { doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...colors.textLight); }
-  
-  const drawCard = (x: number, y: number, w: number, h: number) => {
-    doc.setDrawColor(...colors.border)
-    doc.setFillColor(255, 255, 255)
-    doc.roundedRect(x, y, w, h, 2, 2, 'FD')
+  const currency = (order.currency || 'USD').toUpperCase()
+
+  const formatDate = (dateVal: any) => {
+    if (!dateVal) return 'N/A'
+    try {
+      const d = new Date(dateVal)
+      if (isNaN(d.getTime())) return String(dateVal)
+      return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' })
+    } catch {
+      return String(dateVal)
+    }
   }
 
-  // ==========================================
-  // HEADER
-  // ==========================================
+  const formatMoney = (amount: number | undefined | null) => {
+    if (amount === undefined || amount === null || isNaN(amount)) return '0.00'
+    return Number(amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+  }
+
   let currentY = margin
 
   const continueGenerating = (logoImg?: HTMLImageElement) => {
+    // ============================================================
+    // 1. TOP HEADER SECTION (3 Columns)
+    // ============================================================
+    const headerHeight = 42
+
+    // --- Column 1: Left Black Brand Card (x: 10, w: 34, h: 42) ---
+    const brandCardWidth = 34
+    doc.setFillColor(...colors.cardBlack)
+    doc.rect(margin, currentY, brandCardWidth, headerHeight, 'F')
+
     if (logoImg) {
-      const imgWidth = 40
-      const imgHeight = (logoImg.height * imgWidth) / logoImg.width
-      doc.addImage(logoImg, 'PNG', margin, currentY, imgWidth, imgHeight)
-      currentY += imgHeight + 8
+      const imgW = 20
+      const imgH = (logoImg.height * imgW) / logoImg.width
+      const imgX = margin + (brandCardWidth - imgW) / 2
+      const imgY = currentY + 4
+      try {
+        doc.addImage(logoImg, 'PNG', imgX, imgY, imgW, imgH)
+      } catch (e) {
+        // fallback emblem
+      }
     } else {
-      // Fallback if logo fails to load
-      doc.setFillColor(0, 0, 0) // Black background
-      doc.roundedRect(margin, currentY, 12, 12, 2, 2, 'F')
-      doc.setTextColor(...colors.primary) // Gold text
+      // Fallback Gold Circle with 'Q'/'A'
+      doc.setDrawColor(...colors.goldAccent)
+      doc.setLineWidth(0.8)
+      doc.circle(margin + brandCardWidth / 2, currentY + 12, 6, 'S')
       doc.setFont("helvetica", "bold")
-      doc.setFontSize(14)
-      doc.text("A", margin + 3.5, currentY + 8.5)
+      doc.setFontSize(10)
+      doc.setTextColor(...colors.goldAccent)
+      doc.text("Q", margin + brandCardWidth / 2, currentY + 13.5, { align: "center" })
+    }
 
+    // Brand Titles
+    doc.setFont("helvetica", "bold")
+    doc.setFontSize(10)
+    doc.setTextColor(...colors.goldAccent)
+    doc.text("AIVA", margin + brandCardWidth / 2, currentY + 27, { align: "center" })
+
+    doc.setFontSize(6.5)
+    doc.text("ENTERPRISES", margin + brandCardWidth / 2, currentY + 31, { align: "center" })
+
+    doc.setFont("helvetica", "normal")
+    doc.setFontSize(4.5)
+    doc.setTextColor(180, 180, 180)
+    doc.text("THE STANDARD", margin + brandCardWidth / 2, currentY + 36, { align: "center" })
+    doc.text("BEHIND THE STANDARD.", margin + brandCardWidth / 2, currentY + 38.5, { align: "center" })
+
+    // --- Column 2: Center Company Details (x: 48, w: 86) ---
+    const centerStartX = margin + brandCardWidth + 4
+    let textY = currentY + 5
+
+    doc.setFont("helvetica", "bold")
+    doc.setFontSize(14)
+    doc.setTextColor(...colors.textDark)
+    doc.text("AIVA ENTERPRISES", centerStartX, textY)
+
+    textY += 4
+    doc.setFont("helvetica", "bold")
+    doc.setFontSize(6)
+    doc.setTextColor(...colors.textMuted)
+    doc.text("GLOBAL AGRO INGREDIENTS FOR A HEALTHIER TOMORROW", centerStartX, textY)
+
+    textY += 6
+    doc.setFont("helvetica", "normal")
+    doc.setFontSize(7.5)
+    doc.setTextColor(...colors.textDark)
+    doc.text("Lakhani Centrium, 4th Floor, Sec 15", centerStartX, textY)
+    textY += 3.8
+    doc.text("CBD Belapur, Navi Mumbai – 400614", centerStartX, textY)
+    textY += 3.8
+    doc.text("Maharashtra, India", centerStartX, textY)
+
+    textY += 4.5
+    doc.setTextColor(30, 41, 59)
+    doc.text("enquire@aivaenterprises.com", centerStartX, textY)
+    textY += 3.8
+    doc.text("+91 8828177533", centerStartX, textY)
+    textY += 3.8
+    doc.text("www.aivaenterprises.com", centerStartX, textY)
+
+    // --- Column 3: Right Metadata Grid (x: 138, w: 62, h: 42) ---
+    const metaX = pageWidth - margin - 64
+    const metaW = 64
+    const rowH = 6
+    const labelW = 26
+    const valW = metaW - labelW
+
+    const metaRows = [
+      ["PO No.", order.poNumber || "AIVA/2026/00124", true],
+      ["PO Date", formatDate(order.createdAt || order.poDate), false],
+      ["Expected Delivery", formatDate(order.deliveryDate || order.expectedDelivery), false],
+      ["Currency", currency, true],
+      ["Incoterms", order.incoterms || "FOB Nhava Sheva", false],
+      ["Payment Terms", order.paymentTerms || "30% Advance / 70% Against Documents", false],
+      ["Validity", order.validity || "30 Days", false]
+    ]
+
+    metaRows.forEach((r, idx) => {
+      const rowY = currentY + idx * rowH
+      
+      // Outer border & fill
+      doc.setDrawColor(...colors.border)
+      doc.setLineWidth(0.15)
+      
+      // Label cell
+      doc.setFillColor(...colors.bannerBg)
+      doc.rect(metaX, rowY, labelW, rowH, 'FD')
+      doc.setFont("helvetica", "normal")
+      doc.setFontSize(7)
       doc.setTextColor(...colors.textDark)
+      doc.text(String(r[0]), metaX + 2, rowY + 4)
+
+      // Value cell
+      doc.setFillColor(255, 255, 255)
+      doc.rect(metaX + labelW, rowY, valW, rowH, 'FD')
+      doc.setFont("helvetica", r[2] ? "bold" : "normal")
+      doc.setFontSize(7)
+      doc.setTextColor(...colors.textDark)
+      doc.text(String(r[1]), metaX + labelW + 2, rowY + 4)
+    })
+
+    currentY += headerHeight + 5
+
+    // ============================================================
+    // 2. SUPPLIER / SELLER & SHIP TO (Two Cards)
+    // ============================================================
+    const cardGap = 4
+    const cardW = (contentWidth - cardGap) / 2
+    const cardH = 31
+
+    // --- Supplier / Seller Card ---
+    const supX = margin
+    doc.setDrawColor(...colors.border)
+    doc.setLineWidth(0.2)
+    doc.setFillColor(255, 255, 255)
+    doc.rect(supX, currentY, cardW, cardH, 'FD')
+
+    // Header strip
+    doc.setFillColor(...colors.bannerBg)
+    doc.rect(supX, currentY, cardW, 6, 'FD')
+    doc.setFont("helvetica", "bold")
+    doc.setFontSize(7.5)
+    doc.setTextColor(...colors.textDark)
+    doc.text("SUPPLIER / SELLER", supX + 3, currentY + 4.2)
+
+    // Body
+    let supY = currentY + 10
+    doc.setFont("helvetica", "bold")
+    doc.setFontSize(8)
+    doc.setTextColor(...colors.textDark)
+    doc.text(order.buyerCompany || "ABC Agro Foods Pvt. Ltd.", supX + 3, supY)
+
+    supY += 3.6
+    doc.setFont("helvetica", "normal")
+    doc.setFontSize(7)
+    doc.setTextColor(...colors.textMuted)
+    const supAddr = order.buyerAddress || "Plot No. 24, MIDC Industrial Area, Nashik – 422010, Maharashtra, India"
+    doc.text(supAddr.substring(0, 58), supX + 3, supY)
+
+    supY += 4.5
+    doc.setFontSize(7)
+    doc.text(`GSTIN   : ${order.supplierGstin || '27XXXXXXXXXXXXX'}`, supX + 3, supY)
+    doc.text(`FSSAI   : ${order.supplierFssai || 'XXXXXXXXXXXXXX'}`, supX + 48, supY)
+    supY += 3.6
+    doc.text(`Contact : ${order.buyerPhone || '+91 98765 43210'}`, supX + 3, supY)
+    supY += 3.6
+    doc.text(`Email    : ${order.buyerEmail || 'sales@abcagro.com'}`, supX + 3, supY)
+
+    // --- Ship To Card ---
+    const shipX = margin + cardW + cardGap
+    doc.setDrawColor(...colors.border)
+    doc.setFillColor(255, 255, 255)
+    doc.rect(shipX, currentY, cardW, cardH, 'FD')
+
+    // Header strip
+    doc.setFillColor(...colors.bannerBg)
+    doc.rect(shipX, currentY, cardW, 6, 'FD')
+    doc.setFont("helvetica", "bold")
+    doc.setFontSize(7.5)
+    doc.setTextColor(...colors.textDark)
+    doc.text("SHIP TO", shipX + 3, currentY + 4.2)
+
+    // Body
+    let shpY = currentY + 10
+    doc.setFont("helvetica", "bold")
+    doc.setFontSize(8)
+    doc.setTextColor(...colors.textDark)
+    doc.text(order.shipToName || "AIVA Enterprises – Export Warehouse", shipX + 3, shpY)
+
+    shpY += 3.6
+    doc.setFont("helvetica", "normal")
+    doc.setFontSize(7)
+    doc.setTextColor(...colors.textMuted)
+    doc.text(order.shipToAddress || "Navi Mumbai, Maharashtra, India", shipX + 3, shpY)
+
+    shpY += 7
+    doc.setFontSize(7)
+    doc.text(`Port of Loading  : ${order.portOfLoading || 'Nhava Sheva, India'}`, shipX + 3, shpY)
+    shpY += 4
+    doc.text(`Final Destination: ${order.destinationPort || 'Jebel Ali, UAE'}`, shipX + 3, shpY)
+
+    currentY += cardH + 4
+
+    // ============================================================
+    // 3. PRODUCT LINE ITEMS TABLE
+    // ============================================================
+    const tableHeaders = [
+      [
+        "#", 
+        "Product", 
+        "HSN/SAC", 
+        "Specification", 
+        "Packaging", 
+        "Qty", 
+        `Unit Price\n(${currency})`, 
+        `Taxable Value\n(${currency})`, 
+        `Tax Amount\n(${currency})`, 
+        `Amount\n(${currency})`
+      ]
+    ]
+
+    const rawItems = order.items?.length > 0 ? order.items : [{
+      productName: "Alphonso Mango Pulp",
+      hsnCode: "08119090",
+      specification: "Aseptic, 20–22° Brix",
+      packaging: "215 Kg Drum",
+      quantity: 100,
+      unit: "MT",
+      unitPrice: 1250,
+      amount: 125000
+    }]
+
+    const totalQty = rawItems.reduce((acc: number, item: any) => acc + (Number(item.quantity) || 0), 0)
+    const primaryUnit = rawItems[0]?.unit || 'MT'
+
+    // Fill up to 6 rows to ensure authentic invoice structure
+    const totalRowsCount = Math.max(rawItems.length, 5)
+    const tableRows: any[] = []
+
+    for (let i = 0; i < totalRowsCount; i++) {
+      const item = rawItems[i]
+      if (item) {
+        const qty = Number(item.quantity) || 1
+        const price = Number(item.unitPrice) || 0
+        const taxable = Number(item.amount || qty * price)
+        const taxPercent = Number(order.gstPercent) || 0
+        const taxAmount = (taxable * taxPercent) / 100
+        const finalAmt = taxable + taxAmount
+
+        tableRows.push([
+          String(i + 1),
+          item.productName || "N/A",
+          item.hsnCode || "08119090",
+          item.specification || "Aseptic",
+          item.packaging || "215 Kg Drum",
+          `${qty} ${item.unit || 'MT'}`,
+          formatMoney(price),
+          formatMoney(taxable),
+          `${formatMoney(taxAmount)} (${taxPercent}%)`,
+          formatMoney(finalAmt)
+        ])
+      } else {
+        // Empty row
+        tableRows.push([String(i + 1), "", "", "", "", "", "", "", "", ""])
+      }
+    }
+
+    autoTable(doc, {
+      startY: currentY,
+      margin: { left: margin, right: margin },
+      head: tableHeaders,
+      body: tableRows,
+      theme: 'grid',
+      tableWidth: contentWidth,
+      styles: {
+        font: "helvetica",
+        fontSize: 7,
+        textColor: colors.textDark,
+        lineColor: colors.border,
+        lineWidth: 0.1,
+        cellPadding: 1.5,
+        minCellHeight: 6
+      },
+      headStyles: {
+        fillColor: colors.tableHead,
+        textColor: colors.goldBanner,
+        fontStyle: 'bold',
+        fontSize: 6.5,
+        halign: 'center',
+        valign: 'middle',
+        lineColor: [40, 40, 40],
+        lineWidth: 0.1
+      },
+      columnStyles: {
+        0: { cellWidth: 7, halign: 'center' },
+        1: { cellWidth: 38, halign: 'left', fontStyle: 'bold' },
+        2: { cellWidth: 15, halign: 'center' },
+        3: { cellWidth: 26, halign: 'left' },
+        4: { cellWidth: 20, halign: 'left' },
+        5: { cellWidth: 14, halign: 'center', fontStyle: 'bold' },
+        6: { cellWidth: 17, halign: 'right' },
+        7: { cellWidth: 19, halign: 'right' },
+        8: { cellWidth: 17, halign: 'right' },
+        9: { cellWidth: 17, halign: 'right', fontStyle: 'bold' },
+      }
+    })
+
+    currentY = (doc as any).lastAutoTable.finalY
+
+    // ============================================================
+    // 4. SUMMARY BOX (Left Items/Qty + Right Totals)
+    // ============================================================
+    const totalsW = 70
+    const leftW = contentWidth - totalsW
+    const subtotal = order.subtotal || rawItems.reduce((s: number, i: any) => s + (i.amount || 0), 0)
+    const freight = order.freightCharges || 0
+    const insurance = order.insurance || 0
+    const grandTotal = order.totalAmount || (subtotal + freight + insurance)
+
+    // Left block: Total items & qty
+    doc.setDrawColor(...colors.border)
+    doc.setFillColor(255, 255, 255)
+    doc.rect(margin, currentY, leftW, 25, 'FD')
+
+    doc.setFont("helvetica", "normal")
+    doc.setFontSize(7.5)
+    doc.setTextColor(...colors.textDark)
+    doc.text("Total Items / Qty : ", margin + 3, currentY + 6)
+    doc.setFont("helvetica", "bold")
+    doc.text(`${rawItems.length} / ${totalQty} ${primaryUnit}`, margin + 28, currentY + 6)
+
+    // Right block: 5 summary rows
+    const rMetaX = margin + leftW
+    const totRowH = 5
+
+    const totRows = [
+      ["Subtotal", formatMoney(subtotal)],
+      ["Freight (As Applicable)", freight ? formatMoney(freight) : "-"],
+      ["Insurance (As Applicable)", insurance ? formatMoney(insurance) : "-"],
+      ["Other Charges", "-"]
+    ]
+
+    totRows.forEach((r, idx) => {
+      const rY = currentY + idx * totRowH
+      doc.setDrawColor(...colors.border)
+      doc.setFillColor(255, 255, 255)
+      doc.rect(rMetaX, rY, totalsW, totRowH, 'FD')
+
+      doc.setFont("helvetica", "normal")
+      doc.setFontSize(7)
+      doc.setTextColor(...colors.textDark)
+      doc.text(r[0], rMetaX + 2.5, rY + 3.5)
+
       doc.setFont("helvetica", "bold")
-      doc.setFontSize(16)
-      doc.text("AIVA", margin + 15, currentY + 8.5)
-      currentY += 20
+      doc.text(r[1], rMetaX + totalsW - 2.5, rY + 3.5, { align: "right" })
+    })
+
+    // Grand Total Row (Gold background)
+    const gTotalY = currentY + 4 * totRowH
+    doc.setDrawColor(...colors.border)
+    doc.setFillColor(...colors.goldBanner)
+    doc.rect(rMetaX, gTotalY, totalsW, totRowH, 'FD')
+
+    doc.setFont("helvetica", "bold")
+    doc.setFontSize(8)
+    doc.setTextColor(0, 0, 0)
+    doc.text(`Total (${currency})`, rMetaX + 2.5, gTotalY + 3.7)
+    doc.text(formatMoney(grandTotal), rMetaX + totalsW - 2.5, gTotalY + 3.7, { align: "right" })
+
+    currentY += 25
+
+    // ============================================================
+    // 5. TOTAL AMOUNT IN WORDS BANNER
+    // ============================================================
+    const wordsH = 6.5
+    doc.setDrawColor(...colors.border)
+    doc.setFillColor(...colors.bannerBg)
+    doc.rect(margin, currentY, contentWidth, wordsH, 'FD')
+
+    doc.setFont("helvetica", "bold")
+    doc.setFontSize(7)
+    doc.setTextColor(...colors.textDark)
+    doc.text("Total amount (in words): ", margin + 3, currentY + 4.3)
+
+    const prefixWidth = doc.getTextWidth("Total amount (in words): ")
+    doc.setFont("helvetica", "normal")
+    doc.text(numberToWords(grandTotal, currency), margin + 3 + prefixWidth, currentY + 4.3)
+
+    currentY += wordsH + 3.5
+
+    // ============================================================
+    // 6. TERMS & CONDITIONS (Replacing Notes & Required Documents)
+    // ============================================================
+    const termsH = 26
+    doc.setDrawColor(...colors.border)
+    doc.setFillColor(255, 255, 255)
+    doc.rect(margin, currentY, contentWidth, termsH, 'FD')
+
+    // Header bar
+    doc.setFillColor(...colors.bannerBg)
+    doc.rect(margin, currentY, contentWidth, 5.5, 'FD')
+    doc.setFont("helvetica", "bold")
+    doc.setFontSize(7)
+    doc.setTextColor(...colors.textDark)
+    doc.text("TERMS & CONDITIONS", margin + 3, currentY + 3.8)
+
+    // Terms Content (2 columns)
+    const termsCol1 = [
+      "1. Goods must strictly comply with agreed specifications and quality standards.",
+      "2. Batch-wise Certificate of Analysis (COA) and phytosanitary certificates required prior to dispatch.",
+      "3. Payment terms as stated above: balance payable against presentation of shipping documents.",
+      "4. Delivery and shipment schedules must be adhered to as per the agreed Incoterms."
+    ]
+    const termsCol2 = [
+      "5. Export-grade packaging as per international standards with proper markings.",
+      "6. Any deviation requires prior written approval from AIVA Enterprises.",
+      "7. All disputes subject to Navi Mumbai / Mumbai jurisdiction."
+    ]
+
+    let tY = currentY + 9.5
+    doc.setFont("helvetica", "normal")
+    doc.setFontSize(6.5)
+    doc.setTextColor(...colors.textDark)
+
+    termsCol1.forEach(t => {
+      doc.text(t, margin + 3, tY)
+      tY += 3.8
+    })
+
+    tY = currentY + 9.5
+    termsCol2.forEach(t => {
+      doc.text(t, margin + contentWidth / 2 + 2, tY)
+      tY += 3.8
+    })
+
+    currentY += termsH + 3.5
+
+    // ============================================================
+    // 7. BOTTOM: BANK DETAILS & SIGNATURE (Two Cards)
+    // ============================================================
+    const botCardH = 25
+    
+    // Check if we need to fit tightly before the footer
+    if (currentY + botCardH > pageHeight - 16) {
+      currentY = pageHeight - 16 - botCardH
     }
 
-    // Title
-    setFontTitle()
-    doc.text("PURCHASE ORDER", pageWidth - margin, margin + 8, { align: "right" })
+    // Left: Bank Details
+    doc.setDrawColor(...colors.border)
+    doc.setFillColor(255, 255, 255)
+    doc.rect(supX, currentY, cardW, botCardH, 'FD')
 
-  // Header Info
-  setFontHeading()
-  doc.text("PO Number:", pageWidth - margin - 50, currentY)
-  setFontNormal()
-  doc.text(order.poNumber || "N/A", pageWidth - margin, currentY, { align: "right" })
+    doc.setFillColor(...colors.bannerBg)
+    doc.rect(supX, currentY, cardW, 5.5, 'FD')
+    doc.setFont("helvetica", "bold")
+    doc.setFontSize(7)
+    doc.setTextColor(...colors.textDark)
+    doc.text("BANK DETAILS (FOR PAYMENTS)", supX + 3, currentY + 3.8)
 
-  currentY += 6
-  setFontHeading()
-  doc.text("Issue Date:", pageWidth - margin - 50, currentY)
-  setFontNormal()
-  doc.text(new Date(order.createdAt || order.poDate).toLocaleDateString(), pageWidth - margin, currentY, { align: "right" })
+    let bkY = currentY + 9.5
+    doc.setFont("helvetica", "normal")
+    doc.setFontSize(6.8)
+    doc.setTextColor(...colors.textMuted)
 
-  currentY += 6
-  setFontHeading()
-  doc.text("Status:", pageWidth - margin - 50, currentY)
-  
-  // Status Badge
-  const statusColors: Record<string, [number, number, number]> = {
-    Draft: [100, 116, 139],
-    Pending: [249, 115, 22], // Orange
-    Approved: [37, 99, 235], // Blue
-    Completed: [34, 197, 94], // Green
-    Delivered: [34, 197, 94],
-    Rejected: [239, 68, 68], // Red
-    Cancelled: [153, 27, 27], // Dark Red
+    const bankDetails = [
+      ["Bank Name", ": HDFC Bank Ltd"],
+      ["Account No.", ": 50200088281775"],
+      ["IFSC / SWIFT", ": HDFC0000240 / HDFCINBB"],
+      ["Branch", ": CBD Belapur, Navi Mumbai"]
+    ]
+
+    bankDetails.forEach(b => {
+      doc.text(b[0], supX + 3, bkY)
+      doc.setTextColor(...colors.textDark)
+      doc.text(b[1], supX + 26, bkY)
+      doc.setTextColor(...colors.textMuted)
+      bkY += 3.6
+    })
+
+    // Right: For AIVA Enterprises & Seal
+    doc.setDrawColor(...colors.border)
+    doc.setFillColor(255, 255, 255)
+    doc.rect(shipX, currentY, cardW, botCardH, 'FD')
+
+    doc.setFillColor(...colors.bannerBg)
+    doc.rect(shipX, currentY, cardW, 5.5, 'FD')
+    doc.setFont("helvetica", "bold")
+    doc.setFontSize(7)
+    doc.setTextColor(...colors.textDark)
+    doc.text("For AIVA ENTERPRISES", shipX + 3, currentY + 3.8)
+
+    // Authorized line
+    const sigLineY = currentY + 12
+    doc.setDrawColor(...colors.border)
+    doc.setLineWidth(0.3)
+    doc.line(shipX + 3, sigLineY, shipX + 45, sigLineY)
+
+    doc.setFont("helvetica", "normal")
+    doc.setFontSize(6)
+    doc.setTextColor(...colors.textMuted)
+    doc.text("Authorized Signatory", shipX + 3, sigLineY - 1)
+
+    let sigY = sigLineY + 4
+    doc.setFontSize(6.8)
+    doc.text("Name          : Aishwarya Ingale", shipX + 3, sigY)
+    sigY += 3.4
+    doc.text("Designation : Managing Director", shipX + 3, sigY)
+    sigY += 3.4
+    doc.text(`Date           : ${formatDate(order.createdAt || new Date())}`, shipX + 3, sigY)
+
+    // Dotted Seal Stamp
+    const sealCenterX = shipX + cardW - 14
+    const sealCenterY = currentY + 14.5
+    doc.setDrawColor(...colors.goldAccent)
+    doc.setLineWidth(0.3)
+    // Draw circular outline with company seal text
+    doc.circle(sealCenterX, sealCenterY, 8.5, 'S')
+    doc.setFont("helvetica", "bold")
+    doc.setFontSize(6)
+    doc.setTextColor(...colors.goldAccent)
+    doc.text("Company", sealCenterX, sealCenterY - 1, { align: "center" })
+    doc.text("Seal", sealCenterX, sealCenterY + 2.5, { align: "center" })
+
+    // ============================================================
+    // 8. FOOTER STRIP
+    // ============================================================
+    const footY = pageHeight - 8
+    doc.setDrawColor(...colors.border)
+    doc.setLineWidth(0.2)
+    doc.line(margin, footY - 3, pageWidth - margin, footY - 3)
+
+    doc.setFont("helvetica", "bold")
+    doc.setFontSize(6.5)
+    doc.setTextColor(...colors.textDark)
+    doc.text("AIVA ENTERPRISES", margin, footY)
+
+    const footBrandW = doc.getTextWidth("AIVA ENTERPRISES")
+    doc.setFont("helvetica", "normal")
+    doc.setTextColor(...colors.textMuted)
+    doc.text(" | THE STANDARD BEHIND THE STANDARD.", margin + footBrandW, footY)
+
+    doc.setTextColor(...colors.textDark)
+    doc.text("www.aivaenterprises.com", pageWidth - margin, footY, { align: "right" })
+
+    // Output / Save PDF
+    const filename = (order.poNumber || 'PurchaseOrder').replace(/[/\\?%*:|"<>]/g, '_')
+    doc.save(`${filename}.pdf`)
   }
-  const sColor = statusColors[order.status] || colors.primary
-  doc.setFillColor(...sColor)
-  doc.roundedRect(pageWidth - margin - 20, currentY - 4, 20, 5.5, 1, 1, 'F')
-  doc.setTextColor(255, 255, 255)
-  doc.setFont("helvetica", "bold")
-  doc.setFontSize(8)
-  doc.text((order.status || "UNKNOWN").toUpperCase(), pageWidth - margin - 10, currentY, { align: "center" })
-
-  currentY += 12
-
-  // ==========================================
-  // COMPANY INFORMATION
-  // ==========================================
-  drawCard(margin, currentY, contentWidth, 30)
-  
-  setFontHeading()
-  doc.text("Aiva Enterprises", margin + 5, currentY + 7)
-  setFontMuted()
-  doc.text("Lakhani Centrium, 4th Floor, Sec 15", margin + 5, currentY + 12)
-  doc.text("CBD Belapur, Navi Mumbai 400614, India", margin + 5, currentY + 17)
-  doc.text("GST: 27AAAAA0000A1Z5 | PAN: AAAAA0000A", margin + 5, currentY + 22)
-  doc.text("IEC: 0123456789", margin + 5, currentY + 27)
-
-  // Right side of company info
-  doc.text("Email: Enquire@aivaenterprises.com", margin + 100, currentY + 12)
-  doc.text("Sales: sales@aivaenterprises.com", margin + 100, currentY + 17)
-  doc.text("Phone: +91 88281 77533", margin + 100, currentY + 22)
-  doc.text("Website: www.aivaenterprises.com", margin + 100, currentY + 27)
-
-  currentY += 36
-
-  // ==========================================
-  // BUYER & SHIPMENT INFORMATION
-  // ==========================================
-  const cardWidth = (contentWidth - 6) / 2
-  
-  // Buyer Card
-  drawCard(margin, currentY, cardWidth, 36)
-  doc.setFillColor(...colors.bgLight)
-  doc.roundedRect(margin, currentY, cardWidth, 8, 2, 2, 'F')
-  setFontHeading()
-  doc.text("Bill To", margin + 5, currentY + 5.5)
-
-  setFontHeading()
-  doc.text(order.buyerCompany || "N/A", margin + 5, currentY + 14)
-  setFontNormal()
-  doc.text(`Contact: ${order.buyerName || "N/A"}`, margin + 5, currentY + 19)
-  doc.text(`Email: ${order.buyerEmail || "N/A"}`, margin + 5, currentY + 24)
-  doc.text(`Phone: ${order.buyerPhone || "N/A"}`, margin + 5, currentY + 29)
-  doc.text(`${order.buyerCountry || ""} - ${order.buyerAddress || ""}`, margin + 5, currentY + 34)
-
-  // Shipment Card
-  const shipX = margin + cardWidth + 6
-  drawCard(shipX, currentY, cardWidth, 36)
-  doc.setFillColor(...colors.bgLight)
-  doc.roundedRect(shipX, currentY, cardWidth, 8, 2, 2, 'F')
-  setFontHeading()
-  doc.text("Shipment Information", shipX + 5, currentY + 5.5)
-
-  setFontMuted()
-  doc.text("Incoterms:", shipX + 5, currentY + 14)
-  doc.text("Loading Port:", shipX + 5, currentY + 19)
-  doc.text("Destination:", shipX + 5, currentY + 24)
-  doc.text("Method:", shipX + 5, currentY + 29)
-  
-  setFontNormal()
-  doc.text(order.incoterms || 'FOB', shipX + 35, currentY + 14)
-  doc.text(order.portOfLoading || 'Nhava Sheva', shipX + 35, currentY + 19)
-  doc.text(order.destinationPort || 'N/A', shipX + 35, currentY + 24)
-  doc.text(order.shipmentMethod || 'Sea', shipX + 35, currentY + 29)
-
-  currentY += 42
-
-  // ==========================================
-  // PURCHASE ITEMS TABLE
-  // ==========================================
-  const tableColumn = ["Sr", "Product Description", "HS Code", "Qty", "Unit Price", "Tax %", "Amount"]
-  const tableRows: any[] = []
-
-  let items = order.items || []
-  if (items.length === 0) {
-    items = [{ productName: "Sample Item", quantity: 1, unit: "PCS", unitPrice: 0, amount: 0 }]
-  }
-
-  items.forEach((item: any, idx: number) => {
-    tableRows.push([
-      idx + 1,
-      item.productName,
-      item.hsCode || "N/A",
-      `${item.quantity} ${item.unit || ''}`,
-      `${item.currency || order.currency || 'USD'} ${item.unitPrice?.toLocaleString()}`,
-      `${order.gstPercent || 0}%`,
-      `${item.currency || order.currency || 'USD'} ${item.amount?.toLocaleString()}`
-    ])
-  })
-
-  autoTable(doc, {
-    startY: currentY,
-    head: [tableColumn],
-    body: tableRows,
-    theme: 'grid',
-    styles: { 
-      font: "helvetica",
-      fontSize: 9, 
-      textColor: colors.textDark,
-      lineColor: colors.border,
-      lineWidth: 0.1
-    },
-    headStyles: { 
-      fillColor: colors.bgLight, 
-      textColor: colors.textDark,
-      fontStyle: 'bold',
-      lineColor: colors.border,
-      lineWidth: 0.1
-    },
-    alternateRowStyles: {
-      fillColor: [250, 250, 250]
-    },
-    columnStyles: {
-      0: { cellWidth: 10 },
-      2: { cellWidth: 20 },
-      3: { cellWidth: 20 },
-      4: { cellWidth: 25 },
-      5: { cellWidth: 15 },
-      6: { cellWidth: 30, halign: 'right' }
-    }
-  })
-
-  currentY = (doc as any).lastAutoTable.finalY + 10
-
-  // ==========================================
-  // SUMMARY SECTION & IN WORDS
-  // ==========================================
-  // Total in Words (Left)
-  setFontHeading()
-  doc.text("Total in Words:", margin, currentY)
-  setFontNormal()
-  const totalAmount = order.totalAmount || 0
-  const currency = order.currency || 'USD'
-  doc.text(`${numberToWords(totalAmount)} ${currency}`, margin, currentY + 6)
-
-  // Summary Box (Right)
-  const summaryX = pageWidth - margin - 70
-  const summaryW = 70
-  
-  setFontMuted()
-  doc.text("Subtotal:", summaryX, currentY)
-  doc.text("GST:", summaryX, currentY + 6)
-  doc.text("Shipping:", summaryX, currentY + 12)
-  doc.text("Other:", summaryX, currentY + 18)
-
-  setFontNormal()
-  doc.text(`${currency} ${(order.subtotal || 0).toLocaleString()}`, summaryX + summaryW, currentY, { align: "right" })
-  doc.text(`${currency} ${(order.gstAmount || 0).toLocaleString()}`, summaryX + summaryW, currentY + 6, { align: "right" })
-  doc.text(`${currency} ${(order.freightCharges || 0).toLocaleString()}`, summaryX + summaryW, currentY + 12, { align: "right" })
-  doc.text(`${currency} ${(order.insurance || 0).toLocaleString()}`, summaryX + summaryW, currentY + 18, { align: "right" })
-
-  currentY += 24
-  
-  doc.setDrawColor(...colors.border)
-  doc.line(summaryX, currentY, summaryX + summaryW, currentY)
-  
-  currentY += 6
-  setFontHeading()
-  doc.text("Grand Total:", summaryX, currentY)
-  doc.text(`${currency} ${totalAmount.toLocaleString()}`, summaryX + summaryW, currentY, { align: "right" })
-
-  currentY += 15
-
-  // ==========================================
-  // PAYMENT DETAILS
-  // ==========================================
-  // Check page break
-  if (currentY > pageHeight - 60) {
-    doc.addPage()
-    currentY = margin
-  }
-
-  drawCard(margin, currentY, cardWidth, 32)
-  doc.setFillColor(...colors.bgLight)
-  doc.roundedRect(margin, currentY, cardWidth, 8, 2, 2, 'F')
-  setFontHeading()
-  doc.text("Payment Details", margin + 5, currentY + 5.5)
-
-  setFontMuted()
-  doc.text("Bank Name:", margin + 5, currentY + 14)
-  doc.text("Account Name:", margin + 5, currentY + 19)
-  doc.text("Account No:", margin + 5, currentY + 24)
-  doc.text("SWIFT/IFSC:", margin + 5, currentY + 29)
-
-  setFontNormal()
-  doc.text("Global Corporate Bank", margin + 35, currentY + 14)
-  doc.text("Aiva Enterprises Pvt Ltd", margin + 35, currentY + 19)
-  doc.text("0000111122223333", margin + 35, currentY + 24)
-  doc.text("GCBXX123 / HDFC0001234", margin + 35, currentY + 29)
-
-  // ==========================================
-  // TERMS & CONDITIONS
-  // ==========================================
-  drawCard(shipX, currentY, cardWidth, 32)
-  doc.setFillColor(...colors.bgLight)
-  doc.roundedRect(shipX, currentY, cardWidth, 8, 2, 2, 'F')
-  setFontHeading()
-  doc.text("Terms & Conditions", shipX + 5, currentY + 5.5)
-
-  setFontNormal()
-  const termsLines = [
-    "1. Goods once sold cannot be returned.",
-    "2. Delivery subject to stock availability.",
-    "3. Payment due within agreed terms.",
-    "4. Taxes applicable as per prevailing law."
-  ]
-  termsLines.forEach((line, idx) => {
-    doc.text(line, shipX + 5, currentY + 14 + (idx * 5))
-  })
-
-  // ==========================================
-  // FOOTER
-  // ==========================================
-  const footerY = pageHeight - 35
-  
-  doc.setDrawColor(...colors.border)
-  doc.line(margin, footerY, pageWidth - margin, footerY)
-
-  setFontHeading()
-  doc.text("Prepared By", margin, footerY + 10)
-  doc.text("Checked By", pageWidth / 2, footerY + 10, { align: "center" })
-  doc.text("Authorized Signature", pageWidth - margin, footerY + 10, { align: "right" })
-
-  setFontMuted()
-  doc.text("Thank you for your business.", margin, footerY + 20)
-  doc.text("Generated by Aiva ERP Management System.", pageWidth - margin, footerY + 20, { align: "right" })
-
-  // Save the PDF
-  doc.save(`${order.poNumber || 'PurchaseOrder'}.pdf`)
-  } // End of continueGenerating
 
   // Load Logo
   const img = new Image()
   img.crossOrigin = "Anonymous"
-  img.src = '/admin/logo.png' // Use base path since vite config has base: '/admin/'
+  img.src = '/admin/logo.png'
   img.onload = () => {
     continueGenerating(img)
   }
   img.onerror = () => {
-    console.warn("Logo could not be loaded for PDF, using fallback.")
+    console.warn("Logo could not be loaded for PDF, using vector fallback.")
     continueGenerating()
   }
 }
