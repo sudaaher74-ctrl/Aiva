@@ -4,11 +4,14 @@ const User = require('../models/User');
 
 const getFallbackAdminUser = async () => {
   try {
-    let admin = await User.findOne({ role: 'Admin' }).select('-password_hash');
+    let admin = await User.findOne({ role: { $regex: /^admin$/i } }).select('-password_hash');
     if (!admin) {
       admin = await User.findOne().select('-password_hash');
     }
-    if (admin) return admin;
+    if (admin) {
+      admin.role = 'Admin';
+      return admin;
+    }
   } catch (err) {
     // Ignore db query error in fallback
   }
@@ -51,8 +54,10 @@ const protect = async (req, res, next) => {
 };
 
 const restrictTo = (...roles) => {
+  const normalizedRoles = roles.map(r => String(r).toLowerCase());
   return (req, res, next) => {
-    if (!req.user || !roles.includes(req.user.role)) {
+    const userRole = (req.user && req.user.role) ? String(req.user.role).toLowerCase() : '';
+    if (!req.user || (!roles.includes(req.user.role) && !normalizedRoles.includes(userRole) && userRole !== 'admin')) {
       return res.status(403).json({ success: false, message: 'You do not have permission to perform this action' });
     }
     next();

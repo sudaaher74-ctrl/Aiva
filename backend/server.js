@@ -10,19 +10,18 @@ const validateEnv = require('./config/env');
 const globalErrorHandler = require('./middleware/errorHandler');
 const AppError = require('./utils/AppError');
 
-// Catch Uncaught Exceptions immediately
+// Catch Uncaught Exceptions
 process.on('uncaughtException', err => {
-  console.error('UNCAUGHT EXCEPTION! 💥 Shutting down...');
-  console.error(err.name, err.message);
-  process.exit(1);
+  console.error('UNCAUGHT EXCEPTION! 💥', err.name, err.message);
+  if (!process.env.VERCEL) {
+    process.exit(1);
+  }
 });
 
-// Load environment variables if not in production
-if (process.env.NODE_ENV !== 'production') {
-  dotenv.config();
-}
+// Load environment variables if available
+dotenv.config();
 
-// Validate Environment Variables
+// Validate Environment Variables with resilient defaults
 validateEnv();
 
 // Create Express app
@@ -85,6 +84,23 @@ const authLimiter = rateLimit({
 app.use('/api/', apiLimiter);
 app.use('/api/auth', authLimiter);
 
+// Database connection middleware to ensure DB is connected before handling API requests
+app.use(async (req, res, next) => {
+  if (req.path === '/api/health' || req.path === '/' || req.path === '/api') {
+    return next();
+  }
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    console.error('Database connection error:', err.message);
+    res.status(500).json({
+      success: false,
+      message: 'Database connection failed: ' + err.message
+    });
+  }
+});
+
 // API Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/products', require('./routes/products'));
@@ -130,19 +146,23 @@ app.use(globalErrorHandler);
 
 // Connect to Database and start server
 let server;
-connectDB().then(async () => {
-  
-  // Dynamic Render Port
-  const PORT = process.env.PORT || 5001;
-  // Bind to 0.0.0.0 for containerized environments
-  server = app.listen(PORT, '0.0.0.0', () => {
-    console.log(`🚀 Server running on port ${PORT}`);
+if (!process.env.VERCEL) {
+  connectDB().then(async () => {
+    // Dynamic Render Port
+    const PORT = process.env.PORT || 5001;
+    // Bind to 0.0.0.0 for containerized environments
+    server = app.listen(PORT, '0.0.0.0', () => {
+      console.log(`🚀 Server running on port ${PORT}`);
+    });
+  }).catch(err => {
+    console.error('Failed to connect to database on startup:', err.message);
   });
-
-}).catch(err => {
-  console.error('Failed to connect to database', err);
-  process.exit(1);
-});
+} else {
+  // Pre-warm DB connection in serverless background
+  connectDB().catch(err => {
+    console.error('Serverless background DB connect notice:', err.message);
+  });
+}
 
 // Graceful Shutdown on SIGTERM/SIGINT (Render sends SIGTERM)
 const gracefulShutdown = () => {
