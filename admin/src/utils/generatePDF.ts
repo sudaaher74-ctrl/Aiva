@@ -2,6 +2,7 @@ import jsPDF from "jspdf"
 import autoTable from "jspdf-autotable"
 import { numberToWords } from "./numberToWords"
 import { AIVA_PO_LOGO_BASE64 } from "@/assets/logoBase64"
+import { calculateGSTFromGstin } from "./gstHelper"
 
 export const downloadPurchaseOrderPDF = (order: any) => {
   const doc = new jsPDF({
@@ -344,15 +345,44 @@ export const downloadPurchaseOrderPDF = (order: any) => {
     // ============================================================
     const totalsW = 70
     const leftW = contentWidth - totalsW
-    const subtotal = order.subtotal || rawItems.reduce((s: number, i: any) => s + (i.amount || 0), 0)
-    const freight = order.freightCharges || 0
-    const insurance = order.insurance || 0
-    const grandTotal = order.totalAmount || (subtotal + freight + insurance)
+    const subtotal = order.subtotal || rawItems.reduce((s: number, i: any) => s + (Number(i.amount) || (Number(i.quantity) * Number(i.unitPrice)) || 0), 0)
+    const freight = Number(order.freightCharges) || 0
+    const insurance = Number(order.insurance) || 0
+
+    const gstCalc = calculateGSTFromGstin(
+      subtotal,
+      order.gstPercent || 0,
+      order.supplierGstin || "",
+      freight,
+      insurance
+    )
+
+    const grandTotal = order.totalAmount || gstCalc.grandTotal
+
+    const totRows: [string, string][] = [
+      ["Subtotal", formatMoney(subtotal)]
+    ]
+
+    if (gstCalc.gstType === 'CGST_SGST') {
+      totRows.push([`CGST (${gstCalc.cgstPercent}%)`, formatMoney(gstCalc.cgstAmount)])
+      totRows.push([`SGST (${gstCalc.sgstPercent}%)`, formatMoney(gstCalc.sgstAmount)])
+    } else if (gstCalc.gstType === 'IGST') {
+      totRows.push([`IGST (${gstCalc.igstPercent}%)`, formatMoney(gstCalc.igstAmount)])
+    } else if (gstCalc.totalGstAmount > 0) {
+      totRows.push([`GST / Tax (${gstCalc.gstRate}%)`, formatMoney(gstCalc.totalGstAmount)])
+    }
+
+    totRows.push(["Freight (As Applicable)", freight ? formatMoney(freight) : "-"])
+    totRows.push(["Insurance (As Applicable)", insurance ? formatMoney(insurance) : "-"])
+    totRows.push(["Other Charges", "-"])
+
+    const totRowH = 4.8
+    const totalBoxH = (totRows.length + 1) * totRowH
 
     // Left block: Total items & qty
     doc.setDrawColor(...colors.border)
     doc.setFillColor(255, 255, 255)
-    doc.rect(margin, currentY, leftW, 25, 'FD')
+    doc.rect(margin, currentY, leftW, totalBoxH, 'FD')
 
     doc.setFont("helvetica", "normal")
     doc.setFontSize(7.5)
@@ -361,16 +391,8 @@ export const downloadPurchaseOrderPDF = (order: any) => {
     doc.setFont("helvetica", "bold")
     doc.text(`${rawItems.length} / ${totalQty} ${primaryUnit}`, margin + 28, currentY + 6)
 
-    // Right block: 5 summary rows
+    // Right block: summary rows
     const rMetaX = margin + leftW
-    const totRowH = 5
-
-    const totRows = [
-      ["Subtotal", formatMoney(subtotal)],
-      ["Freight (As Applicable)", freight ? formatMoney(freight) : "-"],
-      ["Insurance (As Applicable)", insurance ? formatMoney(insurance) : "-"],
-      ["Other Charges", "-"]
-    ]
 
     totRows.forEach((r, idx) => {
       const rY = currentY + idx * totRowH
@@ -379,16 +401,16 @@ export const downloadPurchaseOrderPDF = (order: any) => {
       doc.rect(rMetaX, rY, totalsW, totRowH, 'FD')
 
       doc.setFont("helvetica", "normal")
-      doc.setFontSize(7)
+      doc.setFontSize(6.8)
       doc.setTextColor(...colors.textDark)
-      doc.text(r[0], rMetaX + 2.5, rY + 3.5)
+      doc.text(r[0], rMetaX + 2.5, rY + 3.4)
 
       doc.setFont("helvetica", "bold")
-      doc.text(r[1], rMetaX + totalsW - 2.5, rY + 3.5, { align: "right" })
+      doc.text(r[1], rMetaX + totalsW - 2.5, rY + 3.4, { align: "right" })
     })
 
     // Grand Total Row (Gold background)
-    const gTotalY = currentY + 4 * totRowH
+    const gTotalY = currentY + totRows.length * totRowH
     doc.setDrawColor(...colors.border)
     doc.setFillColor(...colors.goldBanner)
     doc.rect(rMetaX, gTotalY, totalsW, totRowH, 'FD')
@@ -396,10 +418,10 @@ export const downloadPurchaseOrderPDF = (order: any) => {
     doc.setFont("helvetica", "bold")
     doc.setFontSize(8)
     doc.setTextColor(0, 0, 0)
-    doc.text(`Total (${currency})`, rMetaX + 2.5, gTotalY + 3.7)
-    doc.text(formatMoney(grandTotal), rMetaX + totalsW - 2.5, gTotalY + 3.7, { align: "right" })
+    doc.text(`Total (${currency})`, rMetaX + 2.5, gTotalY + 3.5)
+    doc.text(formatMoney(grandTotal), rMetaX + totalsW - 2.5, gTotalY + 3.5, { align: "right" })
 
-    currentY += 25
+    currentY += totalBoxH + 2
 
     // ============================================================
     // 5. TOTAL AMOUNT IN WORDS BANNER

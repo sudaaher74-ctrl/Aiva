@@ -135,6 +135,18 @@ const purchaseOrderSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
+  gstType: {
+    type: String,
+    enum: ['CGST_SGST', 'IGST', 'NONE', 'TAX'],
+    default: 'NONE'
+  },
+  cgstPercent: { type: Number, default: 0 },
+  cgstAmount: { type: Number, default: 0 },
+  sgstPercent: { type: Number, default: 0 },
+  sgstAmount: { type: Number, default: 0 },
+  igstPercent: { type: Number, default: 0 },
+  igstAmount: { type: Number, default: 0 },
+  stateName: { type: String, default: '' },
   freightCharges: {
     type: Number,
     default: 0
@@ -190,7 +202,7 @@ const purchaseOrderSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Pre-save: auto-generate PO number if not set
+// Pre-save: auto-generate PO number if not set and calculate bill according to GSTIN
 purchaseOrderSchema.pre('save', async function() {
   if (!this.poNumber) {
     this.poNumber = await generatePONumber();
@@ -210,7 +222,54 @@ purchaseOrderSchema.pre('save', async function() {
     });
   }
   this.subtotal = subtotal;
-  this.gstAmount = (subtotal * (Number(this.gstPercent) || 0)) / 100;
+
+  // Determine GST breakdown according to supplier GST number (GSTIN)
+  const gstin = (this.supplierGstin || '').trim().toUpperCase();
+  const gstRate = Number(this.gstPercent) || 0;
+
+  if (gstRate > 0) {
+    const stateCode = gstin.substring(0, 2);
+    // AIVA Enterprises is based in Maharashtra (State Code 27)
+    if (stateCode === '27') {
+      this.gstType = 'CGST_SGST';
+      this.cgstPercent = gstRate / 2;
+      this.sgstPercent = gstRate / 2;
+      this.igstPercent = 0;
+      this.cgstAmount = (subtotal * this.cgstPercent) / 100;
+      this.sgstAmount = (subtotal * this.sgstPercent) / 100;
+      this.igstAmount = 0;
+      this.gstAmount = this.cgstAmount + this.sgstAmount;
+      this.stateName = 'Maharashtra';
+    } else if (stateCode && /^\d{2}$/.test(stateCode)) {
+      this.gstType = 'IGST';
+      this.cgstPercent = 0;
+      this.sgstPercent = 0;
+      this.igstPercent = gstRate;
+      this.cgstAmount = 0;
+      this.sgstAmount = 0;
+      this.igstAmount = (subtotal * gstRate) / 100;
+      this.gstAmount = this.igstAmount;
+    } else {
+      this.gstType = 'TAX';
+      this.cgstPercent = 0;
+      this.sgstPercent = 0;
+      this.igstPercent = 0;
+      this.cgstAmount = 0;
+      this.sgstAmount = 0;
+      this.igstAmount = 0;
+      this.gstAmount = (subtotal * gstRate) / 100;
+    }
+  } else {
+    this.gstType = 'NONE';
+    this.cgstPercent = 0;
+    this.sgstPercent = 0;
+    this.igstPercent = 0;
+    this.cgstAmount = 0;
+    this.sgstAmount = 0;
+    this.igstAmount = 0;
+    this.gstAmount = 0;
+  }
+
   this.totalAmount = subtotal + this.gstAmount + (Number(this.freightCharges) || 0) + (Number(this.insurance) || 0);
 });
 

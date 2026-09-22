@@ -12,6 +12,8 @@ import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
 import { Trash2, Plus } from "lucide-react"
+import { calculateGSTFromGstin } from "@/utils/gstHelper"
+import { numberToWords } from "@/utils/numberToWords"
 
 const DEFAULT_TERMS = `1. Goods must strictly comply with agreed specifications and quality standards.
 2. Batch-wise Certificate of Analysis (COA) and phytosanitary certificates required prior to dispatch.
@@ -60,6 +62,16 @@ export default function PurchaseOrderFormModal({
   
   const queryClient = useQueryClient()
   const { toast } = useToast()
+
+  // Live bill calculation according to supplier GST number (GSTIN)
+  const subtotal = items.reduce((acc, it) => acc + (Number(it.quantity) || 0) * (Number(it.unitPrice) || 0), 0)
+  const gstCalc = calculateGSTFromGstin(
+    subtotal,
+    financials.gstPercent,
+    formData.supplierGstin,
+    financials.freightCharges,
+    financials.insurance
+  )
 
   useEffect(() => {
     if (isOpen) {
@@ -164,9 +176,21 @@ export default function PurchaseOrderFormModal({
         unitPriceUSD: Number(item.unitPrice) || 0,
         currency: formData.currency
       })),
-      freightCharges: Number(financials.freightCharges) || 0,
-      insurance: Number(financials.insurance) || 0,
-      gstPercent: Number(financials.gstPercent) || 0
+      subtotal: gstCalc.subtotal,
+      freightCharges: gstCalc.freight,
+      insurance: gstCalc.insurance,
+      gstPercent: gstCalc.gstRate,
+      gstAmount: gstCalc.totalGstAmount,
+      gstType: gstCalc.gstType,
+      cgstPercent: gstCalc.cgstPercent,
+      cgstAmount: gstCalc.cgstAmount,
+      sgstPercent: gstCalc.sgstPercent,
+      sgstAmount: gstCalc.sgstAmount,
+      igstPercent: gstCalc.igstPercent,
+      igstAmount: gstCalc.igstAmount,
+      stateName: gstCalc.stateName,
+      totalAmount: gstCalc.grandTotal,
+      totalAmountUSD: gstCalc.grandTotal
     }
     
     if (formData.deliveryDate) {
@@ -287,7 +311,28 @@ export default function PurchaseOrderFormModal({
                 <div className="grid grid-cols-2 gap-2">
                   <div>
                     <Label className="text-xs">GSTIN</Label>
-                    <Input value={formData.supplierGstin} onChange={e => setFormData({...formData, supplierGstin: e.target.value})} placeholder="27XXXXXXXXXXXXX" />
+                    <Input 
+                      value={formData.supplierGstin} 
+                      onChange={e => setFormData({...formData, supplierGstin: e.target.value.toUpperCase()})} 
+                      placeholder="27XXXXXXXXXXXXX" 
+                    />
+                    {formData.supplierGstin.trim().length >= 2 && (
+                      <div className="text-[10px] font-semibold mt-1">
+                        {gstCalc.isIntraState ? (
+                          <span className="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 inline-block">
+                            📍 Maharashtra (Intra-State: CGST {gstCalc.cgstPercent}% + SGST {gstCalc.sgstPercent}%)
+                          </span>
+                        ) : gstCalc.stateName ? (
+                          <span className="text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200 inline-block">
+                            📍 {gstCalc.stateName} (Inter-State: IGST {gstCalc.igstPercent}%)
+                          </span>
+                        ) : (
+                          <span className="text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200 inline-block">
+                            GSTIN: {formData.supplierGstin.toUpperCase()}
+                          </span>
+                        )}
+                      </div>
+                    )}
                   </div>
                   <div>
                     <Label className="text-xs">FSSAI</Label>
@@ -393,8 +438,113 @@ export default function PurchaseOrderFormModal({
               <Input type="number" value={financials.insurance} onChange={e => setFinancials({...financials, insurance: Number(e.target.value)})} />
             </div>
             <div className="space-y-1">
-              <Label className="text-xs">GST / Tax (%)</Label>
-              <Input type="number" value={financials.gstPercent} onChange={e => setFinancials({...financials, gstPercent: Number(e.target.value)})} />
+              <div className="flex items-center justify-between">
+                <Label className="text-xs">GST / Tax (%)</Label>
+                {gstCalc.gstRate > 0 && (
+                  <span className={`text-[10px] font-bold px-1.5 py-0.2 rounded ${
+                    gstCalc.isIntraState ? 'text-emerald-700 bg-emerald-50' : 'text-blue-700 bg-blue-50'
+                  }`}>
+                    {gstCalc.isIntraState ? 'CGST+SGST' : 'IGST'}
+                  </span>
+                )}
+              </div>
+              <Input 
+                type="number" 
+                value={financials.gstPercent} 
+                onChange={e => setFinancials({...financials, gstPercent: Number(e.target.value)})} 
+              />
+              <div className="flex gap-1 pt-1 flex-wrap">
+                {[0, 5, 12, 18, 28].map(slab => (
+                  <button
+                    key={slab}
+                    type="button"
+                    onClick={() => setFinancials({...financials, gstPercent: slab})}
+                    className={`px-1.5 py-0.5 text-[10px] font-bold rounded border transition-colors ${
+                      Number(financials.gstPercent) === slab 
+                        ? 'bg-black text-[#E5B25D] border-black' 
+                        : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-100'
+                    }`}
+                  >
+                    {slab}%
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Live Bill Calculation Summary Card */}
+          <div className="bg-[#FAF6F0] border border-[#E8DFC8] rounded-xl p-3.5 space-y-2 text-xs">
+            <div className="flex items-center justify-between pb-1.5 border-b border-[#E8DFC8]">
+              <span className="font-bold text-slate-900 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+                <span>🧾</span> Bill Calculation Summary ({formData.currency})
+              </span>
+              {gstCalc.gstRate > 0 && (
+                <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${
+                  gstCalc.isIntraState ? 'bg-emerald-100 text-emerald-800' : 'bg-blue-100 text-blue-800'
+                }`}>
+                  {gstCalc.isIntraState 
+                    ? `Intra-State: CGST (${gstCalc.cgstPercent}%) + SGST (${gstCalc.sgstPercent}%)` 
+                    : `Inter-State: IGST (${gstCalc.igstPercent}%)`}
+                </span>
+              )}
+            </div>
+
+            <div className="space-y-1 text-slate-700">
+              <div className="flex justify-between py-0.5">
+                <span>Items Subtotal:</span>
+                <span className="font-semibold text-slate-900">{currSymbol}{gstCalc.subtotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+              </div>
+
+              {gstCalc.gstType === 'CGST_SGST' ? (
+                <>
+                  <div className="flex justify-between py-0.5 text-emerald-800 font-medium">
+                    <span>Central GST (CGST {gstCalc.cgstPercent}%):</span>
+                    <span>+{currSymbol}{gstCalc.cgstAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                  </div>
+                  <div className="flex justify-between py-0.5 text-emerald-800 font-medium">
+                    <span>State GST (SGST {gstCalc.sgstPercent}%):</span>
+                    <span>+{currSymbol}{gstCalc.sgstAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                  </div>
+                </>
+              ) : gstCalc.gstType === 'IGST' ? (
+                <div className="flex justify-between py-0.5 text-blue-800 font-medium">
+                  <span>Integrated GST (IGST {gstCalc.igstPercent}% - {gstCalc.stateName || 'Inter-State'}):</span>
+                  <span>+{currSymbol}{gstCalc.igstAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                </div>
+              ) : gstCalc.totalGstAmount > 0 ? (
+                <div className="flex justify-between py-0.5 text-slate-800 font-medium">
+                  <span>GST / Tax ({gstCalc.gstRate}%):</span>
+                  <span>+{currSymbol}{gstCalc.totalGstAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                </div>
+              ) : (
+                <div className="flex justify-between py-0.5 text-slate-500 italic">
+                  <span>GST (0%):</span>
+                  <span>Nil / Export</span>
+                </div>
+              )}
+
+              {gstCalc.freight > 0 && (
+                <div className="flex justify-between py-0.5">
+                  <span>Freight Charges:</span>
+                  <span>+{currSymbol}{gstCalc.freight.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                </div>
+              )}
+
+              {gstCalc.insurance > 0 && (
+                <div className="flex justify-between py-0.5">
+                  <span>Insurance:</span>
+                  <span>+{currSymbol}{gstCalc.insurance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                </div>
+              )}
+
+              <div className="flex justify-between pt-2 border-t border-[#E8DFC8] text-sm font-black text-slate-950 bg-white p-2 rounded-lg border border-slate-200">
+                <span>Total Bill Amount:</span>
+                <span className="text-[#C5A059]">{currSymbol}{gstCalc.grandTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+              </div>
+
+              <div className="text-[10px] text-slate-600 font-medium italic pt-1">
+                <span className="font-bold">In words: </span>{numberToWords(gstCalc.grandTotal, formData.currency)}
+              </div>
             </div>
           </div>
 

@@ -9,6 +9,7 @@ import { downloadPurchaseOrderPDF } from "@/utils/generatePDF"
 import { numberToWords } from "@/utils/numberToWords"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { AIVA_PO_LOGO_BASE64 } from "@/assets/logoBase64"
+import { calculateGSTFromGstin } from "@/utils/gstHelper"
 
 interface Props {
   isOpen: boolean
@@ -34,6 +35,14 @@ export default function PurchaseOrderPreviewModal({ isOpen, onClose, order }: Pr
 
   const totalQty = rawItems.reduce((acc: number, item: any) => acc + (Number(item.quantity) || 0), 0);
   const primaryUnit = rawItems[0]?.unit || 'MT';
+  const subtotal = order.subtotal || rawItems.reduce((acc: number, item: any) => acc + (Number(item.amount) || (Number(item.quantity) * Number(item.unitPrice)) || 0), 0);
+  const gstCalc = calculateGSTFromGstin(
+    subtotal,
+    order.gstPercent || 0,
+    order.supplierGstin || "",
+    order.freightCharges || 0,
+    order.insurance || 0
+  );
 
   // Fill up to 8 rows if fewer items for the authentic grid look
   const totalRowsNeeded = Math.max(rawItems.length, 6);
@@ -306,8 +315,33 @@ export default function PurchaseOrderPreviewModal({ isOpen, onClose, order }: Pr
                 <div className="border-l border-slate-300 text-[10px]">
                   <div className="flex justify-between py-1 px-3 border-b border-slate-200 bg-white">
                     <span className="text-slate-600 font-medium">Subtotal</span>
-                    <span className="font-semibold text-slate-900">{formatMoney(order.subtotal || rawItems.reduce((s: number, i: any) => s + (i.amount || 0), 0))}</span>
+                    <span className="font-semibold text-slate-900">{formatMoney(subtotal)}</span>
                   </div>
+
+                  {/* Dynamic GST breakdown according to supplier GST number */}
+                  {gstCalc.gstType === 'CGST_SGST' ? (
+                    <>
+                      <div className="flex justify-between py-1 px-3 border-b border-slate-200 bg-white">
+                        <span className="text-slate-600 font-medium">CGST ({gstCalc.cgstPercent}%)</span>
+                        <span className="text-slate-800 font-medium">{formatMoney(gstCalc.cgstAmount)}</span>
+                      </div>
+                      <div className="flex justify-between py-1 px-3 border-b border-slate-200 bg-white">
+                        <span className="text-slate-600 font-medium">SGST ({gstCalc.sgstPercent}%)</span>
+                        <span className="text-slate-800 font-medium">{formatMoney(gstCalc.sgstAmount)}</span>
+                      </div>
+                    </>
+                  ) : gstCalc.gstType === 'IGST' ? (
+                    <div className="flex justify-between py-1 px-3 border-b border-slate-200 bg-white">
+                      <span className="text-slate-600 font-medium">IGST ({gstCalc.igstPercent}%)</span>
+                      <span className="text-slate-800 font-medium">{formatMoney(gstCalc.igstAmount)}</span>
+                    </div>
+                  ) : gstCalc.totalGstAmount > 0 ? (
+                    <div className="flex justify-between py-1 px-3 border-b border-slate-200 bg-white">
+                      <span className="text-slate-600 font-medium">GST / Tax ({gstCalc.gstRate}%)</span>
+                      <span className="text-slate-800 font-medium">{formatMoney(gstCalc.totalGstAmount)}</span>
+                    </div>
+                  ) : null}
+
                   <div className="flex justify-between py-1 px-3 border-b border-slate-200 bg-white">
                     <span className="text-slate-600 font-medium">Freight (As Applicable)</span>
                     <span className="text-slate-800">{order.freightCharges ? formatMoney(order.freightCharges) : '-'}</span>
@@ -322,7 +356,7 @@ export default function PurchaseOrderPreviewModal({ isOpen, onClose, order }: Pr
                   </div>
                   <div className="flex justify-between py-1.5 px-3 bg-[#E5B25D] text-slate-950 font-black text-[12px]">
                     <span>Total ({currency})</span>
-                    <span className="tracking-wide">{formatMoney(order.totalAmount || 0)}</span>
+                    <span className="tracking-wide">{formatMoney(order.totalAmount || gstCalc.grandTotal)}</span>
                   </div>
                 </div>
               </div>
@@ -331,7 +365,7 @@ export default function PurchaseOrderPreviewModal({ isOpen, onClose, order }: Pr
             {/* Total Amount in Words Banner */}
             <div className="border-x border-b border-slate-300 px-3 py-1.5 bg-[#FAF6F0] text-[10px] text-slate-800 font-medium mb-4">
               <span className="font-bold">Total amount (in words): </span>
-              <span>{numberToWords(order.totalAmount || 0, currency)}</span>
+              <span>{numberToWords(order.totalAmount || gstCalc.grandTotal, currency)}</span>
             </div>
 
             {/* ============================================================ */}
