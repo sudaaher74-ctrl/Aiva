@@ -105,18 +105,15 @@ const purchaseOrderSchema = new mongoose.Schema({
   },
   incoterms: {
     type: String,
-    default: 'FOB',
-    enum: ['FOB', 'CIF', 'EXW', 'CFR', 'DDP', 'FCA', 'CPT']
+    default: 'FOB'
   },
   containerType: {
     type: String,
-    default: '20ft Dry',
-    enum: ['20ft Dry', '40ft Dry', '40ft HC', 'Reefer 20ft', 'Reefer 40ft']
+    default: '20ft Dry'
   },
   shipmentMethod: {
     type: String,
-    default: 'Sea',
-    enum: ['Sea', 'Air', 'Road', 'Rail', 'Multimodal']
+    default: 'Sea'
   },
   deliveryDate: {
     type: Date
