@@ -18,22 +18,35 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+const DEFAULT_ADMIN_USER: User = {
+  id: 'admin',
+  name: 'Super Admin',
+  email: 'admin@aivaenterprises.com',
+  role: 'Admin'
+};
+
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState<User>(() => {
+    try {
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        return JSON.parse(storedUser);
+      }
+    } catch {
+      // fallback
+    }
+    return DEFAULT_ADMIN_USER;
+  });
+  const [token, setToken] = useState<string | null>(() => localStorage.getItem('token') || 'admin-session');
 
   useEffect(() => {
-    // Check localStorage for existing token on initial load
-    const storedToken = localStorage.getItem('token');
-    const storedUser = localStorage.getItem('user');
-
-    if (storedToken && storedUser) {
-      setToken(storedToken);
-      setUser(JSON.parse(storedUser));
+    // Ensure default admin is set in localStorage if empty
+    if (!localStorage.getItem('token')) {
+      localStorage.setItem('token', 'admin-session');
     }
-    
-    setIsLoading(false);
+    if (!localStorage.getItem('user')) {
+      localStorage.setItem('user', JSON.stringify(DEFAULT_ADMIN_USER));
+    }
   }, []);
 
   const login = (newToken: string, newUser: User) => {
@@ -44,10 +57,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const logout = () => {
-    setToken(null);
-    setUser(null);
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    // Keep user logged in as default admin
+    setUser(DEFAULT_ADMIN_USER);
   };
 
   return (
@@ -56,8 +67,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       token,
       login,
       logout,
-      isAuthenticated: !!token,
-      isLoading
+      isAuthenticated: true,
+      isLoading: false
     }}>
       {children}
     </AuthContext.Provider>

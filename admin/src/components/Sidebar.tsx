@@ -1,7 +1,6 @@
 import { Link, useLocation } from "react-router-dom"
 import { cn } from "@/lib/utils"
-import { LayoutDashboard, Users, Package, Settings, LogOut, FileText, ShoppingCart, ClipboardList, BarChart3, Building2 } from "lucide-react"
-import { useAuth } from "../contexts/AuthContext"
+import { LayoutDashboard, Users, Package, Settings, FileText, ShoppingCart, ClipboardList, BarChart3, Building2 } from "lucide-react"
 
 const navItems = [
   {
@@ -48,7 +47,6 @@ const navItems = [
 
 export default function Sidebar() {
   const location = useLocation()
-  const { logout } = useAuth()
 
   return (
     <div className="flex h-full w-64 flex-col border-r border-zinc-800 bg-gradient-to-b from-zinc-950 to-zinc-900 text-white shadow-2xl z-20 shrink-0">
@@ -90,13 +88,6 @@ export default function Sidebar() {
           <Settings className="h-5 w-5" />
           Settings
         </Link>
-        <button className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-zinc-400 transition-all duration-300 hover:bg-red-500/10 hover:text-red-400 hover:scale-[1.02] mt-1" onClick={() => {
-          logout();
-          window.location.href = '/login';
-        }}>
-          <LogOut className="h-5 w-5" />
-          Logout
-        </button>
       </div>
     </div>
   )

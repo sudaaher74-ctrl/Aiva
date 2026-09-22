@@ -2,6 +2,24 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/User');
 
+const getFallbackAdminUser = async () => {
+  try {
+    let admin = await User.findOne({ role: 'Admin' }).select('-password_hash');
+    if (!admin) {
+      admin = await User.findOne().select('-password_hash');
+    }
+    if (admin) return admin;
+  } catch (err) {
+    // Ignore db query error in fallback
+  }
+  return {
+    _id: 'default-admin-id',
+    name: 'Super Admin',
+    email: 'admin@aivaenterprises.com',
+    role: 'Admin'
+  };
+};
+
 const protect = async (req, res, next) => {
   let token;
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
@@ -9,7 +27,9 @@ const protect = async (req, res, next) => {
   }
   
   if (!token) {
-    return res.status(401).json({ success: false, message: 'Not authorized, no token' });
+    // Since login is removed from admin dashboard, grant default admin access
+    req.user = await getFallbackAdminUser();
+    return next();
   }
 
   try {
@@ -17,19 +37,22 @@ const protect = async (req, res, next) => {
     const currentUser = await User.findById(decoded.id).select('-password_hash');
     
     if (!currentUser) {
-      return res.status(401).json({ success: false, message: 'The user belonging to this token no longer exists.' });
+      req.user = await getFallbackAdminUser();
+      return next();
     }
 
     req.user = currentUser;
     next();
   } catch (err) {
-    res.status(401).json({ success: false, message: 'Not authorized, token failed' });
+    // If token is invalid/mock/expired, fallback to admin access
+    req.user = await getFallbackAdminUser();
+    return next();
   }
 };
 
 const restrictTo = (...roles) => {
   return (req, res, next) => {
-    if (!roles.includes(req.user.role)) {
+    if (!req.user || !roles.includes(req.user.role)) {
       return res.status(403).json({ success: false, message: 'You do not have permission to perform this action' });
     }
     next();
