@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useState, useEffect, useMemo } from "react"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { api } from "@/lib/axios"
 import {
   Dialog,
@@ -62,6 +62,106 @@ export default function PurchaseOrderFormModal({
   
   const queryClient = useQueryClient()
   const { toast } = useToast()
+
+  // Fetch Products Catalog
+  const { data: products } = useQuery({
+    queryKey: ['products'],
+    queryFn: async () => {
+      const res = await api.get('/products')
+      return res.data.data
+    },
+    enabled: isOpen
+  })
+
+  // Fetch Past POs for Saved Supplier Picker
+  const { data: pastPOs } = useQuery({
+    queryKey: ['purchaseOrders'],
+    queryFn: async () => {
+      const res = await api.get('/purchase-orders?limit=100')
+      return res.data.data
+    },
+    enabled: isOpen
+  })
+
+  const savedSuppliers = useMemo(() => {
+    if (!Array.isArray(pastPOs)) return []
+    const map = new Map<string, any>()
+    pastPOs.forEach((po: any) => {
+      const comp = (po.buyerCompany || "").trim()
+      if (comp && !map.has(comp)) {
+        map.set(comp, {
+          company: comp,
+          name: po.buyerName || "",
+          email: po.buyerEmail || "",
+          phone: po.buyerPhone || "",
+          address: po.buyerAddress || "",
+          country: po.buyerCountry || "India",
+          gstin: po.supplierGstin || "",
+          fssai: po.supplierFssai || ""
+        })
+      }
+    })
+    return Array.from(map.values())
+  }, [pastPOs])
+
+  const handleSelectSupplier = (companyName: string) => {
+    const found = savedSuppliers.find(s => s.company === companyName)
+    if (!found) return
+    setFormData(prev => ({
+      ...prev,
+      buyerCompany: found.company,
+      buyerName: found.name || prev.buyerName,
+      buyerEmail: found.email || prev.buyerEmail,
+      buyerPhone: found.phone || prev.buyerPhone,
+      buyerAddress: found.address || prev.buyerAddress,
+      buyerCountry: found.country || prev.buyerCountry,
+      supplierGstin: found.gstin || prev.supplierGstin,
+      supplierFssai: found.fssai || prev.supplierFssai
+    }))
+  }
+
+  const handleProductSelect = (index: number, productId: string) => {
+    if (!products) return
+    const p = products.find((pr: any) => pr._id === productId)
+    if (!p) return
+
+    const nameLower = (p.name || "").toLowerCase()
+    const catLower = (p.category || "").toLowerCase()
+
+    let defaultHsn = "08119090"
+    let defaultPackaging = "215 Kg Aseptic Drum"
+
+    if (nameLower.includes("tomato") || catLower.includes("tomato")) {
+      defaultHsn = "20029000"
+      defaultPackaging = "220 Kg Steel Drum"
+    } else if (nameLower.includes("spice") || catLower.includes("spice") || nameLower.includes("turmeric") || nameLower.includes("chilli") || nameLower.includes("pepper")) {
+      defaultHsn = "09103020"
+      defaultPackaging = "25 Kg Kraft Paper Bag"
+    } else if (nameLower.includes("guava") || nameLower.includes("mango") || nameLower.includes("papaya") || nameLower.includes("banana")) {
+      defaultHsn = "08119090"
+      defaultPackaging = "215 Kg Aseptic Drum"
+    }
+
+    let defaultSpec = ""
+    if (p.brix) {
+      defaultSpec = p.tab ? `${p.tab.toUpperCase()}, ${p.brix}` : p.brix
+    } else if (p.tab) {
+      defaultSpec = `${p.tab.toUpperCase()}, Export Grade`
+    } else {
+      defaultSpec = p.description || "Commercial Export Standard"
+    }
+
+    const updated = [...items]
+    updated[index] = {
+      ...updated[index],
+      productName: p.name,
+      hsnCode: defaultHsn,
+      specification: defaultSpec,
+      packaging: defaultPackaging,
+      unit: "MT"
+    }
+    setItems(updated)
+  }
 
   // Live bill calculation according to supplier GST number (GSTIN)
   const subtotal = items.reduce((acc, it) => acc + (Number(it.quantity) || 0) * (Number(it.unitPrice) || 0), 0)
@@ -276,9 +376,40 @@ export default function PurchaseOrderFormModal({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Supplier / Seller */}
             <div className="p-4 border rounded-xl space-y-3 bg-white shadow-sm">
-              <div className="font-semibold text-sm text-slate-800 flex items-center gap-2 border-b pb-2">
+              <div className="font-semibold text-sm text-slate-800 flex items-center justify-between border-b pb-2">
                 <span>Supplier / Seller</span>
+                {savedSuppliers.length > 0 && (
+                  <span className="text-[10px] text-muted-foreground font-normal">
+                    {savedSuppliers.length} saved
+                  </span>
+                )}
               </div>
+
+              {/* Quick-Select Saved Supplier */}
+              {savedSuppliers.length > 0 && (
+                <div className="bg-slate-50 border border-dashed border-slate-300 rounded-lg p-2 space-y-1">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10.5px] font-bold text-slate-700 flex items-center gap-1">
+                      <span>⚡</span> Quick-Fill Saved Supplier
+                    </span>
+                  </div>
+                  <select
+                    onChange={(e) => {
+                      if (e.target.value) handleSelectSupplier(e.target.value)
+                    }}
+                    defaultValue=""
+                    className="w-full text-xs bg-white border border-slate-300 rounded-md p-1.5 focus:outline-none focus:ring-1 focus:ring-slate-400 font-medium"
+                  >
+                    <option value="">-- Choose from {savedSuppliers.length} saved suppliers --</option>
+                    {savedSuppliers.map((s) => (
+                      <option key={s.company} value={s.company}>
+                        {s.company} {s.country ? `(${s.country})` : ''} {s.gstin ? `[GST: ${s.gstin}]` : ''}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
+
               <div className="space-y-2">
                 <div>
                   <Label className="text-xs">Company Name *</Label>
@@ -382,8 +513,26 @@ export default function PurchaseOrderFormModal({
             <div className="space-y-3">
               {items.map((item, index) => (
                 <div key={index} className="p-3 bg-slate-50 rounded-xl border space-y-2 relative">
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs font-bold text-slate-500">Item #{index + 1}</span>
+                  <div className="flex justify-between items-center flex-wrap gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-bold text-slate-700">Item #{index + 1}</span>
+                      {products && products.length > 0 && (
+                        <select
+                          onChange={(e) => {
+                            if (e.target.value) handleProductSelect(index, e.target.value)
+                          }}
+                          defaultValue=""
+                          className="text-[11px] bg-white border border-slate-300 rounded px-2 py-0.5 text-slate-700 font-medium focus:outline-none focus:ring-1 focus:ring-slate-400"
+                        >
+                          <option value="">⚡ Auto-fill from Catalog...</option>
+                          {products.map((p: any) => (
+                            <option key={p._id} value={p._id}>
+                              {p.name} {p.category ? `(${p.category})` : ''}
+                            </option>
+                          ))}
+                        </select>
+                      )}
+                    </div>
                     <Button type="button" variant="ghost" size="icon" className="h-7 w-7 text-red-500 hover:text-red-700 hover:bg-red-50" onClick={() => removeItem(index)}>
                       <Trash2 className="h-3.5 w-3.5" />
                     </Button>

@@ -492,7 +492,7 @@ export const downloadPurchaseOrderPDF = (order: any) => {
     // ============================================================
     // 7. BOTTOM: BANK DETAILS & SIGNATURE (Two Cards)
     // ============================================================
-    const botCardH = 25
+    const botCardH = 26
     
     // Check if we need to fit tightly before the footer
     if (currentY + botCardH > pageHeight - 16) {
@@ -511,24 +511,34 @@ export const downloadPurchaseOrderPDF = (order: any) => {
     doc.setTextColor(...colors.textDark)
     doc.text("BANK DETAILS (FOR PAYMENTS)", supX + 3, currentY + 3.8)
 
-    let bkY = currentY + 9.5
+    let bkY = currentY + 8.8
     doc.setFont("helvetica", "normal")
-    doc.setFontSize(6.8)
+    doc.setFontSize(6.5)
     doc.setTextColor(...colors.textMuted)
 
-    const bankDetails = [
-      ["Bank Name", ": HDFC Bank Ltd"],
-      ["Account No.", ": 50200088281775"],
-      ["IFSC / SWIFT", ": HDFC0000240 / HDFCINBB"],
-      ["Branch", ": CBD Belapur, Navi Mumbai"]
-    ]
+    const isINR = currency === 'INR'
+    const bankDetails = isINR
+      ? [
+          ["Bank Name", ": HDFC Bank Ltd"],
+          ["Account No.", ": 50200088281775"],
+          ["IFSC Code", ": HDFC0000240"],
+          ["Account Type", ": Current Account"],
+          ["Branch", ": CBD Belapur, Navi Mumbai"]
+        ]
+      : [
+          ["Bank Name", ": HDFC Bank Ltd"],
+          ["Account No.", ": 50200088281775"],
+          ["SWIFT Code", ": HDFCINBB"],
+          ["Account Type", ": Trade / Forex (EEFC)"],
+          ["Branch", ": CBD Belapur, Navi Mumbai, India"]
+        ]
 
     bankDetails.forEach(b => {
       doc.text(b[0], supX + 3, bkY)
       doc.setTextColor(...colors.textDark)
-      doc.text(b[1], supX + 26, bkY)
+      doc.text(b[1], supX + 24, bkY)
       doc.setTextColor(...colors.textMuted)
-      bkY += 3.6
+      bkY += 3.2
     })
 
     // Right: For AIVA Enterprises & Seal

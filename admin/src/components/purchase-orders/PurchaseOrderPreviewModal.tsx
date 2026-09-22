@@ -397,12 +397,27 @@ export default function PurchaseOrderPreviewModal({ isOpen, onClose, order }: Pr
                 <div className="p-3 text-[9.5px] grid grid-cols-[90px_1fr] gap-x-1 gap-y-1">
                   <span className="text-slate-500 font-medium">Bank Name</span>
                   <span className="text-slate-800">: HDFC Bank Ltd</span>
+                  <span className="text-slate-500 font-medium">Account Name</span>
+                  <span className="text-slate-800 font-semibold">: AIVA ENTERPRISES</span>
                   <span className="text-slate-500 font-medium">Account No.</span>
                   <span className="text-slate-800">: 50200088281775</span>
-                  <span className="text-slate-500 font-medium">IFSC / SWIFT</span>
-                  <span className="text-slate-800">: HDFC0000240 / HDFCINBB</span>
+                  {currency === 'INR' ? (
+                    <>
+                      <span className="text-slate-500 font-medium">IFSC Code</span>
+                      <span className="text-slate-800 font-mono">: HDFC0000240</span>
+                      <span className="text-slate-500 font-medium">Account Type</span>
+                      <span className="text-slate-800">: Current Account</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-slate-500 font-medium">SWIFT Code</span>
+                      <span className="text-slate-800 font-mono">: HDFCINBB</span>
+                      <span className="text-slate-500 font-medium">Purpose</span>
+                      <span className="text-slate-800">: Trade / Export Remittance (EEFC)</span>
+                    </>
+                  )}
                   <span className="text-slate-500 font-medium">Branch</span>
-                  <span className="text-slate-800">: CBD Belapur, Navi Mumbai</span>
+                  <span className="text-slate-800">: CBD Belapur, Navi Mumbai{currency === 'INR' ? '' : ', India'}</span>
                 </div>
               </div>
 
