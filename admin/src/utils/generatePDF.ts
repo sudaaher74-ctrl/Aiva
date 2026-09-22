@@ -1,6 +1,7 @@
 import jsPDF from "jspdf"
 import autoTable from "jspdf-autotable"
 import { numberToWords } from "./numberToWords"
+import { AIVA_PO_LOGO_BASE64 } from "@/assets/logoBase64"
 
 export const downloadPurchaseOrderPDF = (order: any) => {
   const doc = new jsPDF({
@@ -48,29 +49,22 @@ export const downloadPurchaseOrderPDF = (order: any) => {
 
   let currentY = margin
 
-  const continueGenerating = (logoImg?: HTMLImageElement) => {
+  const continueGenerating = () => {
     // ============================================================
     // 1. TOP HEADER SECTION (3 Columns)
     // ============================================================
     const headerHeight = 42
 
-    // --- Column 1: Left Black Brand Card (x: 10, w: 34, h: 42) ---
+    // --- Column 1: Left Black Brand Card (x: 10, w: 34, h: 42) with Full Logo ---
     const brandCardWidth = 34
     doc.setFillColor(...colors.cardBlack)
     doc.rect(margin, currentY, brandCardWidth, headerHeight, 'F')
 
-    if (logoImg) {
-      const imgW = 20
-      const imgH = (logoImg.height * imgW) / logoImg.width
-      const imgX = margin + (brandCardWidth - imgW) / 2
-      const imgY = currentY + 4
-      try {
-        doc.addImage(logoImg, 'PNG', imgX, imgY, imgW, imgH)
-      } catch (e) {
-        // fallback emblem
-      }
-    } else {
-      // Fallback Gold Circle with 'Q'/'A'
+    try {
+      doc.addImage(AIVA_PO_LOGO_BASE64, 'PNG', margin, currentY, brandCardWidth, headerHeight)
+    } catch (e) {
+      console.warn("Could not render logo in PDF", e)
+      // Fallback Gold Circle with 'Q'
       doc.setDrawColor(...colors.goldAccent)
       doc.setLineWidth(0.8)
       doc.circle(margin + brandCardWidth / 2, currentY + 12, 6, 'S')
@@ -78,22 +72,10 @@ export const downloadPurchaseOrderPDF = (order: any) => {
       doc.setFontSize(10)
       doc.setTextColor(...colors.goldAccent)
       doc.text("Q", margin + brandCardWidth / 2, currentY + 13.5, { align: "center" })
+      doc.text("AIVA", margin + brandCardWidth / 2, currentY + 27, { align: "center" })
+      doc.setFontSize(6.5)
+      doc.text("ENTERPRISES", margin + brandCardWidth / 2, currentY + 31, { align: "center" })
     }
-
-    // Brand Titles
-    doc.setFont("helvetica", "bold")
-    doc.setFontSize(10)
-    doc.setTextColor(...colors.goldAccent)
-    doc.text("AIVA", margin + brandCardWidth / 2, currentY + 27, { align: "center" })
-
-    doc.setFontSize(6.5)
-    doc.text("ENTERPRISES", margin + brandCardWidth / 2, currentY + 31, { align: "center" })
-
-    doc.setFont("helvetica", "normal")
-    doc.setFontSize(4.5)
-    doc.setTextColor(180, 180, 180)
-    doc.text("THE STANDARD", margin + brandCardWidth / 2, currentY + 36, { align: "center" })
-    doc.text("BEHIND THE STANDARD.", margin + brandCardWidth / 2, currentY + 38.5, { align: "center" })
 
     // --- Column 2: Center Company Details (x: 48, w: 86) ---
     const centerStartX = margin + brandCardWidth + 4
@@ -597,15 +579,6 @@ export const downloadPurchaseOrderPDF = (order: any) => {
     doc.save(`${filename}.pdf`)
   }
 
-  // Load Logo
-  const img = new Image()
-  img.crossOrigin = "Anonymous"
-  img.src = '/admin/logo.png'
-  img.onload = () => {
-    continueGenerating(img)
-  }
-  img.onerror = () => {
-    console.warn("Logo could not be loaded for PDF, using vector fallback.")
-    continueGenerating()
-  }
+  // Execute generation with pre-embedded logo data URI
+  continueGenerating()
 }

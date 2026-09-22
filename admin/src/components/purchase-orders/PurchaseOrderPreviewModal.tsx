@@ -8,6 +8,7 @@ import { Download, Printer, Building2, MapPin, Mail, Phone, Globe, FileText, Pen
 import { downloadPurchaseOrderPDF } from "@/utils/generatePDF"
 import { numberToWords } from "@/utils/numberToWords"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { AIVA_PO_LOGO_BASE64 } from "@/assets/logoBase64"
 
 interface Props {
   isOpen: boolean
@@ -101,32 +102,13 @@ export default function PurchaseOrderPreviewModal({ isOpen, onClose, order }: Pr
             {/* ============================================================ */}
             <div className="grid grid-cols-[140px_1fr_260px] gap-4 mb-4 items-stretch">
               
-              {/* Left Column: Black Brand Card */}
-              <div className="bg-[#0A0A0A] text-white p-4 flex flex-col items-center justify-center text-center rounded-sm">
-                <div className="w-14 h-14 relative mb-2 flex items-center justify-center">
-                  <img 
-                    src="/admin/logo.png" 
-                    alt="AIVA Logo" 
-                    className="w-full h-full object-contain"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = 'none';
-                      const fb = document.getElementById('preview-logo-fallback');
-                      if (fb) fb.style.display = 'flex';
-                    }} 
-                  />
-                  <div id="preview-logo-fallback" className="hidden w-12 h-12 rounded-full border-2 border-[#D4AF37] items-center justify-center text-[#D4AF37] font-bold text-xl">
-                    Q
-                  </div>
-                </div>
-                <div className="text-[#D4AF37] font-serif font-black tracking-widest text-sm leading-tight">
-                  AIVA
-                </div>
-                <div className="text-[#D4AF37] text-[9px] font-bold tracking-wider mb-2">
-                  ENTERPRISES
-                </div>
-                <div className="text-[7px] text-slate-400 font-medium tracking-tight uppercase leading-snug">
-                  The Standard<br />Behind The Standard.
-                </div>
+              {/* Left Column: Full Brand Logo Card */}
+              <div className="bg-[#0A0A0A] rounded-sm overflow-hidden flex items-center justify-center border border-zinc-800 shadow-sm self-stretch max-h-[175px]">
+                <img 
+                  src={AIVA_PO_LOGO_BASE64} 
+                  alt="AIVA Enterprises - Full Logo" 
+                  className="w-full h-full object-contain"
+                />
               </div>
 
               {/* Center Column: Company Information */}
