@@ -88,8 +88,8 @@ export default function DashboardLayout() {
 
             <div className="flex items-center gap-3">
               <div className="flex flex-col text-right">
-                <span className="text-sm font-semibold leading-none text-slate-800">{user?.name || "Super Admin"}</span>
-                <span className="text-xs text-muted-foreground">{user?.email || "Aivaenterprises11@gmail.com"}</span>
+                <span className="text-sm font-semibold leading-none text-slate-800">{user?.name || "Admin"}</span>
+                {user?.email && <span className="text-xs text-muted-foreground">{user.email}</span>}
               </div>
               <button
                 type="button"

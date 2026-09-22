@@ -9,7 +9,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Lock, Mail, Eye, EyeOff, ShieldCheck, ArrowRight } from 'lucide-react';
 
 export default function Login() {
-  const [email, setEmail] = useState('Aivaenterprises11@gmail.com');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -85,7 +85,7 @@ export default function Login() {
                   autoComplete="email"
                   required
                   className="pl-10 bg-zinc-800/80 border-zinc-700 text-white placeholder:text-zinc-500 text-xs focus-visible:ring-[#c5a059] h-10"
-                  placeholder="Aivaenterprises11@gmail.com"
+                  placeholder="name@company.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
