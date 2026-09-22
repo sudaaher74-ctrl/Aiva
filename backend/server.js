@@ -140,6 +140,7 @@ app.use('/api/quotations', require('./routes/quotations'));
 app.use('/api/inventory', require('./routes/inventory'));
 app.use('/api/search', require('./routes/search'));
 app.use('/api/ai', require('./routes/ai'));
+app.use('/api/settings', require('./routes/settings'));
 
 // Base Health Check endpoints (Requested)
 app.get('/', (req, res) => {

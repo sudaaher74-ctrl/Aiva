@@ -4,7 +4,7 @@ import { numberToWords } from "./numberToWords"
 import { AIVA_PO_LOGO_BASE64 } from "@/assets/logoBase64"
 import { calculateGSTFromGstin } from "./gstHelper"
 
-export const downloadPurchaseOrderPDF = (order: any) => {
+export const downloadPurchaseOrderPDF = (order: any, companySettings?: any) => {
   const doc = new jsPDF({
     orientation: 'portrait',
     unit: 'mm',
@@ -517,20 +517,35 @@ export const downloadPurchaseOrderPDF = (order: any) => {
     doc.setTextColor(...colors.textMuted)
 
     const isINR = currency === 'INR'
+    const inrBank = companySettings?.inrBank || {
+      bankName: 'HDFC Bank Ltd',
+      accountNumber: '50200088281775',
+      ifscCode: 'HDFC0000240',
+      accountType: 'Current Account',
+      branch: 'CBD Belapur, Navi Mumbai'
+    }
+    const usdBank = companySettings?.usdBank || {
+      bankName: 'HDFC Bank Ltd',
+      accountNumber: '50200088281775',
+      swiftCode: 'HDFCINBB',
+      accountType: 'Trade / Forex (EEFC)',
+      branch: 'CBD Belapur, Navi Mumbai, India'
+    }
+
     const bankDetails = isINR
       ? [
-          ["Bank Name", ": HDFC Bank Ltd"],
-          ["Account No.", ": 50200088281775"],
-          ["IFSC Code", ": HDFC0000240"],
-          ["Account Type", ": Current Account"],
-          ["Branch", ": CBD Belapur, Navi Mumbai"]
+          ["Bank Name", `: ${inrBank.bankName || 'HDFC Bank Ltd'}`],
+          ["Account No.", `: ${inrBank.accountNumber || '50200088281775'}`],
+          ["IFSC Code", `: ${inrBank.ifscCode || 'HDFC0000240'}`],
+          ["Account Type", `: ${inrBank.accountType || 'Current Account'}`],
+          ["Branch", `: ${inrBank.branch || 'CBD Belapur, Navi Mumbai'}`]
         ]
       : [
-          ["Bank Name", ": HDFC Bank Ltd"],
-          ["Account No.", ": 50200088281775"],
-          ["SWIFT Code", ": HDFCINBB"],
-          ["Account Type", ": Trade / Forex (EEFC)"],
-          ["Branch", ": CBD Belapur, Navi Mumbai, India"]
+          ["Bank Name", `: ${usdBank.bankName || 'HDFC Bank Ltd'}`],
+          ["Account No.", `: ${usdBank.accountNumber || '50200088281775'}`],
+          ["SWIFT Code", `: ${usdBank.swiftCode || 'HDFCINBB'}`],
+          ["Account Type", `: ${usdBank.accountType || 'Trade / Forex (EEFC)'}`],
+          ["Branch", `: ${usdBank.branch || 'CBD Belapur, Navi Mumbai, India'}`]
         ]
 
     bankDetails.forEach(b => {
@@ -564,11 +579,14 @@ export const downloadPurchaseOrderPDF = (order: any) => {
     doc.setTextColor(...colors.textMuted)
     doc.text("Authorized Signatory", shipX + 3, sigLineY - 1)
 
+    const sigName = companySettings?.authorizedSignatory?.name || "Aishwarya Ingale"
+    const sigDesig = companySettings?.authorizedSignatory?.designation || "Managing Director"
+
     let sigY = sigLineY + 4
     doc.setFontSize(6.8)
-    doc.text("Name          : Aishwarya Ingale", shipX + 3, sigY)
+    doc.text(`Name          : ${sigName}`, shipX + 3, sigY)
     sigY += 3.4
-    doc.text("Designation : Managing Director", shipX + 3, sigY)
+    doc.text(`Designation : ${sigDesig}`, shipX + 3, sigY)
     sigY += 3.4
     doc.text(`Date           : ${formatDate(order.createdAt || new Date())}`, shipX + 3, sigY)
 

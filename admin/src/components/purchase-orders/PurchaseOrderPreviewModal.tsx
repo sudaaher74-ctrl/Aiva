@@ -10,6 +10,8 @@ import { numberToWords } from "@/utils/numberToWords"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { AIVA_PO_LOGO_BASE64 } from "@/assets/logoBase64"
 import { calculateGSTFromGstin } from "@/utils/gstHelper"
+import { useQuery } from "@tanstack/react-query"
+import { api } from "@/lib/axios"
 
 interface Props {
   isOpen: boolean
@@ -19,6 +21,15 @@ interface Props {
 
 export default function PurchaseOrderPreviewModal({ isOpen, onClose, order }: Props) {
   if (!order) return null;
+
+  const { data: companySettings } = useQuery({
+    queryKey: ['companySettings'],
+    queryFn: async () => {
+      const res = await api.get('/settings/company')
+      return res.data.data
+    },
+    enabled: isOpen
+  })
 
   const currency = (order.currency || 'USD').toUpperCase();
 
@@ -96,8 +107,8 @@ export default function PurchaseOrderPreviewModal({ isOpen, onClose, order }: Pr
             <Button variant="outline" size="sm" onClick={() => window.print()} className="hidden md:flex">
               <Printer className="mr-2 h-4 w-4" /> Print
             </Button>
-            <Button size="sm" onClick={() => downloadPurchaseOrderPDF(order)} className="bg-black hover:bg-zinc-800 text-[#D4AF37] font-semibold shadow">
-              <Download className="mr-2 h-4 w-4" /> Download PDF
+            <Button size="sm" onClick={() => downloadPurchaseOrderPDF(order, companySettings)} className="bg-black hover:bg-zinc-800 text-[#D4AF37] font-semibold shadow">
+              <Download className="h-4 w-4 mr-1.5" /> Export PDF
             </Button>
           </div>
         </div>
@@ -396,28 +407,28 @@ export default function PurchaseOrderPreviewModal({ isOpen, onClose, order }: Pr
                 </div>
                 <div className="p-3 text-[9.5px] grid grid-cols-[90px_1fr] gap-x-1 gap-y-1">
                   <span className="text-slate-500 font-medium">Bank Name</span>
-                  <span className="text-slate-800">: HDFC Bank Ltd</span>
+                  <span className="text-slate-800">: {(currency === 'INR' ? companySettings?.inrBank?.bankName : companySettings?.usdBank?.bankName) || 'HDFC Bank Ltd'}</span>
                   <span className="text-slate-500 font-medium">Account Name</span>
-                  <span className="text-slate-800 font-semibold">: AIVA ENTERPRISES</span>
+                  <span className="text-slate-800 font-semibold">: {(currency === 'INR' ? companySettings?.inrBank?.accountName : companySettings?.usdBank?.accountName) || 'AIVA ENTERPRISES'}</span>
                   <span className="text-slate-500 font-medium">Account No.</span>
-                  <span className="text-slate-800">: 50200088281775</span>
+                  <span className="text-slate-800">: {(currency === 'INR' ? companySettings?.inrBank?.accountNumber : companySettings?.usdBank?.accountNumber) || '50200088281775'}</span>
                   {currency === 'INR' ? (
                     <>
                       <span className="text-slate-500 font-medium">IFSC Code</span>
-                      <span className="text-slate-800 font-mono">: HDFC0000240</span>
+                      <span className="text-slate-800 font-mono">: {companySettings?.inrBank?.ifscCode || 'HDFC0000240'}</span>
                       <span className="text-slate-500 font-medium">Account Type</span>
-                      <span className="text-slate-800">: Current Account</span>
+                      <span className="text-slate-800">: {companySettings?.inrBank?.accountType || 'Current Account'}</span>
                     </>
                   ) : (
                     <>
                       <span className="text-slate-500 font-medium">SWIFT Code</span>
-                      <span className="text-slate-800 font-mono">: HDFCINBB</span>
+                      <span className="text-slate-800 font-mono">: {companySettings?.usdBank?.swiftCode || 'HDFCINBB'}</span>
                       <span className="text-slate-500 font-medium">Purpose</span>
-                      <span className="text-slate-800">: Trade / Export Remittance (EEFC)</span>
+                      <span className="text-slate-800">: {companySettings?.usdBank?.accountType || 'Trade / Export Remittance (EEFC)'}</span>
                     </>
                   )}
                   <span className="text-slate-500 font-medium">Branch</span>
-                  <span className="text-slate-800">: CBD Belapur, Navi Mumbai{currency === 'INR' ? '' : ', India'}</span>
+                  <span className="text-slate-800">: {(currency === 'INR' ? companySettings?.inrBank?.branch : companySettings?.usdBank?.branch) || 'CBD Belapur, Navi Mumbai'}</span>
                 </div>
               </div>
 
@@ -434,9 +445,9 @@ export default function PurchaseOrderPreviewModal({ isOpen, onClose, order }: Pr
                     </div>
                     <div className="grid grid-cols-[70px_1fr] gap-x-1">
                       <span className="text-slate-500">Name</span>
-                      <span className="text-slate-800">: Aishwarya Ingale</span>
+                      <span className="text-slate-800">: {companySettings?.authorizedSignatory?.name || 'Aishwarya Ingale'}</span>
                       <span className="text-slate-500">Designation</span>
-                      <span className="text-slate-800">: Managing Director</span>
+                      <span className="text-slate-800">: {companySettings?.authorizedSignatory?.designation || 'Managing Director'}</span>
                       <span className="text-slate-500">Date</span>
                       <span className="text-slate-800">: {formatDate(order.createdAt || new Date())}</span>
                     </div>
