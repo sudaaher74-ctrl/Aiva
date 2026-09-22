@@ -171,13 +171,20 @@ purchaseOrderSchema.pre('save', async function() {
   
   // Auto-calculate item amounts and subtotal
   let subtotal = 0;
-  this.items.forEach(item => {
-    item.amount = item.quantity * item.unitPrice;
-    subtotal += item.amount;
-  });
+  if (Array.isArray(this.items)) {
+    this.items.forEach(item => {
+      if (item.unitPrice === undefined && item.unitPriceUSD !== undefined) {
+        item.unitPrice = Number(item.unitPriceUSD);
+      }
+      item.quantity = Number(item.quantity) || 1;
+      item.unitPrice = Number(item.unitPrice) || 0;
+      item.amount = item.quantity * item.unitPrice;
+      subtotal += item.amount;
+    });
+  }
   this.subtotal = subtotal;
-  this.gstAmount = (subtotal * (this.gstPercent || 0)) / 100;
-  this.totalAmount = subtotal + this.gstAmount + (this.freightCharges || 0) + (this.insurance || 0);
+  this.gstAmount = (subtotal * (Number(this.gstPercent) || 0)) / 100;
+  this.totalAmount = subtotal + this.gstAmount + (Number(this.freightCharges) || 0) + (Number(this.insurance) || 0);
 });
 
 // Indexes for faster queries

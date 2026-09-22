@@ -73,28 +73,58 @@ const productSchema = z.object({
 });
 
 // Purchase Order Validators
+const purchaseOrderItemSchema = z.object({
+  productName: z.string().min(1, 'Product name is required'),
+  category: z.string().optional(),
+  packaging: z.string().optional(),
+  netWeightKg: z.coerce.number().optional(),
+  quantity: z.coerce.number().positive('Quantity must be greater than 0'),
+  unit: z.string().optional(),
+  unitPrice: z.coerce.number().nonnegative().optional(),
+  unitPriceUSD: z.coerce.number().nonnegative().optional(),
+  totalUSD: z.coerce.number().nonnegative().optional(),
+  amount: z.coerce.number().nonnegative().optional(),
+  currency: z.string().optional(),
+  storageCondition: z.string().optional(),
+  shelfLife: z.string().optional()
+}).passthrough().refine(item => item.unitPrice !== undefined || item.unitPriceUSD !== undefined, {
+  message: 'Unit price is required'
+});
+
 const purchaseOrderSchema = z.object({
   body: z.object({
     buyerCompany: z.string().min(2, 'Buyer company is required'),
+    buyerName: z.string().optional(),
     buyerContactPerson: z.string().optional(),
+    buyerCountry: z.string().optional(),
     buyerEmail: z.string().email('Invalid email address').optional().or(z.literal('')),
     buyerPhone: z.string().optional(),
+    buyerAddress: z.string().optional(),
     consignee: z.string().optional(),
     shippingAddress: z.string().optional(),
-    items: z.array(z.object({
-      productName: z.string().min(1),
-      category: z.string().optional(),
-      packaging: z.string().optional(),
-      netWeightKg: z.number().optional(),
-      quantity: z.number().positive(),
-      unit: z.string().optional(),
-      unitPriceUSD: z.number().nonnegative(),
-      totalUSD: z.number().nonnegative().optional()
-    })).optional(),
-    totalAmountUSD: z.number().nonnegative().optional(),
+    portOfLoading: z.string().optional(),
+    destinationPort: z.string().optional(),
+    incoterms: z.string().optional(),
+    containerType: z.string().optional(),
+    shipmentMethod: z.string().optional(),
+    deliveryDate: z.union([z.string(), z.date()]).optional(),
+    freightCharges: z.coerce.number().optional(),
+    insurance: z.coerce.number().optional(),
+    gstPercent: z.coerce.number().optional(),
+    gstAmount: z.coerce.number().optional(),
+    subtotal: z.coerce.number().optional(),
+    totalAmount: z.coerce.number().optional(),
+    totalAmountUSD: z.coerce.number().optional(),
+    currency: z.string().optional(),
     paymentTerms: z.string().optional(),
-    status: z.enum(['Draft', 'Confirmed', 'Processing', 'In Transit', 'Customs Clearance', 'Delivered', 'Cancelled']).optional()
-  })
+    termsAndConditions: z.string().optional(),
+    internalNotes: z.string().optional(),
+    status: z.enum([
+      'Draft', 'Pending', 'Approved', 'Processing', 'Shipped', 'Delivered',
+      'Confirmed', 'In Transit', 'Customs Clearance', 'Cancelled'
+    ]).optional(),
+    items: z.array(purchaseOrderItemSchema).optional()
+  }).passthrough()
 });
 
 // Inventory Validators

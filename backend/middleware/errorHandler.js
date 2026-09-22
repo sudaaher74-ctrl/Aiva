@@ -18,8 +18,12 @@ const handleValidationErrorDB = err => {
 };
 
 const handleZodError = err => {
-  const errors = err.errors.map(el => el.message);
-  const message = `Validation error. ${errors.join('. ')}`;
+  const issues = err.issues || err.errors || [];
+  const errors = issues.map(el => {
+    const field = el.path && el.path.length ? `${el.path.filter(p => p !== 'body').join('.')}: ` : '';
+    return `${field}${el.message}`;
+  });
+  const message = errors.length > 0 ? `Validation error. ${errors.join('; ')}` : err.message;
   return new AppError(message, 400);
 };
 
@@ -61,15 +65,14 @@ module.exports = (err, req, res, next) => {
   err.status = err.status || 'error';
 
   if (process.env.NODE_ENV === 'production') {
-    let error = { ...err };
-    error.message = err.message;
+    let error = err;
 
-    if (error.name === 'CastError') error = handleCastErrorDB(error);
-    if (error.code === 11000) error = handleDuplicateFieldsDB(error);
-    if (error.name === 'ValidationError') error = handleValidationErrorDB(error);
-    if (error.name === 'ZodError') error = handleZodError(error);
-    if (error.name === 'JsonWebTokenError') error = handleJWTError();
-    if (error.name === 'TokenExpiredError') error = handleJWTExpiredError();
+    if (err.name === 'CastError') error = handleCastErrorDB(err);
+    if (err.code === 11000) error = handleDuplicateFieldsDB(err);
+    if (err.name === 'ValidationError') error = handleValidationErrorDB(err);
+    if (err.name === 'ZodError' || err.issues) error = handleZodError(err);
+    if (err.name === 'JsonWebTokenError') error = handleJWTError();
+    if (err.name === 'TokenExpiredError') error = handleJWTExpiredError();
 
     sendErrorProd(error, res);
   } else {

@@ -79,4 +79,30 @@ describe('AIVA Backend Zod Validators', () => {
     const parsed = purchaseOrderSchema.parse(payload);
     assert.equal(parsed.body.buyerCompany, 'Al Marai Foods');
   });
+
+  test('purchaseOrderSchema accepts Admin UI PO creation payload', () => {
+    const payload = {
+      body: {
+        buyerCompany: 'growthX',
+        buyerName: 'milquufresh',
+        buyerEmail: 'sudaaher74@gmail.com',
+        buyerCountry: 'India',
+        portOfLoading: 'Nhava Sheva, India',
+        destinationPort: '',
+        incoterms: 'FOB',
+        shipmentMethod: 'Sea',
+        items: [
+          { productName: 'nabsdv', quantity: 10, unit: 'MT', unitPrice: 233289 },
+          { productName: 'asnd', quantity: 222, unit: 'MT', unitPrice: 2327366 }
+        ],
+        freightCharges: 0,
+        insurance: 0,
+        gstPercent: 0,
+        status: 'Draft'
+      }
+    };
+    const parsed = purchaseOrderSchema.parse(payload);
+    assert.equal(parsed.body.buyerCompany, 'growthX');
+    assert.equal(parsed.body.items.length, 2);
+  });
 });

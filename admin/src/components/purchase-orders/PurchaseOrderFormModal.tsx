@@ -86,9 +86,10 @@ export default function PurchaseOrderFormModal({
       onClose()
     },
     onError: (error: any) => {
+      const msg = error?.response?.data?.message || error?.message || `There was an error ${isEditMode ? 'updating' : 'creating'} the PO.`
       toast({
         title: "Error",
-        description: error?.response?.data?.message || `There was an error ${isEditMode ? 'updating' : 'creating'} the PO.`,
+        description: msg,
         variant: "destructive",
       })
     }
@@ -97,14 +98,23 @@ export default function PurchaseOrderFormModal({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     
-    const validItems = items.filter(i => i.productName && i.quantity > 0)
+    const validItems = items.filter(i => i.productName && Number(i.quantity) > 0)
     if (validItems.length === 0) return toast({ title: "Please add at least one valid product", variant: "destructive" })
     if (!formData.buyerCompany || !formData.buyerEmail) return toast({ title: "Buyer Company and Email are required", variant: "destructive" })
 
     const payload: any = {
       ...formData,
-      items: validItems,
-      ...financials
+      items: validItems.map(item => ({
+        productName: item.productName.trim(),
+        quantity: Number(item.quantity) || 1,
+        unit: item.unit || "MT",
+        unitPrice: Number(item.unitPrice) || 0,
+        unitPriceUSD: Number(item.unitPrice) || 0,
+        packaging: (item as any).packaging || ""
+      })),
+      freightCharges: Number(financials.freightCharges) || 0,
+      insurance: Number(financials.insurance) || 0,
+      gstPercent: Number(financials.gstPercent) || 0
     }
     
     if (!isEditMode) payload.status = "Draft";

@@ -118,7 +118,32 @@ exports.getPurchaseOrderById = asyncHandler(async (req, res, next) => {
 });
 
 exports.createPurchaseOrder = asyncHandler(async (req, res, next) => {
-  const order = await PurchaseOrder.create(req.body);
+  const data = { ...req.body };
+
+  // Harmonize buyerName / buyerContactPerson
+  if (!data.buyerName && data.buyerContactPerson) {
+    data.buyerName = data.buyerContactPerson;
+  }
+  if (!data.buyerCountry) {
+    data.buyerCountry = data.destinationPort || 'International';
+  }
+
+  // Harmonize line items
+  if (Array.isArray(data.items)) {
+    data.items = data.items.map(item => {
+      const price = item.unitPrice !== undefined ? Number(item.unitPrice) : Number(item.unitPriceUSD || 0);
+      const qty = Number(item.quantity) || 1;
+      return {
+        ...item,
+        quantity: qty,
+        unitPrice: price,
+        unitPriceUSD: price,
+        amount: qty * price
+      };
+    });
+  }
+
+  const order = await PurchaseOrder.create(data);
   res.status(201).json({ success: true, data: order });
 });
 
@@ -128,8 +153,23 @@ exports.updatePurchaseOrder = asyncHandler(async (req, res, next) => {
     return next(new AppError('Purchase order not found', 404));
   }
 
-  Object.keys(req.body).forEach(key => {
-    order[key] = req.body[key];
+  const data = { ...req.body };
+  if (Array.isArray(data.items)) {
+    data.items = data.items.map(item => {
+      const price = item.unitPrice !== undefined ? Number(item.unitPrice) : Number(item.unitPriceUSD || 0);
+      const qty = Number(item.quantity) || 1;
+      return {
+        ...item,
+        quantity: qty,
+        unitPrice: price,
+        unitPriceUSD: price,
+        amount: qty * price
+      };
+    });
+  }
+
+  Object.keys(data).forEach(key => {
+    order[key] = data[key];
   });
 
   await order.save();
