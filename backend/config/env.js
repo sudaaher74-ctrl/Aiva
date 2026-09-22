@@ -15,7 +15,7 @@ const envSchema = z.object({
   CLOUDINARY_API_SECRET: z.string().optional(),
   EMAIL_USER: z.string().optional(),
   EMAIL_PASS: z.string().optional(),
-  CLIENT_URL: z.string().default('https://www.aivaenterprises.com'),
+  CLIENT_URL: z.string().default('https://www.aivaenterprises.com,https://aivaenterprises.com'),
 });
 
 const validateEnv = () => {

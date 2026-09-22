@@ -103,8 +103,8 @@ export default function PurchaseOrderPreviewModal({ isOpen, onClose, order }: Pr
                 </div>
                 <div className="p-5 grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-slate-600">
                   <div className="space-y-1">
-                    <p>123 Business Avenue, Tech Park</p>
-                    <p>Mumbai, Maharashtra 400001, India</p>
+                    <p>Lakhani Centrium, 4th Floor, Sec 15</p>
+                    <p>CBD Belapur, Navi Mumbai 400614, India</p>
                     <div className="pt-2 flex flex-col gap-1">
                       <p><span className="font-medium text-slate-700">GST:</span> 27AAAAA0000A1Z5</p>
                       <p><span className="font-medium text-slate-700">PAN:</span> AAAAA0000A</p>
@@ -112,10 +112,10 @@ export default function PurchaseOrderPreviewModal({ isOpen, onClose, order }: Pr
                     </div>
                   </div>
                   <div className="space-y-1 md:text-right">
-                    <p><span className="font-medium text-slate-700">Support:</span> support@aiva.com</p>
-                    <p><span className="font-medium text-slate-700">Sales:</span> sales@aiva.com</p>
-                    <p><span className="font-medium text-slate-700">Phone:</span> +91 98765 43210</p>
-                    <p><span className="font-medium text-slate-700">Website:</span> www.aiva.com</p>
+                    <p><span className="font-medium text-slate-700">Email:</span> Enquire@aivaenterprises.com</p>
+                    <p><span className="font-medium text-slate-700">Sales:</span> sales@aivaenterprises.com</p>
+                    <p><span className="font-medium text-slate-700">Phone:</span> +91 88281 77533</p>
+                    <p><span className="font-medium text-slate-700">Website:</span> www.aivaenterprises.com</p>
                   </div>
                 </div>
               </div>

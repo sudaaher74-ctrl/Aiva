@@ -49,10 +49,12 @@ export default function PurchaseOrders() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['purchaseOrders'] })
+      queryClient.invalidateQueries({ queryKey: ['poStats'] })
       toast({ title: "Purchase Order deleted successfully" })
     },
     onError: (error: any) => {
-      toast({ title: "Error deleting order", description: error?.response?.data?.message, variant: "destructive" })
+      const msg = error?.response?.data?.message || error?.message || "Failed to delete order";
+      toast({ title: "Error deleting order", description: msg, variant: "destructive" })
     }
   })
 

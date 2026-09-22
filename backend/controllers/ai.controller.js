@@ -29,7 +29,9 @@ IMPORTANT RULES:
 COMPANY DETAILS:
 - Name: Aiva Enterprises
 - Industry: Food Export (Frozen Fruits, Pulps, Aseptic Products, IQF Fruits & Vegetables)
-- Location: Mumbai, Maharashtra, India
+- Location: Lakhani Centrium, 4th Floor, Sec 15, CBD Belapur, Navi Mumbai 400614, India
+- Phone: +91 88281 77533
+- Email: Enquire@aivaenterprises.com
 - Website: aivaenterprises.com
 - GST: 27AAAAA0000A1Z5
 - IEC: 0123456789

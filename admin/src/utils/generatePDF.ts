@@ -111,16 +111,16 @@ export const downloadPurchaseOrderPDF = (order: any) => {
   setFontHeading()
   doc.text("Aiva Enterprises", margin + 5, currentY + 7)
   setFontMuted()
-  doc.text("123 Business Avenue, Tech Park", margin + 5, currentY + 12)
-  doc.text("Mumbai, Maharashtra 400001, India", margin + 5, currentY + 17)
+  doc.text("Lakhani Centrium, 4th Floor, Sec 15", margin + 5, currentY + 12)
+  doc.text("CBD Belapur, Navi Mumbai 400614, India", margin + 5, currentY + 17)
   doc.text("GST: 27AAAAA0000A1Z5 | PAN: AAAAA0000A", margin + 5, currentY + 22)
   doc.text("IEC: 0123456789", margin + 5, currentY + 27)
 
   // Right side of company info
-  doc.text("Support: support@aiva.com", margin + 100, currentY + 12)
-  doc.text("Sales: sales@aiva.com", margin + 100, currentY + 17)
-  doc.text("Phone: +91 98765 43210", margin + 100, currentY + 22)
-  doc.text("Website: www.aiva.com", margin + 100, currentY + 27)
+  doc.text("Email: Enquire@aivaenterprises.com", margin + 100, currentY + 12)
+  doc.text("Sales: sales@aivaenterprises.com", margin + 100, currentY + 17)
+  doc.text("Phone: +91 88281 77533", margin + 100, currentY + 22)
+  doc.text("Website: www.aivaenterprises.com", margin + 100, currentY + 27)
 
   currentY += 36
 

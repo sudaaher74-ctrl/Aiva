@@ -39,21 +39,49 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Dynamic CORS handling for multi-domain deployments
-const allowedOrigins = (process.env.CLIENT_URL || '')
+const defaultAllowedOrigins = [
+  'https://aivaenterprises.com',
+  'https://www.aivaenterprises.com',
+  'http://localhost:3000',
+  'http://localhost:5173',
+  'http://localhost:5174',
+  'http://localhost:5001'
+];
+
+const envAllowed = (process.env.CLIENT_URL || '')
   .split(',')
   .map(url => url.trim())
   .filter(Boolean);
 
+const allowedOrigins = [...new Set([...defaultAllowedOrigins, ...envAllowed])];
+
 app.use(cors({
   origin: (origin, callback) => {
     // Allow requests with no origin (e.g., mobile apps, curl) or if origin is explicitly allowed
-    if (!origin || allowedOrigins.length === 0 || allowedOrigins.includes(origin) || allowedOrigins.includes('*')) {
-      callback(null, true);
-    } else {
-      callback(new Error(`CORS policy violation: ${origin} is not permitted`));
+    if (!origin || allowedOrigins.includes('*') || allowedOrigins.includes(origin)) {
+      return callback(null, true);
     }
+
+    try {
+      const parsedUrl = new URL(origin);
+      const host = parsedUrl.hostname.toLowerCase();
+      if (
+        host === 'aivaenterprises.com' ||
+        host.endsWith('.aivaenterprises.com') ||
+        host.endsWith('.vercel.app') ||
+        host === 'localhost' ||
+        host === '127.0.0.1'
+      ) {
+        return callback(null, true);
+      }
+    } catch (e) {
+      // Invalid URL format
+    }
+
+    // Do not throw an unhandled 500 Error, reject CORS cleanly
+    return callback(null, false);
   },
-  methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
+  methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));

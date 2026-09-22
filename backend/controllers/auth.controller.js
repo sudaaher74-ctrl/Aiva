@@ -17,7 +17,8 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
   user.resetPasswordExpire = Date.now() + 10 * 60 * 1000;
   await user.save();
 
-  const resetUrl = `${process.env.CLIENT_URL || 'http://localhost:5173'}/admin/#reset=${resetToken}`;
+  const primaryClientUrl = (process.env.CLIENT_URL || 'http://localhost:5173').split(',')[0].trim();
+  const resetUrl = `${primaryClientUrl}/admin/#reset=${resetToken}`;
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
